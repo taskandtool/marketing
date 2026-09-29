@@ -22,7 +22,7 @@ set -euo pipefail
 APP="$(pwd)"
 OBSCURA_VERSION="${OBSCURA_VERSION:-v0.2.2}"
 OBSCURA_REPO="https://github.com/h4ckf0r0day/obscura"
-CRAWLER_REF="${CRAWLER_REF:-v0.1.4}"
+CRAWLER_REF="${CRAWLER_REF:-v0.2.0}"
 
 echo "== creatives starter app: setup in $APP"
 

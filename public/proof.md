@@ -3,7 +3,7 @@ title: Proof
 type: proof
 updated: to fill
 status: current
-items: []                       # - { quote: "", who: "", source: "raw/web/reviews.md", date: "" }
+items: []                       # - { quote: "", who: "", source: "raw/site/<host>/_index/reviews.md", date: "" }
 sources: []
 ---
 

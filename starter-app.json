@@ -41,7 +41,7 @@
     {
       "id": "set-up-the-brand-from",
       "label": "Set up the brand from my website",
-      "prompt": "Set up the brand and the facts this app makes creatives from, with the sources skill: crawl my site with tt-crawl into raw/web with styles and screenshots, write brand/ (visual identity as hex, the voice card and the fingerprint with quoted sentences, positioning, audience, do and don't) and public/ (business, services, proof, faq, team) citing the raw files, then set templates/brand.css and the fonts from them and run python3 scripts/qa.py --tokens. Tell me what you could not find. My site is ",
+      "prompt": "Set up the brand and the facts this app makes creatives from, with the sources skill: crawl my site with tt-crawl into raw/site with styles and screenshots, write brand/ (visual identity as hex, the voice card and the fingerprint with quoted sentences, positioning, audience, do and don't) and public/ (business, services, proof, faq, team) citing the raw files, then set templates/brand.css and the fonts from them and run python3 scripts/qa.py --tokens. Tell me what you could not find. My site is ",
       "when": [
         {
           "sibling": "brain",

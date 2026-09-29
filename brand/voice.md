@@ -89,4 +89,4 @@ The voice is constant; the tone flexes by where the words appear.
 ## Sources
 
 Where the samples came from, so every line above can be checked: to fill
-(e.g. `raw/web/about.md`, `raw/transcripts/2026-09-07-chat.md`).
+(e.g. `raw/site/theirsite.com/pages/about.md`, `raw/transcripts/2026-09-07-chat.md`).

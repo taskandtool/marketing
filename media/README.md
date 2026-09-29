@@ -17,16 +17,15 @@ media/_notes.md   what each file shows, who is in it, whether it may be used (th
 1. **The owner uploads them** in the app's Files tab, or drops them into a
    chat message, or copies them onto the machine.
 2. **A mirror from a Company Brain or a website in the same project.** The
-   owner sets it up once in this app's Settings (Mirrored folders): the
-   brain's `raw/web/images` (the pictures the crawl already pulled off the
-   owner's site) onto `media/photos`, or a folder the owner keeps in the
-   brain onto `media/`. The copy is read only here and refreshes when the
-   source changes, the same way `brand/` and `public/` arrive. This is the
-   pattern the website uses for the brain's notes; media works the same.
+   owner sets it up once in this app's Settings (Mirrored folders): a
+   folder the owner keeps in the brain onto `media/`. The copy is read
+   only here and refreshes when the source changes, the same way `brand/`
+   and `public/` arrive. This is the pattern the website uses for the
+   brain's notes; media works the same.
 3. **The site crawl**, when this app collected its own sources: `tt-crawl`
-   writes the owner's pictures into `raw/web/images/` with `_media.json`
-   saying which are photographs. The `sources` skill copies the real
-   photographs across into `media/photos`.
+   writes the owner's pictures into `raw/site/<host>/images/` with
+   `_index/media.json` saying which are photographs. The `sources` skill
+   copies the real photographs across into `media/photos`.
 
 ## What a mirror will and will not carry
 

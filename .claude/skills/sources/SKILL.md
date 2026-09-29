@@ -24,15 +24,21 @@ the brain and this app, and an app that already has them owns them.
    `public/` are the source; the owner mirrors them the same way (source
    `brand` and `public` of the website app). Same rule about the voice.
 3. **Neither.** This app collects its own, into the same folders, cited to
-   `raw/`, so a brain added later can take `raw/` as a source and replace
-   the notes by mirror:
+   `raw/`, so a brain added later replaces the notes by mirror:
 
    ```bash
-   tt-crawl site https://theirsite.com --out raw/web --styles --screenshots     # the site, rendered
-   tt-crawl docs --from raw/web --out raw/docs                                 # linked PDFs and documents
-   tt-crawl structured https://theirsite.com --out raw/structured              # JSON-LD, Open Graph
-   tt-crawl places "Business, City" --out raw/places      # the public Google listing (needs GOOGLE_PLACES_API_KEY)
+   tt-crawl site https://theirsite.com --styles --screenshots   # the site, rendered, into raw/site/<host>/
+   tt-crawl docs                                                # linked PDFs and documents, into its docs/
+   tt-crawl places "Business, City" --out raw/places           # the public Google listing (needs GOOGLE_PLACES_API_KEY)
    ```
+
+   The crawl keeps the pages in `pages/`, the pictures in `images/`, the
+   JSON-LD and Open Graph in `structured/`, and in `_index/` the
+   `styles.json`, `media.json`, `facts.json` (phones, emails, addresses,
+   hours, social, each with where it was found) and `reviews.md` (verbatim,
+   with name, date and platform). `tt-crawl playbook brand` prints the
+   steps for the crawler that is installed. An app with an old `raw/web/` folder
+   moves it with `tt-crawl relayout raw/web --rewrite public brand`.
 
    Then write, citing the raw file each fact came from:
    - `public/business.md` (name, phone, email, address, hours, social,
@@ -43,9 +49,9 @@ the brain and this app, and an app that already has them owns them.
    - `brand/positioning.md` (what, for whom, what is different, in the
      owner's words), `brand/audience.md` (including "Where they are when
      it matters", the place and moment the need shows up),
-     `brand/visual-identity.md` (colours as hex from `raw/web/_styles.json`,
+     `brand/visual-identity.md` (colours as hex from `raw/site/<host>/_index/styles.json`,
      fonts, the logo copied into `brand/logo/`, and the **Imagery block**:
-     look at the owner's real photographs in `raw/web/_media.json` (the
+     look at the owner's real photographs in `_index/media.json` (the
      `photo` entries) and the page screenshots, and write what they show,
      the settings, the light, the materials and the object that carries
      the brand's colour, the people rule, what never appears, and the
@@ -68,14 +74,12 @@ material beats anything a model can invent. It arrives three ways
 
 1. **The owner uploads them** in the Files tab or in a chat message.
 2. **A mirror**, set up once by the owner in this app's Settings, exactly
-   as `brand/` and `public/` arrive: the brain's `raw/web/images` (the
-   pictures its crawl already pulled off the owner's site) onto
-   `media/photos`, or a media folder the owner keeps in the brain or the
-   website onto `media/`. Read only here, refreshed when the source
+   as `brand/` and `public/` arrive: a media folder the owner keeps in the
+   brain or the website onto `media/`. Read only here, refreshed when the source
    changes. Recommend it whenever a sibling app has pictures; the owner
    creates it, you cannot.
-3. **This app's own crawl**: `raw/web/images/` with `_media.json` saying
-   which are photographs. Copy the real photographs (not logos, icons or
+3. **This app's own crawl**: `raw/site/<host>/images/` with
+   `_index/media.json` saying which are photographs. Copy the real photographs (not logos, icons or
    theme art) across into `media/photos`.
 
 Mirrors carry files up to **20 MB each and 200 MB a folder**, so
