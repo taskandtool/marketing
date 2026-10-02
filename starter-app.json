@@ -10,6 +10,11 @@
         "why": "Generate pictures for ads and posts"
       },
       {
+        "provider": "higgsfield",
+        "strength": "suggested",
+        "why": "Generate short videos and images for ads and posts (Seedance, Kling and others)"
+      },
+      {
         "provider": "apify",
         "strength": "suggested",
         "why": "Read competitors' ads and posts for research"
