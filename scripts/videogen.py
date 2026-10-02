@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Generate a short clip (b-roll behind a script, four to eight seconds)
-with whichever video model this app has a key for. Video is expensive and
-slow next to a picture; the video-script skill says when a clip earns it.
+"""Generate a short clip (four to eight seconds) with whichever video model
+this app has a key for. Video is expensive and slow next to a picture; the
+video skill says when a clip earns it and writes the shot brief.
 
-    python3 scripts/videogen.py --prompt "…" --ratio 9:16 --seconds 6 --out creatives/generated/<id>/clip.mp4
+    python3 scripts/videogen.py --prompt "…" --ratio 9:16 --seconds 6 --out creatives/<folder>/shot-1.mp4
                                 [--ref frame.png] [--provider openrouter|fal] [--model …]
     python3 scripts/videogen.py --check
 
@@ -19,8 +19,8 @@ Direct Gemini Veo and Runway are not wired (their request shapes were not
 verified when this was written); OpenRouter reaches Veo, Hailuo and Wan
 with the one key. The bytes go to --out (mp4) and the provider, model,
 cost and prompt to <out>.json. Exit 3 when no provider is configured.
-The same no-text rule as pictures applies: the template and the captions
-carry the words; the clip carries the scene.
+When a video connection (Seedance or another) brings its own instructions
+for calling its model, those win over this script.
 """
 
 import argparse
@@ -140,7 +140,7 @@ def main():
     ap.add_argument("--ref", action="append", default=[], help="a first-frame or reference image")
     ap.add_argument("--provider", choices=sorted(GENERATORS))
     ap.add_argument("--model")
-    ap.add_argument("--no-suffix", action="store_true")
+    ap.add_argument("--no-text", action="store_true", help="append a no-text rule")
     ap.add_argument("--check", action="store_true")
     args = ap.parse_args()
 
@@ -156,13 +156,13 @@ def main():
         die("--prompt and --out are required (or --check)")
     provider = args.provider or (avail[0] if avail else None)
     if not provider:
-        die("no video provider configured; the video-script skill says when and how to ask for one", 3)
+        die("no video provider configured; the video skill says when and how to ask for one", 3)
     if provider not in avail:
         die(f"{provider} has no key in the environment; configured: {', '.join(avail) or 'none'}", 3)
     for ref in args.ref:
         if not os.path.isfile(ref):
             die(f"reference image not found: {ref}")
-    prompt = args.prompt.strip() + ("" if args.no_suffix else NO_TEXT)
+    prompt = args.prompt.strip() + (NO_TEXT if args.no_text else "")
     clip, meta = GENERATORS[provider](prompt, args.ratio, args.seconds, args.ref, args.model)
     os.makedirs(os.path.dirname(os.path.abspath(args.out)) or ".", exist_ok=True)
     with open(args.out, "wb") as fh:

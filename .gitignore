@@ -7,27 +7,19 @@
 *.pem
 *.key
 
-# Working material and rendered output are the owner's, made on their own
-# machine. The folders and the notes that explain them ship with the app;
-# nobody's creatives do.
-creatives/generated/*
-creatives/approved/*
-creatives/scheduled/*
-creatives/posted/*
-creatives/rejected/*
-campaigns/*/
-inbox/decisions/*
+# Working material and output are the owner's, made on their own machine.
+# The folders and the notes that explain them ship with the app; nobody's
+# brand, research or creatives do.
+/brand/*
+/public/*
+creatives/*
+research/*
 media/clips/*
-media/logo/*
 media/photos/*
 raw/*
-swipe/*
 uploads/*
-*.raw.png
-render.html
 !**/.gitkeep
 !**/README.md
-!**/_notes.md
 
 # Tool noise
 node_modules/

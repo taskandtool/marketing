@@ -1,20 +1,19 @@
 #!/usr/bin/env python3
-"""The app's own checks (CREATIVES.md, DESIGN.md, the specs), run before
-showing work:
+"""The app's own checks, run before anything is shown to the owner:
 
-    python3 scripts/check.py [--status generated] [<id> …]
+    python3 scripts/check.py [<folder> …]
 
-- the brand notes and the fact notes the creatives draw on exist
-- every creative.md has the required fields, its id matches its folder, its
-  status matches the folder it sits in, every listed file exists, every
-  claim names a source that exists, history is a list
-- the copy gate: no refused phrases, no em dashes, hashtags empty on an ad,
-  Meta's personal-attributes phrasings absent, the platform's length limits
-  (specs/<platform>.md) respected
-- the specs are not stale (last_verified within 90 days)
-- the rendered master has the right size (delegated to qa.py when present)
+- the brand record the work draws on exists (brand/, public/)
+- every creatives/<YYYY-MM-DD-slug>/creative.md has the fields the
+  marketing skill lists, a known kind, platform and status, and every file
+  it lists
+- every claim it cites is a numbered entry in claims.md, and every entry
+  there names a source file that exists
+- the copy passes scripts/tropes.py and the platform's text limits
+- the platform sheets in specs/ are not stale (90 days)
 
-Exit 1 with the findings when something is off.
+Exit 1 with the findings when something is off. A finding is fixed at
+its source before the owner sees the work, never explained away.
 """
 
 import argparse
@@ -24,47 +23,66 @@ import sys
 from datetime import date
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import (KINDS, PLATFORMS, STATUSES, copy_findings, creative_dirs, read_record, root)  # noqa: E402
+from common import FOLDER, KINDS, PLATFORMS, STATUSES, creative_dirs, read_record, root  # noqa: E402
+from tropes import findings as trope_findings  # noqa: E402
 
-REQUIRED = ["type", "id", "platform", "kind", "format", "status", "files", "copy", "claims", "history"]
+REQUIRED = ["kind", "platform", "status", "angle", "hook", "claims", "files", "copy"]
+NOTES = ["brand/positioning.md", "brand/voice.md", "brand/visual-identity.md", "public/business.md"]
 
-# the text limits the specs state; check.py holds the ones that are hard
-# limits or "See more" cutoffs (specs/*.md carry the sources)
+# Hard limits and visible cutoffs; specs/<platform>.md carries the sources.
+# (limit, hard?, why)
 LIMITS = {
-    "meta": {"headline": (40, "Meta headline shows 40 characters (27 on the Facebook feed)"),
-             "primary_text": (125, "Meta primary text shows about 125 characters before See more"),
-             "description": (25, "Meta description shows 25 characters")},
-    "linkedin": {"headline": (70, "LinkedIn headline: 70 recommended, 200 max"),
-                 "primary_text": (150, "LinkedIn intro text: 150 recommended, 600 max")},
-    "tiktok": {"caption": (100, "TikTok ad caption: 100 max, about 45 visible")},
-    "google": {"headline": (30, "Google headline: 30 max"), "primary_text": (90, "Google description: 90 max")},
-    "pinterest": {"headline": (100, "Pinterest title: 100 max, about 40 visible"), "primary_text": (500, "Pinterest description: 500 max")},
-    "youtube": {"headline": (70, "YouTube title: about 70 visible")},
-    "gbp": {"primary_text": (1500, "Google Business Profile post: 1,500 max")},
+    "meta": {"headline": (40, True, "Meta headline: 40 characters"),
+             "primary_text": (125, False, "Meta primary text shows about 125 characters before See more"),
+             "description": (25, False, "Meta description shows 25 characters")},
+    "linkedin": {"headline": (200, True, "LinkedIn headline: 200 max, 70 recommended"),
+                 "primary_text": (600, True, "LinkedIn intro text: 600 max, 150 recommended")},
+    "tiktok": {"caption": (100, True, "TikTok ad caption: 100 max, about 45 visible")},
+    "google": {"headline": (30, True, "Google headline: 30 max"), "primary_text": (90, True, "Google description: 90 max")},
+    "pinterest": {"headline": (100, True, "Pinterest title: 100 max"), "primary_text": (500, True, "Pinterest description: 500 max")},
+    "youtube": {"headline": (70, False, "YouTube title: about 70 visible")},
+    "gbp": {"primary_text": (1500, True, "Google Business Profile post: 1,500 max")},
 }
-HARD = {"linkedin": {"headline": 200, "primary_text": 600}, "meta": {"headline": 40}, "tiktok": {"caption": 100},
-        "google": {"headline": 30, "primary_text": 90}, "pinterest": {"headline": 100, "primary_text": 500}}
+LIMITS["facebook"] = LIMITS["instagram"] = LIMITS["meta"]
 
 
-def check_creative(app, status, cid, d, findings):
+def claim_numbers(app, findings):
+    """{number: source} from claims.md (`1. The claim (public/proof.md)`),
+    checking each source exists."""
+    path = os.path.join(app, "claims.md")
+    if not os.path.isfile(path):
+        return {}
+    out = {}
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            m = re.match(r"^\s*(\d+)\.\s+(.*)$", line)
+            if not m:
+                continue
+            src = re.findall(r"\(((?:public|brand|raw|research|media)/[^)\s#]+)(?:#[^)]*)?\)", m.group(2))
+            if not src:
+                findings.append(f"claims.md #{m.group(1)}: no source in brackets (public/…, brand/…, raw/…)")
+            for s in src:
+                if not os.path.exists(os.path.join(app, s)):
+                    findings.append(f"claims.md #{m.group(1)}: source {s} does not exist")
+            out[int(m.group(1))] = src
+    return out
+
+
+def check_creative(app, name, d, claims, findings):
     path = os.path.join(d, "creative.md")
-    fm, body = read_record(path)
     rel = os.path.relpath(path, app)
+    fm, body = read_record(path)
+    if not FOLDER.match(name):
+        findings.append(f"{rel}: the folder is named YYYY-MM-DD-<slug>")
     for k in REQUIRED:
         if k not in fm:
             findings.append(f"{rel}: missing `{k}`")
-    if fm.get("type") != "creative":
-        findings.append(f"{rel}: type must be creative")
-    if fm.get("id") != cid:
-        findings.append(f"{rel}: id {fm.get('id')!r} does not match the folder {cid}")
-    if fm.get("status") != status:
-        findings.append(f"{rel}: status {fm.get('status')!r} but the folder is creatives/{status}/")
-    if fm.get("platform") not in PLATFORMS:
-        findings.append(f"{rel}: platform must be one of {', '.join(PLATFORMS)}")
     if fm.get("kind") not in KINDS:
         findings.append(f"{rel}: kind must be one of {', '.join(KINDS)}")
-    if not isinstance(fm.get("history"), list) or not fm.get("history"):
-        findings.append(f"{rel}: history must be a non-empty list")
+    if fm.get("platform") not in PLATFORMS:
+        findings.append(f"{rel}: platform must be one of {', '.join(PLATFORMS)}")
+    if fm.get("status") not in STATUSES:
+        findings.append(f"{rel}: status must be one of {', '.join(STATUSES)}")
     files = fm.get("files") or []
     if not isinstance(files, list):
         findings.append(f"{rel}: files must be a list")
@@ -72,14 +90,16 @@ def check_creative(app, status, cid, d, findings):
     for f in files:
         if not os.path.isfile(os.path.join(d, str(f))):
             findings.append(f"{rel}: listed file {f} is missing")
-    if status in ("approved", "scheduled", "posted") and fm.get("kind") in ("static", "carousel") and not files:
-        findings.append(f"{rel}: a {status} {fm.get('kind')} must list its rendered files")
+    if fm.get("status") in ("sent", "approved", "posted") and not files:
+        findings.append(f"{rel}: a {fm.get('status')} creative lists the files the owner saw")
+    if fm.get("status") == "posted" and not fm.get("url"):
+        findings.append(f"{rel}: a posted creative has the post's `url`")
     for c in fm.get("claims") or []:
-        src = c.get("source") if isinstance(c, dict) else None
-        if not src:
-            findings.append(f"{rel}: a claim has no source ({c!r})")
-        elif not os.path.exists(os.path.join(app, str(src).split("#")[0])):
-            findings.append(f"{rel}: claim source {src} does not exist")
+        if isinstance(c, int):
+            if c not in claims:
+                findings.append(f"{rel}: claim {c} is not in claims.md")
+        elif not os.path.exists(os.path.join(app, str(c).split("#")[0])):
+            findings.append(f"{rel}: claim source {c} does not exist")
     if "to fill" in body:
         findings.append(f"{rel}: the body still says 'to fill'")
 
@@ -87,28 +107,19 @@ def check_creative(app, status, cid, d, findings):
     if not isinstance(copy, dict):
         findings.append(f"{rel}: copy must be a map")
         return
-    is_ad = fm.get("kind") in ("static", "carousel", "video")
-    hashtags = copy.get("hashtags") or []
-    if is_ad and hashtags:
+    ad = fm.get("kind") == "ad"
+    if ad and copy.get("hashtags"):
         findings.append(f"{rel}: an ad carries no hashtags (they are an exit)")
     for field, text in copy.items():
-        if not isinstance(text, str) or not text:
-            continue
-        for rule, match in copy_findings(text, ad=is_ad):
-            findings.append(f"{rel}: copy.{field}: {rule}: \"{match}\"")
-        if field == "cta" and re.match(r"^(learn more|click here|read more|find out more)$", text.strip(), re.I):
-            findings.append(f"{rel}: copy.cta \"{text}\" says nothing; a verb and an object")
-    if is_ad and copy.get("headline") and len(copy["headline"].split()) > 12:
-        findings.append(f"{rel}: copy.headline is {len(copy['headline'].split())} words; twelve or fewer on a creative")
-    platform = fm.get("platform")
-    for field, (limit, why) in LIMITS.get(platform, {}).items():
+        if isinstance(text, str):
+            for rule, match in trope_findings(text, ad=ad):
+                findings.append(f"{rel}: copy.{field}: {rule}: \"{match}\"")
+    for field, (limit, hard, why) in LIMITS.get(fm.get("platform"), {}).items():
         text = copy.get(field)
         if isinstance(text, str) and len(text) > limit:
-            hard = HARD.get(platform, {}).get(field)
-            if hard and len(text) > hard:
+            if hard:
                 findings.append(f"{rel}: copy.{field} is {len(text)} characters, over the limit ({why})")
-            elif not hard or len(text) > limit:
-                # past what shows before the fold: fine when the words earn it, so a note, not a finding
+            else:
                 print(f"note: {rel}: copy.{field} is {len(text)} characters, past the visible cutoff ({why})")
 
 
@@ -121,49 +132,34 @@ def check_specs(app, findings):
         if not name.endswith(".md") or name == "README.md":
             continue
         fm, _ = read_record(os.path.join(specs, name))
-        lv = fm.get("last_verified")
         try:
-            d = date.fromisoformat(str(lv))
+            d = date.fromisoformat(str(fm.get("last_verified")))
         except (TypeError, ValueError):
             findings.append(f"specs/{name}: last_verified must be a date")
             continue
         if (date.today() - d).days > 90:
-            print(f"note: specs/{name} was last verified {lv}, over 90 days ago; re-verify before building against it")
+            print(f"note: specs/{name} was last verified {d}, over 90 days ago; re-verify before building against it")
 
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("ids", nargs="*")
-    ap.add_argument("--status", choices=STATUSES)
+    ap.add_argument("folders", nargs="*")
     args = ap.parse_args()
     app = root()
     findings = []
-
-    for f in ["brand/voice.md", "brand/visual-identity.md", "brand/positioning.md", "public/business.md", "public/proof.md", "DESIGN.md", "CREATIVES.md", "templates/brand.css"]:
+    for f in NOTES:
         if not os.path.exists(os.path.join(app, f)):
-            findings.append(f"{f} is missing")
-    if os.path.exists(os.path.join(app, "brand", "_mirror.md")):
-        print("note: brand/ is a mirror; change brand facts at the source, then re-apply them here")
-
+            findings.append(f"{f} is missing (the brand skill writes it)")
     check_specs(app, findings)
-    rows = creative_dirs(app, [args.status] if args.status else None)
-    if args.ids:
-        rows = [r for r in rows if r[1] in args.ids]
-        missing = set(args.ids) - {r[1] for r in rows}
-        for m in missing:
-            findings.append(f"no creative with id {m}")
-    for status, cid, d in rows:
-        check_creative(app, status, cid, d, findings)
-
-    # the rendered masters, when qa.py and Pillow are available
-    try:
-        import qa  # noqa: F401
-        for status, cid, d in rows:
-            if os.path.isfile(os.path.join(d, "master.png")):
-                findings.extend(f"{cid}: {f}" for f in qa.check_dir(app, d))
-    except ImportError:
-        pass
-
+    claims = claim_numbers(app, findings)
+    rows = creative_dirs(app)
+    if args.folders:
+        wanted = {os.path.basename(f.rstrip("/")) for f in args.folders}
+        for m in wanted - {n for n, _ in rows}:
+            findings.append(f"no creative folder {m}")
+        rows = [r for r in rows if r[0] in wanted]
+    for name, d in rows:
+        check_creative(app, name, d, claims, findings)
     if findings:
         print(f"check: {len(findings)} finding(s)\n  - " + "\n  - ".join(findings), file=sys.stderr)
         sys.exit(1)

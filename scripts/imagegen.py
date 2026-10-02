@@ -1,31 +1,30 @@
 #!/usr/bin/env python3
-"""Generate the visual behind a creative with whichever image model this
-app has a key for. The model paints the scene; the template sets the
-words, the logo, and the colours (DESIGN.md), so every prompt ends with the
-no-text rule and names the copy-space.
+"""Generate a picture for a creative with whichever image model this app
+has a key for. The images skill writes the prompt; this sends it.
 
-    python3 scripts/imagegen.py --prompt "…" --ratio 4:5 --out creatives/generated/<id>/visual.png
-                                [--ref photo.png …] [--provider openrouter|gemini|bfl|fal|openai]
-                                [--model …] [--size 1K|2K] [--seed N] [--no-suffix]
-    python3 scripts/imagegen.py --prompt-file prompt.txt --ratio 4:5 --out …   # from scripts/prompt.py
+    python3 scripts/imagegen.py --prompt "…" --ratio 4:5 --out creatives/<folder>/v1.png
+                                [--ref photo.png …] [--brand] [--no-text]
+                                [--provider openai|openrouter|gemini|bfl|fal] [--model …]
+                                [--size 1K|2K] [--seed N]
+    python3 scripts/imagegen.py --prompt-file creatives/<folder>/prompt.txt --ratio 4:5 --out …
     python3 scripts/imagegen.py --check          # which providers are configured
 
 Providers, in the order tried (the first with a key wins):
 
+  OPENAI_API_KEY       gpt-image-2 (the strongest at rendering words in the picture)
   OPENROUTER_API_KEY   POST $OPENROUTER_BASE_URL/images (default https://openrouter.ai/api/v1);
                        one key for Gemini, GPT Image and FLUX; default model
                        google/gemini-3.1-flash-image. OPENROUTER_BASE_URL may point at a
-                       gateway that needs no key (the Sprites managed connector): then set
-                       OPENROUTER_BASE_URL alone.
+                       gateway that needs no key: then set OPENROUTER_BASE_URL alone.
   GEMINI_API_KEY       generateContent on gemini-3.1-flash-image (also GOOGLE_API_KEY)
-  BFL_API_KEY          api.bfl.ai flux-2-pro (hex colours in the prompt work best here)
+  BFL_API_KEY          api.bfl.ai flux-2-pro
   FAL_KEY              fal.run fal-ai/nano-banana-2 (also FAL_API_KEY)
-  OPENAI_API_KEY       gpt-image-2 (org verification may be required; last for that reason)
 
-A key arrives through Connections as <SLUG>_API_KEY in ~/.env; with none,
-the static-ad skill asks the owner with request_connection. The bytes are
-written to --out as PNG; the provider, model, cost (when reported) and the
-prompt go to <out>.json beside it. Exit 3 when no provider is configured.
+A key arrives through Connections as <SLUG>_API_KEY in ~/.env. When a
+connection brings its own instructions for calling its model, those win
+over this script. The bytes are written to --out as PNG; the provider,
+model, cost (when reported) and the prompt go to <out>.json beside it.
+Exit 3 when no provider is configured.
 """
 
 import argparse
@@ -39,8 +38,7 @@ import time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import die  # noqa: E402
 
-NO_TEXT = (" No text, no letters, no numbers, no logos, no watermarks, no user interface"
-           " anywhere in the image.")
+NO_TEXT = " No text, no letters, no numbers, no logos, no watermarks anywhere in the image."
 
 
 def style_anchor(app_root, anchor_path=None):
@@ -62,8 +60,9 @@ def style_anchor(app_root, anchor_path=None):
     lines = [l.strip()[2:].strip() for l in block.splitlines() if l.strip().startswith("- ")]
     lines = [l for l in lines if "to fill" not in l]
     for l in lines:
-        if l.lower().startswith("**style anchor:**"):
-            return l.split(":**", 1)[1].strip()
+        plain = l.replace("**", "")
+        if plain.lower().startswith("style anchor") and ":" in plain:
+            return plain.split(":", 1)[1].strip()
     if not lines:
         return ""
     return " ".join(l.replace("**", "") for l in lines)
@@ -87,6 +86,8 @@ OPENAI_SIZES = {"1:1": "1024x1024", "4:5": "1024x1536", "9:16": "1024x1536", "2:
 def providers():
     env = os.environ
     out = []
+    if env.get("OPENAI_API_KEY"):
+        out.append("openai")
     if env.get("OPENROUTER_API_KEY") or env.get("OPENROUTER_BASE_URL"):
         out.append("openrouter")
     if env.get("GEMINI_API_KEY") or env.get("GOOGLE_API_KEY"):
@@ -95,8 +96,6 @@ def providers():
         out.append("bfl")
     if env.get("FAL_KEY") or env.get("FAL_API_KEY"):
         out.append("fal")
-    if env.get("OPENAI_API_KEY"):
-        out.append("openai")
     return out
 
 
@@ -245,7 +244,7 @@ GENERATORS = {"openrouter": gen_openrouter, "gemini": gen_gemini, "bfl": gen_bfl
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--prompt")
-    ap.add_argument("--prompt-file", help="read the prompt from a file (scripts/prompt.py --out)")
+    ap.add_argument("--prompt-file", help="read the prompt from a file")
     ap.add_argument("--ratio", default="4:5", choices=sorted(RATIO_SIZES))
     ap.add_argument("--out")
     ap.add_argument("--ref", action="append", default=[], help="a reference image (the product, the place); repeatable")
@@ -253,9 +252,9 @@ def main():
     ap.add_argument("--model")
     ap.add_argument("--size", choices=["512", "1K", "2K", "4K"])
     ap.add_argument("--seed", type=int)
-    ap.add_argument("--no-suffix", action="store_true", help="do not append the no-text rule to the prompt")
+    ap.add_argument("--no-text", action="store_true", help="append a no-text rule (a scene the words go beside, not in)")
     ap.add_argument("--brand", action="store_true", help="append the brand's style anchor (brand/visual-identity.md, Imagery)")
-    ap.add_argument("--anchor", help="a file whose body is the campaign's style anchor (campaigns/<slug>/style.md)")
+    ap.add_argument("--anchor", help="a file whose body is a style anchor for this piece of work")
     ap.add_argument("--check", action="store_true", help="print the configured providers and exit")
     args = ap.parse_args()
 
@@ -277,7 +276,7 @@ def main():
         die("--prompt (or --prompt-file) and --out are required (or --check)")
     provider = args.provider or (avail[0] if avail else None)
     if not provider:
-        die("no image provider configured; ask the owner for one with request_connection (the static-ad skill says how)", 3)
+        die("no image provider configured; ask the owner for one with request_connection (the images skill says how)", 3)
     if provider not in avail:
         die(f"{provider} has no key in the environment; configured: {', '.join(avail) or 'none'}", 3)
     for ref in args.ref:
@@ -292,7 +291,7 @@ def main():
             prompt += " " + anchor
         else:
             print("note: no style anchor filled in brand/visual-identity.md (Imagery); the prompt goes without one", file=sys.stderr)
-    if not args.no_suffix:
+    if args.no_text:
         prompt += NO_TEXT
     img, meta = GENERATORS[provider](prompt, args.ratio, args.ref, args.model, args.size, args.seed)
     os.makedirs(os.path.dirname(os.path.abspath(args.out)) or ".", exist_ok=True)

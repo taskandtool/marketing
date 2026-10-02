@@ -50,7 +50,7 @@ Recipes for the feed, Reels and Stories. The worked examples use Harlow Joinery,
 When: the education pillar, up to twice a week. The default format for saves.
 Structure: 6 to 10 slides, 4:5. Slide 1 a headline hook of eight words or fewer in large type, a promise or a number, a swipe cue bottom right. Slides 2 to N one idea each, numbered, 25 words or fewer. Last slide a summary, "Save this", and a soft call to action.
 Copy: the caption restates the hook in the first 125 characters, expands one point, then asks. "3 things to check before you sign a kitchen quote. Number 2 is the one people miss: who measures the room. At Harlow the joiner who measures is the joiner who fits, so the drawing is the kitchen. Save this for when the quotes come in. Send it to someone planning a kitchen this year. #fittedkitchens #bristolkitchens #kitchenrenovation"
-Visual: one template, brand colours, the same type on every slide, a photo of real work behind or beside the text where one exists.
+Visual: one layout, brand colours, the same type on every slide, a photo of real work behind or beside the text where one exists.
 Pitfalls: text walls, a slide 1 that looks like a quote card, a hook that gives the whole answer away, generic advice not anchored in what you see with customers.
 
 ### Before and after
@@ -85,7 +85,7 @@ Pitfalls: "link in bio" without saying what it is, stacking urgency words, disco
 When: variants of the educational carousel for the education pillar.
 Structure: FAQ, one question per slide. Three mistakes, one per slide with the fix on the same slide. Myth vs fact, slide 1 the myth in quotes, slide 2 "Actually...". Checklist, one slide, seven items or fewer, box glyphs, caption says save it.
 Copy: "'Solid wood kitchens warp.' Actually, a solid door warps when it is fitted straight into a damp room. A frame-and-panel door moves inside its frame and stays flat. Every Harlow door is frame and panel. Save this for the next showroom visit."
-Visual: the same template as the educational carousel so the account looks like one account.
+Visual: the same layout as the educational carousel so the account looks like one account.
 Pitfalls: generic advice. Anchor every item in something a customer asked or got wrong.
 
 ### Quote card

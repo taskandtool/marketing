@@ -1,74 +1,96 @@
 ---
-description: "Find what competitors and peers are running and what has run long enough to be presumed working: the Meta, LinkedIn, Google and TikTok ad libraries through an Apify or Foreplay connection, the Meta Ad Library API, and a swipe file with a winner score. Use when the owner says what are competitors doing, show me examples, research the market, build a swipe file, or before a new campaign's angles."
+name: research
+description: "Research a business's market before making creatives: competitors' ads and organic posts, customer reviews and comments, search questions, into research/ and a one-page brief of ranked hypotheses. Use when the owner asks what competitors are doing, before the first ideas, or monthly. Not for the business's own facts (brand)."
 ---
 
 # Research
 
-The ad libraries show what a business is paying to run and for how long;
-nothing shows how well it works except the owner's own account. So the
-research question is never "what performs" but "what has this competitor
-kept paying for", which the start date answers. Everything saved is data
-to learn structure from, never words or images to reuse.
+Ads show what competitors keep paying for. Posts, comments, reviews and
+searches show what customers say. Do both, customers first, and end with a
+brief the `ideas` skill can act on.
 
-## What is reachable, and how
+## Steps
 
-The libraries cannot be fetched from this machine directly (they are
-browser apps behind rate limits that block datacenter addresses), so the
-research goes through a connection the owner grants:
+Copy and tick:
 
-| Source | How | Gives | Cost |
-|---|---|---|---|
-| Meta Ad Library | an **Apify** connection (`APIFY_API_KEY`), actor `curious_coder/facebook-ads-library-scraper`; or a **Foreplay** connection (`FOREPLAY_API_KEY`) | creatives, copy, call to action, start and end dates, platforms | about $0.75 per 1,000 ads (Apify) |
-| LinkedIn Ad Library | Apify actor `automation-lab/linkedin-ad-library-scraper` | headline, body, creative, call to action, payer; no impressions | about $0.60 per 1,000 |
-| Google Ads Transparency | Apify actor `whoareyouanas/google-ads-transparency-scraper` | format, image, landing page, first and last shown | $5 to $15 per 1,000 |
-| TikTok Creative Center | Apify actor `parseforge/tiktok-creative-center-top-ads-scraper` | video, text, CTR bucket, likes | about $12 per 1,000 |
-| Meta Ad Library API | a platform-level Meta connection when the workspace has one | worldwide political ads; commercial ads only where delivered to the EU or UK | free |
+- [ ] 1. Agree the competitors with the owner (three to five, local first).
+      Find more by reading the live results for the owner's own search terms.
+- [ ] 2. **Customers' words.** Reviews of the owner and of competitors
+      (five-star for hooks, one-star for objections), comments on the
+      owner's own posts, People Also Ask and autocomplete for the owner's
+      terms. Save what you read to `raw/`, then write verbatim phrases into
+      `research/audience.md` under wants, dislikes, worries, objections.
+- [ ] 3. **Competitors' ads.** For each, the ad libraries that apply
+      (`references/libraries.md` says what each shows and how to read it).
+      Save the raw pages or exports to `raw/<library>/<competitor>/`, then
+      write `research/competitors/<name>.md`.
+- [ ] 4. **Organic.** Each competitor's and the category's top posts by
+      shares, saves and comments, not likes, scaled to the account's size.
+      Add the topic and hook of each to the competitor's file.
+- [ ] 5. **The brief.** Write `research/brief.md` (shape below) and tell the
+      owner the three things that change what you would make.
 
-Ask once, through Connections, never for a key in chat:
+## What to record per competitor
 
-```python
-from tools.taskandtool import request_connection
-request_connection("apify", why="read the Meta, LinkedIn, Google and TikTok ad libraries for competitor research (about $1 a run)", auth="api_key", delivery="machine")
-```
+- who they are, the offer and price, what the landing page promises
+- active ads by library and the format mix
+- their three to five longest-running active ads: hook, angle, format,
+  start date, days running, variants, platforms, one line on why it is kept
+- the angles they repeat and the claim they lean on (price, speed, proof,
+  identity)
+- top organic posts: topic and hook
+- what their customers praise and complain about, three to five phrases each
+- their gap: a question or objection their ads and comments leave unanswered
 
-Then call the actor with `requests` from the key in the environment
-(`https://api.apify.com/v2/acts/<actor>/run-sync-get-dataset-items?token=…`
-with the actor's input JSON: search terms or advertiser pages, the
-country, active status, a limit of 50 to 100). Save the dataset as JSON
-under `swipe/_runs/` with the date; never call without a limit.
+## Reading the signals
 
-## The swipe file
+Strongest first: the same angle across three or more competitors (the
+market has validated it); several variants of one concept (someone paid to
+iterate); days running while still active (30 means it survived testing, 90
+is a staple); reach where a library shows it; the same ad across platforms.
+Discount brand, retargeting and catalogue ads, which run for years by
+design. A library never shows how well an ad works; only the owner's own
+account does, and that outranks everything here.
 
-`swipe/<advertiser>/` per source: `_index.md` (a table: id, format, hook
-type, angle, start date, days running, active, platforms, sibling
-variants, the one-line "why kept"), the copy as text, the creative
-downloaded (the image or the video's first frame) with its URL and date.
-Tag each entry with the same vocabulary the campaign uses: format from
-`static-ad/references/formats.md`, angle from the five families, hook
-class from `video-script/references/hooks.md`.
+## The brief
 
-**The winner score**, computed from what every library gives away:
+`research/brief.md`, one page: the three recurring angles with who runs
+them and for how long; the two longest-lived formats; the top five customer
+phrases; the top three objections; the angle nobody claims; and five to
+eight hypotheses, ranked by signal strength and ease of production, each
+as "We believe [hook, format or angle] will work because [observation over
+time] suggests [what the audience does]."
 
-- days running (start date to today): 30 or more is the practitioner
-  threshold, 90 or more is a staple;
-- still active;
-- sibling variants: several creatives from the same advertiser with the
-  same hook or format means it earned iteration;
-- recurrence: three or more competitors on the same angle means the
-  market has validated it;
-- reach, only where the library shows it (EU).
+Also note where the market sits: if every competitor already makes the same
+claim, a bigger version of it loses, and the ideas should lead with how this
+business does it differently or who it is for.
 
-## The report
+## Lines not to cross
 
-One message to the owner: which competitors were read, how many ads,
-the three angles that recur, the two formats that have run longest, one
-thing nobody is saying that the brief could, and what it cost. Then the
-`angles` skill uses it. Never paste a competitor's copy into a creative;
-never use their images; never name them in an ad.
+- **Record phrases, not people.** Keep comment and review text with its URL
+  and date; keep no names, handles, photos or profile links. Never build a
+  list of individuals from comments. A public post is still personal data.
+- **Patterns, never copies.** Write down the idea one level above the
+  execution ("before and after of a real job, split frame"), never a
+  competitor's words or images, and never paste either into a prompt.
+- **A customer's words in an ad need their consent**, whoever they were
+  written about. Mined language shapes the wording; it is not quoted.
+- **Read, don't harvest.** A handful of pages, short quotes into a private
+  note. No bulk collection from Yelp, Reddit or Amazon, no LinkedIn
+  profiles or contact data, no automated likes or comments.
+- **Stop at a login, an age gate or a CAPTCHA** and say so. A connection the
+  owner grants is the sanctioned way past it, used the way its instructions
+  say.
 
-## Own results beat all of this
+## Cadence
 
-When the owner's ad account is connected (a Meta, Google or LinkedIn
-connection with reporting access), the `results` skill reads the real
-numbers. A competitor's 90-day ad is a hint; the owner's own cost per
-lead is a fact.
+A full pass at setup. Monthly: re-read competitors' active ads and note
+what is new, what stopped, and what crossed 30 or 90 days. Weekly while
+anything is live: the owner's own comments and results first. Quarterly, or
+before a launch or a price change: reviews, searches and organic again, and
+a new brief.
+
+## References
+
+- `references/libraries.md`: what Meta, Google, LinkedIn and TikTok's ad
+  libraries show, where, for how long, and how to read each

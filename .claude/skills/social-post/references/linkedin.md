@@ -80,7 +80,7 @@ Pitfalls: numbers you cannot back, steps with no failure listed, the link in the
 When: the Page, twice a month. The highest-engagement format for small accounts.
 Structure: 5 to 15 pages, landscape or square, PDF under 100 MB (Hootsuite). Page 1 the title and the promise. One idea per page. Last page a recap and a follow call to action.
 Copy: the post itself is two lines. "How to read a kitchen quote. Seven pages, the things we would ask if it were our house. #fittedkitchens #bristol #kitchendesign"
-Visual: one template, large type, a photo on every other page, page numbers.
+Visual: one layout, large type, a photo on every other page, page numbers.
 Pitfalls: text walls, a cover that looks like an ad, a PDF exported from slides with the notes still on.
 
 ### Poll
