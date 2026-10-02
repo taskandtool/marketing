@@ -13,16 +13,15 @@
 #      sources skill uses). faster-whisper, for timing captions to a voice
 #      track, is not installed here: it is a large download and only some
 #      apps need it, so captions.py says how when it is asked for.
-#   3. installs the Obscura headless browser (the renderer behind
-#      scripts/render.py; the same one the brain and the website use)
+#   3. runs tt-crawl setup: the launcher and the browsers (Chrome, and
+#      Obscura, the renderer behind scripts/render.py)
 #   4. reports what is and is not available (ffmpeg for video, an image
 #      model key)
 set -euo pipefail
 
 APP="$(pwd)"
-OBSCURA_VERSION="${OBSCURA_VERSION:-v0.2.2}"
-OBSCURA_REPO="https://github.com/h4ckf0r0day/obscura"
-CRAWLER_REF="${CRAWLER_REF:-v0.2.0}"
+CRAWLER_REF="${CRAWLER_REF:-main}"
+CRAWLER="git+https://github.com/taskandtool/crawler@$CRAWLER_REF"
 
 echo "== creatives starter app: setup in $APP"
 
@@ -43,17 +42,17 @@ echo "== python tools (Pillow, requests) + tt-crawl $CRAWLER_REF"
 python3 -m pip install --quiet --upgrade Pillow requests 2>&1 | tail -1 || true
 # fontTools converts a fetched woff2 into the TTF libass needs for video captions
 python3 -m pip install --quiet --upgrade fonttools brotli 2>&1 | tail -1 || true
-python3 -m pip install --quiet --upgrade "git+https://github.com/taskandtool/crawler@$CRAWLER_REF" 2>&1 | tail -1 || true
+# The crawler's main, every run: the first install brings its dependencies;
+# the second replaces its own code even when its version number did not move.
+python3 -m pip install --quiet --upgrade "ttcrawl @ $CRAWLER" 2>&1 | tail -1 || true
+python3 -m pip install --quiet --force-reinstall --no-deps "ttcrawl @ $CRAWLER" 2>&1 | tail -1 || true
 python3 -c "import PIL, requests; print('Pillow', PIL.__version__, 'requests', requests.__version__)"
-if ! command -v tt-crawl >/dev/null 2>&1; then
-  for d in /usr/local/bin "$HOME/.local/bin"; do
-    if [ -w "$d" ] || mkdir -p "$d" 2>/dev/null && [ -w "$d" ]; then
-      printf '#!/bin/sh\nexec python3 -m ttcrawl "$@"\n' > "$d/tt-crawl" && chmod +x "$d/tt-crawl" && echo "tt-crawl launcher -> $d/tt-crawl" && break
-    fi
-  done
-fi
+# 3. tt-crawl on the PATH, then the browsers it drives: Chrome reads a site
+# and its screenshots, Obscura renders the templates (scripts/render.py).
+python3 -m ttcrawl setup || echo "tt-crawl setup did not finish every step; its JSON line says which"
 
-# 3. Obscura: the renderer. System-wide when we can, else ~/.local/bin.
+# Where machine-wide binaries go (ffmpeg below): system-wide when we can,
+# else ~/.local/bin.
 if [ -w /usr/local/bin ]; then
   BIN=/usr/local/bin
 elif command -v sudo >/dev/null 2>&1 && sudo -n true 2>/dev/null; then
@@ -64,30 +63,6 @@ else
 fi
 SUDO="${SUDO:-}"
 $SUDO mkdir -p "$BIN"
-case "$(uname -s)-$(uname -m)" in
-  Linux-x86_64|Linux-amd64) asset="obscura-x86_64-linux.tar.gz" ;;
-  Linux-aarch64|Linux-arm64) asset="obscura-aarch64-linux.tar.gz" ;;
-  *) asset="" ;;
-esac
-stamp="$BIN/.obscura-version"
-if [ -z "$asset" ]; then
-  echo "== obscura: no build for $(uname -s)/$(uname -m); render.py will write render.html only"
-elif [ -x "$BIN/obscura" ] && [ "$(cat "$stamp" 2>/dev/null || true)" = "$OBSCURA_VERSION" ]; then
-  echo "== obscura $OBSCURA_VERSION already installed"
-else
-  echo "== obscura $OBSCURA_VERSION -> $BIN"
-  tmp="$(mktemp -d)"
-  trap 'rm -rf "$tmp"' EXIT
-  curl -fsSL --retry 3 "$OBSCURA_REPO/releases/download/$OBSCURA_VERSION/$asset" -o "$tmp/obscura.tgz"
-  tar xzf "$tmp/obscura.tgz" -C "$tmp"
-  main_bin="$(find "$tmp" -type f -name obscura | head -1)"
-  worker_bin="$(find "$tmp" -type f -name obscura-worker | head -1)"
-  [ -n "$main_bin" ] || { echo "obscura binary not found in $asset"; exit 1; }
-  $SUDO install -m 755 "$main_bin" "$BIN/obscura"
-  [ -n "$worker_bin" ] && $SUDO install -m 755 "$worker_bin" "$BIN/obscura-worker"
-  echo "$OBSCURA_VERSION" | $SUDO tee "$stamp" >/dev/null
-fi
-"$BIN/obscura" --version 2>/dev/null || true
 
 # 4. ffmpeg, for the slideshow cuts (scripts/video.py): a static build into
 # the same bin, when the machine has none. About 80 MB, once.

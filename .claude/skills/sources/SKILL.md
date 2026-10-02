@@ -37,8 +37,7 @@ the brain and this app, and an app that already has them owns them.
    `styles.json`, `media.json`, `facts.json` (phones, emails, addresses,
    hours, social, each with where it was found) and `reviews.md` (verbatim,
    with name, date and platform). `tt-crawl playbook brand` prints the
-   steps for the crawler that is installed. An app with an old `raw/web/` folder
-   moves it with `tt-crawl relayout raw/web --rewrite public brand`.
+   steps for the crawler that is installed.
 
    Then write, citing the raw file each fact came from:
    - `public/business.md` (name, phone, email, address, hours, social,
