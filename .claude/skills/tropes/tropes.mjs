@@ -134,7 +134,10 @@ function sectionFindings(text, { kind = "page", heading = "" } = {}) {
   for (const m of text.matchAll(/[^.!?\n]{3,80}\?[ \t]+[A-Z][^.!?\n]{0,60}[.!]/g)) out.push(finding("rhetorical-question", m[0]));
   const triads = text.match(/\b\w+(?: \w+)?, \w+(?: \w+)?,? and \w+(?: \w+)?\b/g) || [];
   const staccato = text.match(/(?:\b[A-Z]\w*(?: \w+){0,2}\. ){2}[A-Z]\w*(?: \w+){0,2}\./g) || [];
-  if (triads.length + staccato.length > 1) out.push(finding("triads", [...triads, ...staccato].slice(0, 3).join("; ")));
+  // on a page, lists of real things (parts, services) are often three: a hint;
+  // the staccato "No fluff. No filler." is a tell everywhere
+  if (triads.length + staccato.length > 1)
+    out.push(finding("triads", [...triads, ...staccato].slice(0, 3).join("; "), kind === "page" && !staccato.length ? "hint" : undefined));
   const era = text.match(ERA_WORDS) || [];
   const n = text.split(/\s+/).filter(Boolean).length;
   if (era.length >= 2 && (era.length * 100) / n >= 1.5) out.push(finding("dated-vocabulary", [...new Set(era.map((e) => e.toLowerCase()))].sort().join(", ")));
