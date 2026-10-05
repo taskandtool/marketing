@@ -5,8 +5,6 @@ description: "Finds and removes the tells of AI-made work in copy, pictures and 
 
 # Tropes
 
-Version: 0.1.0 (taskandtool/skills)
-
 A tell is an unspecified default: the model's average where this business's
 particular should be. Readers and platforms trust work that reads as
 generated less, so it costs the owner twice. The fix is never a synonym; it
@@ -23,11 +21,9 @@ node .claude/skills/tropes/tropes.mjs [--kind page|post|ad] [--json] <file|->
 
 Markdown headings split the text into sections; each is checked with its
 heading and against the others. Each finding prints its rule, the words and
-the fix. `error` fails the check; `hint` (puffery, and we/you on a page) is a
-look, not a failure. Exit 1 on an error.
-
-In code: `findings(text, { kind, heading })` for one section,
-`check([{ heading, body }], { kind })` for a page or an ad.
+the fix. `error` fails the check; `hint` (puffery, and on a page we/you and
+lists of three) is a look, not a failure: a real list of three things stays.
+Exit 1 on an error.
 
 ## Fixing a finding
 
@@ -53,4 +49,3 @@ generated one.
 - `references/copy.md`: vocabulary, structures, rhythm and claims, each with
   its fix and the rule id the script prints
 - `references/images.md`, `references/video.md`: picture and video tells
-- `test/tropes.test.mjs`: `node --test test/tropes.test.mjs` from this folder

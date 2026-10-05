@@ -79,7 +79,7 @@ const FIX = {
   "negation-pivot": "state the claim; nobody proposed the other",
   "ing-rider": "cut the clause, or make it a sentence with a subject",
   "rhetorical-question": "say the answer as a statement",
-  triads: "use the number of things there are; one triad a section at most",
+  triads: "a rhythm of threes reads as generated: keep a real list of three, rewrite three-beat phrasing to the number of things there are",
   "dated-vocabulary": "the plain word; these date the copy to a model generation",
   "uniform-length": "mix short sentences with long ones",
   "we-over-you": "write about what the reader gets; at least as much you as we",
