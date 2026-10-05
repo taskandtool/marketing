@@ -18,6 +18,10 @@ Start with the `marketing` skill: the folders, the shape of a
 - `images`, `video`: the picture and the clip
 - `ad`, `social-post`: a finished paid ad or organic post
 - `tropes`: the audit for AI tells before the owner sees anything
+- `reports`: the weekly SEO report (Search Console and GA4 through the
+  `google` connection), printed to a PDF and handed over as a deliverable;
+  it needs no database here. `data` and `admin` come with it for the code
+  it imports.
 
 Read the one that fits the ask rather than working from memory.
 
