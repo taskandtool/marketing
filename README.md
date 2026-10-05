@@ -26,7 +26,8 @@ calls for them.
   video/         beats, show don't tell, sound and music, shot briefs for a video model
   ad/            a paid ad to a platform's specs; 45 static formats as recipes
   social-post/   organic posts per platform, one idea across a week
-  tropes/        the audit for the tells of AI-made copy, pictures and video
+  tropes/        the audit for the tells of AI-made copy, pictures and video, and its
+                 copy script (shared, like brand)
 .agents/skills/  thin Codex adapters: the same descriptions, pointing at the bodies above
 .taskandtool/setup.sh  Pillow, requests, tt-crawl and its browsers
 AGENTS.md        what the AI reads first; CLAUDE.md imports it
@@ -44,11 +45,11 @@ research/                competitors, hooks seen, customers' words, the brief
 creatives/YYYY-MM-DD-<slug>/   one idea per folder: creative.md and its pictures and clips
 results.md               what ran and what it did, newest first
 specs/<platform>.md      sizes, limits and policy per platform, dated
-scripts/                 check · tropes · imagegen · videogen
+scripts/                 check · imagegen · videogen
 ```
 
-`python3 scripts/check.py` checks every creative, the claims and the specs;
-`python3 scripts/tropes.py` finds the copy tells a pattern can;
+`python3 scripts/check.py` checks every creative, the claims and the specs,
+and runs the copy through the `tropes` skill's script (Node);
 `imagegen.py` and `videogen.py` call whichever image or video model the app
 has a key for.
 

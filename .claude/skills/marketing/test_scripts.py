@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
-"""Tests for the marketing scripts: check, tropes, imagegen and videogen's
---check, the frontmatter helpers. Standard library only; no machine, no keys.
+"""Tests for the marketing scripts: check (with the tropes skill's copy
+check), imagegen and videogen's --check, the frontmatter helpers. Standard
+library and node; no machine, no keys. The copy rules themselves are tested
+in the tropes skill (.claude/skills/tropes/test).
 
     python3 .claude/skills/marketing/test_scripts.py
 """
@@ -18,7 +20,6 @@ SCRIPTS = os.path.join(APP, "scripts")
 sys.path.insert(0, SCRIPTS)
 
 import common  # noqa: E402
-import tropes  # noqa: E402
 
 GOOD = """---
 kind: ad
@@ -49,34 +50,6 @@ def run(script, *args, cwd):
     env = {k: v for k, v in os.environ.items() if not k.endswith("_API_KEY") and k not in ("OPENROUTER_BASE_URL", "FAL_KEY")}
     return subprocess.run([sys.executable, os.path.join(SCRIPTS, script), *args], cwd=cwd, env=env,
                           capture_output=True, text=True)
-
-
-class Tropes(unittest.TestCase):
-    def rules(self, text, ad=True):
-        return [r for r, _ in tropes.findings(text, ad=ad)]
-
-    def test_clean_copy_passes(self):
-        self.assertEqual(self.rules("Book a survey this week: we measure, quote and fit within ten days."), [])
-
-    def test_negation_pivot(self):
-        self.assertTrue(any("negation" in r for r in self.rules("It's not just a roof, it's peace of mind.")))
-        self.assertTrue(any("negation" in r for r in self.rules("Our roofers are licensed, not cheap.")))
-
-    def test_phrases_and_em_dash(self):
-        rules = self.rules("Say goodbye to leaks — elevate your home.")
-        self.assertTrue(any("refused phrase" in r for r in rules))
-        self.assertTrue(any("em dash" in r for r in rules))
-
-    def test_rhetorical_question_answered(self):
-        self.assertTrue(any("rhetorical" in r for r in self.rules("Tired of leaks? We fix them fast.")))
-
-    def test_one_triad_is_allowed_two_are_not(self):
-        self.assertEqual(self.rules("We measure, quote and fit."), [])
-        self.assertTrue(any("triad" in r for r in self.rules("Fast. Simple. Effective. Roofs, gutters, and skylights.")))
-
-    def test_personal_attributes_only_in_ads(self):
-        self.assertTrue(any("personal attribute" in r for r in self.rules("Struggling with debt?", ad=True)))
-        self.assertFalse(any("personal attribute" in r for r in self.rules("Struggling with debt?", ad=False)))
 
 
 class Check(unittest.TestCase):
@@ -112,7 +85,20 @@ class Check(unittest.TestCase):
         self.assertEqual(r.returncode, 1)
         self.assertIn("claim 7 is not in claims.md", r.stderr)
         self.assertIn("listed file v2.png is missing", r.stderr)
-        self.assertIn("refused phrase", r.stderr)
+        self.assertIn('copy.cta: weak-cta "Learn more"', r.stderr)
+
+    def test_copy_tells_and_hints(self):
+        bad = GOOD.replace('"The engineer who fitted it services it"', '"It\'s not just a boiler, it\'s peace of mind"')
+        bad = bad.replace("Book before the first cold week.", "Book before the first cold week. A trusted local firm.")
+        bad = bad.replace("Same two engineers", "Struggling with debt? Same two engineers")
+        self.write(bad)
+        r = run("check.py", cwd=self.app)
+        self.assertEqual(r.returncode, 1)
+        self.assertIn("copy.headline: negation-pivot", r.stderr)
+        self.assertIn("copy.primary_text: personal-attribute", r.stderr)
+        self.assertIn("note: creatives/2026-10-01-fitted-it/creative.md: copy.primary_text: puffery", r.stdout)
+        self.write(bad.replace("kind: ad", "kind: post"))
+        self.assertNotIn("personal-attribute", run("check.py", cwd=self.app).stderr)
 
     def test_folder_name_kind_and_hard_limit(self):
         os.rename(self.folder, os.path.join(self.app, "creatives", "fitted-it"))

@@ -1,49 +1,56 @@
 ---
 name: tropes
-description: "Audit a creative for the tells of AI-made work in its copy, pictures and video, and remove them before the owner sees it. Use after any creative is drafted or generated, before setting status sent, or when the owner says it looks or sounds like AI. Not for writing the first draft (copywriting, images, video)."
+description: "Finds and removes the tells of AI-made work in copy, pictures and video before the owner sees it. Use after drafting any page, ad, post or picture, before showing or sending it, or when the owner says it sounds or looks like AI. Not for writing the first draft."
 ---
 
 # Tropes
 
+Version: 0.1.0 (taskandtool/skills)
+
 A tell is an unspecified default: the model's average where this business's
-particular should be. Platforms now label AI-made ads and audiences trust
-them less, so a creative that reads or looks generated costs the owner
-twice. The fix is never a synonym; it is the specific thing that was missing.
+particular should be. Readers and platforms trust work that reads as
+generated less, so it costs the owner twice. The fix is never a synonym; it
+is the specific thing that was missing.
 
-## The audit
+## Copy, by script
 
-Copy and tick, for each creative:
+The app's own check runs it: `npm run verify` (website) or
+`python3 scripts/check.py` (marketing). For any other text:
 
-- [ ] 1. **Copy, by script.** `python3 scripts/tropes.py
-      creatives/<folder>/creative.md`. Rewrite every flagged line whole.
-- [ ] 2. **Copy, by eye.** Read it aloud against `brand/voice.md`. Would the
-      owner say it? Does it use their words? Could a competitor run it
-      unchanged? Is a pattern the script let through (one triad, a
-      contrast) actually earned? `references/copy.md` lists the tells.
-- [ ] 3. **Pictures.** Open each image at full size and at 25%. Check every
-      item in `references/images.md`: light with no source, waxy skin,
-      symmetry, heavy blur behind the subject, teal and orange grading, stock
-      poses, glossy 3D icons, letters that are wrong or extra. Any word in
-      the picture is checked letter by letter against the copy.
-- [ ] 4. **Video.** Look at frames at 0, 25, 50, 75 and 100% and compare the
-      product, any logo and any face across them (`references/video.md`).
-- [ ] 5. Fix at the source: rewrite the copy, re-prompt the picture with the
-      missing specific, regenerate the shot. Then run the audit again.
-- [ ] 6. Note what you changed in the creative's `## Notes`, one line.
+```
+node .claude/skills/tropes/tropes.mjs [--kind page|post|ad] [--json] <file|->
+```
 
-## Rules
+Markdown headings split the text into sections; each is checked with its
+heading and against the others. Each finding prints its rule, the words and
+the fix. `error` fails the check; `hint` (puffery, and we/you on a page) is a
+look, not a failure. Exit 1 on an error.
 
-- Strongest tells first: invented proof, the negation pivot ("it's not X,
-  it's Y"), significance inflation, then vocabulary.
-- A real photograph of the business's own work beats any fix to a
-  generated one. Offer that first when a picture keeps failing.
-- Generated people never stand in for customers, staff or testimonials.
-- The word lists date with each model generation; treat them as a dated
-  list, and the structures as the lasting part.
+In code: `findings(text, { kind, heading })` for one section,
+`check([{ heading, body }], { kind })` for a page or an ad.
+
+## Fixing a finding
+
+- Rewrite the flagged line whole; never patch the phrase, and never add a
+  fact to fill the gap a cut left. A missing fact is a question for the owner.
+- Strongest tells first: invented proof, the negation pivot, significance
+  inflation, then vocabulary.
+- An owner who insists on a flagged phrase keeps it; the website marks it
+  `data-lint-allow="<rule>"`.
+
+## By eye
+
+The script lets some through. Read the copy aloud against the brand's voice
+notes: would the owner say it, could a competitor run it unchanged, is the
+one triad or contrast earned? Then pictures at full size and at 25%
+(`references/images.md`), and video frames at 0, 25, 50, 75 and 100%
+(`references/video.md`). Generated people never stand in for customers,
+staff or testimonials; the owner's own photograph beats any fix to a
+generated one.
 
 ## References
 
-- `references/copy.md`: vocabulary, structures, rhythm and claims tells,
-  each with its fix
-- `references/images.md`: picture tells and their fixes
-- `references/video.md`: video tells and their fixes
+- `references/copy.md`: vocabulary, structures, rhythm and claims, each with
+  its fix and the rule id the script prints
+- `references/images.md`, `references/video.md`: picture and video tells
+- `test/tropes.test.mjs`: `node --test test/tropes.test.mjs` from this folder

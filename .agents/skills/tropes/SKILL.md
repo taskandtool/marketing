@@ -1,6 +1,6 @@
 ---
 name: tropes
-description: "Audit a creative for the tells of AI-made work in its copy, pictures and video, and remove them before the owner sees it. Use after any creative is drafted or generated, before setting status sent, or when the owner says it looks or sounds like AI. Not for writing the first draft (copywriting, images, video)."
+description: "Finds and removes the tells of AI-made work in copy, pictures and video before the owner sees it. Use after drafting any page, ad, post or picture, before showing or sending it, or when the owner says it sounds or looks like AI. Not for writing the first draft."
 ---
 
 # Tropes

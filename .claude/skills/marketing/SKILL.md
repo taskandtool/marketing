@@ -101,8 +101,8 @@ copy. A creative is never shown with a finding open.
 Run them; their output is the instruction.
 
 ```
-python3 scripts/check.py [folder …]          every creative, claims.md, specs freshness
-python3 scripts/tropes.py <creative.md>      the copy tells a pattern can find
+python3 scripts/check.py [folder …]          every creative, claims.md, specs freshness, the copy tells
+node .claude/skills/tropes/tropes.mjs <file> the copy tells in any other text
 python3 scripts/imagegen.py --check          which image model is configured
 python3 scripts/videogen.py --check          which video model is configured
 ```

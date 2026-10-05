@@ -43,9 +43,10 @@ second.
 
 Edit in this order: truth (is every fact in `claims.md`), meaning (one
 idea), structure, voice, language, sound (read it aloud), compression.
-Then `python3 scripts/tropes.py creatives/<folder>/creative.md` and the
-`tropes` skill. Rewrite a flagged line whole; never patch the phrase, and
-never add a fact to fill the gap a cut left.
+Then `python3 scripts/check.py <folder>` (it runs the `tropes` skill's
+script on every copy field) and the `tropes` skill's eye pass. Rewrite a
+flagged line whole; never patch the phrase, and never add a fact to fill
+the gap a cut left.
 
 ## Example
 

@@ -9,7 +9,7 @@
   it lists
 - every claim it cites is a numbered entry in claims.md, and every entry
   there names a source file that exists
-- the copy passes scripts/tropes.py and the platform's text limits
+- the copy passes the tropes skill's script and the platform's text limits
 - the platform sheets in specs/ are not stale (90 days)
 
 Exit 1 with the findings when something is off. A finding is fixed at
@@ -17,14 +17,26 @@ its source before the owner sees the work, never explained away.
 """
 
 import argparse
+import json
 import os
+import pathlib
 import re
+import subprocess
 import sys
 from datetime import date
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import FOLDER, KINDS, PLATFORMS, STATUSES, creative_dirs, read_record, root  # noqa: E402
-from tropes import findings as trope_findings  # noqa: E402
+from common import FOLDER, KINDS, PLATFORMS, STATUSES, creative_dirs, die, read_record, root  # noqa: E402
+
+# The shared copy check (the tropes skill), run over every copy field at once.
+TROPES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".claude", "skills", "tropes", "tropes.mjs")
+TROPES_RUN = """
+const { check } = await import(process.argv[1]);
+let input = "";
+for await (const chunk of process.stdin) input += chunk;
+const { sections, kind } = JSON.parse(input);
+console.log(JSON.stringify(check(sections, { kind })));
+"""
 
 REQUIRED = ["kind", "platform", "status", "angle", "hook", "claims", "files", "copy"]
 NOTES = ["brand/positioning.md", "brand/voice.md", "brand/visual-identity.md", "public/business.md"]
@@ -44,6 +56,25 @@ LIMITS = {
     "gbp": {"primary_text": (1500, True, "Google Business Profile post: 1,500 max")},
 }
 LIMITS["facebook"] = LIMITS["instagram"] = LIMITS["meta"]
+
+
+def trope_findings(fields, kind):
+    """[(field, finding)] for the copy fields {name: text}, each one section
+    of the creative; a phrase repeated across fields names the second."""
+    names = list(fields)
+    try:
+        r = subprocess.run(["node", "--input-type=module", "-e", TROPES_RUN, pathlib.Path(TROPES).resolve().as_uri()],
+                           input=json.dumps({"sections": [{"body": fields[n]} for n in names], "kind": kind}),
+                           capture_output=True, text=True, timeout=60)
+    except FileNotFoundError:
+        die("check: node is not installed; the copy check (the tropes skill) needs it", 2)
+    if r.returncode != 0:
+        die(f"check: the tropes skill failed ({TROPES}):\n{r.stderr.strip()}", 2)
+    out = []
+    for f in json.loads(r.stdout):
+        i = f["section"] if "section" in f else (f["sections"][-1] if "sections" in f else None)
+        out.append((names[i] if i is not None else "all", f))
+    return out
 
 
 def claim_numbers(app, findings):
@@ -110,10 +141,13 @@ def check_creative(app, name, d, claims, findings):
     ad = fm.get("kind") == "ad"
     if ad and copy.get("hashtags"):
         findings.append(f"{rel}: an ad carries no hashtags (they are an exit)")
-    for field, text in copy.items():
-        if isinstance(text, str):
-            for rule, match in trope_findings(text, ad=ad):
-                findings.append(f"{rel}: copy.{field}: {rule}: \"{match}\"")
+    fields = {k: v for k, v in copy.items() if isinstance(v, str) and v.strip()}
+    for field, f in trope_findings(fields, "ad" if ad else "post"):
+        line = f"{rel}: copy.{field}: {f['rule']} \"{f['match']}\" ({f['fix']})"
+        if f["severity"] == "error":
+            findings.append(line)
+        else:
+            print(f"note: {line}")
     for field, (limit, hard, why) in LIMITS.get(fm.get("platform"), {}).items():
         text = copy.get(field)
         if isinstance(text, str) and len(text) > limit:
