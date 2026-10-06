@@ -2,29 +2,30 @@
 """Generate a picture for a creative with whichever image model this app
 has a key for. The images skill writes the prompt; this sends it.
 
-    python3 scripts/imagegen.py --prompt "…" --ratio 4:5 --out creatives/<folder>/v1.png
-                                [--ref photo.png …] [--brand] [--no-text]
-                                [--provider openai|openrouter|gemini|bfl|fal] [--model …]
-                                [--size 1K|2K] [--seed N]
-    python3 scripts/imagegen.py --prompt-file creatives/<folder>/prompt.txt --ratio 4:5 --out …
+    python3 scripts/imagegen.py --prompt-file creatives/<folder>/creative.md --ratio 4:5 --out creatives/<folder>/v1.png
+                                [--ref photo.png …] [--brand] [--no-text] [--force]
+                                [--provider openai|openrouter] [--model …]
+                                [--size 512|1K|2K|4K] [--seed N]
+    python3 scripts/imagegen.py --prompt "…" --ratio 4:5 --out …
     python3 scripts/imagegen.py --check          # which providers are configured
+
+--prompt-file on a .md sends its `## Prompt` section; any other file is
+sent whole. An existing --out is never replaced without --force.
 
 Providers, in the order tried (the first with a key wins):
 
-  OPENAI_API_KEY       gpt-image-2 (the strongest at rendering words in the picture)
-  OPENROUTER_API_KEY   POST $OPENROUTER_BASE_URL/images (default https://openrouter.ai/api/v1);
-                       one key for Gemini, GPT Image and FLUX; default model
-                       google/gemini-3.1-flash-image. OPENROUTER_BASE_URL may point at a
-                       gateway that needs no key: then set OPENROUTER_BASE_URL alone.
-  GEMINI_API_KEY       generateContent on gemini-3.1-flash-image (also GOOGLE_API_KEY)
-  BFL_API_KEY          api.bfl.ai flux-2-pro
-  FAL_KEY              fal.run fal-ai/nano-banana-2 (also FAL_API_KEY)
+  OPENAI_API_KEY       gpt-image-2 (the strongest at rendering words in the picture);
+                       during an AI turn, through Task & Tool's metered gateway
+  OPENROUTER_API_KEY   POST https://openrouter.ai/api/v1/images; one key for Gemini,
+                       GPT Image and FLUX; default model google/gemini-3.1-flash-image
 
-A key arrives through Connections as <SLUG>_API_KEY in ~/.env. When a
-connection brings its own instructions for calling its model, those win
-over this script. The bytes are written to --out as PNG; the provider,
-model, cost (when reported) and the prompt go to <out>.json beside it.
-Exit 3 when no provider is configured.
+Each key is read from the environment, else from ~/.env (a granted
+connection puts it there; a turn keeps it out of the AI's own shell).
+The bytes are written to --out as PNG; the provider, model, cost (when
+reported) and the prompt go to <out>.json beside it.
+Exit 0 written, 1 failed (no provider configured, the model refused or
+was unreachable), 2 misused (a bad flag, a missing file, an --out that
+exists).
 """
 
 import argparse
@@ -36,7 +37,12 @@ import sys
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import die  # noqa: E402
+from common import (  # noqa: E402
+    Parser, configured, creative_folder, data_url, die, generate, http_failure, openai, openrouter, provider_failure,
+    read_prompt, refuse_overwrite, requests_module, root, split_frontmatter)
+
+EXAMPLE = "python3 scripts/imagegen.py --prompt-file creatives/<folder>/creative.md --ratio 4:5 --out creatives/<folder>/v1.png"
+ASK = 'Try: python3 ~/tools/taskandtool.py request-connection openrouter-api --why "pictures for ads and posts"'
 
 NO_TEXT = " No text, no letters, no numbers, no logos, no watermarks anywhere in the image."
 
@@ -48,7 +54,7 @@ def style_anchor(app_root, anchor_path=None):
     if anchor_path:
         with open(anchor_path, encoding="utf-8") as fh:
             text = fh.read()
-        _, body = split_fm(text)
+        _, body = split_frontmatter(text)
         return " ".join(line.strip() for line in body.splitlines() if line.strip() and not line.startswith("#"))
     note = os.path.join(app_root, "brand", "visual-identity.md")
     if not os.path.isfile(note):
@@ -68,67 +74,17 @@ def style_anchor(app_root, anchor_path=None):
     return " ".join(l.replace("**", "") for l in lines)
 
 
-def split_fm(text):
-    if text.startswith("---\n"):
-        end = text.find("\n---", 4)
-        if end != -1:
-            return text[4:end], text[end + 4:]
-    return "", text
-
-RATIO_SIZES = {  # for providers that take width/height or fixed sizes
-    "1:1": (1024, 1024), "4:5": (1024, 1280), "9:16": (1024, 1820), "16:9": (1820, 1024),
-    "1.91:1": (1536, 804), "2:3": (1024, 1536), "3:2": (1536, 1024), "4:3": (1365, 1024), "3:4": (1024, 1365),
-}
-OPENAI_SIZES = {"1:1": "1024x1024", "4:5": "1024x1536", "9:16": "1024x1536", "2:3": "1024x1536",
-                "16:9": "1536x1024", "1.91:1": "1536x1024", "3:2": "1536x1024"}
+RATIOS = ["1:1", "4:5", "9:16", "16:9", "1.91:1", "2:3", "3:2", "4:3", "3:4"]
+OPENAI_SIZES = {"1:1": "1024x1024", "4:5": "1024x1536", "9:16": "1024x1536", "2:3": "1024x1536", "3:4": "1024x1536",
+                "16:9": "1536x1024", "1.91:1": "1536x1024", "3:2": "1536x1024", "4:3": "1536x1024"}
 
 
-def providers():
-    env = os.environ
-    out = []
-    if env.get("OPENAI_API_KEY"):
-        out.append("openai")
-    if env.get("OPENROUTER_API_KEY") or env.get("OPENROUTER_BASE_URL"):
-        out.append("openrouter")
-    if env.get("GEMINI_API_KEY") or env.get("GOOGLE_API_KEY"):
-        out.append("gemini")
-    if env.get("BFL_API_KEY"):
-        out.append("bfl")
-    if env.get("FAL_KEY") or env.get("FAL_API_KEY"):
-        out.append("fal")
-    return out
-
-
-def data_url(path):
-    mime = mimetypes.guess_type(path)[0] or "image/png"
-    with open(path, "rb") as fh:
-        return f"data:{mime};base64," + base64.b64encode(fh.read()).decode()
-
-
-def b64(path):
-    with open(path, "rb") as fh:
-        return base64.b64encode(fh.read()).decode()
-
-
-def _requests():
-    try:
-        import requests
-        return requests
-    except ImportError:
-        die("requests is not installed (setup.sh installs it)")
-
-
-def _fail(provider, resp):
-    body = resp.text[:600] if hasattr(resp, "text") else str(resp)[:600]
-    die(f"{provider} answered {getattr(resp, 'status_code', '?')}: {body}")
+ORDER = ["openai", "openrouter"]
 
 
 def gen_openrouter(prompt, ratio, refs, model, size, seed):
-    requests = _requests()
-    base = os.environ.get("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1").rstrip("/")
-    headers = {"Content-Type": "application/json", "HTTP-Referer": "https://taskandtool.app", "X-Title": "Task & Tool creatives"}
-    if os.environ.get("OPENROUTER_API_KEY"):
-        headers["Authorization"] = "Bearer " + os.environ["OPENROUTER_API_KEY"]
+    requests = requests_module("imagegen")
+    base, headers = openrouter()
     body = {"model": model or "google/gemini-3.1-flash-image", "prompt": prompt, "aspect_ratio": ratio,
             "resolution": size or "1K", "output_format": "png", "n": 1}
     if seed is not None:
@@ -137,116 +93,51 @@ def gen_openrouter(prompt, ratio, refs, model, size, seed):
         body["input_references"] = [{"type": "image_url", "image_url": {"url": data_url(r)}} for r in refs]
     r = requests.post(base + "/images", headers=headers, json=body, timeout=240)
     if r.status_code != 200:
-        _fail("openrouter", r)
+        http_failure("imagegen", "openrouter", r)
     data = r.json()
     item = data["data"][0]
     if item.get("b64_json"):
         img = base64.b64decode(item["b64_json"])
     elif item.get("url"):
-        img = requests.get(item["url"], timeout=120).content
+        img = requests.get(item["url"], timeout=120)
+        if img.status_code != 200:
+            http_failure("imagegen", "openrouter", img)
+        img = img.content
     else:
-        die(f"openrouter returned no image: {json.dumps(data)[:400]}")
+        provider_failure("imagegen", "openrouter", f"no image in the answer: {json.dumps(data)[:400]}")
     return img, {"provider": "openrouter", "model": body["model"], "cost": (data.get("usage") or {}).get("cost")}
 
 
-def gen_gemini(prompt, ratio, refs, model, size, seed):
-    requests = _requests()
-    key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
-    model = model or "gemini-3.1-flash-image"
-    parts = [{"text": prompt}] + [{"inline_data": {"mime_type": mimetypes.guess_type(r)[0] or "image/png", "data": b64(r)}} for r in refs]
-    body = {"contents": [{"parts": parts}],
-            "generationConfig": {"responseModalities": ["TEXT", "IMAGE"], "imageConfig": {"aspectRatio": ratio, "imageSize": size or "1K"}}}
-    r = requests.post(f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
-                      headers={"x-goog-api-key": key, "Content-Type": "application/json"}, json=body, timeout=240)
-    if r.status_code != 200:
-        _fail("gemini", r)
-    data = r.json()
-    for cand in data.get("candidates") or []:
-        for part in (cand.get("content") or {}).get("parts") or []:
-            inline = part.get("inlineData") or part.get("inline_data")
-            if inline and inline.get("data"):
-                return base64.b64decode(inline["data"]), {"provider": "gemini", "model": model, "cost": None}
-    die(f"gemini returned no image: {json.dumps(data)[:400]}")
-
-
-def gen_bfl(prompt, ratio, refs, model, size, seed):
-    requests = _requests()
-    headers = {"x-key": os.environ["BFL_API_KEY"], "Content-Type": "application/json"}
-    model = model or "flux-2-pro"
-    w, h = RATIO_SIZES.get(ratio, (1024, 1024))
-    w, h = (w // 16) * 16, (h // 16) * 16
-    body = {"prompt": prompt, "width": w, "height": h, "output_format": "png", "safety_tolerance": 2}
-    if seed is not None:
-        body["seed"] = seed
-    for i, ref in enumerate(refs[:8]):
-        body["input_image" + ("" if i == 0 else f"_{i + 1}")] = b64(ref)
-    r = requests.post(f"https://api.bfl.ai/v1/{model}", headers=headers, json=body, timeout=120)
-    if r.status_code != 200:
-        _fail("bfl", r)
-    job = r.json()
-    deadline = time.time() + 300
-    while time.time() < deadline:
-        time.sleep(1.0)
-        res = requests.get(job["polling_url"], headers={"x-key": headers["x-key"]}, timeout=60).json()
-        status = res.get("status")
-        if status == "Ready":
-            img = requests.get(res["result"]["sample"], timeout=120).content  # the URL lives 10 minutes
-            return img, {"provider": "bfl", "model": model, "cost": job.get("cost")}
-        if status in ("Error", "Failed", "Content Moderated", "Request Moderated"):
-            die(f"bfl: {status}: {json.dumps(res)[:400]}")
-    die("bfl: timed out waiting for the image")
-
-
-def gen_fal(prompt, ratio, refs, model, size, seed):
-    requests = _requests()
-    key = os.environ.get("FAL_KEY") or os.environ.get("FAL_API_KEY")
-    model = model or "fal-ai/nano-banana-2"
-    body = {"prompt": prompt, "aspect_ratio": ratio, "resolution": size or "1K", "output_format": "png"}
-    if seed is not None:
-        body["seed"] = seed
-    if refs:
-        if not model.endswith("/edit"):
-            model += "/edit"
-        body["image_urls"] = [data_url(r) for r in refs]
-    r = requests.post(f"https://fal.run/{model}", headers={"Authorization": f"Key {key}", "Content-Type": "application/json"}, json=body, timeout=300)
-    if r.status_code != 200:
-        _fail("fal", r)
-    data = r.json()
-    images = data.get("images") or ([data["image"]] if data.get("image") else [])
-    if not images:
-        die(f"fal returned no image: {json.dumps(data)[:400]}")
-    img = requests.get(images[0]["url"], timeout=120).content
-    return img, {"provider": "fal", "model": model, "cost": None}
-
-
 def gen_openai(prompt, ratio, refs, model, size, seed):
-    requests = _requests()
-    headers = {"Authorization": "Bearer " + os.environ["OPENAI_API_KEY"]}
+    requests = requests_module("imagegen")
+    base, headers = openai()
     model = model or "gpt-image-2"
     px = OPENAI_SIZES.get(ratio, "1024x1024")
     quality = {"1K": "medium", "2K": "high", "4K": "high"}.get(size or "1K", "medium")
     if refs:
-        files = [("image[]", (os.path.basename(p), open(p, "rb"), mimetypes.guess_type(p)[0] or "image/png")) for p in refs]
-        r = requests.post("https://api.openai.com/v1/images/edits", headers=headers, files=files,
+        files = [("image[]", (os.path.basename(p), open(p, "rb").read(), mimetypes.guess_type(p)[0] or "image/png")) for p in refs]
+        r = requests.post(base + "/images/edits", headers=headers, files=files,
                           data={"model": model, "prompt": prompt, "size": px, "quality": quality}, timeout=300)
     else:
-        r = requests.post("https://api.openai.com/v1/images/generations", headers={**headers, "Content-Type": "application/json"},
+        r = requests.post(base + "/images/generations", headers={**headers, "Content-Type": "application/json"},
                           json={"model": model, "prompt": prompt, "size": px, "quality": quality, "output_format": "png"}, timeout=300)
     if r.status_code != 200:
-        _fail("openai", r)
+        http_failure("imagegen", "openai", r)
     data = r.json()
     return base64.b64decode(data["data"][0]["b64_json"]), {"provider": "openai", "model": model, "cost": None}
 
 
-GENERATORS = {"openrouter": gen_openrouter, "gemini": gen_gemini, "bfl": gen_bfl, "fal": gen_fal, "openai": gen_openai}
+GENERATORS = {"openrouter": gen_openrouter, "openai": gen_openai}
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--prompt")
-    ap.add_argument("--prompt-file", help="read the prompt from a file")
-    ap.add_argument("--ratio", default="4:5", choices=sorted(RATIO_SIZES))
+    ap = Parser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    src = ap.add_mutually_exclusive_group()
+    src.add_argument("--prompt")
+    src.add_argument("--prompt-file", help="a creative.md (its ## Prompt section is sent) or a plain text file")
+    ap.add_argument("--ratio", default="4:5", choices=RATIOS)
     ap.add_argument("--out")
+    ap.add_argument("--force", action="store_true", help="replace --out when it exists")
     ap.add_argument("--ref", action="append", default=[], help="a reference image (the product, the place); repeatable")
     ap.add_argument("--provider", choices=sorted(GENERATORS))
     ap.add_argument("--model")
@@ -258,42 +149,41 @@ def main():
     ap.add_argument("--check", action="store_true", help="print the configured providers and exit")
     args = ap.parse_args()
 
-    avail = providers()
+    avail = configured(ORDER)
     if args.check:
-        from common import root as app_root
-        anchor = style_anchor(app_root())
-        print("style anchor: " + (anchor[:120] + ("…" if len(anchor) > 120 else "") if anchor else "not filled (brand/visual-identity.md, Imagery)"))
-        if avail:
-            print("image providers configured, in the order tried: " + ", ".join(avail))
-        else:
-            print("no image provider configured (OPENROUTER_API_KEY, GEMINI_API_KEY, BFL_API_KEY, FAL_KEY, OPENAI_API_KEY); ask with request_connection")
-            sys.exit(3)
+        anchor = style_anchor(root())
+        anchor = "  style anchor: " + (anchor[:120] + ("…" if len(anchor) > 120 else "") if anchor else "not filled (brand/visual-identity.md, Imagery)")
+        if not avail:
+            die("imagegen --check: no image model configured (OPENAI_API_KEY, OPENROUTER_API_KEY)\n"
+                + anchor + "\n  " + ASK)
+        print("imagegen --check: image providers configured, in the order tried: " + ", ".join(avail))
+        print(anchor)
         return
-    if args.prompt_file and not args.prompt:
-        with open(args.prompt_file, encoding="utf-8") as fh:
-            args.prompt = fh.read().strip()
-    if not args.prompt or not args.out:
-        die("--prompt (or --prompt-file) and --out are required (or --check)")
-    provider = args.provider or (avail[0] if avail else None)
-    if not provider:
-        die("no image provider configured; ask the owner for one with request_connection (the images skill says how)", 3)
-    if provider not in avail:
-        die(f"{provider} has no key in the environment; configured: {', '.join(avail) or 'none'}", 3)
+    if not (args.prompt or args.prompt_file) or not args.out:
+        die("imagegen: --prompt-file (or --prompt) and --out are required, or --check\n  Try: " + EXAMPLE, 2)
+    prompt = read_prompt(args.prompt_file, "imagegen", EXAMPLE) if args.prompt_file else args.prompt.strip()
     for ref in args.ref:
         if not os.path.isfile(ref):
-            die(f"reference image not found: {ref}")
+            die(f"imagegen: reference image not found: {ref}\n  Try: ls media/photos", 2)
+    if args.anchor and not os.path.isfile(args.anchor):
+        die(f"imagegen: style anchor file not found: {args.anchor}\n  Try: --brand for the brand's own anchor, or ls research/", 2)
+    refuse_overwrite(args.out, args.force, "imagegen")
+    provider = args.provider or (avail[0] if avail else None)
+    if not provider:
+        die("imagegen: no image model configured; nothing was generated\n  " + ASK)
+    if provider not in avail:
+        die(f"imagegen: {provider} has no key here; configured: {', '.join(avail) or 'none'}\n  "
+            + (f"Try: --provider {avail[0]}" if avail else ASK))
 
-    prompt = args.prompt.strip()
     if args.brand or args.anchor:
-        from common import root as app_root
-        anchor = style_anchor(app_root(), args.anchor)
+        anchor = style_anchor(root(), args.anchor)
         if anchor:
             prompt += " " + anchor
         else:
             print("note: no style anchor filled in brand/visual-identity.md (Imagery); the prompt goes without one", file=sys.stderr)
     if args.no_text:
         prompt += NO_TEXT
-    img, meta = GENERATORS[provider](prompt, args.ratio, args.ref, args.model, args.size, args.seed)
+    img, meta = generate("imagegen", provider, GENERATORS[provider], prompt, args.ratio, args.ref, args.model, args.size, args.seed)
     os.makedirs(os.path.dirname(os.path.abspath(args.out)) or ".", exist_ok=True)
     with open(args.out, "wb") as fh:
         fh.write(img)
@@ -309,8 +199,13 @@ def main():
     meta.update({"prompt": prompt, "ratio": args.ratio, "refs": [os.path.basename(r) for r in args.ref], "at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
     with open(args.out + ".json", "w", encoding="utf-8") as fh:
         json.dump(meta, fh, indent=2)
-    cost = f" (${meta['cost']:.3f})" if isinstance(meta.get("cost"), (int, float)) else ""
-    print(f"{args.out} via {meta['provider']} {meta['model']}{cost} {meta.get('size', '')}")
+    cost = f", ${meta['cost']:.3f}" if isinstance(meta.get("cost"), (int, float)) else ""
+    size = f" {meta['size']}" if meta.get("size") else ""
+    print(f"imagegen: wrote {args.out}{size} via {meta['provider']} {meta['model']}{cost}")
+    print(f"  the prompt sent and the details: {args.out}.json")
+    folder = creative_folder(args.out)
+    print(f"\nNext: look at {args.out} at full size and at 25%"
+          + (f", then python3 scripts/check.py {folder}" if folder else ""))
 
 
 if __name__ == "__main__":

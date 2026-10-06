@@ -1,6 +1,6 @@
 ---
 name: ideas
-description: "Turn the brand and research into ideas worth making: angles, frameworks (StoryBrand, problem-agitate-solve, before-after-bridge, jobs to be done, objections), ranked and checked before anything is made. Use when the owner wants new ads or posts, a campaign, or a test set. Not for the opening line (hooks) or the finished piece (ad, social-post)."
+description: "Turns the brand and research into ideas worth making: angles and frameworks (StoryBrand, problem-agitate-solve, before-after-bridge, jobs to be done, objections), ranked before anything is made. Use when the owner wants new ideas, a campaign, or asks what to make. Not for the words or the finished piece."
 ---
 
 # Ideas

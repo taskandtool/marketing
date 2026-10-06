@@ -1,6 +1,6 @@
 ---
 name: ad
-description: "Make a paid ad from an idea: pick the format, put the hook, copy and picture or video together for one platform's specs, and check it. Use when the owner asks for an ad, a static, a set to test, or a creative for Meta, Instagram, TikTok, LinkedIn, Google, Pinterest or YouTube. Not for organic posts (social-post) or choosing ideas (ideas)."
+description: "Makes a paid ad from an idea: the format, the hook, copy and picture or video put together to one platform's specs, then checked. Use when the owner asks for ads, a static, a set to test, or a creative for Meta, Instagram, TikTok, LinkedIn, Google, Pinterest or YouTube. Not for organic posts (social-post)."
 ---
 
 # Ad
@@ -19,9 +19,8 @@ Copy and tick:
       the file). Lo-fi formats (a sticky note, a phone photo, a screenshot)
       win more often than they are used; they are a first choice, not a
       fallback.
-- [ ] 3. **Hook** (the `hooks` skill) and **copy** (the `copywriting` skill)
-      into `copy:` (`headline`, `primary_text`, `description` or
-      `caption`, `cta`).
+- [ ] 3. **Hook and copy** (the `copywriting` skill) into `copy:`
+      (`headline`, `primary_text`, `description` or `caption`, `cta`).
 - [ ] 4. **Picture or video** (the `images` or `video` skill), at the
       platform's sizes in `specs/<platform>.md`; vertical placements keep
       words inside the safe zone. Each ratio is its own generation.
@@ -33,21 +32,13 @@ Copy and tick:
 
 ## Rules
 
-- On the picture: twelve words or fewer, readable at phone size; the
-  headline is larger than the logo.
-- The call to action is a verb and an object ("Book a service"), the same
-  wording in the copy and on the picture.
-- No hashtags in an ad. No competitor named. No personal attributes ("Are
-  you in debt?"). Health, finance and before-and-after claims follow the
-  platform's sheet in `specs/`.
-- A sheet over 90 days old is re-verified before building against it
-  (`specs/README.md`).
+- The words on the picture are readable at phone size, the headline larger
+  than the logo, and the call to action worded as in the copy.
+- Health, finance and before-and-after claims follow the platform's sheet
+  in `specs/`. `scripts/check.py` fails on hashtags and personal attributes
+  ("Are you in debt?") in an ad.
 
-## After it runs
-
-Record the numbers in `results.md` (newest first): the folder, the
-platform, the dates, hook rate, hold rate, click-through, cost per lead.
-On a winner, new hooks on the same body first; on a loser, a new angle.
+When it has run, the `marketing` skill records the results.
 
 ## References
 

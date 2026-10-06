@@ -1,6 +1,6 @@
 ---
 name: marketing
-description: "The marketing app's folders, the shape of a creative.md, and the order of work from research to results. Use at the start of any session here, when the owner asks what to do next, what is waiting for approval, or how something is filed. Not for making a piece itself (ad, social-post) or writing words (copywriting)."
+description: "The marketing app's folders, the shape of a creative.md, the order of work from research to results, and recording results. Use at the start of a session here, when the owner asks what to do next, what is waiting for approval, how an ad did, or where something is filed. Not for making a piece itself (ad, social-post)."
 ---
 
 # Marketing

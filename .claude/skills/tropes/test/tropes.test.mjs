@@ -24,6 +24,27 @@ test("refused phrases and the em dash", () => {
   assert.ok(r.includes("em-dash"));
 });
 
+test("a promise of fit that names nothing", () => {
+  for (const s of [
+    "Project management, shaped to your work.",
+    "A CRM shaped to how you work.",
+    "Set it up your way.",
+    "A view tailored to them.",
+    "Pick the plan for how you work.",
+    "Boards for the work your team really does.",
+    "Built for scale.",
+    "Guided walks, built around you.",
+    "Start simple. Shape it to your business.",
+    "Shaped to your trade",
+  ]) assert.ok(rules(s).includes("vague-fit"), s);
+  for (const s of [
+    "Shape it by chat.",
+    "Change the stages and fields to fit your business.",
+    "On your way home, book a check.",
+    "Built for roofers in Leeds.",
+  ]) assert.ok(!rules(s).includes("vague-fit"), s);
+});
+
 test("an -ing rider", () => {
   assert.ok(rules("We rebuilt the porch in May, ensuring years of shelter.").includes("ing-rider"));
 });
@@ -118,6 +139,22 @@ test("the command: --json, exit codes, --help", () => {
   assert.equal(JSON.parse(bad.stdout)[0].rule, "refused-phrase");
   assert.equal(run("A trusted firm.").status, 0);
   assert.equal(run("Fitted in three days.").stdout.trim(), "tropes: clean");
-  assert.equal(spawnSync(process.execPath, [CLI, "--kind", "x", "-"], { encoding: "utf8" }).status, 2);
-  assert.match(spawnSync(process.execPath, [CLI, "--help"], { encoding: "utf8" }).stdout, /--kind/);
+  for (const h of ["--help", "-h"]) assert.match(spawnSync(process.execPath, [CLI, h], { encoding: "utf8" }).stdout, /--kind/);
+  for (const args of [["--kind", "x", "-"], ["--bogus", "-"], ["a.md", "b.md"], ["no-such-file.md"], []]) {
+    const r = spawnSync(process.execPath, [CLI, ...args], { encoding: "utf8" });
+    assert.equal(r.status, 2, args.join(" "));
+    assert.equal(r.stdout, "");
+    assert.match(r.stderr, /^tropes: .*\n {2}Try: /);
+  }
+});
+
+test("the command: the count first, errors before hints, the first 40 and how to see the rest", () => {
+  const many = Array.from({ length: 60 }, (_, i) => `# Part ${i}\nOur seamless service number ${i} ran fine in May.`).join("\n");
+  const r = spawnSync(process.execPath, [CLI, "-"], { input: many, encoding: "utf8" });
+  assert.equal(r.status, 1);
+  const lines = r.stdout.trim().split("\n");
+  assert.match(lines[0], /^tropes: \d+ errors, \d+ hints?\. Rewrite each flagged line whole\.$/);
+  assert.equal(lines.filter((l) => /^ {2}(error|hint)/.test(l)).length, 40);
+  assert.match(lines.at(-1), /^ {2}40 of \d+ shown; --json for all$/);
+  assert.ok(lines.findIndex((l) => l.startsWith("  hint")) === -1 || lines.findIndex((l) => l.startsWith("  hint")) > lines.findLastIndex((l) => l.startsWith("  error")));
 });

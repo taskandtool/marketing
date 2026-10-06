@@ -20,7 +20,7 @@ Structures outlast word lists: the vocabulary moves with each model generation (
 | Trope | Examples | Fix |
 |---|---|---|
 | **Negation pivot** (strongest tell) `negation-pivot` | "It's not X, it's Y", "not just X but Y", "X, not Y", "Not because X. Because Y.", "Y rather than X" | State Y. Nobody proposed X |
-| Rule of three `triads` | three adjectives, three bullets, three examples per section | Use the number of things there really are. At most one triad a page |
+| Rule of three `triads` | three adjectives, three bullets, three examples per section | Use the number of things there really are. At most one triad a section |
 | Staccato triplet `triads` | "No fluff. No filler. No stress." "Fast. Simple. Effective." | One plain sentence with the real claim |
 | Throat-clearing openers | In today's fast-paced world; In a world where; Imagine a world; Welcome to; Are you looking for; When it comes to | Start with the offer |
 | Audience sweep | Whether you're X or Y; Look no further; something for everyone | Name the one reader |
@@ -31,6 +31,7 @@ Structures outlast word lists: the vocabulary moves with each model generation (
 | Hedges and filler | It's worth noting; It's important to note; It goes without saying; Some experts argue | Cut. If it's uncertain, say what is uncertain |
 | Fake balance | "While X has merits, Y offers benefits" | Pick one and say why |
 | Summary closers | In conclusion; Ultimately; Remember, …; In summary | Stop at the last fact or the call to action |
+| Fit with no facts `vague-fit` | shaped to your work, built around you, your way, tailored to you, for how you work, the work your team really does, built for scale | Name what changes to fit: "your stages and fields", "open till 9 on Thursdays" |
 | Formula headlines | X, reimagined; X, redefined; Where X meets Y; Built for the future; Everything you need, all in one place | A headline a stranger could repeat: what the reader can do here |
 | Echoes | headline restates the company's own tagline/brief; a customer's quote used as a heading | Rewrite from the reader's question; quotes go in quotation marks with a name |
 | Restated heading `restates-heading` | the line under "Fast boiler repairs in Leeds" is "We do fast boiler repairs across Leeds" | The line adds the fact the heading could not hold: the price, the area, the wait |

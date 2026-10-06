@@ -1,13 +1,13 @@
 ---
 name: images
-description: "Make the picture for an ad or post: choose the owner's own photo or write the image prompt, generate it, and check it. Use when a creative needs a still, a product shot, an edit of the owner's photo, or words set in a picture. Not for video (video) or for judging AI tells (tropes)."
+description: "Makes the picture for an ad or post: the owner's own photo or a written image prompt, generated and checked. Use when a creative needs a still, a product shot, an edit of the owner's photo, or words set in a picture. Not for video (video) or judging AI tells (tropes)."
 ---
 
 # Images
 
-The owner's real photographs come first: look in `media/_index.md` and
-`brand/images.md` before generating anything. Generate when there is no
-photo of the thing, or to place the owner's product in a new scene.
+Look in `media/_index.md` for the owner's own photo before generating
+anything. Generate when there is no photo of the thing, or to place the
+owner's product in a new scene.
 
 ## Steps
 
@@ -16,13 +16,12 @@ Copy and tick:
 - [ ] 1. Read the creative's idea, the format's recipe
       (`ad/references/formats.md` or the post's form) and the Imagery block
       in `brand/visual-identity.md`.
-- [ ] 2. Write the prompt into the creative's `## Prompt`, in the shape
-      below.
+- [ ] 2. Write the prompt under `## Prompt` in the creative's
+      `creative.md`, in the shape below.
 - [ ] 3. Generate: `python3 scripts/imagegen.py --prompt-file
-      <file> --ratio 4:5 --out creatives/<folder>/v1.png [--ref <photo>]
-      [--brand]`. Each placement's ratio is its own generation, never a
-      crop. A connection that brings its own image instructions is used
-      that way instead.
+      creatives/<folder>/creative.md --ratio 4:5 --out
+      creatives/<folder>/v1.png [--ref <photo>] [--brand]`. Each
+      placement's ratio is its own generation, never a crop.
 - [ ] 4. Look at the result at full size and at 25%. Run the `tropes`
       picture checks. Change one thing and generate `v2.png`; two or three
       rounds is normal.
@@ -56,8 +55,6 @@ looks like one brand.
 
 ## Rules
 
-- No generated person stands in for a customer, staff or a testimonial, and
-  no customer's home appears without their consent.
 - No interface, chart or product the business does not make is painted.
 - Every word in a picture is checked letter by letter against the copy.
 

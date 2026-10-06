@@ -1,6 +1,6 @@
 ---
 name: images
-description: "Make the picture for an ad or post: choose the owner's own photo or write the image prompt, generate it, and check it. Use when a creative needs a still, a product shot, an edit of the owner's photo, or words set in a picture. Not for video (video) or for judging AI tells (tropes)."
+description: "Makes the picture for an ad or post: the owner's own photo or a written image prompt, generated and checked. Use when a creative needs a still, a product shot, an edit of the owner's photo, or words set in a picture. Not for video (video) or judging AI tells (tropes)."
 ---
 
 # Images

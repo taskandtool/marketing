@@ -52,6 +52,17 @@ const NEGATION = [
   /\b\w+(?: \w+)?, not \w+(?: \w+)?[.!]/gi,
 ];
 
+// A promise of fit that names nothing: what is shaped, to what? "Shape it by
+// chat" names an action and passes.
+const VAGUE_FIT = [
+  /\b(shaped|tailored|built|designed|made|crafted) (to|around|for) (you|them|your (work|way|needs|business|team|company|trade|process))\b/gi,
+  /\b(shape|tailor) (it|them) (to|around) (you|your)\b/gi,
+  /\b(for|to|around|fits?|match(es)?) (how|the way) (you|your (team|business|company)) (really |actually )?(work|works|run|runs|do business)\b/gi,
+  /(?<!\b(on|in|out of) )\byour way\b/gi,
+  /\bthe work (you|your \w+) (really|actually) do(es)?\b/gi,
+  /\bbuilt (for (scale|growth|the future|tomorrow|what comes next)|to (last|scale))\b/gi,
+];
+
 const ING_RIDER = /, (highlighting|ensuring|fostering|showcasing|reflecting|contributing to|underscoring|emphasizing|enhancing)\b/gi;
 
 // Meta refuses copy that asserts or implies the reader's personal attributes.
@@ -77,6 +88,7 @@ const FIX = {
   "em-dash": "a comma, a colon or a new sentence",
   "refused-phrase": "say the specific thing it stands in for, or cut it",
   "negation-pivot": "state the claim; nobody proposed the other",
+  "vague-fit": "name what changes to fit: the stages, the fields, the hours, the price",
   "ing-rider": "cut the clause, or make it a sentence with a subject",
   "rhetorical-question": "say the answer as a statement",
   triads: "a rhythm of threes reads as generated: keep a real list of three, rewrite three-beat phrasing to the number of things there are",
@@ -107,6 +119,7 @@ function phraseFindings(text) {
   if (text.includes("—")) out.push(finding("em-dash", "—"));
   for (const rx of PHRASES) for (const m of text.matchAll(rx)) out.push(finding("refused-phrase", m[0]));
   for (const rx of NEGATION) for (const m of text.matchAll(rx)) out.push(finding("negation-pivot", m[0]));
+  for (const rx of VAGUE_FIT) for (const m of text.matchAll(rx)) out.push(finding("vague-fit", m[0]));
   for (const m of text.matchAll(ING_RIDER)) out.push(finding("ing-rider", m[0].replace(/^, /, "")));
   for (const m of text.matchAll(WEAK_CTA_IN_TEXT)) out.push(finding("weak-cta", m[0]));
   for (const s of text.split(/(?<=[.!?])\s+|\n+/)) {
@@ -219,6 +232,7 @@ export function sectionsOf(text) {
 }
 
 // ── the command ──────────────────────────────────────────────────────────
+const CAP = 40;
 const HELP = `node tropes.mjs [--json] [--kind page|post|ad] <file|->
 
 Checks copy for the tells of generated text. The file is plain text or
@@ -228,45 +242,62 @@ the other sections. - reads stdin.
   --kind page   a web page (default); we/you balance is a hint
   --kind post   an organic post
   --kind ad     a paid ad: adds Meta's personal-attribute rule
-  --json        [{ rule, match, fix, severity, section?, sections? }] on stdout
+  --json        [{ rule, match, fix, severity, section?, sections? }] on stdout, every finding
 
-Prints one line per finding with its fix. Exit 1 when there is an error,
-0 when clean or only hints, 2 on a usage error.`;
+Prints the count first ("tropes: 2 errors, 1 hint in about.md"), then each
+finding with its fix, errors first, the first ${CAP}. Exit 1 when there is an
+error, 0 when clean or only hints, 2 on a usage error (stderr, with Try:).`;
+const TRY = "node .claude/skills/tropes/tropes.mjs --help";
 
 async function main(argv) {
-  const opts = { json: false, kind: "page", file: null };
+  const opts = { json: argv.includes("--json"), kind: "page", file: null };
+  /** A usage error: what was wrong and the command that works, as JSON under --json. Exit 2. */
+  const misused = (msg, tryCmd = TRY) => {
+    console.error(opts.json ? JSON.stringify({ error: `tropes: ${msg}`, try: tryCmd }) : `tropes: ${msg}\n  Try: ${tryCmd}`);
+    return 2;
+  };
   for (let i = 0; i < argv.length; i++) {
     const a = argv[i];
     if (a === "--help" || a === "-h") { console.log(HELP); return 0; }
-    if (a === "--json") opts.json = true;
+    if (a === "--json") continue;
     else if (a === "--kind") opts.kind = argv[++i];
     else if (a.startsWith("--kind=")) opts.kind = a.slice(7);
-    else if (a === "-" || !a.startsWith("-")) opts.file = a;
-    else { console.error(`tropes: unknown option ${a}\n\n${HELP}`); return 2; }
+    else if (a !== "-" && a.startsWith("-")) return misused(`unknown option ${a}; valid: --kind, --json`);
+    else if (opts.file) return misused(`one file at a time (given ${opts.file} and ${a})`);
+    else opts.file = a;
   }
-  if (!["page", "post", "ad"].includes(opts.kind)) { console.error(`tropes: --kind is page, post or ad, not "${opts.kind}"`); return 2; }
-  if (!opts.file) { console.error(`tropes: name a file, or - for stdin\n\n${HELP}`); return 2; }
+  if (!["page", "post", "ad"].includes(opts.kind)) return misused(`--kind is page, post or ad, not "${opts.kind}"`);
+  if (!opts.file) return misused("name a file, or - for stdin");
   let text;
   try {
     text = readFileSync(opts.file === "-" ? 0 : opts.file, "utf8");
   } catch (e) {
-    console.error(`tropes: cannot read ${opts.file} (${e.code || e.message})`);
-    return 2;
+    return misused(`cannot read ${opts.file} (${e.code || e.message})`, "node .claude/skills/tropes/tropes.mjs <a file that exists>");
   }
   const sections = sectionsOf(text);
   const found = check(sections, { kind: opts.kind });
   if (opts.json) {
     console.log(JSON.stringify(found.map((f) => ({ ...f, heading: f.section !== undefined ? sections[f.section].heading : undefined }))));
-  } else {
-    for (const f of found) {
-      const where = f.section !== undefined && sections[f.section].heading ? `  (${sections[f.section].heading})`
-        : f.sections ? `  (${f.sections.map((i) => sections[i].heading || `section ${i + 1}`).join(" and ")})` : "";
-      console.log(`${f.severity.padEnd(5)} ${f.rule}  "${f.match.slice(0, 80)}"${where}\n      ${f.fix}`);
-    }
-    const errors = found.filter((f) => f.severity === "error").length;
-    console.log(found.length ? `tropes: ${errors} error(s), ${found.length - errors} hint(s). Rewrite each flagged line whole.` : "tropes: clean");
+    return found.some((f) => f.severity === "error") ? 1 : 0;
   }
-  return found.some((f) => f.severity === "error") ? 1 : 0;
+  const errors = found.filter((f) => f.severity === "error");
+  const hints = found.length - errors.length;
+  if (!found.length) {
+    console.log("tropes: clean");
+    return 0;
+  }
+  const what = opts.file === "-" ? "" : ` in ${opts.file}`;
+  const plural = (n, one) => `${n} ${one}${n === 1 ? "" : "s"}`;
+  const lines = [`tropes: ${plural(errors.length, "error")}, ${plural(hints, "hint")}${what}. Rewrite each flagged line whole.`];
+  // Errors first, so a capped list never hides one behind a hint.
+  for (const f of [...errors, ...found.filter((f) => f.severity !== "error")].slice(0, CAP)) {
+    const where = f.section !== undefined && sections[f.section].heading ? `  (${sections[f.section].heading})`
+      : f.sections ? `  (${f.sections.map((i) => sections[i].heading || `section ${i + 1}`).join(" and ")})` : "";
+    lines.push(`  ${f.severity.padEnd(5)} ${f.rule}  "${f.match.slice(0, 80)}"${where}`, `        ${f.fix}`);
+  }
+  if (found.length > CAP) lines.push(`  ${CAP} of ${found.length} shown; --json for all`);
+  console.log(lines.join("\n"));
+  return errors.length ? 1 : 0;
 }
 
 const isMain = () => {

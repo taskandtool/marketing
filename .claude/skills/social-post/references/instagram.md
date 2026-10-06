@@ -36,7 +36,7 @@ Recipes for the feed, Reels and Stories. The worked examples use Harlow Joinery,
 
 ## Norms
 
-- Caption limit 2,200. The feed truncates behind "more" at about 125 characters (Sprout, 2021 counter) or about 150 (Hootsuite, Jul 2026). Work to 125: the hook and the promise of the payoff in the first 125 characters, ending on a full thought, no hashtags or emoji before it.
+- Caption limits and the "more" cutoff: `specs/meta.md`. The hook and the promise of the payoff before the cutoff, ending on a full thought, no hashtags or emoji before it.
 - A line break between thoughts. The call to action on its own line. Hashtags last.
 - Hashtags: three to five, relevant, at the end of the caption (Instagram's @creators guidance, via Buffer). Hashtag following was removed in December 2024, so tags are a keyword aid, not a reach lever. Small accounts use niche tags.
 - Keywords: captions are searchable. Put the plain service and place phrase in the caption ("fitted kitchens in Bristol") and in the profile. Sprout: "Include natural keywords and terms that will support searchers in finding your post."
@@ -49,7 +49,7 @@ Recipes for the feed, Reels and Stories. The worked examples use Harlow Joinery,
 ### Educational carousel
 When: the education pillar, up to twice a week. The default format for saves.
 Structure: 6 to 10 slides, 4:5. Slide 1 a headline hook of eight words or fewer in large type, a promise or a number, a swipe cue bottom right. Slides 2 to N one idea each, numbered, 25 words or fewer. Last slide a summary, "Save this", and a soft call to action.
-Copy: the caption restates the hook in the first 125 characters, expands one point, then asks. "3 things to check before you sign a kitchen quote. Number 2 is the one people miss: who measures the room. At Harlow the joiner who measures is the joiner who fits, so the drawing is the kitchen. Save this for when the quotes come in. Send it to someone planning a kitchen this year. #fittedkitchens #bristolkitchens #kitchenrenovation"
+Copy: the caption restates the hook before the cutoff, expands one point, then asks. "3 things to check before you sign a kitchen quote. Number 2 is the one people miss: who measures the room. At Harlow the joiner who measures is the joiner who fits, so the drawing is the kitchen. Save this for when the quotes come in. Send it to someone planning a kitchen this year. #fittedkitchens #bristolkitchens #kitchenrenovation"
 Visual: one layout, brand colours, the same type on every slide, a photo of real work behind or beside the text where one exists.
 Pitfalls: text walls, a slide 1 that looks like a quote card, a hook that gives the whole answer away, generic advice not anchored in what you see with customers.
 
@@ -76,7 +76,7 @@ Pitfalls: editing the review, reposting a customer's photo without asking, ten t
 
 ### Offer post
 When: no more than one post in five. The offer pillar.
-Structure: an image of the thing, the offer in the first 125 characters with the deadline, then how to claim.
+Structure: an image of the thing, the offer before the cutoff with the deadline, then how to claim.
 Copy: the pattern is "X for Y until [date]. DM 'WORD' or link in bio." "Free design visit for kitchens booked before 31 October. Two hours in your house with Jo and a measured drawing you keep. DM 'VISIT' or use the link in bio to book."
 Visual: the thing on offer in a customer's home, not a graphic.
 Pitfalls: "link in bio" without saying what it is, stacking urgency words, discounting every week until the discount is the price.
@@ -125,7 +125,7 @@ Pitfalls: more than about five slides in one go, feed posts reshared with nothin
 
 ## Never
 
-- A hashtag wall, tags before the hook, or tags in the first 125 characters.
+- A hashtag wall, tags before the hook, or tags before the cutoff.
 - Reposts with another app's watermark, or a customer's content without permission.
 - A link in the caption, or "link in bio" without saying what it leads to.
 - Engagement asks with nothing behind them: "double tap if", "tag a friend who".

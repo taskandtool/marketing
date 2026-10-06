@@ -1,6 +1,6 @@
 ---
 name: social-post
-description: "Write organic social posts in the business's voice for Instagram, Facebook, LinkedIn, TikTok, Google Business, Pinterest, X and Threads, or turn one idea into a week of posts. Use when the owner says write a post or caption, what should we post this week, or repurpose this. Not for paid ads (ad)."
+description: "Writes organic social posts in the business's voice for Instagram, Facebook, LinkedIn, TikTok, Google Business, Pinterest, X and Threads, or turns one idea into a week of posts. Use when the owner says write a post or caption, what should we post this week, or repurpose this. Not for paid ads (ad)."
 ---
 
 # Social post

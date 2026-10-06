@@ -2,9 +2,6 @@
 type: spec
 platform: all
 last_verified: 2026-09-07
-sources:
-  - research/4-ad-paradigms.md (Specs 2026 section)
-  - research/5-generation-tooling.md (Pipeline realities section)
 ---
 
 # Platform spec sheets
@@ -37,18 +34,18 @@ Vertical placements (Reels, Stories, TikTok, Shorts) overlay UI on the frame. Ke
 
 | Edge | Keep clear | Source |
 |---|---|---|
-| Top | 14% | Meta Reels ads guide (verified 2026-09-07); research note 5 says the same box is unverified across other platforms |
+| Top | 14% | Meta Reels ads guide (verified 2026-09-07); the same box on other platforms is unverified |
 | Bottom | 35% | Meta Reels ads guide (verified 2026-09-07) |
 | Sides | 6% each | Meta Reels ads guide (verified 2026-09-07) |
-| Right rail on TikTok | about 10% extra | research note 5, unverified |
+| Right rail on TikTok | about 10% extra | secondary source, unverified |
 
 At 1080×1920 that is roughly: top 270 px, bottom 672 px, sides 65 px. The usable band is about 950×978. TikTok's own numbers vary by caption length; use TikTok's downloadable template for TikTok (see `tiktok.md`).
 
 ## 9:16 is composed separately, never cropped from 4:5
 
-A 4:5 master (1080×1350) cropped to 9:16 loses the sides and puts the headline in the overlay zones. Compose a separate 9:16 layout with its own copy positions inside the safe box. The same rule applies in reverse: do not crop 9:16 down to 4:5 or 1:1. Source: research note 5, Pipeline realities.
+A 4:5 master (1080×1350) cropped to 9:16 loses the sides and puts the headline in the overlay zones. Compose a separate 9:16 layout with its own copy positions inside the safe box. The same rule applies in reverse: do not crop 9:16 down to 4:5 or 1:1.
 
-## Output conventions (from research note 5)
+## Output conventions
 
 - Emit JPG or PNG. Not WebP.
 - Convert to sRGB and embed the profile. Sharp strips ICC by default; use `.withMetadata()`. Pillow saves no profile unless `icc_profile` is passed.

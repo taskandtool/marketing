@@ -1,14 +1,13 @@
 ---
 name: video
-description: "Plan and make short video ads and posts: the beat structure, show-don't-tell, the first two seconds, captions, sound and music, and shot briefs for a video model. Use when a creative is a video, Reel, TikTok or Short, or when the owner shares clips to cut. Not for stills (images) or the opening line alone (hooks)."
+description: "Plans and makes short video ads and posts: the beat structure, show-don't-tell, the first two seconds, captions, sound and music, and shot briefs for a video model. Use when a creative is a video, Reel, TikTok or Short, or when the owner shares clips to cut. Not for stills (images)."
 ---
 
 # Video
 
 The picture carries the idea, captions carry the words, sound adds energy.
-Real footage of the owner and their work beats anything generated; a
-generated clip is a three-to-eight-second beat (a product close-up, a
-setting, a reveal), never the whole ad and never a stand-in for a person.
+A generated clip is a three-to-eight-second beat (a product close-up, a
+setting, a reveal), never the whole ad.
 
 ## Steps
 
@@ -22,11 +21,11 @@ Copy and tick:
 - [ ] 3. For each generated shot, generate the hero still first (the
       `images` skill), then write a shot brief (below) that uses it as the
       reference or first frame.
-- [ ] 4. Generate: `python3 scripts/videogen.py --prompt-file <file>
-      --ratio 9:16 --seconds 6 --out creatives/<folder>/shot-1.mp4`, or
-      the way a connected video model's instructions say (Seedance and
-      others bring their own). Use a cheap draft mode first when the model
-      has one.
+- [ ] 4. Put each shot brief under its own heading in `creative.md`
+      (`## Shot 1`, `## Shot 2`; `## Prompt` stays the still's) and
+      generate: `python3 scripts/videogen.py --prompt-file
+      creatives/<folder>/creative.md --section "Shot 1" --ratio 9:16
+      --seconds 6 --out creatives/<folder>/shot-1.mp4`.
 - [ ] 5. Check frames at 0, 25, 50, 75 and 100% (the `tropes` video
       checks). Regenerate what drifts.
 - [ ] 6. List the shots, the script and the music choice in the creative;

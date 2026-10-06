@@ -1,6 +1,6 @@
 ---
 name: ideas
-description: "Turn the brand and research into ideas worth making: angles, frameworks (StoryBrand, problem-agitate-solve, before-after-bridge, jobs to be done, objections), ranked and checked before anything is made. Use when the owner wants new ads or posts, a campaign, or a test set. Not for the opening line (hooks) or the finished piece (ad, social-post)."
+description: "Turns the brand and research into ideas worth making: angles and frameworks (StoryBrand, problem-agitate-solve, before-after-bridge, jobs to be done, objections), ranked before anything is made. Use when the owner wants new ideas, a campaign, or asks what to make. Not for the words or the finished piece."
 ---
 
 # Ideas
@@ -23,12 +23,12 @@ Copy and tick:
 - [ ] 3. Write ten to fifteen candidate ideas. Draw them from the sources
       below, each as one line: reader, stage, argument, the proof in
       `claims.md`.
-- [ ] 4. Score each (below) and keep the top nine that differ in argument,
-      not in colour or wording.
+- [ ] 4. Score each (below) and keep the top ones that differ in argument,
+      not in colour or wording: as many as the owner asked for, else nine.
 - [ ] 5. For each kept idea, create `creatives/YYYY-MM-DD-<slug>/creative.md`
       with `status: draft`, the angle, the stage, the framework, the claims,
-      and the idea in two sentences. The hook comes next (the `hooks` skill).
-- [ ] 6. Show the owner the nine as a short list, one line each, and ask
+      and the idea in two sentences. The hook comes next (the `copywriting` skill).
+- [ ] 6. Show the owner the kept ideas as a short list, one line each, and ask
       which to make first.
 
 ## Where ideas come from
@@ -53,12 +53,6 @@ and signals relevance; the body pays off the hook; it could have been posted
 by a person; it differs from the others in the set; it can be made with what
 the business has. This is judgement made explicit, not a validated model;
 the market picks the winners.
-
-## The test set
-
-Three angles × three hooks or formats: nine pieces, distinct in argument.
-When one wins, keep it and write new hooks for it; when one loses, change
-its angle. Results go in `results.md`.
 
 ## References
 

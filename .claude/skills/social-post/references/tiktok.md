@@ -22,7 +22,7 @@ Recipes for a small business account. The worked examples use Harlow Joinery, a 
 
 ## Norms
 
-- Caption limit 4,000, but write one or two lines. The primary keyword phrase in the first sentence, then a reason to watch.
+- Limits: `specs/tiktok.md`. Write one or two lines. The primary keyword phrase in the first sentence, then a reason to watch.
 - Hashtags: three to five, "at least one containing your keyword verbatim" (Sprout). Hashtag-only captions are a tell.
 - The keyword in the on-screen title in the first second, and said aloud in the first sentence. Auto-captions on.
 - Links: only the profile link. Never in the caption.

@@ -1,6 +1,6 @@
 ---
 name: research
-description: "Research a business's market before making creatives: competitors' ads and organic posts, customer reviews and comments, search questions, into research/ and a one-page brief of ranked hypotheses. Use when the owner asks what competitors are doing, before the first ideas, or monthly. Not for the business's own facts (brand)."
+description: "Researches a market before making creatives: competitors' sites, ads and posts, customers' reviews and comments, search questions, into research/ and a brief of ranked hypotheses. Use when the owner asks what competitors are doing, before the first ideas, or monthly. Not for the business's own facts (brand)."
 ---
 
 # Research
@@ -8,6 +8,18 @@ description: "Research a business's market before making creatives: competitors'
 Ads show what competitors keep paying for. Posts, comments, reviews and
 searches show what customers say. Do both, customers first, and end with a
 brief the `ideas` skill can act on.
+
+Fetching: a competitor's site with `tt-crawl survey <url> --external` (into
+`raw/external/<host>/`); ad libraries, social posts and comments through
+the `scrapecreators` connection; reviews on a site with no API (Google Maps)
+through `apify`; People Also Ask and autocomplete through `dataforseo`; a
+business's Google listing and reviews through `google-places`, as below. One
+not granted is asked for, as the first line below does for scrapecreators.
+
+```bash
+python3 ~/tools/taskandtool.py request-connection scrapecreators --why "competitors' ads and posts"
+GOOGLE_PLACES_API_URL=$PHOENIX_URL/api/sprite/gateway/google-places/v1 GOOGLE_PLACES_API_KEY=$MACHINE_TOKEN tt-crawl places "Name, City"
+```
 
 ## Steps
 
@@ -61,9 +73,8 @@ eight hypotheses, ranked by signal strength and ease of production, each
 as "We believe [hook, format or angle] will work because [observation over
 time] suggests [what the audience does]."
 
-Also note where the market sits: if every competitor already makes the same
-claim, a bigger version of it loses, and the ideas should lead with how this
-business does it differently or who it is for.
+Also note where the market sits: whether every competitor already makes
+the same claim (the `ideas` skill decides what that means).
 
 ## Lines not to cross
 

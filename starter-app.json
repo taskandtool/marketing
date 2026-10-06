@@ -10,14 +10,19 @@
         "why": "Generate pictures for ads and posts"
       },
       {
-        "provider": "higgsfield",
+        "provider": "openrouter-api",
         "strength": "suggested",
-        "why": "Generate short videos and images for ads and posts (Seedance, Kling and others)"
+        "why": "Generate short video clips and pictures for ads and posts (Veo, Gemini and others)"
+      },
+      {
+        "provider": "scrapecreators",
+        "strength": "suggested",
+        "why": "Read competitors' ads in the ad libraries and their posts for research"
       },
       {
         "provider": "apify",
         "strength": "suggested",
-        "why": "Read competitors' ads and posts for research"
+        "why": "Read customer reviews on sites with no API (Google Maps) for research"
       }
     ]
   },
@@ -31,7 +36,7 @@
     {
       "id": "set-up-my-brand-from-my-site",
       "label": "Set up my brand from my website",
-      "prompt": "Set up my brand with the brand skill: crawl my website into raw/site with tt-crawl (the brand playbook), then write brand/ and public/ from it, every line cited. Copy my best real photos into brand/images and list them in brand/images.md. Tell me what you could not find and ask me for it in one message. My website is: ",
+      "prompt": "Set up my brand with the brand skill: crawl my website into raw/site with tt-crawl (the brand playbook), then write brand/ and public/ from it, every line cited. Copy my best real photos into media/photos and list them in media/_index.md. Tell me what you could not find and ask me for it in one message. My website is: ",
       "when": [
         {
           "path": "brand/visual-identity.md",
@@ -89,7 +94,7 @@
     {
       "id": "what-is-waiting-for-approval",
       "label": "What is waiting for my approval",
-      "prompt": "List the creatives with status sent (python3 scripts/check.py first), newest first, one line each with the idea and the platform, and attach their files as deliverables so I can approve or reject each."
+      "prompt": "Show me what is waiting for my approval: the deliverables already waiting (`python3 ~/tools/taskandtool.py get-deliverables --status waiting`), one line each with its creative's idea and link. Attach nothing again. If python3 scripts/check.py --status sent lists a creative with no waiting deliverable, name it."
     },
     {
       "id": "record-the-results",

@@ -12,7 +12,6 @@
 #      tt-crawl (the site reader the brand and research skills use)
 #   3. runs tt-crawl setup: the launcher and the browsers it reads sites
 #      with (Chrome, and Obscura)
-#   4. reports which image model is configured
 set -euo pipefail
 
 APP="$(pwd)"
@@ -43,10 +42,6 @@ python3 -m pip install --quiet --force-reinstall --no-deps "ttcrawl @ $CRAWLER" 
 python3 -c "import PIL, requests; print('Pillow', PIL.__version__, 'requests', requests.__version__)"
 # 3. tt-crawl on the PATH, then the browsers it drives: Chrome reads a site
 # and its screenshots, Obscura is its fallback.
-python3 -m ttcrawl setup || echo "tt-crawl setup did not finish every step; its JSON line says which"
-
-# 4. What is configured.
-if [ -f scripts/imagegen.py ]; then
-  python3 scripts/imagegen.py --check 2>/dev/null || echo "== no image model key yet (the images skill asks the owner through Connections when one is needed)"
-fi
+python3 -m ttcrawl setup || echo "tt-crawl setup did not finish every step; its output above says which"
+tt-crawl --version || echo "== warning: tt-crawl is not on the PATH; the brand and research skills cannot read sites until bash .taskandtool/setup.sh runs clean"
 echo "== marketing setup done"

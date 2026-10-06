@@ -20,8 +20,7 @@ calls for them.
                  other Starter Apps that carry it)
   research/      competitors' ads and posts, customers' words, search questions → a brief
   ideas/         angles and frameworks → ranked ideas worth making
-  hooks/         the opening line, frame or second, and fifteen hook types
-  copywriting/   the words, in the owner's voice, claims only from sources
+  copywriting/   the words and the hook, in the owner's voice; fifteen hook types
   images/        the picture: the owner's photo, or a prompt for an image model
   video/         beats, show don't tell, sound and music, shot briefs for a video model
   ad/            a paid ad to a platform's specs; 45 static formats as recipes
@@ -45,13 +44,13 @@ research/                competitors, hooks seen, customers' words, the brief
 creatives/YYYY-MM-DD-<slug>/   one idea per folder: creative.md and its pictures and clips
 results.md               what ran and what it did, newest first
 specs/<platform>.md      sizes, limits and policy per platform, dated
-scripts/                 check · imagegen · videogen
+scripts/                 check · imagegen · videogen, and their tests
 ```
 
 `python3 scripts/check.py` checks every creative, the claims and the specs,
 and runs the copy through the `tropes` skill's script (Node);
-`imagegen.py` and `videogen.py` call whichever image or video model the app
-has a key for.
+`imagegen.py` calls the image model the app has a key for (OpenAI or
+OpenRouter), and `videogen.py` OpenRouter's video models.
 
 ## Install
 
@@ -73,13 +72,15 @@ disk.
 ## What it connects to
 
 Everything is optional and asked for when it is needed: an image model
-(OpenAI, OpenRouter, Gemini, Black Forest Labs, fal), a video model, Apify
-or Firecrawl for research, the owner's ad accounts for results. Keys arrive
-through the platform's Connections, never through this repository.
+(OpenAI or OpenRouter), a video model (OpenRouter), ScrapeCreators for
+competitors' ads and posts, Apify for reviews on sites with no API,
+DataForSEO for search questions, Google Places for the business's listing,
+the owner's ad accounts for results. Keys arrive through the platform's
+Connections, never through this repository.
 
 ## Developing this Starter App
 
-- **Tests, no machine:** `python3 .claude/skills/marketing/test_scripts.py`
+- **Tests, no machine:** `python3 scripts/test_scripts.py`
 - **On the platform:** Task & Tool's own repo keeps a working clone under
   `starter_apps/` and runs it through the real install path on a real
   machine before a release is pinned.

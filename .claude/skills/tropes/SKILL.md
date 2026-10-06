@@ -10,6 +10,8 @@ particular should be. Readers and platforms trust work that reads as
 generated less, so it costs the owner twice. The fix is never a synonym; it
 is the specific thing that was missing.
 
+Version: 0.1.0 (taskandtool/skills)
+
 ## Copy, by script
 
 The app's own check runs it: `npm run verify` (website) or

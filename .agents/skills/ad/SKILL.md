@@ -1,6 +1,6 @@
 ---
 name: ad
-description: "Make a paid ad from an idea: pick the format, put the hook, copy and picture or video together for one platform's specs, and check it. Use when the owner asks for an ad, a static, a set to test, or a creative for Meta, Instagram, TikTok, LinkedIn, Google, Pinterest or YouTube. Not for organic posts (social-post) or choosing ideas (ideas)."
+description: "Makes a paid ad from an idea: the format, the hook, copy and picture or video put together to one platform's specs, then checked. Use when the owner asks for ads, a static, a set to test, or a creative for Meta, Instagram, TikTok, LinkedIn, Google, Pinterest or YouTube. Not for organic posts (social-post)."
 ---
 
 # Ad

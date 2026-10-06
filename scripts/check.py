@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """The app's own checks, run before anything is shown to the owner:
 
-    python3 scripts/check.py [<folder> …]
+    python3 scripts/check.py [<folder> …] [--status sent] [--all]
 
 - the brand record the work draws on exists (brand/, public/)
 - every creatives/<YYYY-MM-DD-slug>/creative.md has the fields the
@@ -10,7 +10,13 @@
 - every claim it cites is a numbered entry in claims.md, and every entry
   there names a source file that exists
 - the copy passes the tropes skill's script and the platform's text limits
-- the platform sheets in specs/ are not stale (90 days)
+- the platform sheet a draft is built against is not stale (90 days);
+  "Do not build on a stale sheet" (specs/README.md), so that is a finding
+
+Then it lists the creatives it checked, newest first, one line each:
+folder, status, kind and platform (the newest 20, and the first 20
+findings, unless --all); notes that do not fail the check come last. `--status
+sent` checks and lists only what is waiting for the owner's approval.
 
 Exit 1 with the findings when something is off. A finding is fixed at
 its source before the owner sees the work, never explained away.
@@ -26,7 +32,7 @@ import sys
 from datetime import date
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import FOLDER, KINDS, PLATFORMS, STATUSES, creative_dirs, die, read_record, root  # noqa: E402
+from common import FOLDER, KINDS, PLATFORMS, STATUSES, Parser, creative_dirs, die, read_record, root  # noqa: E402
 
 # The shared copy check (the tropes skill), run over every copy field at once.
 TROPES = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".claude", "skills", "tropes", "tropes.mjs")
@@ -41,7 +47,8 @@ console.log(JSON.stringify(check(sections, { kind })));
 REQUIRED = ["kind", "platform", "status", "angle", "hook", "claims", "files", "copy"]
 NOTES = ["brand/positioning.md", "brand/voice.md", "brand/visual-identity.md", "public/business.md"]
 
-# Hard limits and visible cutoffs; specs/<platform>.md carries the sources.
+# An ad's hard limits and visible cutoffs; specs/<platform>.md carries the
+# numbers and their sources.
 # (limit, hard?, why)
 LIMITS = {
     "meta": {"headline": (40, True, "Meta headline: 40 characters"),
@@ -51,11 +58,18 @@ LIMITS = {
                  "primary_text": (600, True, "LinkedIn intro text: 600 max, 150 recommended")},
     "tiktok": {"caption": (100, True, "TikTok ad caption: 100 max, about 45 visible")},
     "google": {"headline": (30, True, "Google headline: 30 max"), "primary_text": (90, True, "Google description: 90 max")},
-    "pinterest": {"headline": (100, True, "Pinterest title: 100 max"), "primary_text": (500, True, "Pinterest description: 500 max")},
+    "pinterest": {"headline": (100, True, "Pinterest title: 100 max"), "primary_text": (800, True, "Pinterest description: 800 max")},
     "youtube": {"headline": (70, False, "YouTube title: about 70 visible")},
-    "gbp": {"primary_text": (1500, True, "Google Business Profile post: 1,500 max")},
 }
 LIMITS["facebook"] = LIMITS["instagram"] = LIMITS["meta"]
+# an organic post's caption where it is capped hard; x and gbp have no sheet,
+# so their numbers are in social-post/references/ (x-threads.md, gbp.md)
+POST_LIMITS = {"x": {"caption": (280, True, "X post: 280 max")},
+               "gbp": {"caption": (1500, True, "Google Business Profile post: 1,500 max")}}
+# the sheet in specs/ each platform is built against (x and gbp have none)
+SHEETS = {"meta": "meta.md", "instagram": "meta.md", "facebook": "meta.md", "linkedin": "linkedin.md",
+          "tiktok": "tiktok.md", "youtube": "youtube.md", "google": "google.md", "pinterest": "pinterest.md"}
+SHOWN = 20
 
 
 def trope_findings(fields, kind):
@@ -67,9 +81,11 @@ def trope_findings(fields, kind):
                            input=json.dumps({"sections": [{"body": fields[n]} for n in names], "kind": kind}),
                            capture_output=True, text=True, timeout=60)
     except FileNotFoundError:
-        die("check: node is not installed; the copy check (the tropes skill) needs it", 2)
+        die("check: node is not installed; the copy check (the tropes skill) needs it\n"
+            "  Try: node --version (Node 20 or later), then python3 scripts/check.py again")
     if r.returncode != 0:
-        die(f"check: the tropes skill failed ({TROPES}):\n{r.stderr.strip()}", 2)
+        die(f"check: the tropes skill's copy check failed, so nothing was checked\n  {r.stderr.strip()[:600]}\n"
+            "  Try: node .claude/skills/tropes/tropes.mjs --help")
     out = []
     for f in json.loads(r.stdout):
         i = f["section"] if "section" in f else (f["sections"][-1] if "sections" in f else None)
@@ -99,10 +115,8 @@ def claim_numbers(app, findings):
     return out
 
 
-def check_creative(app, name, d, claims, findings):
-    path = os.path.join(d, "creative.md")
-    rel = os.path.relpath(path, app)
-    fm, body = read_record(path)
+def check_creative(app, name, d, fm, body, claims, stale, findings, notes):
+    rel = os.path.relpath(os.path.join(d, "creative.md"), app)
     if not FOLDER.match(name):
         findings.append(f"{rel}: the folder is named YYYY-MM-DD-<slug>")
     for k in REQUIRED:
@@ -133,6 +147,10 @@ def check_creative(app, name, d, claims, findings):
             findings.append(f"{rel}: claim source {c} does not exist")
     if "to fill" in body:
         findings.append(f"{rel}: the body still says 'to fill'")
+    sheet = SHEETS.get(fm.get("platform"))
+    if fm.get("status") == "draft" and sheet in stale:
+        findings.append(f"{rel}: specs/{sheet} was last verified {stale[sheet]}, over 90 days ago; "
+                        "re-verify it as specs/README.md says before building on it")
 
     copy = fm.get("copy") or {}
     if not isinstance(copy, dict):
@@ -147,21 +165,23 @@ def check_creative(app, name, d, claims, findings):
         if f["severity"] == "error":
             findings.append(line)
         else:
-            print(f"note: {line}")
-    for field, (limit, hard, why) in LIMITS.get(fm.get("platform"), {}).items():
+            notes.append(line)
+    for field, (limit, hard, why) in (POST_LIMITS if fm.get("kind") == "post" else LIMITS).get(fm.get("platform"), {}).items():
         text = copy.get(field)
         if isinstance(text, str) and len(text) > limit:
             if hard:
                 findings.append(f"{rel}: copy.{field} is {len(text)} characters, over the limit ({why})")
             else:
-                print(f"note: {rel}: copy.{field} is {len(text)} characters, past the visible cutoff ({why})")
+                notes.append(f"{rel}: copy.{field} is {len(text)} characters, past the visible cutoff ({why})")
 
 
-def check_specs(app, findings):
+def check_specs(app, findings, notes):
+    """{sheet: last_verified} for the sheets over 90 days old."""
+    stale = {}
     specs = os.path.join(app, "specs")
     if not os.path.isdir(specs):
         findings.append("specs/ is missing (the platform sheets)")
-        return
+        return stale
     for name in sorted(os.listdir(specs)):
         if not name.endswith(".md") or name == "README.md":
             continue
@@ -172,32 +192,67 @@ def check_specs(app, findings):
             findings.append(f"specs/{name}: last_verified must be a date")
             continue
         if (date.today() - d).days > 90:
-            print(f"note: specs/{name} was last verified {d}, over 90 days ago; re-verify before building against it")
+            stale[name] = d
+            notes.append(f"specs/{name} was last verified {d}, over 90 days ago; re-verify it before building on it")
+    return stale
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("folders", nargs="*")
+    ap = Parser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("folders", nargs="*", help="creative folders to check (default: all)")
+    ap.add_argument("--status", choices=STATUSES, help="only the creatives with this status")
+    ap.add_argument("--all", action="store_true", help=f"list every creative and finding, not the first {SHOWN}")
     args = ap.parse_args()
     app = root()
-    findings = []
+    findings, notes = [], []
     for f in NOTES:
         if not os.path.exists(os.path.join(app, f)):
             findings.append(f"{f} is missing (the brand skill writes it)")
-    check_specs(app, findings)
+    stale = check_specs(app, findings, notes)
     claims = claim_numbers(app, findings)
     rows = creative_dirs(app)
     if args.folders:
         wanted = {os.path.basename(f.rstrip("/")) for f in args.folders}
-        for m in wanted - {n for n, _ in rows}:
-            findings.append(f"no creative folder {m}")
+        for m in sorted(wanted - {n for n, _ in rows}):
+            findings.append(f"no creative folder {m} (ls creatives/)")
         rows = [r for r in rows if r[0] in wanted]
+    checked = []
     for name, d in rows:
-        check_creative(app, name, d, claims, findings)
+        fm, body = read_record(os.path.join(d, "creative.md"))
+        if args.status and fm.get("status") != args.status:
+            continue
+        check_creative(app, name, d, fm, body, claims, stale, findings, notes)
+        checked.append((name, fm))
+    what = f"{len(checked)} {args.status + ' ' if args.status else ''}creative(s)"
+    again = " ".join(["python3 scripts/check.py", *args.folders] + (["--status", args.status] if args.status else []))
     if findings:
-        print(f"check: {len(findings)} finding(s)\n  - " + "\n  - ".join(findings), file=sys.stderr)
+        listed = findings if args.all else findings[:SHOWN]
+        more = f"\n  {len(findings) - len(listed)} more finding(s): {again} --all" if len(findings) > len(listed) else ""
+        print(f"check: {len(findings)} finding(s) in {what}\n  - " + "\n  - ".join(listed) + more
+              + f"\n  Try: fix each at its source, then {again} again", file=sys.stderr)
+        sys.stderr.flush()
+    else:
+        print(f"check: ok, {what}")
+    shown = checked if args.all else checked[:SHOWN]
+    width = max((len(n) for n, _ in shown), default=0)
+    for name, fm in shown:
+        print(f"  {name:<{width}}  {str(fm.get('status')):<8}  {fm.get('kind')} {fm.get('platform')}")
+    if len(checked) > len(shown):
+        print(f"  {len(checked) - len(shown)} more: {again} --all")
+    for n in notes:
+        print(f"note: {n}")
+    if findings:
         sys.exit(1)
-    print(f"check: ok ({len(rows)} creative(s))")
+    drafts = [n for n, fm in checked if fm.get("status") == "draft"]
+    if drafts:
+        print(f"\nNext: the tropes skill's eye pass on {drafts[0]}" + (f" and {len(drafts) - 1} more draft(s)" if len(drafts) > 1 else "")
+              + ", before the owner sees it")
+    elif not checked:
+        print("\nNext: the ideas skill writes the first creative")
+    elif args.status == "sent":
+        print("\nNext: the owner answers on the waiting deliverables (the work skill)")
+    else:
+        print("\nNext: python3 scripts/check.py --status sent lists what waits for the owner")
 
 
 if __name__ == "__main__":

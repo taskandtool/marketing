@@ -26,7 +26,7 @@ Recipes for the owner's profile and the company Page. The worked examples use Ha
 
 ## Norms
 
-- Limit 3,000 characters. Mobile truncates at about 200 to 210 characters (Sprout: 200 mobile, 300 desktop; Hootsuite says about 140). The first line is the hook and must stand alone. Laura Lorenzetti, LinkedIn News (via Buffer): "What's the most interesting part of your post? Put it at the top. Hook the people, tell them the payoff, and then get them into it."
+- Limits and the "see more" cutoff: `specs/linkedin.md`. The first line is the hook and must stand alone. Laura Lorenzetti, LinkedIn News (via Buffer): "What's the most interesting part of your post? Put it at the top. Hook the people, tell them the payoff, and then get them into it."
 - Paragraphs of one to three sentences with a blank line between. A concrete first line: a number, a named situation, a decision. Specifics over adjectives. A question only when you want the answer.
 - Hashtags: three to five (LinkedIn Pages guidance), at the end. Mentions: five or fewer.
 - Links: first comment. Alt text on every image, one literal sentence.

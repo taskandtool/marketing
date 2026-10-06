@@ -1,6 +1,6 @@
 ---
 name: social-post
-description: "Write organic social posts in the business's voice for Instagram, Facebook, LinkedIn, TikTok, Google Business, Pinterest, X and Threads, or turn one idea into a week of posts. Use when the owner says write a post or caption, what should we post this week, or repurpose this. Not for paid ads (ad)."
+description: "Writes organic social posts in the business's voice for Instagram, Facebook, LinkedIn, TikTok, Google Business, Pinterest, X and Threads, or turns one idea into a week of posts. Use when the owner says write a post or caption, what should we post this week, or repurpose this. Not for paid ads (ad)."
 ---
 
 # Social post
@@ -19,11 +19,11 @@ Copy and tick:
       offer (at most one post in five) or community
       (`references/repurpose.md`). Read `references/<platform>.md` for the
       platform the idea is for first.
-- [ ] 2. **The idea**, from the sources below, and its hook (the `hooks`
-      skill).
-- [ ] 3. **The words** (the `copywriting` skill). The first line stands
-      alone: the hook and its payoff in the first 125 characters on
-      Instagram, about 200 on LinkedIn, 80 on Facebook.
+- [ ] 2. **The idea**, from the sources below.
+- [ ] 3. **The hook and the words** (the `copywriting` skill). The first
+      line stands alone: the hook and its payoff before the platform's
+      visible cutoff (`specs/<platform>.md`; for X and Google Business, their
+      reference).
 - [ ] 4. **The ask**, one, matched to what the platform rewards: "Save
       this", "Send this to someone planning a kitchen", "Reply with yours".
       Links stay out of the body on Facebook, LinkedIn, X and Threads.

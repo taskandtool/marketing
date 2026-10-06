@@ -14,7 +14,6 @@ Recipes for a business account. Pinterest is a search engine with a long tail: a
 ## What performs
 
 - Pinterest's own creative guidance: "We recommend using a 2:3 aspect ratio, or 1000 x 1500 pixels". Pins taller than 2:3 "might get cut off".
-- Title: "Up to 100 characters. The first 40 are most likely to show". Description: up to 500 characters.
 - Layout, from Pinterest: "Stack your story by putting visuals in the middle, then stacking text overlay with key messaging at the top and extra details at the bottom". Show products "in realistic settings".
 - Hootsuite: keywords in the title, the description, the board name and on the destination page. Fresh pins (a new image, even to the same URL) beat re-pins of an existing image.
 - Pins are found by search months later, so evergreen subjects beat news. There is no share-signal data for Pinterest in the report; saves to boards are the measure that matters.
@@ -22,7 +21,7 @@ Recipes for a business account. Pinterest is a search engine with a long tail: a
 ## Norms
 
 - Every pin is 2:3, 1000 x 1500 or larger. Vertical only.
-- Title: keyword first, the whole thing under 40 characters if possible, 100 at most.
+- Title: keyword first, inside the part that shows (limits: `specs/pinterest.md`).
 - Description: one or two sentences with the natural search phrase ("fitted kitchen with an alcove, Bristol"), no hashtags needed, no calls to action shouted.
 - Hashtags: none, or one or two at the end. Keywords do the work.
 - Links: native. Every pin links to the matching page on your site: the project page, the service page, the guide. Never the homepage for everything.

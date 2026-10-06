@@ -12,7 +12,6 @@ media/_index.md one line per file: what it shows, who is in it, whether it may b
 
 Files arrive from the owner (the Files tab, a chat message), or from a
 crawl of their own site or profiles (`raw/`), copied across once checked.
-`brand/images/` holds the few best; this folder holds everything usable.
 
 Nothing is used in a creative until its line in `_index.md` says it may
 be: a recognisable person needs the owner's word, and the customer's when

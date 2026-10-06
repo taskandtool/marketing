@@ -7,29 +7,51 @@ chat.
 
 This repository *is* the app. All of it is the owner's to change.
 
-Start with the `marketing` skill: the folders, the shape of a
-`creative.md`, and the order of work. The others, by job:
+Which skill to read, by what the owner asks (a piece's `creative.md` shape
+and the order of work are in `marketing`):
 
-- `brand`: the brand record in `brand/` and `public/`, from any source
-- `research`: competitors, customers' words, search questions → `research/`
-- `ideas`: angles and frameworks → ranked ideas worth making
-- `hooks`: the opening line, frame or second
-- `copywriting`: the words, in the owner's voice
-- `images`, `video`: the picture and the clip
-- `ad`, `social-post`: a finished paid ad or organic post
-- `tropes`: the audit for AI tells before the owner sees anything
-- `reports`: the weekly SEO report (Search Console and GA4 through the
-  `google` connection), printed to a PDF and handed over as a deliverable;
-  it needs no database here. `data` and `admin` come with it for the code
-  it imports.
+- "what next", "what is waiting for me", "how did the ads do", where a file
+  goes: `marketing`
+- "set up my brand", facts, photos or a link about the business: `brand`
+- "what are competitors doing", customers' words: `research`
+- "give me ideas", a campaign: `ideas`
+- "write me ads", "a set to test", a creative for one platform: `ad`
+- "a post", "a caption", "this week's posts", repurpose: `social-post`
+- the words of a piece and its hook: `copywriting`; its picture: `images`;
+  a clip: `video`
+- before the owner sees anything: `tropes`
 
 Read the one that fits the ask rather than working from memory.
+
+## Here, the brand skill's defaults change
+
+- The notes the work needs first are `brand/positioning.md`,
+  `brand/voice.md`, `brand/visual-identity.md` and `public/business.md`;
+  `scripts/check.py` fails until all four exist. There is no homepage here.
+- The owner's photos go to `media/photos/` and clips to `media/clips/`,
+  each with a line in `media/_index.md`; never `raw/photos/` or
+  `brand/images/`.
+
+## Commands
+
+```bash
+python3 scripts/check.py [folder …]   # the audit; then one line per creative: folder, status, kind, platform
+python3 scripts/check.py --status sent  # what is waiting for the owner's approval
+python3 scripts/imagegen.py --prompt-file creatives/<folder>/creative.md --out creatives/<folder>/v1.png
+python3 scripts/videogen.py --prompt-file creatives/<folder>/creative.md --section "Shot 1" --out creatives/<folder>/shot-1.mp4
+```
+
+imagegen sends the creative's `## Prompt` section and videogen its
+`## Shot 1` (or `--section "Shot 2"`); both print the file written and
+never replace an existing one; `--check` says which model is configured.
 
 ## The rules that matter
 
 - Every fact on a creative is a numbered line in `claims.md` with its
   source. A missing fact is a question for the owner, never a guess.
-- The owner's real photos and clips beat anything generated.
+- The owner's real photos and clips beat anything generated, and a
+  generated picture never shows a customer, staff, a testimonial face or a
+  customer's home.
 - `python3 scripts/check.py` passes and the `tropes` audit is done before
   the owner sees a creative.
 - Never post, never name a competitor in a creative, never copy one.

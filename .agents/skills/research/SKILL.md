@@ -1,6 +1,6 @@
 ---
 name: research
-description: "Research a business's market before making creatives: competitors' ads and organic posts, customer reviews and comments, search questions, into research/ and a one-page brief of ranked hypotheses. Use when the owner asks what competitors are doing, before the first ideas, or monthly. Not for the business's own facts (brand)."
+description: "Researches a market before making creatives: competitors' sites, ads and posts, customers' reviews and comments, search questions, into research/ and a brief of ranked hypotheses. Use when the owner asks what competitors are doing, before the first ideas, or monthly. Not for the business's own facts (brand)."
 ---
 
 # Research

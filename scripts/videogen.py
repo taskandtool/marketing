@@ -1,86 +1,65 @@
 #!/usr/bin/env python3
-"""Generate a short clip (four to eight seconds) with whichever video model
-this app has a key for. Video is expensive and slow next to a picture; the
+"""Generate a short clip (four to eight seconds) with an OpenRouter video
+model. Video is expensive and slow next to a picture; the
 video skill says when a clip earns it and writes the shot brief.
 
-    python3 scripts/videogen.py --prompt "…" --ratio 9:16 --seconds 6 --out creatives/<folder>/shot-1.mp4
-                                [--ref frame.png] [--provider openrouter|fal] [--model …]
+    python3 scripts/videogen.py --prompt-file creatives/<folder>/creative.md --section "Shot 1" --ratio 9:16 --seconds 6 --out creatives/<folder>/shot-1.mp4
+                                [--ref frame.png] [--model …] [--no-text] [--force]
+    python3 scripts/videogen.py --prompt "…" --ratio 9:16 --seconds 6 --out …
     python3 scripts/videogen.py --check
 
-Providers, in the order tried:
+--prompt-file on a .md sends its `## Shot 1` section (the shot brief; pick
+another with --section "Shot 2"); any other file is sent whole. An
+existing --out is never replaced without --force.
 
-  OPENROUTER_API_KEY   POST $OPENROUTER_BASE_URL/videos (async: 202 with a polling URL, then
-                       GET until done); default model google/veo-3.1; a reference image goes
-                       in as input_references.
-  FAL_KEY              queue.fal.run (async: status_url, then response_url); default model
-                       fal-ai/veo3.1 (also FAL_API_KEY).
-
-Direct Gemini Veo and Runway are not wired (their request shapes were not
-verified when this was written); OpenRouter reaches Veo, Hailuo and Wan
-with the one key. The bytes go to --out (mp4) and the provider, model,
-cost and prompt to <out>.json. Exit 3 when no provider is configured.
-When a video connection (Seedance or another) brings its own instructions
-for calling its model, those win over this script.
+The model is OpenRouter's (OPENROUTER_API_KEY, from the environment, else
+from ~/.env): POST https://openrouter.ai/api/v1/videos, then polled until
+the clip is ready; default model google/veo-3.1, others with --model; a
+reference image goes in as input_references. The bytes go to --out (mp4)
+and the provider, model, cost and prompt to <out>.json.
+Exit 0 written, 1 failed (no key, the model refused or was unreachable),
+2 misused (a bad flag, a missing file, an --out that exists).
 """
 
 import argparse
 import base64
 import json
-import mimetypes
 import os
 import sys
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import die  # noqa: E402
+from common import (  # noqa: E402
+    Parser, configured, creative_folder, data_url, die, generate, http_failure, openrouter, provider_failure,
+    read_prompt, refuse_overwrite, requests_module)
+
+EXAMPLE = ('python3 scripts/videogen.py --prompt-file creatives/<folder>/creative.md --section "Shot 1" '
+           "--ratio 9:16 --seconds 6 --out creatives/<folder>/shot-1.mp4")
+ASK = 'Try: python3 ~/tools/taskandtool.py request-connection openrouter-api --why "short clips for ads and posts"'
 
 NO_TEXT = " No text, no letters, no logos, no watermarks, no captions burnt into the picture."
 
 
-def providers():
-    env = os.environ
-    out = []
-    if env.get("OPENROUTER_API_KEY") or env.get("OPENROUTER_BASE_URL"):
-        out.append("openrouter")
-    if env.get("FAL_KEY") or env.get("FAL_API_KEY"):
-        out.append("fal")
-    return out
-
-
-def data_url(path):
-    mime = mimetypes.guess_type(path)[0] or "image/png"
-    with open(path, "rb") as fh:
-        return f"data:{mime};base64," + base64.b64encode(fh.read()).decode()
-
-
-def _requests():
-    try:
-        import requests
-        return requests
-    except ImportError:
-        die("requests is not installed (setup.sh installs it)")
-
-
 def gen_openrouter(prompt, ratio, seconds, refs, model):
-    requests = _requests()
-    base = os.environ.get("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1").rstrip("/")
-    headers = {"Content-Type": "application/json", "HTTP-Referer": "https://taskandtool.app", "X-Title": "Task & Tool creatives"}
-    if os.environ.get("OPENROUTER_API_KEY"):
-        headers["Authorization"] = "Bearer " + os.environ["OPENROUTER_API_KEY"]
+    requests = requests_module("videogen")
+    base, headers = openrouter()
     body = {"model": model or "google/veo-3.1", "prompt": prompt, "aspect_ratio": ratio, "duration": seconds}
     if refs:
         body["input_references"] = [{"type": "image_url", "image_url": {"url": data_url(r)}} for r in refs]
     r = requests.post(base + "/videos", headers=headers, json=body, timeout=120)
     if r.status_code not in (200, 201, 202):
-        die(f"openrouter answered {r.status_code}: {r.text[:600]}")
+        http_failure("videogen", "openrouter", r)
     job = r.json()
     poll = job.get("polling_url") or (base + f"/videos/{job.get('id')}" if job.get("id") else None)
     if not poll:
-        die(f"openrouter returned no job: {json.dumps(job)[:400]}")
+        provider_failure("videogen", "openrouter", f"no job in the answer: {json.dumps(job)[:400]}")
     deadline = time.time() + 900
     while time.time() < deadline:
         time.sleep(5)
-        res = requests.get(poll, headers=headers, timeout=60).json()
+        res = requests.get(poll, headers=headers, timeout=60)
+        if res.status_code != 200:
+            http_failure("videogen", "openrouter", res)
+        res = res.json()
         status = str(res.get("status", "")).lower()
         if status in ("completed", "succeeded", "done", "ready"):
             item = (res.get("data") or [res])[0]
@@ -88,82 +67,48 @@ def gen_openrouter(prompt, ratio, seconds, refs, model):
             if item.get("b64_json"):
                 return base64.b64decode(item["b64_json"]), {"provider": "openrouter", "model": body["model"], "cost": (res.get("usage") or {}).get("cost")}
             if url:
-                return requests.get(url, timeout=300).content, {"provider": "openrouter", "model": body["model"], "cost": (res.get("usage") or {}).get("cost")}
-            die(f"openrouter finished without a file: {json.dumps(res)[:400]}")
+                got = requests.get(url, timeout=300)
+                if got.status_code != 200:
+                    http_failure("videogen", "openrouter", got)
+                return got.content, {"provider": "openrouter", "model": body["model"], "cost": (res.get("usage") or {}).get("cost")}
+            provider_failure("videogen", "openrouter", f"finished without a file: {json.dumps(res)[:400]}")
         if status in ("failed", "error", "cancelled"):
-            die(f"openrouter: {status}: {json.dumps(res)[:400]}")
-    die("openrouter: timed out waiting for the clip (15 minutes)")
-
-
-def gen_fal(prompt, ratio, seconds, refs, model):
-    requests = _requests()
-    key = os.environ.get("FAL_KEY") or os.environ.get("FAL_API_KEY")
-    headers = {"Authorization": f"Key {key}", "Content-Type": "application/json"}
-    model = model or "fal-ai/veo3.1"
-    body = {"prompt": prompt, "aspect_ratio": ratio, "duration": f"{seconds}s"}
-    if refs:
-        if not model.endswith("/image-to-video"):
-            model += "/image-to-video"
-        body["image_url"] = data_url(refs[0])
-    r = requests.post(f"https://queue.fal.run/{model}", headers=headers, json=body, timeout=120)
-    if r.status_code not in (200, 201, 202):
-        die(f"fal answered {r.status_code}: {r.text[:600]}")
-    job = r.json()
-    status_url, response_url = job.get("status_url"), job.get("response_url")
-    if not status_url:
-        die(f"fal returned no queue job: {json.dumps(job)[:400]}")
-    deadline = time.time() + 900
-    while time.time() < deadline:
-        time.sleep(5)
-        st = requests.get(status_url, headers=headers, timeout=60).json()
-        if st.get("status") == "COMPLETED":
-            res = requests.get(response_url, headers=headers, timeout=60).json()
-            video = res.get("video") or {}
-            url = video.get("url") if isinstance(video, dict) else None
-            if not url:
-                die(f"fal finished without a file: {json.dumps(res)[:400]}")
-            return requests.get(url, timeout=300).content, {"provider": "fal", "model": model, "cost": None}
-        if st.get("status") in ("FAILED", "CANCELLED"):
-            die(f"fal: {st.get('status')}: {json.dumps(st)[:400]}")
-    die("fal: timed out waiting for the clip (15 minutes)")
-
-
-GENERATORS = {"openrouter": gen_openrouter, "fal": gen_fal}
+            provider_failure("videogen", "openrouter", f"{status}: {json.dumps(res)[:400]}")
+    provider_failure("videogen", "openrouter", "no clip after 15 minutes")
 
 
 def main():
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--prompt")
+    ap = Parser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    src = ap.add_mutually_exclusive_group()
+    src.add_argument("--prompt")
+    src.add_argument("--prompt-file", help="a creative.md (its --section is sent) or a plain text file")
+    ap.add_argument("--section", default="Shot 1", help='the creative.md heading whose text is sent (default "Shot 1")')
     ap.add_argument("--ratio", default="9:16", choices=["9:16", "16:9", "1:1"])
     ap.add_argument("--seconds", type=int, default=6, choices=[4, 5, 6, 8])
     ap.add_argument("--out")
+    ap.add_argument("--force", action="store_true", help="replace --out when it exists")
     ap.add_argument("--ref", action="append", default=[], help="a first-frame or reference image")
-    ap.add_argument("--provider", choices=sorted(GENERATORS))
     ap.add_argument("--model")
     ap.add_argument("--no-text", action="store_true", help="append a no-text rule")
-    ap.add_argument("--check", action="store_true")
+    ap.add_argument("--check", action="store_true", help="say whether a video model is configured, and exit")
     args = ap.parse_args()
 
-    avail = providers()
     if args.check:
-        if avail:
-            print("video providers configured, in the order tried: " + ", ".join(avail))
-        else:
-            print("no video provider configured (OPENROUTER_API_KEY or FAL_KEY); ask with request_connection when a clip is worth its cost")
-            sys.exit(3)
+        if not configured(["openrouter"]):
+            die("videogen --check: no video model configured (OPENROUTER_API_KEY)\n  " + ASK)
+        print("videogen --check: OpenRouter is configured; the default model is google/veo-3.1")
         return
-    if not args.prompt or not args.out:
-        die("--prompt and --out are required (or --check)")
-    provider = args.provider or (avail[0] if avail else None)
-    if not provider:
-        die("no video provider configured; the video skill says when and how to ask for one", 3)
-    if provider not in avail:
-        die(f"{provider} has no key in the environment; configured: {', '.join(avail) or 'none'}", 3)
+    if not (args.prompt or args.prompt_file) or not args.out:
+        die("videogen: --prompt-file (or --prompt) and --out are required, or --check\n  Try: " + EXAMPLE, 2)
+    prompt = read_prompt(args.prompt_file, "videogen", EXAMPLE, args.section) if args.prompt_file else args.prompt.strip()
     for ref in args.ref:
         if not os.path.isfile(ref):
-            die(f"reference image not found: {ref}")
-    prompt = args.prompt.strip() + (NO_TEXT if args.no_text else "")
-    clip, meta = GENERATORS[provider](prompt, args.ratio, args.seconds, args.ref, args.model)
+            die(f"videogen: reference image not found: {ref}\n  Try: ls creatives/<folder> media/photos", 2)
+    refuse_overwrite(args.out, args.force, "videogen")
+    if not configured(["openrouter"]):
+        die("videogen: no video model configured; nothing was generated\n  " + ASK)
+    prompt += NO_TEXT if args.no_text else ""
+    clip, meta = generate("videogen", "openrouter", gen_openrouter, prompt, args.ratio, args.seconds, args.ref, args.model)
     os.makedirs(os.path.dirname(os.path.abspath(args.out)) or ".", exist_ok=True)
     with open(args.out, "wb") as fh:
         fh.write(clip)
@@ -171,8 +116,12 @@ def main():
                  "at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())})
     with open(args.out + ".json", "w", encoding="utf-8") as fh:
         json.dump(meta, fh, indent=2)
-    cost = f" (${meta['cost']:.2f})" if isinstance(meta.get("cost"), (int, float)) else ""
-    print(f"{args.out} via {meta['provider']} {meta['model']}{cost} {len(clip) // 1000} KB")
+    cost = f", ${meta['cost']:.2f}" if isinstance(meta.get("cost"), (int, float)) else ""
+    print(f"videogen: wrote {args.out} ({len(clip) // 1000} KB, {args.seconds} s) via {meta['provider']} {meta['model']}{cost}")
+    print(f"  the prompt sent and the details: {args.out}.json")
+    folder = creative_folder(args.out)
+    print(f"\nNext: check frames at 0, 25, 50, 75 and 100% of {args.out}"
+          + (f", then python3 scripts/check.py {folder}" if folder else ""))
 
 
 if __name__ == "__main__":

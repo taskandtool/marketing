@@ -1,6 +1,6 @@
 ---
 name: copywriting
-description: "Write and edit the words of an ad or post in the business's own voice: headline, primary text, captions, call to action, script lines. Use whenever words are written or rewritten for a creative, or when the owner says it doesn't sound like them. Not for choosing the idea (ideas) or the opening line (hooks)."
+description: "Writes and edits the words of an ad or post in the business's own voice: the hook, headline, primary text, caption, call to action, script. Use whenever a creative's words are written or rewritten, for new hooks on a winning ad, or when the owner says it doesn't sound like them. Not for choosing the idea (ideas)."
 ---
 
 # Copywriting

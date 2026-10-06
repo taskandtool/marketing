@@ -25,7 +25,7 @@ Recipes for a business Page. The worked examples use Harlow Joinery, a made-up w
 
 ## Norms
 
-- Caption limit 63,206. The "See more" cutoff is commonly put at about 480 characters or three to four lines: unverified. Rule: the whole point in the first two lines, under 80 characters where possible.
+- Limits: `specs/meta.md`. Rule: the whole point in the first two lines, under 80 characters where possible.
 - Hooks: a specific local fact, a photo that shows the change, or one real question.
 - Hashtags: none, or one.
 - Links: first comment, or the Page's About section. In the body only when the link itself is the point.

@@ -1,6 +1,6 @@
 ---
 name: video
-description: "Plan and make short video ads and posts: the beat structure, show-don't-tell, the first two seconds, captions, sound and music, and shot briefs for a video model. Use when a creative is a video, Reel, TikTok or Short, or when the owner shares clips to cut. Not for stills (images) or the opening line alone (hooks)."
+description: "Plans and makes short video ads and posts: the beat structure, show-don't-tell, the first two seconds, captions, sound and music, and shot briefs for a video model. Use when a creative is a video, Reel, TikTok or Short, or when the owner shares clips to cut. Not for stills (images)."
 ---
 
 # Video

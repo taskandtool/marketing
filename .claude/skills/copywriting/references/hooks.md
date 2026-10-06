@@ -1,4 +1,4 @@
-# Hook catalogue
+# Hooks
 
 Examples use a made-up two-van heating firm in Leeds.
 

@@ -5,9 +5,13 @@ is scalars, lists, and one level of nested maps, which is what a
 creative.md uses).
 """
 
+import argparse
+import base64
 import json
+import mimetypes
 import os
 import re
+import shlex
 import sys
 
 # creative.md `status`, in order; the owner approves through deliverables
@@ -19,21 +23,161 @@ FOLDER = re.compile(r"^\d{4}-\d{2}-\d{2}-[a-z0-9]+(?:-[a-z0-9]+)*$")
 
 
 def root():
-    """The app root: the folder holding creatives/ and brand/, found upward
-    from the working directory (so the scripts run from anywhere inside)."""
-    d = os.path.abspath(os.getcwd())
-    while True:
-        if os.path.isdir(os.path.join(d, "creatives")) and os.path.isdir(os.path.join(d, "brand")):
-            return d
-        parent = os.path.dirname(d)
-        if parent == d:
-            return os.path.abspath(os.getcwd())
-        d = parent
+    """The app root: the folder this scripts/ folder sits in, wherever the
+    script is run from."""
+    return os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 def die(msg, code=1):
     print(msg, file=sys.stderr)
     sys.exit(code)
+
+
+class Parser(argparse.ArgumentParser):
+    """argparse whose misuse (an unknown flag, a bad value) exits 2 with a
+    Try: line, like every other refusal here."""
+
+    def error(self, message):
+        die(f"{self.prog}: {message}\n  Try: python3 scripts/{self.prog} --help", 2)
+
+
+# ── the generators' shared arguments ────────────────────────────────────
+
+def read_prompt(path, name, example, section="Prompt"):
+    """The prompt in `path`: the `## <section>` part of a creative.md (up to
+    the next `## ` heading), or the whole of any other file."""
+    if not os.path.isfile(path):
+        die(f"{name}: no prompt file {path}\n  Try: {example}", 2)
+    with open(path, encoding="utf-8") as fh:
+        text = fh.read()
+    if path.endswith(".md"):
+        _, body = split_frontmatter(text)
+        m = re.search(rf"^## {re.escape(section)}[ \t]*\n(.*?)(?=^## |\Z)", body, re.S | re.M)
+        if not m or not m.group(1).strip():
+            have = re.findall(r"^## (.+?)[ \t]*$", body, re.M)
+            die(f"{name}: {path} has no `## {section}` section with a prompt in it\n"
+                f"  Sections there: {', '.join(have) or 'none'}\n"
+                f"  Write the prompt under `## {section}` in the creative.md, or pick one with --section.\n"
+                f"  Try: {example}", 2)
+        return m.group(1).strip()
+    if not text.strip():
+        die(f"{name}: {path} is empty\n  Try: {example}", 2)
+    return text.strip()
+
+
+def next_free(path):
+    """The first name like `path` that does not exist: v1.png → v2.png."""
+    stem, ext = os.path.splitext(path)
+    m = re.match(r"^(.*?)(\d+)$", stem)
+    base, n = (m.group(1), int(m.group(2))) if m else (stem + "-", 1)
+    while True:
+        n += 1
+        cand = f"{base}{n}{ext}"
+        if not os.path.exists(cand):
+            return cand
+
+
+def refuse_overwrite(out, force, name):
+    """Exit 2 when --out already exists and --force was not given."""
+    if os.path.exists(out) and not force:
+        die(f"{name}: {out} already exists; nothing was generated and it was left alone\n"
+            f"  Try: --out {next_free(out)} (or --force to replace it)", 2)
+
+
+def creative_folder(out):
+    """The creative folder name a file goes into, or None."""
+    parent = os.path.basename(os.path.dirname(os.path.abspath(out)))
+    return parent if FOLDER.match(parent) else None
+
+
+# ── the generators' providers ───────────────────────────────────────────
+
+# the key that configures each provider
+PROVIDER_ENV = {"openai": "OPENAI_API_KEY", "openrouter": "OPENROUTER_API_KEY"}
+
+
+def env(name):
+    """`name` from the environment, else from ~/.env: a turn clears the AI
+    provider names (OPENAI_API_KEY, OPENROUTER_API_KEY) from the AI's own
+    shell, but a key the owner granted stays in ~/.env."""
+    if os.environ.get(name):
+        return os.environ[name]
+    try:
+        with open(os.path.expanduser("~/.env"), encoding="utf-8") as fh:
+            for line in fh:
+                m = re.match(r"^\s*(?:export\s+)?([A-Z_][A-Z0-9_]*)=(.*)$", line)
+                if m and m.group(1) == name:
+                    return "".join(shlex.split(m.group(2), comments=True)) or None
+    except (OSError, ValueError):
+        pass
+    return None
+
+
+def configured(order):
+    """The providers in `order` that have a key here, in that order. During
+    an AI turn on Task & Tool AI or the owner's OpenAI key, openai is
+    configured through the turn's metered gateway (TT_AI_BASE_URL)."""
+    return [p for p in order if env(PROVIDER_ENV[p]) or (p == "openai" and openai_gateway())]
+
+
+def openai_gateway():
+    """(base URL, token) for OpenAI through Task & Tool's metered gateway,
+    set for the length of an AI turn; None outside one."""
+    base, token = os.environ.get("TT_AI_BASE_URL"), os.environ.get("TT_AI_TOKEN")
+    return (base.rstrip("/"), token) if base and token else None
+
+
+def openai():
+    """(base URL, headers) for OpenAI: the turn's gateway when there is one,
+    so the picture is paid like the rest of the turn; else the app's key."""
+    gateway = openai_gateway()
+    if gateway:
+        return gateway[0], {"Authorization": "Bearer " + gateway[1]}
+    return "https://api.openai.com/v1", {"Authorization": "Bearer " + (env("OPENAI_API_KEY") or "")}
+
+
+def provider_failure(name, provider, reason):
+    """Exit 1 when a provider refused or failed: nothing was written."""
+    die(f"{name}: {provider} refused: {reason}\n  Nothing was written.\n"
+        f"  Try: python3 scripts/{name}.py --check, then the same command again later", 1)
+
+
+def http_failure(name, provider, resp):
+    provider_failure(name, provider, f"HTTP {getattr(resp, 'status_code', '?')}: {getattr(resp, 'text', str(resp))[:600]}")
+
+
+def requests_module(name):
+    try:
+        import requests
+        return requests
+    except ImportError:
+        die(f"{name}: the Python package requests is not installed\n  Try: bash .taskandtool/setup.sh")
+
+
+def generate(name, provider, gen, *args):
+    """gen(*args), with a network error or an answer of the wrong shape
+    turned into provider_failure instead of a traceback."""
+    requests = requests_module(name)
+    try:
+        return gen(*args)
+    except (requests.RequestException, ValueError, KeyError, IndexError, TypeError) as e:
+        provider_failure(name, provider, f"{type(e).__name__}: {e}"[:600])
+
+
+def openrouter():
+    """(base URL, headers) for OpenRouter."""
+    headers = {"Content-Type": "application/json", "HTTP-Referer": "https://taskandtool.app",
+               "X-Title": "Task & Tool marketing", "Authorization": "Bearer " + (env("OPENROUTER_API_KEY") or "")}
+    return "https://openrouter.ai/api/v1", headers
+
+
+def b64(path):
+    with open(path, "rb") as fh:
+        return base64.b64encode(fh.read()).decode()
+
+
+def data_url(path):
+    return f"data:{mimetypes.guess_type(path)[0] or 'image/png'};base64," + b64(path)
 
 
 # ── frontmatter ─────────────────────────────────────────────────────────

@@ -1,6 +1,6 @@
 ---
 name: marketing
-description: "The marketing app's folders, the shape of a creative.md, and the order of work from research to results. Use at the start of any session here, when the owner asks what to do next, what is waiting for approval, or how something is filed. Not for making a piece itself (ad, social-post) or writing words (copywriting)."
+description: "The marketing app's folders, the shape of a creative.md, the order of work from research to results, and recording results. Use at the start of a session here, when the owner asks what to do next, what is waiting for approval, how an ad did, or where something is filed. Not for making a piece itself (ad, social-post)."
 ---
 
 # Marketing
@@ -17,7 +17,7 @@ Each step has its own skill. Start wherever the folders say the work is.
 2. **Research.** What competitors run, what customers say, what people
    search (the `research` skill) into `research/`.
 3. **Ideas.** Angles and frameworks turned into ranked ideas worth making
-   (the `ideas` skill), each with a hook (the `hooks` skill).
+   (the `ideas` skill), each with a hook (the `copywriting` skill).
 4. **Make.** An ad (the `ad` skill) or a post (the `social-post` skill):
    words through `copywriting`, pictures through `images`, clips through
    `video`.
@@ -25,8 +25,11 @@ Each step has its own skill. Start wherever the folders say the work is.
    Fix every finding before the owner sees anything.
 6. **Review.** Show the owner the files as deliverables and set `status:
    sent`. Their approval or rejection sets it again.
-7. **Results.** What ran and what it did goes in `results.md`, newest first.
-   Only the owner's own account says what works.
+7. **Results.** What ran and what it did goes in `results.md`, newest
+   first: the folder, the platform, the dates, hook rate, hold rate,
+   click-through, cost per lead. Only the owner's own account says what
+   works. On a winner, new hooks on the same body first, then the same angle
+   in a new format; on a loser, a new angle, not a new colour.
 
 ## Where things are
 
@@ -54,7 +57,7 @@ kind: ad                     # ad | post
 platform: meta               # meta | instagram | facebook | linkedin | tiktok | youtube | google | pinterest | x | gbp
 format: us-vs-them           # from ad/references/formats.md, or the post's form
 angle: mechanism             # the argument, in a word or two
-hook: us-vs-them             # from hooks/references/catalogue.md
+hook: us-vs-them             # from copywriting/references/hooks.md
 framework: pas               # optional: pas | bab | storybrand | jtbd | objection
 awareness: solution          # unaware | problem | solution | product | most
 campaign: winter-2026        # optional
@@ -73,36 +76,15 @@ Big firms send whoever is free; we send the engineer who fitted the boiler.
 For solution-aware homeowners comparing firms.
 
 ## Prompt
-(the image prompt or the shot brief, exactly as sent)
+(the image prompt, exactly as sent)
+
+## Shot 1
+(a video's shot brief, exactly as sent; the next is ## Shot 2)
 
 ## Notes
 v1: headline too long at phone size; v2 shortened it.
 ```
 
+One idea per creative; a second idea is the next folder.
 `python3 scripts/check.py` checks the fields, the files, the claims and the
 copy. A creative is never shown with a finding open.
-
-## Rules
-
-- Every fact on a creative is a numbered line in `claims.md` citing
-  `public/`, `brand/` or `raw/`. A fact with no source is a question for
-  the owner, asked once with the others.
-- Real material first: the owner's photos and clips in `media/` beat
-  anything generated, and a generated picture never shows a real person,
-  a customer's home, or a testimonial face.
-- One idea per creative. A second idea is the next folder.
-- Never post from here, and never name a competitor in a creative.
-- Keys arrive through Connections; never ask for one in chat. A connection
-  that brings its own instructions (an image or video model, Apify,
-  Firecrawl) is used the way those instructions say.
-
-## Scripts
-
-Run them; their output is the instruction.
-
-```
-python3 scripts/check.py [folder …]          every creative, claims.md, specs freshness, the copy tells
-node .claude/skills/tropes/tropes.mjs <file> the copy tells in any other text
-python3 scripts/imagegen.py --check          which image model is configured
-python3 scripts/videogen.py --check          which video model is configured
-```

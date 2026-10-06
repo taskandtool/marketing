@@ -12,7 +12,7 @@ What the benchmark says about the field, before any single format: text-only and
 
 ## How to choose
 
-- An ad is one **angle** (what we are saying) in one **format** (how the image is built) with one **hook** (the first line). Pick all three on purpose. Angles come from the `ideas` skill, hooks from the `hooks` skill.
+- An ad is one **angle** (what we are saying) in one **format** (how the image is built) with one **hook** (the first line). Pick all three on purpose. Angles come from the `ideas` skill, hooks from the `copywriting` skill.
 - **One idea per ad.** If a draft carries two claims, split it into two ads.
 - **The 3 x 3 starter set.** For a new business or campaign, produce three angles in three formats each, nine ads. A sensible default for a service business: outcome, social proof and problem, each in a photo + statement, a testimonial and one native or lo-fi format. For a business with an offer, the offer-first banner is in the first nine.
 - **Distinct concepts beat variants.** Since Meta's Andromeda ranking rollout (global, Oct 2025) an ad set does better with 8 to 15 ads that each carry a different angle than with one ad in twelve colourways. Keep similarity between concepts in an ad set under about 40% (Segwise figure, unverified). Vary the copy shape too: a question, a list, a quote, a statement.
