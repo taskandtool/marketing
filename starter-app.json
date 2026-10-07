@@ -40,8 +40,8 @@
   "suggestions": [
     {
       "id": "set-up-my-brand-from-my-site",
-      "label": "Set up my brand from my website",
-      "prompt": "Set up my brand with the brand skill: crawl my website into raw/site with tt-crawl (the brand playbook), then write brand/ and public/ from it, every line cited. Copy my best real photos into media/photos and list them in media/_index.md. Tell me what you could not find and ask me for it in one message. My website is: ",
+      "label": "Learn my brand from my website",
+      "prompt": "Learn my brand from my website: ",
       "when": [
         {
           "path": "brand/visual-identity.md",
@@ -51,8 +51,8 @@
     },
     {
       "id": "tell-you-about-the-business",
-      "label": "Tell you about the business",
-      "prompt": "I'd rather tell you about the business than have you read a website. Ask me, in one message, the few things you need for brand/ and public/ (what we do, for whom, what makes us different, how we sound, where we work), save my answers to raw/transcripts first, then write the notes with the brand skill.",
+      "label": "Tell you about my business",
+      "prompt": "I'd rather tell you about my business than point you to a website. Ask me what you need.",
       "when": [
         {
           "path": "brand/positioning.md",
@@ -63,7 +63,7 @@
     {
       "id": "research-my-competitors",
       "label": "Research my competitors",
-      "prompt": "Research my market with the research skill: ask me for three to five competitors (or suggest them from my search terms), read what customers say in reviews and comments, what the competitors run in the ad libraries and post organically, and write research/brief.md with ranked hypotheses. Tell me the three things that change what we should make.",
+      "prompt": "Research my competitors and tell me what we should make.",
       "when": [
         {
           "path": "brand/positioning.md",
@@ -78,7 +78,7 @@
     {
       "id": "give-me-ideas",
       "label": "Give me ideas for ads",
-      "prompt": "Use the ideas skill on research/brief.md and the brand notes: write ten to fifteen candidate ideas, score them, keep the nine that differ in argument, and give me one line each so I can choose which to make first.",
+      "prompt": "Give me ideas for ads, one line each, so I can pick.",
       "when": [
         {
           "path": "research/brief.md",
@@ -89,27 +89,27 @@
     {
       "id": "make-a-test-set",
       "label": "Make a test set of ads",
-      "prompt": "Make a test set of ads with the ad skill from the ideas I chose: three angles in three formats or hooks, each with its hook, copy and picture, audited with scripts/check.py and the tropes skill. Show them to me as deliverables with one line each."
+      "prompt": "Make a small test set of ads from the ideas I picked."
     },
     {
       "id": "write-this-week-s-posts",
       "label": "Write this week's posts",
-      "prompt": "Write this week's organic posts with the social-post skill from one idea I give you: one post per platform I use, each rewritten for its platform, with my own photos where there are any. Show me each caption as it will appear. The idea is: "
+      "prompt": "Write this week's social posts about "
     },
     {
       "id": "what-is-waiting-for-approval",
-      "label": "What is waiting for my approval",
-      "prompt": "Show me what is waiting for my approval: the deliverables already waiting (`python3 ~/tools/taskandtool.py get-deliverables --status waiting`), one line each with its creative's idea and link. Attach nothing again. If python3 scripts/check.py --status sent lists a creative with no waiting deliverable, name it."
+      "label": "What's waiting for my approval?",
+      "prompt": "What's waiting for my approval?"
     },
     {
       "id": "record-the-results",
-      "label": "Record the results",
-      "prompt": "Record what my ads did in results.md, newest first: the creative's folder, the platform, the dates, hook rate, hold rate, click-through and cost per lead from my ad account (ask me to paste them if there is no connection). Then tell me what to make next: new hooks for a winner, a new angle for a loser."
+      "label": "Record how my ads did",
+      "prompt": "Record how my ads did and tell me what to make next."
     },
     {
       "id": "re-verify-the-platform-specs",
-      "label": "Re-verify the platform specs",
-      "prompt": "One or more sheets in specs/ are more than 90 days old (python3 scripts/check.py says which). Re-verify each against the platform's own help pages, as specs/README.md describes, update the numbers and last_verified, and tell me what changed."
+      "label": "Check the ad specs are current",
+      "prompt": "Check the ad platform specs are still current and update any that changed."
     }
   ]
 }
