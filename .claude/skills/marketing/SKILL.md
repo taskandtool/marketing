@@ -1,12 +1,12 @@
 ---
 name: marketing
-description: "The marketing app's folders, the shape of a creative.md, the order of work from research to results, and recording results. Use at the start of a session here, when the owner asks what to do next, what is waiting for approval, how an ad did, or where something is filed. Not for making a piece itself (ad, social-post)."
+description: "The marketing app's folders, the shape of a creative.md, and the order of work from research to results. Use at the start of a session here, when the owner asks what to do next, what is waiting for approval, or where something is filed. Not for making a piece (ad, social-post) or measuring one (results)."
 ---
 
 # Marketing
 
-This app turns one business's brand and its market into ads and posts the
-owner approves. It makes and files the work; it never posts it.
+This app turns one business's brand and its market into ads, posts and
+emails, and files them for the owner to review.
 
 ## The loop
 
@@ -18,18 +18,16 @@ Each step has its own skill. Start wherever the folders say the work is.
    search (the `research` skill) into `research/`.
 3. **Ideas.** Angles and frameworks turned into ranked ideas worth making
    (the `ideas` skill), each with a hook (the `copywriting` skill).
-4. **Make.** An ad (the `ad` skill) or a post (the `social-post` skill):
+4. **Make.** An ad (the `ad` skill), a post (the `social-post` skill) or an
+   email (the `email` skill):
    words through `copywriting`, pictures through `images`, clips through
    `video`.
 5. **Audit.** `python3 scripts/check.py`, then the `tropes` skill's eye pass.
    Fix every finding before the owner sees anything.
 6. **Review.** Show the owner the files as deliverables and set `status:
    sent`. Their approval or rejection sets it again.
-7. **Results.** What ran and what it did goes in `results.md`, newest
-   first: the folder, the platform, the dates, hook rate, hold rate,
-   click-through, cost per lead. Only the owner's own account says what
-   works. On a winner, new hooks on the same body first, then the same angle
-   in a new format; on a loser, a new angle, not a new colour.
+7. **Results.** What ran and what it did goes in `results.md`, and a
+   monthly report says what to make next (the `results` skill).
 
 ## Where things are
 
@@ -40,7 +38,9 @@ media/                  the business's own photos and clips; _index.md says what
 raw/                    material as it arrived: raw/site/<host>/, raw/<source>/<who>/
 research/               competitors/<name>.md, hooks.md, audience.md, brief.md
 creatives/YYYY-MM-DD-<slug>/   one idea per folder: creative.md, v1.png, v2.png, shot-1.mp4
-results.md              numbers per creative and what to try next, newest first
+emails/YYYY-MM-DD-<slug>/      one email or sequence per folder: email.md (the email skill)
+results.md              numbers per creative and per month, newest first
+reports/YYYY-MM.md      the monthly report
 specs/<platform>.md     sizes, limits and policy, each with last_verified
 ```
 

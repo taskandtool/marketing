@@ -1,8 +1,8 @@
 # Marketing
 
-A Task & Tool **Starter App**: ads and social posts for one business, made
-on its own machine from its brand and its market, and approved by the
-owner before anything is posted. It makes the work; it never posts it.
+A Task & Tool **Starter App**: ads, social posts and emails for one
+business, made on its own machine from its brand and its market, and filed
+for the owner to review.
 
 The repository *is* the app: what you clone is what runs. Installed with one
 click on Task & Tool, or cloned into a project of your own (below). MIT
@@ -18,13 +18,16 @@ calls for them.
   marketing/     the folders, the shape of a creative.md, the order of work
   brand/         the brand record in brand/ and public/, from any source (shared with the
                  other Starter Apps that carry it)
-  research/      competitors' ads and posts, customers' words, search questions → a brief
+  research/      competitors' ads and posts, customers' words, search questions,
+                 conversations worth joining → a brief
   ideas/         angles and frameworks → ranked ideas worth making
   copywriting/   the words and the hook, in the owner's voice; fifteen hook types
   images/        the picture: the owner's photo, or a prompt for an image model
   video/         beats, show don't tell, sound and music, shot briefs for a video model
   ad/            a paid ad to a platform's specs; 45 static formats as recipes
   social-post/   organic posts per platform, one idea across a week
+  email/         cold emails and newsletters, saved as drafts the owner sends
+  results/       ad, post and search numbers from the owner's accounts; the monthly report
   tropes/        the audit for the tells of AI-made copy, pictures and video, and its
                  copy script (shared, like brand)
 .agents/skills/  thin Codex adapters: the same descriptions, pointing at the bodies above
@@ -40,9 +43,11 @@ brand/  public/          the brand record: look, voice, published facts
 claims.md                every fact a creative may state, numbered, each with its source
 media/                   the business's own photos and clips; _index.md says what may be used
 raw/                     material as it arrived (crawls, downloads, what the owner said)
-research/                competitors, hooks seen, customers' words, the brief
+research/                competitors, hooks seen, customers' words, conversations, the brief
 creatives/YYYY-MM-DD-<slug>/   one idea per folder: creative.md and its pictures and clips
+emails/YYYY-MM-DD-<slug>/      one email or sequence per folder: email.md
 results.md               what ran and what it did, newest first
+reports/YYYY-MM.md       the monthly report
 specs/<platform>.md      sizes, limits and policy per platform, dated
 scripts/                 check · imagegen · videogen, and their tests
 ```
@@ -73,10 +78,11 @@ disk.
 
 Everything is optional and asked for when it is needed: an image model
 (OpenAI or OpenRouter), a video model (OpenRouter), ScrapeCreators for
-competitors' ads and posts, Apify for reviews on sites with no API,
-DataForSEO for search questions, Google Places for the business's listing,
-the owner's ad accounts for results. Keys arrive through the platform's
-Connections, never through this repository.
+competitors' ads and posts, Apify for reviews on sites with no API and
+for posts in the niche, DataForSEO for search questions, Google Places for
+the business's listing, and for results Search Console, Google
+Analytics and Meta's insights, and Klaviyo for newsletter drafts. Keys
+arrive through the platform's Connections, never through this repository.
 
 ## Developing this Starter App
 

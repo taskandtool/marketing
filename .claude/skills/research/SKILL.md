@@ -1,6 +1,6 @@
 ---
 name: research
-description: "Researches a market before making creatives: competitors' sites, ads and posts, customers' reviews and comments, search questions, into research/ and a brief of ranked hypotheses. Use when the owner asks what competitors are doing, before the first ideas, or monthly. Not for the business's own facts (brand)."
+description: "Researches a market before making creatives: competitors' sites, ads and posts, customers' reviews and comments, search questions, conversations worth joining, into research/ and a brief of ranked hypotheses. Use when the owner asks what competitors are doing, where to reply, before the first ideas, or monthly. Not for the business's own facts (brand)."
 ---
 
 # Research
@@ -11,9 +11,12 @@ brief the `ideas` skill can act on.
 
 Fetching: a competitor's site with `tt-crawl survey <url> --external` (into
 `raw/external/<host>/`); ad libraries, social posts and comments through
-the `scrapecreators` connection; reviews on a site with no API (Google Maps)
-through `apify`; People Also Ask and autocomplete through `dataforseo`; a
-business's Google listing and reviews through `google-places`, as below. One
+the `scrapecreators` connection; reviews on a site with no API (Google
+Maps), recent threads on Reddit, LinkedIn, Facebook groups and forums, and
+the TikTok Creative Center's top ads for the industry, through `apify`;
+People Also Ask, autocomplete and monthly search volume through
+`dataforseo`; a business's Google listing and reviews through
+`google-places`, as below. One
 not granted is asked for, as the first line below does for scrapecreators.
 
 ```bash
@@ -39,7 +42,13 @@ Copy and tick:
 - [ ] 4. **Organic.** Each competitor's and the category's top posts by
       shares, saves and comments, not likes, scaled to the account's size.
       Add the topic and hook of each to the competitor's file.
-- [ ] 5. **The brief.** Write `research/brief.md` (shape below) and tell the
+- [ ] 5. **Conversations.** Recent threads in the niche (Reddit, LinkedIn,
+      Facebook groups, forums) where people ask a question the owner
+      can answer or complain about a problem the owner fixes. Write the ten
+      worth a reply to `research/conversations.md`: the link, the date, the
+      question in a few words, and a draft reply in the owner's voice through
+      `copywriting`. Show it as a deliverable; the owner replies.
+- [ ] 6. **The brief.** Write `research/brief.md` (shape below) and tell the
       owner the three things that change what you would make.
 
 ## What to record per competitor
@@ -68,7 +77,7 @@ account does, and that outranks everything here.
 
 `research/brief.md`, one page: the three recurring angles with who runs
 them and for how long; the two longest-lived formats; the top five customer
-phrases; the top three objections; the angle nobody claims; and five to
+phrases; the top three objections; the angle nobody claims; the searches worth a post; and five to
 eight hypotheses, ranked by signal strength and ease of production, each
 as "We believe [hook, format or angle] will work because [observation over
 time] suggests [what the audience does]."
@@ -97,7 +106,8 @@ the same claim (the `ideas` skill decides what that means).
 
 A full pass at setup. Monthly: re-read competitors' active ads and note
 what is new, what stopped, and what crossed 30 or 90 days. Weekly while
-anything is live: the owner's own comments and results first. Quarterly, or
+anything is live: the owner's own comments and results first, then new
+conversations worth joining. Quarterly, or
 before a launch or a price change: reviews, searches and organic again, and
 a new brief.
 

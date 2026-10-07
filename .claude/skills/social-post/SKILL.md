@@ -1,6 +1,6 @@
 ---
 name: social-post
-description: "Writes organic social posts in the business's voice for Instagram, Facebook, LinkedIn, TikTok, Google Business, Pinterest, X and Threads, or turns one idea into a week of posts. Use when the owner says write a post or caption, what should we post this week, or repurpose this. Not for paid ads (ad)."
+description: "Writes organic social posts in the business's voice for Instagram, Facebook, LinkedIn, TikTok, Google Business, Pinterest, X and Threads, or turns one idea into a week of posts, including TikTok slideshows and carousels. Use when the owner says write a post, caption or slideshow, what should we post this week, or repurpose this. Not for paid ads (ad)."
 ---
 
 # Social post
@@ -28,7 +28,8 @@ Copy and tick:
       this", "Send this to someone planning a kitchen", "Reply with yours".
       Links stay out of the body on Facebook, LinkedIn, X and Threads.
 - [ ] 5. **The picture**: the owner's own photo first, a carousel of real
-      job photos, or a short clip (the `video` skill). Generated pictures
+      job photos, a slideshow (`references/slideshow.md`), or a short clip
+      (the `video` skill). Generated pictures
       only for illustrations and backgrounds (the `images` skill).
 - [ ] 6. Write `creatives/YYYY-MM-DD-<slug>/creative.md` with `kind: post`,
       the whole caption as it will be pasted in `copy.caption`, and any
@@ -63,6 +64,7 @@ repost or cross-post unchanged lose reach on Instagram and Facebook.
 
 ## References
 
+- `references/slideshow.md`: TikTok slideshows and carousels, slide by slide
 - `references/repurpose.md`: the pillars, one idea across platforms, the
   weekly cadence
 - `references/<platform>.md`: instagram, facebook, linkedin, tiktok, gbp,
