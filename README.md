@@ -30,7 +30,6 @@ calls for them.
   results/       ad, post and search numbers from the owner's accounts; the monthly report
   tropes/        the audit for the tells of AI-made copy, pictures and video, and its
                  copy script (shared, like brand)
-.agents/skills/  thin Codex adapters: the same descriptions, pointing at the bodies above
 .taskandtool/setup.sh  Pillow, requests, tt-crawl and its browsers
 AGENTS.md        what the AI reads first; CLAUDE.md imports it
 starter-app.json the manifest: the connections it can use and the suggestions an empty chat offers
