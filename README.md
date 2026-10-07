@@ -49,13 +49,13 @@ emails/YYYY-MM-DD-<slug>/      one email or sequence per folder: email.md
 results.md               what ran and what it did, newest first
 reports/YYYY-MM.md       the monthly report
 specs/<platform>.md      sizes, limits and policy per platform, dated
-scripts/                 check · imagegen · videogen, and their tests
+scripts/                 check · videogen, and their tests
 ```
 
 `python3 scripts/check.py` checks every creative, the claims and the specs,
 and runs the copy through the `tropes` skill's script (Node);
-`imagegen.py` calls the image model the app has a key for (OpenAI or
-OpenRouter), and `videogen.py` OpenRouter's video models; a Higgsfield
+pictures come from the AI's own image tool, and `videogen.py` calls
+OpenRouter's video models; a Higgsfield
 connection (Seedance, Kling) brings its own instructions.
 
 ## Install

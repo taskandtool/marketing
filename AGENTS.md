@@ -19,8 +19,8 @@ and the order of work are in `marketing`):
 - "a post", "a caption", "this week's posts", a slideshow, repurpose:
   `social-post`
 - "a cold email", "an outreach sequence", "a newsletter": `email`
-- the words of a piece and its hook: `copywriting`; its picture: `images`;
-  a clip: `video`
+- the words of a piece and its hook: `copywriting`; its picture: Pictures
+  below; a clip: `video`
 - before the owner sees anything: `tropes`
 
 Read the one that fits the ask rather than working from memory.
@@ -39,13 +39,27 @@ Read the one that fits the ask rather than working from memory.
 ```bash
 python3 scripts/check.py [folder …]   # the audit; then one line per creative: folder, status, kind, platform
 python3 scripts/check.py --status sent  # what is waiting for the owner's approval
-python3 scripts/imagegen.py --prompt-file creatives/<folder>/creative.md --out creatives/<folder>/v1.png
 python3 scripts/videogen.py --prompt-file creatives/<folder>/creative.md --section "Shot 1" --out creatives/<folder>/shot-1.mp4
 ```
 
-imagegen sends the creative's `## Prompt` section and videogen its
-`## Shot 1` (or `--section "Shot 2"`); both print the file written and
-never replace an existing one; `--check` says which model is configured.
+videogen sends the creative's `## Shot 1` (or `--section "Shot 2"`), prints
+the file written and never replaces an existing one; `--check` says which
+model is configured.
+
+## Pictures
+
+Make them with your image tool, saved in the creative's folder (`v1.png`,
+`v2.png`). With no image tool, an image provider arrives as a connection.
+
+- The owner's own photo first (`media/_index.md`); generate when there is
+  no photo of the thing, or to place their product in a new scene.
+- The Imagery block of `brand/visual-identity.md` goes into every prompt,
+  so a set looks like one brand.
+- Each placement's ratio is its own picture, never a crop.
+- No interface, chart or product the business does not make; every word in
+  a picture is checked letter by letter against the copy.
+- Look at it full size and at 25%, run the `tropes` picture checks, change
+  one thing a round; the kept file goes in `files:`.
 
 ## The rules that matter
 

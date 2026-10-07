@@ -21,7 +21,7 @@ not granted is asked for, as the first line below does for scrapecreators.
 
 ```bash
 python3 ~/tools/taskandtool.py request-connection scrapecreators --why "competitors' ads and posts"
-GOOGLE_PLACES_API_URL=$PHOENIX_URL/api/sprite/gateway/google-places/v1 GOOGLE_PLACES_API_KEY=$MACHINE_TOKEN tt-crawl places "Name, City"
+GOOGLE_PLACES_API_URL=$PHOENIX_URL/api/machine/gateway/google-places/v1 GOOGLE_PLACES_API_KEY=$MACHINE_TOKEN tt-crawl places "Name, City"
 ```
 
 ## Steps

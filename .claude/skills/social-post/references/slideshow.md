@@ -12,20 +12,15 @@ plays them itself, so there is no video to render.
   phone. Five to eight slides; the last one says what to do next ("Save
   this", "Follow for part 2").
 - **One look across the set**: write the style once in the folder's
-  `anchor.md` and pass it to every slide, so the set reads as one post.
+  `anchor.md` and put it in every slide's prompt, with slide 1 as the
+  reference for the rest, so the set reads as one post.
 - **Sizes**: 9:16 for TikTok, 4:5 for Instagram, 1:1 or 4:5 for LinkedIn.
 
 ## Making them
 
 The owner's photos first: a slide may be their photo with the line set on
-it (`--ref`). Otherwise the image model sets the line in the picture:
-
-```bash
-python3 scripts/imagegen.py --prompt-file creatives/<folder>/slide-1.md --ratio 9:16 --anchor creatives/<folder>/anchor.md --out creatives/<folder>/slide-1.png
-```
-
-One `slide-N.md` per slide, its prompt under a `## Prompt` heading (that is
-the part `imagegen` sends), and the `slide-N.png` it makes, numbered in
-order. The caption and hashtags go in `creative.md` as for any post, and
+it (an edit of the photo). Otherwise the image tool sets the line in the
+picture. One `slide-N.md` per slide, its prompt under a `## Prompt`
+heading, and the `slide-N.png` made from it, numbered in order. The caption and hashtags go in `creative.md` as for any post, and
 its `files` lists every `slide-N.png`. Read every slide at full size for
 misspelt words before the owner sees the set.

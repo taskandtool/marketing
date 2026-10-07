@@ -20,8 +20,8 @@ Each step has its own skill. Start wherever the folders say the work is.
    (the `ideas` skill), each with a hook (the `copywriting` skill).
 4. **Make.** An ad (the `ad` skill), a post (the `social-post` skill) or an
    email (the `email` skill):
-   words through `copywriting`, pictures through `images`, clips through
-   `video`.
+   words through `copywriting`, pictures as `AGENTS.md` says, clips
+   through `video`.
 5. **Audit.** `python3 scripts/check.py`, then the `tropes` skill's eye pass.
    Fix every finding before the owner sees anything.
 6. **Review.** Show the owner the files as deliverables and set `status:

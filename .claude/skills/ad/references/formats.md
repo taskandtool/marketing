@@ -249,7 +249,7 @@ Pitfalls: A vague claim ("quality you can trust"); a headline that needs a secon
 When: Top and mid funnel. The product or the work in the customer's own setting, being used.
 Structure: A photograph with the words in a band at the bottom or top; the product or the work is the subject, a person appears by their hands or back.
 Copy: "[The outcome for the person, one line]. [The call to action]." Example: "Cooking in it by Friday. Book a workshop visit."
-Visual: The owner's own photo first; otherwise a generated photograph with the setting from the brand's Imagery block (the `images` skill). The copy-space is the plainest third of the frame.
+Visual: The owner's own photo first; otherwise a generated photograph with the setting from the brand's Imagery block. The copy-space is the plainest third of the frame.
 Why it works: The reader sees the product in a life that looks like theirs, not on a white ground.
 Pitfalls: Stock lifestyle (a stranger smiling); a scene so styled it reads as a catalogue; a product too small to recognise.
 
@@ -257,7 +257,7 @@ Pitfalls: Stock lifestyle (a stranger smiling); a scene so styled it reads as a 
 When: Top funnel. A photo that looks like a customer or the owner took it on a phone, one caption chip, nothing else.
 Structure: The photo fills the frame; one short caption in a white chip, as a phone's own caption would be; no headline, no logo.
 Copy: "[One sentence a person would type under their own photo]." Example: "Day three and the doors are on."
-Visual: A real phone photo (the owner's, or a customer's with permission) is the point; a generated one is prompted as an unposed phone snapshot (the `images` skill) (flash, tilt, a bit of mess) and the record's notes say it is illustrative.
+Visual: A real phone photo (the owner's, or a customer's with permission) is the point; a generated one is prompted as an unposed phone snapshot (flash, tilt, a bit of mess) and the record's notes say it is illustrative.
 Why it works: It does not look like an ad, so the reader's ad filter does not fire; lo-fi is 42% of top performers.
 Pitfalls: Making it look designed; a caption that sells; a generated photo passed off as a customer's.
 
@@ -361,7 +361,7 @@ Pitfalls: Straw objections; an answer that is a slogan; an objection about a com
 When: Top funnel, when the brand's identity is drawn rather than photographed, or the idea is abstract.
 Structure: A drawn scene or a two-panel strip with the words in a plain band, checked letter by letter if the model draws them.
 Copy: "[The idea in one line]." Example: "Two people, one kitchen, start to finish."
-Visual: An illustration (the `images` skill); the brand's Imagery block must say the brand is drawn, otherwise this format is off-brand.
+Visual: An illustration; the brand's Imagery block must say the brand is drawn, otherwise this format is off-brand.
 Why it works: A drawing reads as a point of view; it cannot be mistaken for stock.
 Pitfalls: A cartoon style the brand does not own; text drawn by the model; cuteness.
 

@@ -30,7 +30,7 @@ Copy and tick:
 - [ ] 5. **The picture**: the owner's own photo first, a carousel of real
       job photos, a slideshow (`references/slideshow.md`), or a short clip
       (the `video` skill). Generated pictures
-      only for illustrations and backgrounds (the `images` skill).
+      only for illustrations and backgrounds (Pictures in `AGENTS.md`).
 - [ ] 6. Write `creatives/YYYY-MM-DD-<slug>/creative.md` with `kind: post`,
       the whole caption as it will be pasted in `copy.caption`, and any
       hashtags in `copy.hashtags`. Run `python3 scripts/check.py`, then show

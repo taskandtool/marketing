@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Tests for the marketing scripts: check (with the tropes skill's copy
-check), imagegen and videogen's --check, the frontmatter helpers. Standard
+check), videogen's --check, the frontmatter helpers. Standard
 library and node; no machine, no keys, no model calls. The copy rules
 themselves are tested in the tropes skill (.claude/skills/tropes/test).
 
@@ -205,18 +205,16 @@ class Check(unittest.TestCase):
 
 class Generators(unittest.TestCase):
     def test_no_key_fails_and_names_the_connection(self):
-        for script in ("imagegen.py", "videogen.py"):
-            r = run(script, "--check", cwd=APP)
-            self.assertEqual(r.returncode, 1, script + r.stdout + r.stderr)
-            self.assertIn("Try: python3 ~/tools/taskandtool.py request-connection openrouter-api --why", r.stderr)
+        r = run("videogen.py", "--check", cwd=APP)
+        self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
+        self.assertIn("Try: python3 ~/tools/taskandtool.py request-connection openrouter-api --why", r.stderr)
 
     def test_a_granted_key_in_dot_env_counts(self):
         home = tempfile.mkdtemp()
         try:
             put(os.path.join(home, ".env"), "export ORG_ID='o1'\nOPENROUTER_API_KEY='sk-or-from-env'\nPLAIN=v1 # a comment\n")
-            for script in ("imagegen.py", "videogen.py"):
-                r = run(script, "--check", cwd=APP, home=home)
-                self.assertEqual(r.returncode, 0, script + r.stderr)
+            r = run("videogen.py", "--check", cwd=APP, home=home)
+            self.assertEqual(r.returncode, 0, r.stderr)
             sys.path.insert(0, SCRIPTS)
             old = os.environ.pop("OPENROUTER_API_KEY", None), os.environ.get("HOME")
             os.environ["HOME"] = home
@@ -232,7 +230,7 @@ class Generators(unittest.TestCase):
             shutil.rmtree(home)
 
     def test_help_and_misuse(self):
-        for script in ("check.py", "imagegen.py", "videogen.py"):
+        for script in ("check.py", "videogen.py"):
             for flag in ("--help", "-h"):
                 r = run(script, flag, cwd=APP)
                 self.assertEqual(r.returncode, 0, script + flag)
@@ -241,41 +239,22 @@ class Generators(unittest.TestCase):
             self.assertEqual(r.returncode, 2, script)
             self.assertEqual(r.stdout, "", script)
             self.assertIn(f"Try: python3 scripts/{script} --help", r.stderr)
-        for script in ("imagegen.py", "videogen.py"):
-            r = run(script, "--out", "x.png", cwd=APP)
-            self.assertEqual(r.returncode, 2)
-            self.assertIn("Try:", r.stderr)
-            r = run(script, "--prompt", "a", "--prompt-file", "b", "--out", "x.png", cwd=APP)
-            self.assertEqual(r.returncode, 2)
-            self.assertIn("Try:", r.stderr)
+        r = run("videogen.py", "--out", "x.mp4", cwd=APP)
+        self.assertEqual(r.returncode, 2)
+        self.assertIn("Try:", r.stderr)
+        r = run("videogen.py", "--prompt", "a", "--prompt-file", "b", "--out", "x.mp4", cwd=APP)
+        self.assertEqual(r.returncode, 2)
+        self.assertIn("Try:", r.stderr)
 
     def test_a_network_error_is_a_provider_failure(self):
         code = ("import sys; sys.path.insert(0, %r); import common, requests\n"
                 "def gen(): raise requests.ConnectionError('no route to host')\n"
-                "common.generate('imagegen', 'openrouter', gen)") % SCRIPTS
+                "common.generate('videogen', 'openrouter', gen)") % SCRIPTS
         r = subprocess.run([sys.executable, "-c", code], capture_output=True, text=True)
         self.assertEqual(r.returncode, 1, r.stderr)
         self.assertNotIn("Traceback", r.stderr)
-        self.assertIn("imagegen: openrouter refused: ConnectionError: no route to host", r.stderr)
+        self.assertIn("videogen: openrouter refused: ConnectionError: no route to host", r.stderr)
         self.assertIn("Nothing was written.", r.stderr)
-
-    def test_bad_anchor_is_misuse(self):
-        d = tempfile.mkdtemp()
-        try:
-            r = run("imagegen.py", "--prompt", "a", "--anchor", os.path.join(d, "nope.md"), "--out", os.path.join(d, "v1.png"),
-                    cwd=d, OPENAI_API_KEY="unused")
-            self.assertEqual(r.returncode, 2, r.stderr)
-            self.assertIn("style anchor file not found", r.stderr)
-            self.assertIn("Try:", r.stderr)
-            self.assertNotIn("Traceback", r.stderr)
-            self.assertFalse(os.path.exists(os.path.join(d, "v1.png")))
-        finally:
-            shutil.rmtree(d)
-
-    def test_check_without_a_provider_still_shows_the_anchor(self):
-        r = run("imagegen.py", "--check", cwd=APP)
-        self.assertEqual(r.returncode, 1)
-        self.assertIn("style anchor:", r.stderr)
 
     def test_provider_failure_says_nothing_was_written(self):
         code = ("import sys; sys.path.insert(0, %r); import common\n"
@@ -312,15 +291,14 @@ class Generators(unittest.TestCase):
             put(os.path.join(d, "creative.md"), GOOD + "\n## Prompt\nA boiler at dawn.\n\n## Notes\nv1\n")
             self.assertEqual(common.read_prompt(os.path.join(d, "creative.md"), "t", "x"), "A boiler at dawn.")
             put(os.path.join(d, "bare.md"), GOOD)
-            r = run("imagegen.py", "--prompt-file", os.path.join(d, "bare.md"), "--out", os.path.join(d, "v1.png"), cwd=d)
+            r = run("videogen.py", "--prompt-file", os.path.join(d, "bare.md"), "--out", os.path.join(d, "s.mp4"), cwd=d)
             self.assertEqual(r.returncode, 2)
-            self.assertIn("no `## Prompt` section", r.stderr)
-            put(os.path.join(d, "v1.png"), b"\x89PNG")
-            for script in ("imagegen.py", "videogen.py"):
-                r = run(script, "--prompt", "a", "--out", os.path.join(d, "v1.png"), cwd=d)
-                self.assertEqual(r.returncode, 2, r.stderr)
-                self.assertIn("already exists", r.stderr)
-                self.assertIn("v2.png", r.stderr)
+            self.assertIn("no `## Shot 1` section", r.stderr)
+            put(os.path.join(d, "shot-1.mp4"), b"\x00")
+            r = run("videogen.py", "--prompt", "a", "--out", os.path.join(d, "shot-1.mp4"), cwd=d)
+            self.assertEqual(r.returncode, 2, r.stderr)
+            self.assertIn("already exists", r.stderr)
+            self.assertIn("shot-2.mp4", r.stderr)
         finally:
             shutil.rmtree(d)
 

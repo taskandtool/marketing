@@ -21,7 +21,7 @@ Copy and tick:
       fallback.
 - [ ] 3. **Hook and copy** (the `copywriting` skill) into `copy:`
       (`headline`, `primary_text`, `description` or `caption`, `cta`).
-- [ ] 4. **Picture or video** (the `images` or `video` skill), at the
+- [ ] 4. **Picture or video** (Pictures in `AGENTS.md`, or the `video` skill), at the
       platform's sizes in `specs/<platform>.md`; vertical placements keep
       words inside the safe zone. Each ratio is its own generation.
 - [ ] 5. **Audit.** `python3 scripts/check.py <folder>`, then the `tropes`

@@ -1,6 +1,6 @@
 ---
 name: video
-description: "Plans and makes short video ads and posts: the beat structure, show-don't-tell, the first two seconds, captions, sound and music, and shot briefs for a video model. Use when a creative is a video, Reel, TikTok or Short, or when the owner shares clips to cut. Not for stills (images)."
+description: "Plans and makes short video ads and posts: the beat structure, show-don't-tell, the first two seconds, captions, sound and music, and shot briefs for a video model. Use when a creative is a video, Reel, TikTok or Short, or when the owner shares clips to cut. Not for stills."
 ---
 
 # Video
@@ -18,8 +18,8 @@ Copy and tick:
 - [ ] 2. Write the script into `creative.md`: the hook word for word, the
       middle as beats, the call to action word for word. Mark each beat as
       the owner's footage (`media/clips/`), a still, or a generated shot.
-- [ ] 3. For each generated shot, generate the hero still first (the
-      `images` skill), then write a shot brief (below) that uses it as the
+- [ ] 3. For each generated shot, generate the hero still first (your image
+      tool), then write a shot brief (below) that uses it as the
       reference or first frame.
 - [ ] 4. Put each shot brief under its own heading in `creative.md`
       (`## Shot 1`, `## Shot 2`; `## Prompt` stays the still's) and

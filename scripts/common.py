@@ -93,7 +93,7 @@ def creative_folder(out):
 # ── the generators' providers ───────────────────────────────────────────
 
 # the key that configures each provider
-PROVIDER_ENV = {"openai": "OPENAI_API_KEY", "openrouter": "OPENROUTER_API_KEY"}
+PROVIDER_ENV = {"openrouter": "OPENROUTER_API_KEY"}
 
 
 def env(name):
@@ -114,26 +114,8 @@ def env(name):
 
 
 def configured(order):
-    """The providers in `order` that have a key here, in that order. During
-    an AI turn on Task & Tool AI or the owner's OpenAI key, openai is
-    configured through the turn's metered gateway (TT_AI_BASE_URL)."""
-    return [p for p in order if env(PROVIDER_ENV[p]) or (p == "openai" and openai_gateway())]
-
-
-def openai_gateway():
-    """(base URL, token) for OpenAI through Task & Tool's metered gateway,
-    set for the length of an AI turn; None outside one."""
-    base, token = os.environ.get("TT_AI_BASE_URL"), os.environ.get("TT_AI_TOKEN")
-    return (base.rstrip("/"), token) if base and token else None
-
-
-def openai():
-    """(base URL, headers) for OpenAI: the turn's gateway when there is one,
-    so the picture is paid like the rest of the turn; else the app's key."""
-    gateway = openai_gateway()
-    if gateway:
-        return gateway[0], {"Authorization": "Bearer " + gateway[1]}
-    return "https://api.openai.com/v1", {"Authorization": "Bearer " + (env("OPENAI_API_KEY") or "")}
+    """The providers in `order` that have a key here, in that order."""
+    return [p for p in order if env(PROVIDER_ENV[p])]
 
 
 def provider_failure(name, provider, reason):
