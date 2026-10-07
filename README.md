@@ -55,7 +55,8 @@ scripts/                 check · imagegen · videogen, and their tests
 `python3 scripts/check.py` checks every creative, the claims and the specs,
 and runs the copy through the `tropes` skill's script (Node);
 `imagegen.py` calls the image model the app has a key for (OpenAI or
-OpenRouter), and `videogen.py` OpenRouter's video models.
+OpenRouter), and `videogen.py` OpenRouter's video models; a Higgsfield
+connection (Seedance, Kling) brings its own instructions.
 
 ## Install
 
@@ -77,7 +78,7 @@ disk.
 ## What it connects to
 
 Everything is optional and asked for when it is needed: an image model
-(OpenAI or OpenRouter), a video model (OpenRouter), ScrapeCreators for
+(OpenAI or OpenRouter), a video model (OpenRouter or Higgsfield), ScrapeCreators for
 competitors' ads and posts, Apify for reviews on sites with no API and
 for posts in the niche, DataForSEO for search questions, Google Places for
 the business's listing, and for results Search Console, Google

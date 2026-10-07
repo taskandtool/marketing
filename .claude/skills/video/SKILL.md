@@ -25,7 +25,8 @@ Copy and tick:
       (`## Shot 1`, `## Shot 2`; `## Prompt` stays the still's) and
       generate: `python3 scripts/videogen.py --prompt-file
       creatives/<folder>/creative.md --section "Shot 1" --ratio 9:16
-      --seconds 6 --out creatives/<folder>/shot-1.mp4`.
+      --seconds 6 --out creatives/<folder>/shot-1.mp4`. With a Higgsfield
+      connection, generate it the way its instructions say instead.
 - [ ] 5. Check frames at 0, 25, 50, 75 and 100% (the `tropes` video
       checks). Regenerate what drifts.
 - [ ] 6. List the shots, the script and the music choice in the creative;

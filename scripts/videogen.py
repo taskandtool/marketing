@@ -16,7 +16,9 @@ The model is OpenRouter's (OPENROUTER_API_KEY, from the environment, else
 from ~/.env): POST https://openrouter.ai/api/v1/videos, then polled until
 the clip is ready; default model google/veo-3.1, others with --model; a
 reference image goes in as input_references. The bytes go to --out (mp4)
-and the provider, model, cost and prompt to <out>.json.
+and the provider, model, cost and prompt to <out>.json. A Higgsfield
+connection (Seedance, Kling and others) brings its own instructions and is
+used instead of this script.
 Exit 0 written, 1 failed (no key, the model refused or was unreachable),
 2 misused (a bad flag, a missing file, an --out that exists).
 """

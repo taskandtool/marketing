@@ -15,6 +15,11 @@
         "why": "Generate short video clips and pictures for ads and posts (Veo, Gemini and others)"
       },
       {
+        "provider": "higgsfield",
+        "strength": "suggested",
+        "why": "Generate short video ads and pictures (Seedance, Kling and others)"
+      },
+      {
         "provider": "scrapecreators",
         "strength": "suggested",
         "why": "Read competitors' ads in the ad libraries and their posts for research"
