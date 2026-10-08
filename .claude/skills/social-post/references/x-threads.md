@@ -19,7 +19,7 @@ Two text-first platforms in one file. For a one-person business they are optiona
 X
 - Weights (via Sprout): a reply is worth about 13.5 likes, a repost about 20, a bookmark about 10. Links cut reach by "50-90%" (Musk, via Sprout). A post loses half its visibility every six hours. Media beats plain text.
 - Hootsuite: posts under 100 characters get about 17% more engagement; quote posts get about twice the engagement of plain reposts.
-- Threads on X (Buffer): the first post must stand alone; number the rest; only when the content is genuinely multi-step.
+- Threads on X (Buffer): only when the content is genuinely multi-step. The first post must stand alone; number the rest.
 - Sprout and Hootsuite for small businesses: one-line observations, a photo of the work, replies to local accounts. Two or three posts a day only if free; otherwise skip.
 
 Threads (Meta)
@@ -29,7 +29,7 @@ Threads (Meta)
 
 ## Norms
 
-- X: 280 characters (25,000 on Premium, do not use it). Under 100 is the target. Threads: 500 characters, under 200 the target.
+- X: 280 characters (25,000 on Premium; do not use the longer limit). Under 100 is the target. Threads: 500 characters, under 200 the target.
 - Hooks: the observation itself, or the photo. No "thread:" announcements, no "a few thoughts on".
 - Hashtags: none on X. One topic tag on Threads.
 - Links: never in the body on either. First reply, or the profile.
@@ -82,4 +82,4 @@ Pitfalls: leaving replies unanswered, more than one tag, a link in the post.
 - Engagement pods, follow-for-follow, buying reach.
 - Threads for the sake of threads, or a "thread:" opener.
 - Arguments with local accounts, politics, complaints about named competitors.
-- The writing skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.
+- The `tropes` skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.

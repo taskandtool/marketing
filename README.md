@@ -4,8 +4,8 @@ A Task & Tool **Starter App**: ads, social posts and emails for one
 business, made on its own machine from its brand and its market, and filed
 for the owner to review.
 
-The repository *is* the app: what you clone is what runs. Installed with one
-click on Task & Tool, or cloned into a project of your own (below). MIT
+The repository *is* the app: what you clone is what runs. Install it with one
+click on Task & Tool, or clone it into a project of your own (below). MIT
 licensed.
 
 ## What is in the box
@@ -22,7 +22,6 @@ calls for them.
                  conversations worth joining → a brief
   ideas/         angles and frameworks → ranked ideas worth making
   copywriting/   the words and the hook, in the owner's voice; fifteen hook types
-  images/        the picture: the owner's photo, or a prompt for an image model
   video/         beats, show don't tell, sound and music, shot briefs for a video model
   ad/            a paid ad to a platform's specs; 45 static formats as recipes
   social-post/   organic posts per platform, one idea across a week
@@ -53,10 +52,9 @@ viewer/                  the viewer's Quartz config, pinned plugins, and its two
 ```
 
 `python3 scripts/check.py` checks every creative, the claims and the specs,
-and runs the copy through the `tropes` skill's script (Node);
-pictures come from the AI's own image tool, and `videogen.py` calls
-OpenRouter's video models; a Higgsfield
-connection (Seedance, Kling) brings its own instructions.
+and runs the copy through the `tropes` skill's script (Node). Pictures come
+from the AI's own image tool. `videogen.py` calls OpenRouter's video models;
+a Higgsfield connection (Seedance, Kling) brings its own instructions.
 
 ## The viewer
 
@@ -67,8 +65,8 @@ copy, its pictures and its clips, with its kind, platform, angle and hook
 beside them. What waits for approval stays on the app's Deliverables tab,
 which is live; the viewer shows the files.
 
-- **Dev:** the `web` service runs `npm run dev`, every edit on refresh at
-  the app's team address.
+- **Dev:** the `web` service runs `npm run dev` at the app's team address;
+  a refresh shows every edit.
 - **Production:** `npm run deploy` builds a static site into `dist/` and
   deploys it to Cloudflare through the platform; search works there too,
   in the browser. The first deploy opens it to the team; only a person
@@ -80,7 +78,7 @@ which is live; the viewer shows the files.
   named beside the creative.
 
 The web service installs Quartz on its first start, outside the app
-(`~/.local/share/marketing-viewer/`), so setup does not wait for it. It
+(`~/.local/share/marketing-viewer/`), so setup does not wait for it. Quartz
 is pinned to a tag, with its plugins pinned in `viewer/quartz.lock.json`;
 the install fixes Quartz 5.0.0 listing a folder twice. It needs Node 22.
 
@@ -107,8 +105,8 @@ Everything is optional and asked for when it is needed: an image model
 (OpenAI or OpenRouter), a video model (OpenRouter or Higgsfield), ScrapeCreators for
 competitors' ads and posts, Apify for reviews on sites with no API and
 for posts in the niche, DataForSEO for search questions, Google Places for
-the business's listing, and for results Search Console, Google
-Analytics and Meta's insights, and Klaviyo for newsletter drafts. Keys
+the business's listing, Search Console, Google Analytics and Meta's
+insights for results, and Klaviyo for newsletter drafts. Keys
 arrive through the platform's Connections, never through this repository.
 
 ## Developing this Starter App

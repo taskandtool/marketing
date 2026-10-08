@@ -14,7 +14,7 @@ Version: 0.1.0 (taskandtool/skills)
 
 ## Copy, by script
 
-The app's own check runs it: `npm run verify` (website) or
+The app's own check runs the script: `npm run verify` (website) or
 `python3 scripts/check.py` (marketing). For any other text:
 
 ```
@@ -24,7 +24,8 @@ node .claude/skills/tropes/tropes.mjs [--kind page|post|ad] [--json] <file|->
 Markdown headings split the text into sections; each is checked with its
 heading and against the others. Each finding prints its rule, the words and
 the fix. `error` fails the check; `hint` (puffery, and on a page we/you and
-lists of three) is a look, not a failure: a real list of three things stays.
+lists of three) is something to look at, not a failure: a real list of
+three things stays.
 Exit 1 on an error.
 
 ## Fixing a finding

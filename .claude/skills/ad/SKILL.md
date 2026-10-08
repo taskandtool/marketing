@@ -21,9 +21,10 @@ Copy and tick:
       fallback.
 - [ ] 3. **Hook and copy** (the `copywriting` skill) into `copy:`
       (`headline`, `primary_text`, `description` or `caption`, `cta`).
-- [ ] 4. **Picture or video** (Pictures in `AGENTS.md`, or the `video` skill), at the
-      platform's sizes in `specs/<platform>.md`; vertical placements keep
-      words inside the safe zone. Each ratio is its own generation.
+- [ ] 4. **Picture or video** (the Pictures section of `AGENTS.md`, or the
+      `video` skill), at the platform's sizes in `specs/<platform>.md`;
+      vertical placements keep words inside the safe zone. Generate each
+      ratio separately.
 - [ ] 5. **Audit.** `python3 scripts/check.py <folder>`, then the `tropes`
       skill. Fix everything.
 - [ ] 6. **Show.** Attach the files as deliverables with one line each:
@@ -38,7 +39,7 @@ Copy and tick:
   in `specs/`. `scripts/check.py` fails on hashtags and personal attributes
   ("Are you in debt?") in an ad.
 
-When it has run, the `marketing` skill records the results.
+When the ad has run, the `results` skill records the results.
 
 ## References
 

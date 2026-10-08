@@ -61,4 +61,4 @@ Pitfalls: a price on the pin that will go stale, a discount with a deadline (pin
 - A hashtag wall, or a title stuffed with keywords ("Kitchen kitchens fitted kitchen Bristol kitchen design").
 - Dated offers and prices on a pin that will still be found in two years.
 - A link to the homepage for every pin, or a link to a page that does not match the image.
-- The writing skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.
+- The `tropes` skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.

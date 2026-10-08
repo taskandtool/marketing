@@ -99,4 +99,4 @@ Pitfalls: the link in the body, a preview card with a stock image.
 - Hashtag walls, or the Instagram caption pasted in with the tags still on it.
 - Reposts with another app's watermark, or a customer's content without permission.
 - Angry-reaction bait: local politics, complaints about named competitors, arguments in the comments.
-- The writing skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.
+- The `tropes` skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.

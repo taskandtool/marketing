@@ -5,9 +5,9 @@ description: "Measures what ran: search numbers from the owner's Google accounts
 
 # Results
 
-Only the owner's own accounts say what works. A competitor's ad library
-never does, and a number is never estimated: one the account does not give
-is left out.
+Only the owner's own accounts say what works; a competitor's ad library
+never does. Never estimate a number: leave out any the account does not
+give.
 
 ## Where the numbers come from
 
@@ -23,8 +23,8 @@ is left out.
 - **Public counts** for any post, through `scrapecreators`: views, likes,
   comments; never reach or saves.
 
-A connection's own instructions say how to call it. One not granted is
-asked for, once, with what it unlocks:
+A connection's own instructions say how to call it. Ask once for a
+connection that is not granted, saying what it unlocks:
 
 ```bash
 python3 ~/tools/taskandtool.py request-connection google --why "your search traffic and visits for the monthly report"

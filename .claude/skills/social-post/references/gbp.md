@@ -64,4 +64,4 @@ Pitfalls: the time only in the image, an Event with no button, the same Event le
 - Auto-generated text or copy pasted from the website unchanged.
 - Expired Offers or past Events left live.
 - Watermarked reposts, or a customer's photo without permission.
-- The writing skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.
+- The `tropes` skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.

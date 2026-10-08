@@ -9,15 +9,19 @@ Ads show what competitors keep paying for. Posts, comments, reviews and
 searches show what customers say. Do both, customers first, and end with a
 brief the `ideas` skill can act on.
 
-Fetching: a competitor's site with `tt-crawl survey <url> --external` (into
-`raw/external/<host>/`); ad libraries, social posts and comments through
-the `scrapecreators` connection; reviews on a site with no API (Google
-Maps), recent threads on Reddit, LinkedIn, Facebook groups and forums, and
-the TikTok Creative Center's top ads for the industry, through `apify`;
-People Also Ask, autocomplete and monthly search volume through
-`dataforseo`; a business's Google listing and reviews through
-`google-places`, as below. One
-not granted is asked for, as the first line below does for scrapecreators.
+Fetching:
+
+- a competitor's site: `tt-crawl survey <url> --external` (into
+  `raw/external/<host>/`)
+- ad libraries, social posts and comments: the `scrapecreators` connection
+- reviews on a site with no API (Google Maps), recent threads on Reddit,
+  LinkedIn, Facebook groups and forums, and the TikTok Creative Center's
+  top ads for the industry: `apify`
+- People Also Ask, autocomplete and monthly search volume: `dataforseo`
+- a business's Google listing and reviews: `google-places`, as below
+
+Ask for a connection that is not granted, as the first line below does for
+scrapecreators.
 
 ```bash
 python3 ~/tools/taskandtool.py request-connection scrapecreators --why "competitors' ads and posts"
@@ -39,8 +43,9 @@ Copy and tick:
       (`references/libraries.md` says what each shows and how to read it).
       Save the raw pages or exports to `raw/<library>/<competitor>/`, then
       write `research/competitors/<name>.md`.
-- [ ] 4. **Organic.** Each competitor's and the category's top posts by
-      shares, saves and comments, not likes, scaled to the account's size.
+- [ ] 4. **Organic.** The top posts of each competitor and of the category,
+      ranked by shares, saves and comments (not likes) relative to the
+      account's size.
       Add the topic and hook of each to the competitor's file.
 - [ ] 5. **Conversations.** Recent threads in the niche (Reddit, LinkedIn,
       Facebook groups, forums) where people ask a question the owner

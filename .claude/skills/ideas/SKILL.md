@@ -23,8 +23,9 @@ Copy and tick:
 - [ ] 3. Write ten to fifteen candidate ideas. Draw them from the sources
       below, each as one line: reader, stage, argument, the proof in
       `claims.md`.
-- [ ] 4. Score each (below) and keep the top ones that differ in argument,
-      not in colour or wording: as many as the owner asked for, else nine.
+- [ ] 4. Score each (below) and keep the top scorers, as many as the owner
+      asked for or else nine, that differ in argument, not in colour or
+      wording.
 - [ ] 5. For each kept idea, create `creatives/YYYY-MM-DD-<slug>/creative.md`
       with `status: draft`, the angle, the stage, the framework, the claims,
       and the idea in two sentences. The hook comes next (the `copywriting` skill).

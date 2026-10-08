@@ -130,4 +130,4 @@ Pitfalls: more than about five slides in one go, feed posts reshared with nothin
 - A link in the caption, or "link in bio" without saying what it leads to.
 - Engagement asks with nothing behind them: "double tap if", "tag a friend who".
 - Stock photos standing in for the work.
-- The writing skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.
+- The `tropes` skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.

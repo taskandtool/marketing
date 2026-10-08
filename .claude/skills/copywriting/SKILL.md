@@ -24,7 +24,7 @@ be said. The words come from those two files and the idea in `creative.md`.
    model. Where the owner's own copy is marketese, write plainer than they
    do.
 5. **Facts as `AGENTS.md` says.** A rating carries its count and source. A
-   claim cut for want of a source is never softened into a vaguer one, and
+   claim cut because it has no source is never softened into a vaguer one, and
    customers, results, awards or urgency are never invented.
 6. **Vary the rhythm.** Mix four-word and forty-word sentences; at most one
    list of three; commas and the odd aside; no em dashes.
@@ -33,12 +33,13 @@ be said. The words come from those two files and the idea in `creative.md`.
 
 ## Hooks
 
-The opening line, second or frame does two jobs: it interrupts, and it says
-who it is for. One without the other is clickbait or invisible. Pick the type for the
-reader's awareness stage (`references/hooks.md`), write five to eight
-openings in the customers' words (`research/audience.md`), keep the best
-two and record the rest in `research/hooks.md`. The proposition lands in
-the first line or three seconds, works muted, and the body pays it off.
+The hook (the opening line, the first second of a video, or the first
+frame) does two jobs: it interrupts, and it says who it is for. One without
+the other is clickbait or invisible. Pick the hook type for the reader's
+awareness stage (`references/hooks.md`), write five to eight openings in
+the customers' words (`research/audience.md`), keep the best two and record
+the rest in `research/hooks.md`. The proposition lands in the first line or
+the first three seconds and works muted; the body pays it off.
 
 ## Lengths
 

@@ -20,7 +20,8 @@ plays them itself, so there is no video to render.
 
 The owner's photos first: a slide may be their photo with the line set on
 it (an edit of the photo). Otherwise the image tool sets the line in the
-picture. One `slide-N.md` per slide, its prompt under a `## Prompt`
-heading, and the `slide-N.png` made from it, numbered in order. The caption and hashtags go in `creative.md` as for any post, and
-its `files` lists every `slide-N.png`. Read every slide at full size for
+picture. Each slide gets a `slide-N.md` with its prompt under a `## Prompt`
+heading, and the `slide-N.png` made from it, numbered in order. The caption
+and hashtags go in `creative.md` as for any post, and its `files` lists
+every `slide-N.png`. Read every slide at full size for
 misspelt words before the owner sees the set.

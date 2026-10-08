@@ -17,20 +17,20 @@ Copy and tick:
 
 - [ ] 1. **Pillar and platform.** Education, proof, behind the scenes,
       offer (at most one post in five) or community
-      (`references/repurpose.md`). Read `references/<platform>.md` for the
-      platform the idea is for first.
+      (`references/repurpose.md`). First read `references/<platform>.md`
+      for the idea's platform.
 - [ ] 2. **The idea**, from the sources below.
 - [ ] 3. **The hook and the words** (the `copywriting` skill). The first
       line stands alone: the hook and its payoff before the platform's
-      visible cutoff (`specs/<platform>.md`; for X and Google Business, their
-      reference).
+      visible cutoff (in `specs/<platform>.md`; for X and Google Business, in
+      their `references/` file).
 - [ ] 4. **The ask**, one, matched to what the platform rewards: "Save
       this", "Send this to someone planning a kitchen", "Reply with yours".
       Links stay out of the body on Facebook, LinkedIn, X and Threads.
 - [ ] 5. **The picture**: the owner's own photo first, a carousel of real
       job photos, a slideshow (`references/slideshow.md`), or a short clip
-      (the `video` skill). Generated pictures
-      only for illustrations and backgrounds (Pictures in `AGENTS.md`).
+      (the `video` skill). Use generated pictures only for illustrations
+      and backgrounds (the Pictures section of `AGENTS.md`).
 - [ ] 6. Write `creatives/YYYY-MM-DD-<slug>/creative.md` with `kind: post`,
       the whole caption as it will be pasted in `copy.caption`, and any
       hashtags in `copy.hashtags`. Run `python3 scripts/check.py`, then show
@@ -47,7 +47,7 @@ feed.
 
 ## One idea, a week of posts
 
-Write the set in `references/repurpose.md`: each platform's version
+Write the set as `references/repurpose.md` says: each platform's version
 rewritten for that platform, never pasted across. Accounts that mostly
 repost or cross-post unchanged lose reach on Instagram and Facebook.
 

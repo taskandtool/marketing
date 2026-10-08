@@ -1,6 +1,6 @@
 # Static ad formats
 
-A catalogue of static ad formats, each written as a recipe the agent follows. Every recipe has the same lines so the agent can pick one and fill it from the idea and the claims ledger. The worked examples use a made-up business, Harlow Joinery, a workshop in Bristol that makes fitted kitchens; the copy patterns in brackets are the reusable part, the example only shows the pattern filled. Every number in an example is illustrative; the agent replaces it with a figure from the claims ledger or drops it.
+A catalogue of static ad formats, each written as a recipe the agent follows. Every recipe has the same lines so the agent can pick one and fill it from the idea and the claims ledger. The worked examples use a made-up business, Harlow Joinery, a workshop in Bristol that makes fitted kitchens. The copy patterns in brackets are the reusable part; each example only shows a pattern filled in. Every number in an example is illustrative; the agent replaces it with a figure from the claims ledger or drops it.
 
 ## Where this list comes from
 
@@ -17,7 +17,7 @@ What the benchmark says about the field, before any single format: text-only and
 - **The 3 x 3 starter set.** For a new business or campaign, produce three angles in three formats each, nine ads. A sensible default for a service business: outcome, social proof and problem, each in a photo + statement, a testimonial and one native or lo-fi format. For a business with an offer, the offer-first banner is in the first nine.
 - **Distinct concepts beat variants.** Since Meta's Andromeda ranking rollout (global, Oct 2025) an ad set does better with 8 to 15 ads that each carry a different angle than with one ad in twelve colourways. Keep similarity between concepts in an ad set under about 40% (Segwise figure, unverified). Vary the copy shape too: a question, a list, a quote, a statement.
 - **Lo-fi wins more often than it is used.** Sticky notes, screenshots, text threads and phone photos are not a fallback for a business without a photographer; they are a first choice.
-- **Funnel stage** in each recipe: top (cold, has not heard of us), mid (warm, has seen us or has the problem in mind), bottom (hot, has visited, enquired or abandoned).
+- **Funnel stage**, as each recipe's When line names it: top (cold, has not heard of us), mid (warm, has seen us or has the problem in mind), bottom (hot, has visited, enquired or abandoned).
 - **Sizes.** Feed 4:5 at 1080 x 1350 (1:1 underperforms); Stories and Reels 9:16 at 1080 x 1920 with copy kept out of the top 14% and bottom 35%. Meta penalises images with a short edge under 1080 (unverified).
 
 ## The recipes

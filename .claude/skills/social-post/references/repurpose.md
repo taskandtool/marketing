@@ -78,7 +78,7 @@ The same business, the same voice, different jobs. An ad pays for attention and 
 | Proof | Named, permissioned, from the claims ledger | The same rule, plus the story around it |
 | Selling | Every ad sells | No more than one post in five is an offer |
 | Format | Fixed by the placement spec in `specs/<platform>.md` | Chosen by what the platform rewards: carousels for saves, Reels for reach, documents for dwell, photos for Facebook reach |
-| Frequency | Set by budget and the test plan in `angles/references/strategy.md` | Set by the cadence table above |
+| Frequency | Set by budget and the test set in the `ad` skill | Set by the cadence table above |
 | Compliance | Meta's personal attributes policy, the FTC and ASA rules on claims | The same rules on claims; permission for every customer named or shown |
 
 Where the two meet: an organic post that gets sent and saved is the first candidate for a paid test. Its first frame becomes the static and its hook becomes the primary text, cut to the ad rules above.

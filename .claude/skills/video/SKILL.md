@@ -54,7 +54,7 @@ platform spec.
   in `specs/`. Generated shots carry no words; they go on in the edit.
 - Music is chosen where the ad runs (Ads Manager's library on Meta, the
   Commercial Music Library on TikTok) or licensed for paid social; never a
-  trending song. Generated music off; generated ambience and effects are
+  trending song. No generated music; generated ambience and effects are
   fine.
 - The owner's own voice first. A synthetic voice or a realistic generated
   person must be disclosed where the platform requires it.

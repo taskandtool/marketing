@@ -1,6 +1,6 @@
 ---
 name: marketing
-description: "The marketing app's folders, the shape of a creative.md, and the order of work from research to results. Use at the start of a session here, when the owner asks what to do next, what is waiting for approval, or where something is filed. Not for making a piece (ad, social-post) or measuring one (results)."
+description: "Maps the marketing app: its folders, the shape of a creative.md, and the order of work from research to results. Use at the start of a session here, when the owner asks what to do next, what is waiting for approval, or where something is filed. Not for making a piece (ad, social-post) or measuring one (results)."
 ---
 
 # Marketing
@@ -22,10 +22,10 @@ Each step has its own skill. Start wherever the folders say the work is.
    email (the `email` skill):
    words through `copywriting`, pictures as `AGENTS.md` says, clips
    through `video`.
-5. **Audit.** `python3 scripts/check.py`, then the `tropes` skill's eye pass.
-   Fix every finding before the owner sees anything.
+5. **Audit.** `python3 scripts/check.py`, then read the work by eye against
+   the `tropes` skill. Fix every finding before the owner sees anything.
 6. **Review.** Show the owner the files as deliverables and set `status:
-   sent`. Their approval or rejection sets it again.
+   sent`. The owner's approval or rejection then changes `status` again.
 7. **Results.** What ran and what it did goes in `results.md`, and a
    monthly report says what to make next (the `results` skill).
 

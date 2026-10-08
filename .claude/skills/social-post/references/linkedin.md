@@ -127,4 +127,4 @@ Pitfalls: naming a client without written permission, paraphrasing their words, 
 - A link in the body, a hashtag wall, more than five mentions.
 - Reposts of other people's carousels, watermarked or not, presented as your own.
 - Stock photos of handshakes, laptops and skylines.
-- The writing skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.
+- The `tropes` skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.
