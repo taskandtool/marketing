@@ -11,7 +11,7 @@ sources:
 
 # Google Business Profile posts
 
-Recipes for the three post types on a Business Profile: Updates, Offers and Events. GBP posts show on the business's Google listing and in Maps, to people already searching for the service in the area, so they are closer to a shop window than a feed. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real post takes its figures from the claims ledger.
+Recipes for the three post types on a Business Profile: Updates, Offers and Events. GBP posts show on the business's Google listing and in Maps, to people already searching for the service in the area, so they are closer to a shop window than a feed. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real post takes its figures from `claims.md`.
 
 ## What performs
 

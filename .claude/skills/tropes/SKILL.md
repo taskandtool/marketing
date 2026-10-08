@@ -6,9 +6,9 @@ description: "Finds and removes the tells of AI-made work in copy, pictures and 
 # Tropes
 
 A tell is an unspecified default: the model's average where this business's
-particular should be. Readers and platforms trust work that reads as
-generated less, so it costs the owner twice. The fix is never a synonym; it
-is the specific thing that was missing.
+particular should be. Readers trust work that reads as generated less, and
+so do platforms, so it costs the owner twice: in customers and in reach. The
+fix is never a synonym; it is the specific thing that was missing.
 
 Version: 0.1.0 (taskandtool/skills)
 

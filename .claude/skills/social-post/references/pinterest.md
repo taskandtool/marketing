@@ -9,14 +9,14 @@ sources:
 
 # Pinterest organic pins
 
-Recipes for a business account. Pinterest is a search engine with a long tail: a pin from last year still brings visits. It suits any business whose work can be photographed and planned for (kitchens, gardens, weddings, food, interiors, clothes). The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real pin takes its figures from the claims ledger.
+Recipes for a business account. Pinterest is a search engine with a long tail: a pin from last year still brings visits. It suits any business whose work can be photographed and planned for (kitchens, gardens, weddings, food, interiors, clothes). The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real pin takes its figures from `claims.md`.
 
 ## What performs
 
 - Pinterest's own creative guidance: "We recommend using a 2:3 aspect ratio, or 1000 x 1500 pixels". Pins taller than 2:3 "might get cut off".
 - Layout, from Pinterest: "Stack your story by putting visuals in the middle, then stacking text overlay with key messaging at the top and extra details at the bottom". Show products "in realistic settings".
 - Hootsuite: keywords in the title, the description, the board name and on the destination page. Fresh pins (a new image, even to the same URL) beat re-pins of an existing image.
-- Pins are found by search months later, so evergreen subjects beat news. There is no share-signal data for Pinterest in the report; saves to boards are the measure that matters.
+- Pins are found by search months later, so evergreen subjects beat news. None of these sources measures shares as a signal on Pinterest; saves to boards are the measure that matters.
 
 ## Norms
 

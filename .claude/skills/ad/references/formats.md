@@ -1,6 +1,6 @@
 # Static ad formats
 
-A catalogue of static ad formats, each written as a recipe the agent follows. Every recipe has the same lines so the agent can pick one and fill it from the idea and the claims ledger. The worked examples use a made-up business, Harlow Joinery, a workshop in Bristol that makes fitted kitchens. The copy patterns in brackets are the reusable part; each example only shows a pattern filled in. Every number in an example is illustrative; the agent replaces it with a figure from the claims ledger or drops it.
+A catalogue of static ad formats, each written as a recipe the agent follows. Every recipe has the same lines so the agent can pick one and fill it from the idea and the claims ledger (`claims.md`). The worked examples use a made-up business, Harlow Joinery, a workshop in Bristol that makes fitted kitchens. The copy patterns in brackets are the reusable part; each example only shows a pattern filled in. Every number in an example is illustrative; the agent replaces it with a figure from the claims ledger or drops it.
 
 ## Where this list comes from
 
@@ -347,7 +347,7 @@ Structure: A photograph in which the words are part of the world, set on a flat 
 Copy: "[The claim, six words or fewer]." Example: "Kitchens fitted by their makers."
 Visual: A generated photograph with a flat surface in the scene (a painted board, a van side, a plain wall) carrying the words; the image model paints them only when it renders text cleanly, and every letter is checked.
 Why it works: The eye reads a sign in a scene before it reads a headline on a card.
-Pitfalls: Asking the image model to paint the words (it misspells them); a surface that is not flat; text that competes with the object.
+Pitfalls: Words painted by a model that does not render text cleanly, or letters nobody checked; a surface that is not flat; text that competes with the object.
 
 ### Objection-led (skeptic to customer)
 When: Mid funnel. The reader's doubt, said first, then the answer.

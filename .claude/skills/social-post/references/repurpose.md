@@ -12,7 +12,7 @@ sources:
 
 # Repurposing: one idea across the platforms
 
-The method the agent uses to turn one idea into a week of posts without cross-posting. Read this before the platform files; it decides what gets made, and the platform files decide how. The worked example uses Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real post takes its figures from the claims ledger.
+The method the agent uses to turn one idea into a week of posts without cross-posting. Read this before the platform files; it decides what gets made, and the platform files decide how. The worked example uses Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real post takes its figures from `claims.md`.
 
 ## The five pillars
 
@@ -75,7 +75,7 @@ The same business, the same voice, different jobs. An ad pays for attention and 
 | Hashtags | None | 3 to 5 on Instagram, TikTok and LinkedIn; 0 to 1 on Facebook; one topic tag on Threads; none on X or GBP |
 | Links | Always, in the ad's own link field | Never in the body on Facebook, LinkedIn, X or Threads; "link in bio" on Instagram; the button on GBP; native on Pinterest |
 | Tone | Polished, brand-voiced, one claim per ad, every claim from the ledger | First person, specific, phone-shot, admits what went wrong, written to be forwarded to one person |
-| Proof | Named, permissioned, from the claims ledger | The same rule, plus the story around it |
+| Proof | Named, permissioned, from `claims.md` | The same rule, plus the story around it |
 | Selling | Every ad sells | No more than one post in five is an offer |
 | Format | Fixed by the placement spec in `specs/<platform>.md` | Chosen by what the platform rewards: carousels for saves, Reels for reach, documents for dwell, photos for Facebook reach |
 | Frequency | Set by budget and the test set in the `ad` skill | Set by the cadence table above |

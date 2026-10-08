@@ -12,7 +12,7 @@ sources:
 
 # X and Threads organic posts
 
-Two text-first platforms in one file. For a one-person business they are optional: post only if it costs nothing, otherwise skip both. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real post takes its figures from the claims ledger.
+Two text-first platforms in one file. For a one-person business they are optional: post only if it costs nothing, otherwise skip both. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real post takes its figures from `claims.md`.
 
 ## What performs
 

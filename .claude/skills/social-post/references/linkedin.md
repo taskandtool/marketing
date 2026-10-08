@@ -13,7 +13,7 @@ sources:
 
 # LinkedIn organic posts
 
-Recipes for the owner's profile and the company Page. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens. Jo writes the profile posts; the Page carries milestones, hiring and customer wins. Numbers in examples are illustrative; a real post takes its figures from the claims ledger.
+Recipes for the owner's profile and the company Page. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens. Jo writes the profile posts; the Page carries milestones, hiring and customer wins. Numbers in examples are illustrative; a real post takes its figures from `claims.md`.
 
 ## What performs
 

@@ -12,7 +12,7 @@ sources:
 
 # Facebook Page organic posts
 
-Recipes for a business Page. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real post takes its figures from the claims ledger.
+Recipes for a business Page. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real post takes its figures from `claims.md`.
 
 ## What performs
 

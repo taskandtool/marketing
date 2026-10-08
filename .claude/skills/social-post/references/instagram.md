@@ -22,7 +22,7 @@ sources:
 
 # Instagram organic posts
 
-Recipes for the feed, Reels and Stories. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Every number in an example is illustrative; a real post takes its figures from the claims ledger or drops them.
+Recipes for the feed, Reels and Stories. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Every number in an example is illustrative; a real post takes its figures from `claims.md` or drops them.
 
 ## What performs
 
