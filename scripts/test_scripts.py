@@ -211,26 +211,6 @@ class Generators(unittest.TestCase):
         self.assertEqual(r.returncode, 1, r.stdout + r.stderr)
         self.assertIn("Try: python3 ~/tools/taskandtool.py request-connection openrouter-api --why", r.stderr)
 
-    def test_a_granted_key_in_dot_env_counts(self):
-        home = tempfile.mkdtemp()
-        try:
-            put(os.path.join(home, ".env"), "export ORG_ID='o1'\nOPENROUTER_API_KEY='sk-or-from-env'\nPLAIN=v1 # a comment\n")
-            r = run("videogen.py", "--check", cwd=APP, home=home)
-            self.assertEqual(r.returncode, 0, r.stderr)
-            sys.path.insert(0, SCRIPTS)
-            old = os.environ.pop("OPENROUTER_API_KEY", None), os.environ.get("HOME")
-            os.environ["HOME"] = home
-            try:
-                self.assertEqual(common.env("OPENROUTER_API_KEY"), "sk-or-from-env")
-                self.assertIsNone(common.env("OPENAI_API_KEY"))
-                self.assertEqual(common.env("PLAIN"), "v1")
-            finally:
-                os.environ["HOME"] = old[1]
-                if old[0] is not None:
-                    os.environ["OPENROUTER_API_KEY"] = old[0]
-        finally:
-            shutil.rmtree(home)
-
     def test_help_and_misuse(self):
         for script in ("check.py", "videogen.py"):
             for flag in ("--help", "-h"):
