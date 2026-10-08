@@ -49,10 +49,18 @@ FOLDERS = ("creatives", "emails", "reports", "research", "brand", "public", "med
 FILES = ("claims.md", "results.md")
 # The local plugins, beside the config: shown as text / a creative's files.
 LOCAL_PLUGINS = ("safe-text", "creative-files")
+def any_case(ext):
+    """A glob for an extension in any case: Quartz matches case-sensitively."""
+    return "".join(f"[{c.lower()}{c.upper()}]" if c.isalpha() else c for c in ext)
+
+
 # Never built into the site: data files, crawl caches, and anything a browser
 # would run on the viewer's own address (raw/ holds other people's sites).
-LEFT_OUT = ["**/*.json", "**/*.jsonl", "**/_cache/**", "**/*.html", "**/*.htm",
-            "**/*.xhtml", "**/*.xml", "**/*.js", "**/*.mjs", "raw/**/*.svg"]
+LEFT_OUT = (["**/_cache/**"]
+            + [f"**/*.{any_case(ext)}" for ext in (
+                "json", "jsonl", "html", "htm", "shtml", "xhtml", "xht",
+                "xml", "xsl", "xslt", "js", "mjs", "cjs")]
+            + [f"raw/**/*.{any_case('svg')}"])
 DEFAULT_TITLE = "Marketing"
 MAX_ASSET = 25 * 1024 * 1024      # Cloudflare's limit on one static file
 MAX_FILES = 20_000                # and on the files in one deploy
@@ -160,25 +168,31 @@ def write_if_changed(path, text):
 
 
 # Fixes to the pinned Quartz, applied at every install: (file, the text as
-# shipped, what it becomes). Quartz 5.0.0 stores a generated folder page's
-# rendered listing as its content, then renders the listing again, so every
-# folder showed its list twice.
+# shipped, what it becomes, a text that must be gone afterwards).
 QUARTZ_PATCHES = [
+    # 5.0.0 stores a generated folder page's rendered listing as its content,
+    # then renders the listing again, so every folder showed its list twice.
     ("quartz/plugins/pageTypes/dispatcher.ts",
      "      ve.tree.children = htmlAst.children\n      ve.vfile.data.htmlAst = htmlAst\n",
-     "      ve.vfile.data.htmlAst = htmlAst\n"),
+     "      ve.vfile.data.htmlAst = htmlAst\n",
+     "ve.tree.children = htmlAst.children"),
+    # The dev server's watcher skips what Quartz's own .gitignore names, and
+    # that names public, private/ and prof: edits to public/ never showed.
+    (".gitignore", "\npublic\nprof\n", "\n", "\npublic\n"),
+    (".gitignore", "\nprivate/\n", "\n", "\nprivate/\n"),
 ]
 
 
 def patch_quartz():
-    for name, shipped, fixed in QUARTZ_PATCHES:
+    for name, shipped, fixed, gone in QUARTZ_PATCHES:
         path = os.path.join(QUARTZ_DIR, name)
         with open(path) as f:
             text = f.read()
         if shipped in text:
+            text = text.replace(shipped, fixed, 1)
             with open(path, "w") as f:
-                f.write(text.replace(shipped, fixed, 1))
-        elif fixed not in text:
+                f.write(text)
+        if gone in text:
             raise Failed(f"Quartz {QUARTZ_TAG} is not the code the viewer patches: {name}", [],
                          f"rm -rf {QUARTZ_DIR} && {CMD} install")
 
@@ -203,7 +217,12 @@ def install():
     a build run meanwhile waits for it rather than writing the same folder."""
     os.makedirs(os.path.dirname(QUARTZ_DIR), exist_ok=True)
     with open(QUARTZ_DIR + ".lock", "w") as lock:
-        fcntl.flock(lock, fcntl.LOCK_EX)
+        try:
+            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            print("viewer: waiting for the Quartz install already running (the web service's first "
+                  "start); minutes on a machine", file=sys.stderr, flush=True)
+            fcntl.flock(lock, fcntl.LOCK_EX)
         return _install()
 
 
@@ -215,10 +234,17 @@ def _install():
                      "nvm install 22 && nvm alias default 22")
     did = False
     if not os.path.isdir(os.path.join(QUARTZ_DIR, ".git")):
-        os.makedirs(os.path.dirname(QUARTZ_DIR), exist_ok=True)
-        shutil.rmtree(QUARTZ_DIR, ignore_errors=True)
+        if os.path.exists(QUARTZ_DIR):
+            # Not something this script made: say so rather than delete it.
+            raise Failed(f"{QUARTZ_DIR} is there but is not a Quartz clone", [],
+                         f"move it aside, then {CMD} install")
+        # Cloned beside it and renamed into place, so a clone cut off by a
+        # sleep or a replacement never leaves a half Quartz that looks whole.
+        partial = QUARTZ_DIR + ".partial"
+        shutil.rmtree(partial, ignore_errors=True)
         run(["git", "-c", "advice.detachedHead=false", "clone", "--quiet", "--depth", "1",
-             "--branch", QUARTZ_TAG, QUARTZ_REPO, QUARTZ_DIR], ROOT, f"cloning Quartz {QUARTZ_TAG}")
+             "--branch", QUARTZ_TAG, QUARTZ_REPO, partial], ROOT, f"cloning Quartz {QUARTZ_TAG}")
+        os.rename(partial, QUARTZ_DIR)
         did = True
     # Written only after `npm ci` succeeds, so a half-finished install is redone.
     packages = os.path.join(QUARTZ_DIR, "node_modules", ".marketing-viewer-installed")
@@ -327,7 +353,11 @@ def prune(dist):
 def build():
     install()
     # A build is for production: its link previews name production's address.
-    stage(BUILD_CONTENT, production_host())
+    host = production_host()
+    if host is None and os.path.isfile(os.path.expanduser("~/tools/taskandtool.py")):
+        print("viewer build: production's address did not come back from the platform; "
+              "link previews say localhost until the next build", file=sys.stderr, flush=True)
+    stage(BUILD_CONTENT, host)
     dist = os.path.join(ROOT, "dist")
     run(["npx", "quartz", "build", "-d", BUILD_CONTENT, "-o", dist], QUARTZ_DIR, "the Quartz build")
     kept, dropped = prune(dist)

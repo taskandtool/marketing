@@ -72,9 +72,10 @@ which is live; the viewer shows the files.
 - **Production:** `npm run deploy` builds a static site into `dist/` and
   deploys it to Cloudflare through the platform; search works there too,
   in the browser. The first deploy opens it to the team; only a person
-  makes it public, and even then `/raw` and search stay the team's.
-- **Safe with crawled text:** crawled HTML, scripts and SVGs are never
-  built into the site; the `safe-text` plugin shows any HTML in markdown as
+  makes it public, and that publishes all of it, `raw/` included: who can
+  see it is the publishing setting, never the app.
+- **Safe with crawled text:** crawled HTML, scripts, XML and SVGs (in any
+  letter case) are never built into the site; the `safe-text` plugin shows any HTML in markdown as
   text and strips it from titles and tags; `creative-files` shows only files
   named beside the creative.
 

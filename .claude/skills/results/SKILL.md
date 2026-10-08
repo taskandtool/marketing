@@ -32,8 +32,10 @@ python3 ~/tools/taskandtool.py request-connection google --why "your search traf
 
 ## results.md
 
-Newest first, one block per creative per period: the folder, the
-platform, the dates, then what the account gave. Ads: spend, hook rate,
+Newest first, one block per creative per period: the folder as a link to
+it (`[2026-10-01-roof-leak](creatives/2026-10-01-roof-leak/)`, never to its
+`creative.md`: the viewer shows the piece at its folder), the platform, the
+dates, then what the account gave. A report links the same way. Ads: spend, hook rate,
 hold rate, click-through, cost per lead. Posts: reach, saves, shares,
 comments. Each number with its unit and its source. Search goes in its own
 block per period: the queries and pages that brought visits.

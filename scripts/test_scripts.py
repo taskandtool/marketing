@@ -362,7 +362,7 @@ class Viewer(unittest.TestCase):
 
     def test_config_fills_the_local_plugins_and_the_title(self):
         text = viewer.config_text()
-        self.assertIn('"**/*.html"', text)
+        self.assertIn('"**/*.[hH][tT][mM][lL]"', text)
         self.assertNotIn("@LEFT_OUT@", text)
         self.assertNotIn("@SAFE_TEXT@", text)
         self.assertNotIn("@CREATIVE_FILES@", text)
@@ -378,17 +378,35 @@ class Viewer(unittest.TestCase):
         self.assertEqual(lock["plugins"]["creative-files"]["commit"], "local")
         self.assertEqual(lock["plugins"]["safe-text"]["commit"], "local")
 
-    def test_the_quartz_patch_applies_once_and_refuses_other_code(self):
-        name, shipped, fixed = viewer.QUARTZ_PATCHES[0]
-        path = os.path.join(self.quartz, name)
-        put(path, "before\n" + shipped + "after\n")
+    def test_the_quartz_patches_apply_once_and_refuse_other_code(self):
+        dispatcher = os.path.join(self.quartz, "quartz/plugins/pageTypes/dispatcher.ts")
+        ignore = os.path.join(self.quartz, ".gitignore")
+        shipped = viewer.QUARTZ_PATCHES[0][1]
+        put(dispatcher, "before\n" + shipped + "after\n")
+        put(ignore, ".DS_Store\nnode_modules\npublic\nprof\ntsconfig.tsbuildinfo\n.quartz-cache\nprivate/\n.replit\n")
         viewer.patch_quartz()
         viewer.patch_quartz()
-        with open(path) as f:
-            self.assertEqual(f.read(), "before\n" + fixed + "after\n")
-        put(path, "some other Quartz\n")
+        with open(dispatcher) as f:
+            self.assertEqual(f.read(), "before\n" + viewer.QUARTZ_PATCHES[0][2] + "after\n")
+        with open(ignore) as f:
+            lines = f.read().split("\n")
+        for gone in ("public", "prof", "private/"):
+            self.assertNotIn(gone, lines)
+        self.assertIn("node_modules", lines)
+        # A Quartz whose dispatcher changed but kept the line we keep: refused.
+        put(dispatcher, "      ve.tree.children = htmlAst.children\n      other\n      ve.vfile.data.htmlAst = htmlAst\n")
         with self.assertRaises(viewer.Failed):
             viewer.patch_quartz()
+
+    def test_left_out_matches_any_letter_case(self):
+        import fnmatch
+        def left_out(path):
+            return any(fnmatch.fnmatchcase(path, pat.replace("**/", "*")) for pat in viewer.LEFT_OUT)
+        for path in ("raw/site/a/page.HTML", "raw/site/a/b.Htm", "raw/x/logo.SVG", "media/a.shtml",
+                     "raw/a.xht", "raw/a.XSL", "raw/a.js", "raw/_cache/x.md"):
+            self.assertTrue(left_out(path), path)
+        for path in ("creatives/2026-10-01-a/v1.png", "brand/logo.svg", "raw/site/a/pages/home.md"):
+            self.assertFalse(left_out(path), path)
 
     def test_a_plugin_link_to_another_folder_is_cleared(self):
         plugins = os.path.join(self.quartz, ".quartz", "plugins")
@@ -418,6 +436,7 @@ class Viewer(unittest.TestCase):
                                slug: "creatives/2026-10-01-us-vs-them/creative",
                                frontmatter: { title: "creative", files: ["v1.png"] } } }
         plugin(tree, file)
+        out.inserted = tree.children.map((n) => n.type === "heading" ? n.children[0].value : n.data?.hName ?? n.type)
         out.slug = file.data.slug
         out.pageTitle = file.data.frontmatter.title
         const media = { data: { relativePath: "media/_index.md", frontmatter: { title: "_index" } } }
@@ -435,6 +454,7 @@ class Viewer(unittest.TestCase):
         self.assertEqual(out["video"]["hName"], "video")
         self.assertEqual(out["cta"], "Call to action")
         self.assertEqual(out["headings"], ["Copy", "File"])
+        self.assertEqual(out["inserted"], ["File", "paragraph"])
         self.assertEqual(out["slug"], "creatives/2026-10-01-us-vs-them/index")
         self.assertEqual(out["pageTitle"], "Us vs them")
         self.assertEqual(out["mediaTitle"], "Media")
