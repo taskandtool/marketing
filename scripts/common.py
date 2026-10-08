@@ -98,7 +98,7 @@ PROVIDER_ENV = {"openrouter": "OPENROUTER_API_KEY"}
 
 def env(name):
     """`name` from the environment, else from ~/.env: a turn clears the AI
-    provider names (OPENAI_API_KEY, OPENROUTER_API_KEY) from the AI's own
+    provider names (OPENROUTER_API_KEY and the like) from the AI's own
     shell, but a key the owner granted stays in ~/.env."""
     if os.environ.get(name):
         return os.environ[name]

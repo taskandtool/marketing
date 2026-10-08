@@ -107,8 +107,9 @@ disk.
 ## What it connects to
 
 Everything is optional and asked for when it is needed: the owner's own
-OpenAI key for pictures (otherwise they are made on Task & Tool credit), a
-video model (OpenRouter or Higgsfield), ScrapeCreators for
+OpenAI key, to run the app's AI and its pictures on their account rather
+than Task & Tool credit, a video model (OpenRouter or Higgsfield),
+ScrapeCreators for
 competitors' ads and posts, Apify for reviews on sites with no API and
 for posts in the niche, DataForSEO for search questions, Google Places for
 the business's listing, Search Console, Google Analytics and Meta's

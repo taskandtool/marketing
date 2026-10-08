@@ -7,7 +7,7 @@
       {
         "provider": "openai-api",
         "strength": "suggested",
-        "why": "Make pictures on your own OpenAI account instead of Task & Tool credit"
+        "why": "Run this app's AI on your own OpenAI account, pictures included"
       },
       {
         "provider": "openrouter-api",

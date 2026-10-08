@@ -43,7 +43,7 @@ Read the one that fits the ask rather than working from memory.
 python3 scripts/check.py [folder …]   # the audit; then one line per creative: folder, status, kind, platform
 python3 scripts/check.py --status sent  # what is waiting for the owner's approval
 python3 scripts/videogen.py --prompt-file creatives/<folder>/creative.md --section "Shot 1" --out creatives/<folder>/shot-1.mp4
-python3 ~/tools/taskandtool.py make-image --prompt "..." --out creatives/<folder>/v1.png --size 4:5   # a picture, saved; never replaces one
+python3 ~/tools/taskandtool.py make-image --prompt-file creatives/<folder>/creative.md --section Prompt --out creatives/<folder>/v1.png --size 4:5   # a picture; never replaces one
 ```
 
 videogen sends the creative's `## Shot 1` section (or the one named by
