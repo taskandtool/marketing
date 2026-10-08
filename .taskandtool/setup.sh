@@ -12,6 +12,9 @@
 #      tt-crawl (the site reader the brand and research skills use)
 #   3. runs tt-crawl setup: the launcher and the browsers it reads sites
 #      with (Chrome, and Obscura)
+#   4. registers the `web` service that serves the marketing files as a
+#      website; it installs the viewer (Quartz, outside the app) on its first
+#      start
 set -euo pipefail
 
 APP="$(pwd)"
@@ -44,4 +47,14 @@ python3 -c "import PIL, requests; print('Pillow', PIL.__version__, 'requests', r
 # and its screenshots, Obscura is its fallback.
 python3 -m ttcrawl setup || echo "tt-crawl setup did not finish every step; its output above says which"
 tt-crawl --version || echo "== warning: tt-crawl is not on the PATH; the brand and research skills cannot read sites until bash .taskandtool/setup.sh runs clean"
+
+# 4. The viewer's web service. `npm run dev` installs Quartz on its first
+# start (minutes on a machine), so setup does not wait for it: the
+# Development address answers once Quartz is in.
+if [ -f "$HOME/tools/taskandtool.py" ]; then
+  echo "== the viewer: serving dev (npm run dev on port 3000); it installs Quartz on its first start"
+  python3 "$HOME/tools/taskandtool.py" serve "npm run dev" --port 3000 \
+    || echo "   not answering yet is expected while Quartz installs; python3 ~/tools/taskandtool.py logs shows its progress"
+fi
+
 echo "== marketing setup done"

@@ -1,8 +1,8 @@
 # This app: marketing
 
 Ads, social posts and emails for one business, made from its brand and its
-market. Nothing is served from here; the outputs are files and drafts the
-owner reviews in chat.
+market. The outputs are files and drafts the owner reviews in chat; the
+viewer shows all of it as a website.
 
 This repository *is* the app. All of it is the owner's to change.
 
@@ -45,6 +45,31 @@ python3 scripts/videogen.py --prompt-file creatives/<folder>/creative.md --secti
 videogen sends the creative's `## Shot 1` (or `--section "Shot 2"`), prints
 the file written and never replaces an existing one; `--check` says which
 model is configured.
+
+## The viewer
+
+Quartz over the creatives, emails, results, reports, research, claims,
+brand, media, specs and `raw/`: search, backlinks, and each creative shown
+as the piece (its copy, pictures and clips). Dev is the `web` service
+(`npm run dev`), every edit there on refresh. Production is `npm run
+deploy` (the `deploy` skill): the first deploy opens it to the team, and
+only a person makes it public, which publishes `raw/` and the research too;
+say so when the owner asks about it. Approvals are the Deliverables tab's,
+never the viewer's.
+
+```bash
+python3 scripts/viewer.py build     # "viewer build: 35 pages and 11 other files in dist/"
+python3 scripts/viewer.py install   # Quartz and its plugins, outside the app; the web service runs it on its first start
+```
+
+On a new machine the `web` service spends its first several minutes
+installing Quartz; the chat and everything else work meanwhile. When the
+owner asks about the viewer before it answers, `python3
+~/tools/taskandtool.py logs` says where the install is; never restart it.
+
+Its look (colours, fonts, which panels show) is `viewer/quartz.config.yaml`;
+take the colours and fonts from `brand/visual-identity.md` when the owner
+asks.
 
 ## Pictures
 

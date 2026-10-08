@@ -1,0 +1,27 @@
+{
+  "name": "creative-files",
+  "version": "1.0.0",
+  "description": "Shows a creative.md or email.md as the piece itself: titled by its folder, its copy, then the pictures and clips its files: field lists.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "main": "./index.js",
+  "scripts": {
+    "build": "node -e \"\""
+  },
+  "quartz": {
+    "name": "creative-files",
+    "displayName": "Creative files",
+    "category": "transformer",
+    "version": "1.0.0",
+    "quartzVersion": ">=5.0.0",
+    "dependencies": [],
+    "defaultOrder": 6,
+    "defaultEnabled": true,
+    "defaultOptions": {}
+  }
+}

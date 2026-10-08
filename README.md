@@ -30,7 +30,7 @@ calls for them.
   results/       ad, post and search numbers from the owner's accounts; the monthly report
   tropes/        the audit for the tells of AI-made copy, pictures and video, and its
                  copy script (shared, like brand)
-.taskandtool/setup.sh  Pillow, requests, tt-crawl and its browsers
+.taskandtool/setup.sh  Pillow, requests, tt-crawl and its browsers, and the viewer's web service
 AGENTS.md        what the AI reads first; CLAUDE.md imports it
 starter-app.json the manifest: the connections it can use and the suggestions an empty chat offers
 ```
@@ -48,7 +48,8 @@ emails/YYYY-MM-DD-<slug>/      one email or sequence per folder: email.md
 results.md               what ran and what it did, newest first
 reports/YYYY-MM.md       the monthly report
 specs/<platform>.md      sizes, limits and policy per platform, dated
-scripts/                 check · videogen, and their tests
+scripts/                 check · videogen · viewer, and their tests
+viewer/                  the viewer's Quartz config, pinned plugins, and its two local plugins
 ```
 
 `python3 scripts/check.py` checks every creative, the claims and the specs,
@@ -56,6 +57,30 @@ and runs the copy through the `tropes` skill's script (Node);
 pictures come from the AI's own image tool, and `videogen.py` calls
 OpenRouter's video models; a Higgsfield
 connection (Seedance, Kling) brings its own instructions.
+
+## The viewer
+
+[Quartz](https://quartz.jzhao.xyz) shows all of it as one website: search
+across the research, claims, copy and results, a folder explorer,
+backlinks and a graph. Each creative opens as the piece: its title, its
+copy, its pictures and its clips, with its kind, platform, angle and hook
+beside them. What waits for approval stays on the app's Deliverables tab,
+which is live; the viewer shows the files.
+
+- **Dev:** the `web` service runs `npm run dev`, every edit on refresh at
+  the app's team address.
+- **Production:** `npm run deploy` builds a static site into `dist/` and
+  deploys it to Cloudflare through the platform; search works there too,
+  in the browser. The first deploy opens it to the team; only a person
+  makes it public, and that publishes `raw/` and the research too.
+- **Safe with crawled text:** the `safe-text` plugin shows any HTML in
+  markdown as text, and `creative-files` shows only files named beside the
+  creative.
+
+The web service installs Quartz on its first start, outside the app
+(`~/.local/share/marketing-viewer/`), so setup does not wait for it. It
+is pinned to a tag, with its plugins pinned in `viewer/quartz.lock.json`;
+the install fixes Quartz 5.0.0 listing a folder twice. It needs Node 22.
 
 ## Install
 

@@ -1,0 +1,10 @@
+{
+  "name": "marketing",
+  "private": true,
+  "description": "Ads, posts and emails for one business, browsable as a website: Quartz over the brand, research, claims, creatives, emails, results and reports.",
+  "scripts": {
+    "dev": "python3 scripts/viewer.py dev",
+    "build": "python3 scripts/viewer.py build",
+    "deploy": "python3 scripts/viewer.py build && python3 ~/tools/taskandtool.py deploy dist"
+  }
+}

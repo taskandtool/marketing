@@ -7,6 +7,7 @@ themselves are tested in the tropes skill (.claude/skills/tropes/test).
     python3 scripts/test_scripts.py
 """
 
+import json
 import os
 import shutil
 import subprocess
@@ -43,6 +44,7 @@ We send the engineer who fitted the boiler.
 
 
 def put(path, content):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "wb" if isinstance(content, bytes) else "w") as fh:
         fh.write(content)
 
@@ -314,6 +316,129 @@ class Frontmatter(unittest.TestCase):
     def test_folder_pattern(self):
         self.assertTrue(common.FOLDER.match("2026-10-01-us-vs-them"))
         self.assertFalse(common.FOLDER.match("us-vs-them"))
+
+
+import viewer  # noqa: E402
+
+
+class Viewer(unittest.TestCase):
+    """The viewer's own logic, against a scratch app and a fake Quartz; no
+    Quartz install and no network."""
+
+    def setUp(self):
+        self.tmp = tempfile.mkdtemp()
+        self.app = os.path.join(self.tmp, "app")
+        shutil.copytree(os.path.join(APP, "viewer"), os.path.join(self.app, "viewer"))
+        self.quartz = os.path.join(self.tmp, "quartz", "quartz-v5.0.0")
+        os.makedirs(os.path.join(self.quartz, "quartz", "plugins", "pageTypes"))
+        self.saved = (viewer.ROOT, viewer.VIEWER, viewer.QUARTZ_DIR)
+        viewer.ROOT, viewer.VIEWER, viewer.QUARTZ_DIR = self.app, os.path.join(self.app, "viewer"), self.quartz
+
+    def tearDown(self):
+        viewer.ROOT, viewer.VIEWER, viewer.QUARTZ_DIR = self.saved
+        shutil.rmtree(self.tmp, ignore_errors=True)
+
+    def test_home_page_links_only_what_exists_and_takes_the_business_name(self):
+        self.assertIn("Nothing is here yet", viewer.home_page())
+        put(os.path.join(self.app, "creatives", "2026-10-01-a", "creative.md"), GOOD)
+        put(os.path.join(self.app, "claims.md"), "# Claims\n")
+        put(os.path.join(self.app, "public", "business.md"), "---\nname: Brightwater Heating\n---\n")
+        page = viewer.home_page()
+        self.assertIn('title: "Brightwater Heating marketing"', page)
+        self.assertIn("- [Creatives](creatives/)", page)
+        self.assertIn("- [Claims](claims.md)", page)
+        self.assertNotIn("Emails", page)
+        self.assertIn("Deliverables tab", page)
+
+    def test_stage_links_the_folders_and_files_and_never_copies(self):
+        put(os.path.join(self.app, "claims.md"), "# Claims\n")
+        content = os.path.join(self.tmp, "content")
+        viewer.stage(content)
+        for name in viewer.FOLDERS:
+            self.assertTrue(os.path.islink(os.path.join(content, name)), name)
+            self.assertTrue(os.path.isdir(os.path.join(self.app, name)), name)
+        self.assertTrue(os.path.islink(os.path.join(content, "claims.md")))
+        self.assertFalse(os.path.exists(os.path.join(content, "results.md")))
+        self.assertTrue(os.path.isfile(os.path.join(content, "index.md")))
+        viewer.stage(content)  # again: the old links are replaced, not doubled
+        self.assertTrue(os.path.islink(os.path.join(content, "claims.md")))
+
+    def test_config_fills_the_local_plugins_and_the_title(self):
+        text = viewer.config_text()
+        self.assertNotIn("@SAFE_TEXT@", text)
+        self.assertNotIn("@CREATIVE_FILES@", text)
+        self.assertIn(os.path.join(self.app, "viewer", "creative-files"), text)
+        self.assertIn("pageTitle: Marketing", text)
+        put(os.path.join(self.app, "public", "business.md"), "---\nname: Acme\n---\n")
+        self.assertIn('pageTitle: "Acme marketing"', viewer.config_text())
+        self.assertIn("baseUrl: localhost", viewer.config_text())
+        self.assertIn("baseUrl: acme-marketing.taskandtool.app",
+                      viewer.config_text("acme-marketing.taskandtool.app"))
+        lock = json.loads(viewer.lock_text())
+
+        self.assertEqual(lock["plugins"]["creative-files"]["commit"], "local")
+        self.assertEqual(lock["plugins"]["safe-text"]["commit"], "local")
+
+    def test_the_quartz_patch_applies_once_and_refuses_other_code(self):
+        name, shipped, fixed = viewer.QUARTZ_PATCHES[0]
+        path = os.path.join(self.quartz, name)
+        put(path, "before\n" + shipped + "after\n")
+        viewer.patch_quartz()
+        viewer.patch_quartz()
+        with open(path) as f:
+            self.assertEqual(f.read(), "before\n" + fixed + "after\n")
+        put(path, "some other Quartz\n")
+        with self.assertRaises(viewer.Failed):
+            viewer.patch_quartz()
+
+    def test_a_plugin_link_to_another_folder_is_cleared(self):
+        plugins = os.path.join(self.quartz, ".quartz", "plugins")
+        os.makedirs(plugins)
+        os.symlink(os.path.join(self.app, "viewer", "safe-text"), os.path.join(plugins, "safe-text"))
+        self.assertFalse(viewer.clear_stale_plugin_links())
+        os.symlink(os.path.join(self.tmp, "gone", "creative-files"), os.path.join(plugins, "creative-files"))
+        self.assertTrue(viewer.clear_stale_plugin_links())
+        self.assertFalse(os.path.lexists(os.path.join(plugins, "creative-files")))
+        self.assertTrue(os.path.islink(os.path.join(plugins, "safe-text")))
+
+    def test_creative_files_plugin(self):
+        script = r"""
+        import * as m from "./index.js"
+        const out = {}
+        out.title = m.titleFromFolder("us-vs-them-roof-leak")
+        out.refused = ["../x.png", "a/b.png", "javascript:x", "", 3].map(m.fileNode)
+        out.image = m.fileNode("v1.png").children[0].url
+        out.video = m.fileNode("shot-1.mp4").data
+        out.cta = m.label("cta")
+        const nodes = m.pieceNodes({ copy: { headline: "Hi", cta: "Book" }, files: ["v1.png"] })
+        out.headings = nodes.filter((n) => n.type === "heading").map((n) => n.children[0].value)
+        // the transform: a creative becomes its folder's page, titled by the folder
+        const plugin = m.default().markdownPlugins({ allSlugs: [] })[0]()
+        const tree = { type: "root", children: [] }
+        const file = { data: { relativePath: "creatives/2026-10-01-us-vs-them/creative.md",
+                               slug: "creatives/2026-10-01-us-vs-them/creative",
+                               frontmatter: { title: "creative", files: ["v1.png"] } } }
+        plugin(tree, file)
+        out.slug = file.data.slug
+        out.pageTitle = file.data.frontmatter.title
+        const media = { data: { relativePath: "media/_index.md", frontmatter: { title: "_index" } } }
+        plugin({ type: "root", children: [] }, media)
+        out.mediaTitle = media.data.frontmatter.title
+        console.log(JSON.stringify(out))
+        """
+        r = subprocess.run(["node", "--input-type=module", "-e", script], capture_output=True, text=True,
+                           cwd=os.path.join(APP, "viewer", "creative-files"))
+        self.assertEqual(r.returncode, 0, r.stderr)
+        out = json.loads(r.stdout)
+        self.assertEqual(out["title"], "Us vs them roof leak")
+        self.assertEqual(out["refused"], [None] * 5)
+        self.assertEqual(out["image"], "v1.png")
+        self.assertEqual(out["video"]["hName"], "video")
+        self.assertEqual(out["cta"], "Call to action")
+        self.assertEqual(out["headings"], ["Copy", "File"])
+        self.assertEqual(out["slug"], "creatives/2026-10-01-us-vs-them/index")
+        self.assertEqual(out["pageTitle"], "Us vs them")
+        self.assertEqual(out["mediaTitle"], "Media")
 
 
 if __name__ == "__main__":
