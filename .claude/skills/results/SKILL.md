@@ -30,6 +30,18 @@ connection that is not granted, saying what it unlocks:
 python3 ~/tools/taskandtool.py request-connection google --why "your search traffic and visits for the monthly report"
 ```
 
+## Tracking
+
+Every number here depends on the site recording what matters; ads optimise
+for whatever it records. Before ads run, or when numbers look wrong, check
+with the owner that each action that matters (signup, booking, enquiry,
+checkout) reaches every ad platform in use and the analytics, with the
+value and a hashed email where the platform takes them. The usual way: an
+event in the site's code (the Website app's), tags in Google Tag Manager,
+and Meta's Conversions API from the server, each through its connection
+when there is one. Test it before it goes live; publishing the tags is the
+owner's yes.
+
 ## results.md
 
 Newest first, one block per creative per period: the folder as a link to

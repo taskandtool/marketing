@@ -87,6 +87,17 @@
       ]
     },
     {
+      "id": "how-could-we-grow",
+      "label": "How could we grow?",
+      "prompt": "How could we grow? Suggest the two or three playbooks that fit us best, and what each needs.",
+      "when": [
+        {
+          "path": "brand/positioning.md",
+          "is": "present"
+        }
+      ]
+    },
+    {
       "id": "make-a-test-set",
       "label": "Make a test set of ads",
       "prompt": "Make a small test set of ads from the ideas I picked."

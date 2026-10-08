@@ -9,8 +9,10 @@ Email goes out from the owner's own account, never ours.
 
 ## Cold email
 
-- **Only to a list the owner gives:** a CSV of name, company, email, and
-  why this person. Never buy, scrape or guess an address. A row with no
+- **The list:** one the owner gives, or one built through a contact
+  service (the `playbooks` skill, cold email), in `lists/`: name, company,
+  email, and why this person. Never guess an address; a list from a
+  contact service is verified before anything is sent. A row with no
   reason is a question for the owner.
 - **One reader, one reason, one ask.** Plain text, under 120 words. The
   first line is about them (the reason), never about the business. No
@@ -45,7 +47,10 @@ skill says.
   sends one.
 - **Klaviyo:** a newsletter goes in as a campaign through the `klaviyo`
   connection.
-- **Cold email goes from the owner's own mailbox.** Postmark and Resend are
-  for transactional mail, and their terms forbid cold email.
+- **Cold email goes from the owner's own mailboxes:** a handful from
+  Gmail drafts; at volume, the leads go into a campaign in a sending tool
+  the owner connected (Instantly, Smartlead), sending from mailboxes on
+  separate domains, never the main one. The owner starts the campaign. Postmark and Resend are for
+  transactional mail, and their terms forbid cold email.
 - **Neither connected:** the files are the drafts; say so, and the owner
   pastes them.

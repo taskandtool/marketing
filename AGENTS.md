@@ -15,6 +15,9 @@ and the order of work are in `marketing`):
 - "set up my brand", facts, photos or a link about the business: `brand`
 - "what are competitors doing", customers' words, where to reply: `research`
 - "give me ideas", a campaign: `ideas`
+- "how do we grow", "reach more of our buyers", "they're on LinkedIn",
+  leads, a marketing plan, cold outreach, podcasts, creators, search
+  pages: `playbooks`
 - "write me ads", "a set to test", a creative for one platform: `ad`
 - "a post", "a caption", "this week's posts", a slideshow, repurpose:
   `social-post`

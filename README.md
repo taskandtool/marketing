@@ -26,6 +26,8 @@ calls for them.
   ad/            a paid ad to a platform's specs; 45 static formats as recipes
   social-post/   organic posts per platform, one idea across a week
   email/         cold emails and newsletters, saved as drafts the owner sends
+  playbooks/     growth strategies to run for months (paid ads, cold email, podcasts,
+                 creators, search pages, signup emails), one file each
   results/       ad, post and search numbers from the owner's accounts; the monthly report
   tropes/        the audit for the tells of AI-made copy, pictures and video, and its
                  copy script (shared, like brand)
@@ -45,6 +47,8 @@ research/                competitors, hooks seen, customers' words, conversation
 creatives/YYYY-MM-DD-<slug>/   one idea per folder: creative.md and its pictures and clips
 emails/YYYY-MM-DD-<slug>/      one email or sequence per folder: email.md
 results.md               what ran and what it did, newest first
+plan.md                  the playbooks chosen, and why
+lists/                   the people a playbook reaches: prospects, engagers, who said no
 reports/YYYY-MM.md       the monthly report
 specs/<platform>.md      sizes, limits and policy per platform, dated
 scripts/                 check · videogen · viewer, and their tests
@@ -106,7 +110,13 @@ Everything is optional and asked for when it is needed: an image model
 competitors' ads and posts, Apify for reviews on sites with no API and
 for posts in the niche, DataForSEO for search questions, Google Places for
 the business's listing, Search Console, Google Analytics and Meta's
-insights for results, and Klaviyo for newsletter drafts. Keys
+insights for results, and Klaviyo for newsletter drafts. The playbooks
+suggest more, any of which can be swapped for a tool that does the same
+job: a posting tool (Zernio, Hootsuite), ads management and conversion
+tracking (Meta, Google Tag Manager and Ads), a contact database, verifier
+and sending tool for cold email (Apollo, MillionVerifier, Instantly), DM
+automation (PhantomBuster, InboxApp), podcast databases (Rephonic, Listen
+Notes), avatar video (HeyGen) and video tracking (Shortimize). Keys
 arrive through the platform's Connections, never through this repository.
 
 ## Developing this Starter App

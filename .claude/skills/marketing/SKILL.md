@@ -29,6 +29,25 @@ Each step has its own skill. Start wherever the folders say the work is.
 7. **Results.** What ran and what it did goes in `results.md`, and a
    monthly report says what to make next (the `results` skill).
 
+Beyond single pieces, the strategies a business could run for months are
+the `playbooks` skill's; the chosen ones are in `plan.md`.
+
+## Making it repeat
+
+When the owner wants something done every week (a batch of posts, a list
+job, a report), do it once by hand in chat until they like the result.
+Then save what worked: the mechanical part (calls, files, counts) as a
+script in `scripts/`, the part that needs judgement as a prompt in
+`jobs/<name>.md`, and schedule it (the `schedule-job` skill). Write a
+script when the same steps would be redone each time, or when it sends,
+posts or spends; a one-off stays in chat.
+
+- It keeps a record of what it has done, so a second run never sends,
+  posts or spends twice. Most runs find nothing new and do nothing.
+- It prints what it did in a line or two and exits non-zero on failure.
+- What it sends, posts or spends stops at a draft or a paused ad for the
+  owner, unless they said otherwise for that job.
+
 ## Where things are
 
 ```
@@ -40,6 +59,9 @@ research/               competitors/<name>.md, hooks.md, audience.md, brief.md
 creatives/YYYY-MM-DD-<slug>/   one idea per folder: creative.md, v1.png, v2.png, shot-1.mp4
 emails/YYYY-MM-DD-<slug>/      one email or sequence per folder: email.md (the email skill)
 results.md              numbers per creative and per month, newest first
+plan.md                 the playbooks chosen, and why (the playbooks skill)
+lists/                  the people a playbook reaches: prospects, engagers, who said no
+jobs/<name>.md          the prompt a scheduled job follows
 reports/YYYY-MM.md      the monthly report
 specs/<platform>.md     sizes, limits and policy, each with last_verified
 ```

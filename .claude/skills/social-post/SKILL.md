@@ -35,6 +35,10 @@ Copy and tick:
       the whole caption as it will be pasted in `copy.caption`, and any
       hashtags in `copy.hashtags`. Run `python3 scripts/check.py`, then show
       the owner the picture and the caption as it will appear.
+- [ ] 7. **Posting**, once approved: through a posting connection the
+      owner has (Zernio, Hootsuite), scheduled for the time they chose,
+      then `status: posted` and the live `url`. With none, the owner posts
+      it.
 
 ## Where post ideas come from
 

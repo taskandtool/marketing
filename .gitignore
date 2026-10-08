@@ -17,6 +17,7 @@ research/*
 media/clips/*
 media/photos/*
 raw/*
+lists/*
 uploads/*
 !**/.gitkeep
 !**/README.md

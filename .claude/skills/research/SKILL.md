@@ -93,16 +93,17 @@ the same claim (the `ideas` skill decides what that means).
 ## Lines not to cross
 
 - **Record phrases, not people.** Keep comment and review text with its URL
-  and date; keep no names, handles, photos or profile links. Never build a
-  list of individuals from comments. A public post is still personal data.
+  and date; keep no names, handles, photos or profile links here. A public
+  post is still personal data. Lists of people for outreach are the
+  `playbooks` skill's, collected by a connected service into `lists/`.
 - **Patterns, never copies.** Write down the idea one level above the
   execution ("before and after of a real job, split frame"), never a
   competitor's words or images, and never paste either into a prompt.
 - **A customer's words in an ad need their consent**, whoever they were
   written about. Mined language shapes the wording; it is not quoted.
 - **Read, don't harvest.** A handful of pages, short quotes into a private
-  note. No bulk collection from Yelp, Reddit or Amazon, no LinkedIn
-  profiles or contact data, no automated likes or comments.
+  note. No bulk collection from Yelp, Reddit or Amazon for research, and
+  no automated likes or comments.
 - **Stop at a login, an age gate or a CAPTCHA** and say so. A connection the
   owner grants is the sanctioned way past it, used the way its instructions
   say.

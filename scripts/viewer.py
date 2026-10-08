@@ -46,7 +46,7 @@ DEV_CONTENT = os.path.join(os.path.dirname(QUARTZ_DIR), "content")
 BUILD_CONTENT = os.path.join(os.path.dirname(QUARTZ_DIR), "content-build")
 # What the site shows: these folders and files, linked in, never copied.
 FOLDERS = ("creatives", "emails", "reports", "research", "brand", "public", "media", "specs", "raw")
-FILES = ("claims.md", "results.md")
+FILES = ("claims.md", "results.md", "plan.md")
 # The local plugins, beside the config: shown as text / a creative's files.
 LOCAL_PLUGINS = ("safe-text", "creative-files")
 def any_case(ext):
@@ -284,13 +284,14 @@ def plugin_count():
 
 # The home page, in the order an owner looks: the work, how it did, then
 # what it was made from. Every row is there from the first start (stage
-# makes the folders, and the two ledgers ship with the app), so the dev
+# makes the folders, and the ledgers ship with the app), so the dev
 # server never shows a stale page; a section fills in as the work arrives.
 HOME_ROWS = [
     ("creatives/", "Creatives", "every ad and post, newest first, with its pictures and clips"),
     ("emails/", "Emails", "cold emails, sequences and newsletters"),
     ("results.md", "Results", "what ran and what it did, newest first"),
     ("reports/", "Monthly reports", "each month's numbers and what to make next"),
+    ("plan.md", "Plan", "the playbooks chosen, and why"),
     ("research/", "Research", "competitors, hooks, what customers say, and the brief"),
     ("claims.md", "Claims", "every fact a piece may state, with its source"),
     ("brand/", "Brand", "positioning, voice and visual identity"),
