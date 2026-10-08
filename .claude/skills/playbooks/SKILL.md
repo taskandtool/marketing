@@ -18,6 +18,9 @@ Propose two or three, never the whole list. What decides it: who buys
 (businesses or people, local or national), what exists already (a list,
 traffic, proof in `claims.md`, an ad budget, the owner's time on camera),
 and how soon it has to pay. Read a playbook's file before proposing it.
+Lay each one out with what it needs and its risks, the automated and paid
+versions included, and let the owner decide how far to go; never rule one
+out for them.
 
 | Playbook | Fits | File |
 |---|---|---|
