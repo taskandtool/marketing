@@ -19,8 +19,8 @@ and the order of work are in `marketing`):
 - "a post", "a caption", "this week's posts", a slideshow, repurpose:
   `social-post`
 - "a cold email", "an outreach sequence", "a newsletter": `email`
-- the words of a piece and its hook: `copywriting`; its picture: Pictures
-  below; a clip: `video`
+- the words of a piece and its hook: `copywriting`; its picture: the
+  Pictures section below; a clip: `video`
 - before the owner sees anything: `tropes`
 
 Read the one that fits the ask rather than working from memory.
@@ -42,21 +42,21 @@ python3 scripts/check.py --status sent  # what is waiting for the owner's approv
 python3 scripts/videogen.py --prompt-file creatives/<folder>/creative.md --section "Shot 1" --out creatives/<folder>/shot-1.mp4
 ```
 
-videogen sends the creative's `## Shot 1` (or `--section "Shot 2"`), prints
-the file written and never replaces an existing one; `--check` says which
-model is configured.
+videogen sends the creative's `## Shot 1` section (or the one named by
+`--section "Shot 2"`), prints the file it wrote, and never replaces an
+existing one; `--check` says which model is configured.
 
 ## The viewer
 
 Quartz over the creatives, emails, results, reports, research, claims,
 brand, media, specs and `raw/`: search, backlinks, and each creative shown
 as the piece (its copy, pictures and clips). Dev is the `web` service
-(`npm run dev`), every edit there on refresh. Production is `npm run
+(`npm run dev`); every edit shows there on refresh. Production is `npm run
 deploy` (the `deploy` skill): the first deploy opens it to the team, and
-only a person makes it public. Who can see it is that setting alone: team
-only, the whole site is the team's; public, all of it is anyone's, `raw/`
-and the research included; say so when the owner asks about it. Approvals
-are the Deliverables tab's, never the viewer's.
+only a person makes it public. That setting alone decides who can see it.
+Team only: the whole site is the team's. Public: all of it is anyone's,
+`raw/` and the research included. Say so when the owner asks about it.
+Approvals happen in the Deliverables tab, never in the viewer.
 
 ```bash
 python3 scripts/viewer.py build     # "viewer build: 35 pages and 11 other files in dist/"
@@ -65,17 +65,19 @@ python3 scripts/viewer.py install   # Quartz and its plugins, outside the app; t
 
 On a new machine the `web` service spends its first several minutes
 installing Quartz; the chat and everything else work meanwhile. When the
-owner asks about the viewer before it answers, `python3
-~/tools/taskandtool.py logs` says where the install is; never restart it.
+owner asks about the viewer before the viewer answers, `python3
+~/tools/taskandtool.py logs` shows how far the install has got; never
+restart the service while it installs.
 
-Its look (colours, fonts, which panels show) is `viewer/quartz.config.yaml`;
+The viewer's look (colours, fonts, which panels show) is `viewer/quartz.config.yaml`;
 take the colours and fonts from `brand/visual-identity.md` when the owner
 asks.
 
 ## Pictures
 
-Make them with your image tool, saved in the creative's folder (`v1.png`,
-`v2.png`). With no image tool, an image provider arrives as a connection.
+Make pictures with your image tool and save them in the creative's folder
+(`v1.png`, `v2.png`). If you have no image tool, an image provider arrives
+as a connection.
 
 - The owner's own photo first (`media/_index.md`); generate when there is
   no photo of the thing, or to place their product in a new scene.
@@ -85,7 +87,7 @@ Make them with your image tool, saved in the creative's folder (`v1.png`,
 - No interface, chart or product the business does not make; every word in
   a picture is checked letter by letter against the copy.
 - Look at it full size and at 25%, run the `tropes` picture checks, change
-  one thing a round; the kept file goes in `files:`.
+  one thing per round; the file you keep goes in `files:`.
 
 ## The rules that matter
 
