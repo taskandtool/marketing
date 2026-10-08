@@ -72,10 +72,11 @@ which is live; the viewer shows the files.
 - **Production:** `npm run deploy` builds a static site into `dist/` and
   deploys it to Cloudflare through the platform; search works there too,
   in the browser. The first deploy opens it to the team; only a person
-  makes it public, and that publishes `raw/` and the research too.
-- **Safe with crawled text:** the `safe-text` plugin shows any HTML in
-  markdown as text, and `creative-files` shows only files named beside the
-  creative.
+  makes it public, and even then `/raw` and search stay the team's.
+- **Safe with crawled text:** crawled HTML, scripts and SVGs are never
+  built into the site; the `safe-text` plugin shows any HTML in markdown as
+  text and strips it from titles and tags; `creative-files` shows only files
+  named beside the creative.
 
 The web service installs Quartz on its first start, outside the app
 (`~/.local/share/marketing-viewer/`), so setup does not wait for it. It

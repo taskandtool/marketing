@@ -16,6 +16,7 @@
 #      website; it installs the viewer (Quartz, outside the app) on its first
 #      start
 set -euo pipefail
+cd "$(dirname "$0")/.."
 
 APP="$(pwd)"
 CRAWLER_REF="${CRAWLER_REF:-main}"

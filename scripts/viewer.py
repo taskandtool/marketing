@@ -24,6 +24,7 @@ import json
 import os
 import re
 import shutil
+import socket
 import subprocess
 import sys
 from urllib.parse import urlparse
@@ -48,6 +49,10 @@ FOLDERS = ("creatives", "emails", "reports", "research", "brand", "public", "med
 FILES = ("claims.md", "results.md")
 # The local plugins, beside the config: shown as text / a creative's files.
 LOCAL_PLUGINS = ("safe-text", "creative-files")
+# Never built into the site: data files, crawl caches, and anything a browser
+# would run on the viewer's own address (raw/ holds other people's sites).
+LEFT_OUT = ["**/*.json", "**/*.jsonl", "**/_cache/**", "**/*.html", "**/*.htm",
+            "**/*.xhtml", "**/*.xml", "**/*.js", "**/*.mjs", "raw/**/*.svg"]
 DEFAULT_TITLE = "Marketing"
 MAX_ASSET = 25 * 1024 * 1024      # Cloudflare's limit on one static file
 MAX_FILES = 20_000                # and on the files in one deploy
@@ -76,7 +81,10 @@ def run(args, cwd, what):
     Quartz and its plugins depend on two packages fetched from GitHub at
     pinned commits, which npm 12 refuses unless allowed."""
     env = {**os.environ, "npm_config_allow_git": "all"}
-    r = subprocess.run(args, cwd=cwd, capture_output=True, text=True, env=env)
+    try:
+        r = subprocess.run(args, cwd=cwd, capture_output=True, text=True, env=env)
+    except FileNotFoundError:
+        raise Failed(f"{what} failed: {args[0]} is not installed", [], f"{args[0]} --version")
     if r.returncode != 0:
         tail = (r.stdout + r.stderr).strip().splitlines()[-12:]
         raise Failed(f"{what} failed", tail, f"{CMD} install")
@@ -101,8 +109,8 @@ def business_name():
     except OSError:
         return None
     front = text.split("---", 2)[1] if text.startswith("---") else ""
-    m = re.search(r"^name:\s*(.+?)\s*(?:#.*)?$", front, re.M)
-    name = m.group(1).strip("'\"") if m else ""
+    m = re.search(r"""^name:\s*(?:"([^"]*)"|'([^']*)'|([^#\n]*?))\s*(?:#.*)?$""", front, re.M)
+    name = next((g for g in m.groups() if g is not None), "").strip() if m else ""
     return name if name and name != "to fill" else None
 
 
@@ -132,6 +140,7 @@ def config_text(base_url=None):
         text = re.sub(r"^(\s*baseUrl:).*$", lambda m: f"{m.group(1)} {base_url}", text, count=1, flags=re.M)
     for name in LOCAL_PLUGINS:
         text = text.replace(f"@{name.upper().replace('-', '_')}@", os.path.join(VIEWER, name))
+    text = text.replace('"@LEFT_OUT@"', json.dumps(LEFT_OUT))
     name = business_name()
     if name:
         text = re.sub(rf"^(\s*pageTitle:)\s*{DEFAULT_TITLE}\s*$",
@@ -247,43 +256,31 @@ def plugin_count():
 
 # ---------------------------------------------------------------- staging
 
-def has_notes(path):
-    """A note, or a folder with a note somewhere under it."""
-    if path.endswith(".md"):
-        return os.path.isfile(path)
-    return any(n.endswith(".md") for _d, _s, names in os.walk(path) for n in names)
-
-
 # The home page, in the order an owner looks: the work, how it did, then
-# what it was made from.
+# what it was made from. Every row is there from the first start (stage
+# makes the folders, and the two ledgers ship with the app), so the dev
+# server never shows a stale page; a section fills in as the work arrives.
 HOME_ROWS = [
-    ("creatives", "Creatives", "every ad and post, newest first, with its pictures and clips"),
-    ("emails", "Emails", "cold emails, sequences and newsletters"),
+    ("creatives/", "Creatives", "every ad and post, newest first, with its pictures and clips"),
+    ("emails/", "Emails", "cold emails, sequences and newsletters"),
     ("results.md", "Results", "what ran and what it did, newest first"),
-    ("reports", "Monthly reports", "each month's numbers and what to make next"),
-    ("research/brief.md", "The brief", "what to test next, ranked"),
-    ("research", "Research", "competitors, hooks and what customers say"),
+    ("reports/", "Monthly reports", "each month's numbers and what to make next"),
+    ("research/", "Research", "competitors, hooks, what customers say, and the brief"),
     ("claims.md", "Claims", "every fact a piece may state, with its source"),
-    ("brand", "Brand", "positioning, voice and visual identity"),
-    ("public", "The business", "the facts about it"),
-    ("media/_index.md", "Photos and clips", "the business's own, and what each may be used for"),
-    ("specs", "Platform specs", "sizes, limits and policy per platform"),
-    ("raw", "Raw material", "sites, reviews and transcripts as they arrived"),
+    ("brand/", "Brand", "positioning, voice and visual identity"),
+    ("public/", "The business", "the facts about it"),
+    ("media/", "Photos and clips", "the business's own, and what each may be used for"),
+    ("specs/", "Platform specs", "sizes, limits and policy per platform"),
+    ("raw/", "Raw material", "sites, reviews and transcripts as they arrived"),
 ]
 
 
 def home_page():
-    """content/index.md: the way in, linking what exists."""
+    """content/index.md: the way in."""
     title = (business_name() + " marketing") if business_name() else DEFAULT_TITLE
     lines = ["---", f"title: {json.dumps(title)}", "---", ""]
-    found = [(p, t, d) for p, t, d in HOME_ROWS if has_notes(os.path.join(ROOT, p))]
-    if not found:
-        lines.append("Nothing is here yet. Ask the AI in the chat to learn your brand from your website.")
-    else:
-        for path, label, desc in found:
-            target = path if path.endswith(".md") else path + "/"
-            lines.append(f"- [{label}]({target}): {desc}")
-        lines += ["", "What is waiting for your approval is on the app's Deliverables tab."]
+    lines += [f"- [{label}]({target}): {desc}" for target, label, desc in HOME_ROWS]
+    lines += ["", "What is waiting for your approval is on the app's Deliverables tab."]
     return "\n".join(lines) + "\n"
 
 
@@ -338,6 +335,15 @@ def build():
     return pages, kept, dropped
 
 
+def free_port():
+    """A port nothing holds. Quartz's dev server also opens a live-reload
+    socket (3001 unless told), and dies when that port is taken; through the
+    dev address the socket is never reached, so any free port will do."""
+    with socket.socket() as sock:
+        sock.bind(("127.0.0.1", 0))
+        return sock.getsockname()[1]
+
+
 # ---------------------------------------------------------------- main
 
 def size_mb(n):
@@ -349,7 +355,7 @@ def main(argv):
     sub = ap.add_subparsers(dest="cmd", required=True, metavar="{install,dev,build}")
     sub.add_parser("install", help="Quartz and its plugins, outside the app; safe to re-run")
     dv = sub.add_parser("dev", help="serve the viewer, rebuilt on every change (the web service)")
-    dv.add_argument("--port", type=int, default=int(os.environ.get("PORT") or 3000))
+    dv.add_argument("--port", type=int, help="default $PORT, else 3000")
     sub.add_parser("build", help="the static site in dist/, ready to deploy")
     args = ap.parse_args(argv)
 
@@ -365,15 +371,21 @@ def main(argv):
             return 0
 
         if args.cmd == "dev":
+            port = args.port or os.environ.get("PORT") or "3000"
+            if not str(port).isdigit():
+                die(f"viewer dev: PORT is {port!r}, not a number\n  Try: PORT=3000 {CMD} dev", 2)
             if not os.path.isdir(os.path.join(QUARTZ_DIR, ".quartz")):
                 print(f"viewer dev: installing Quartz {QUARTZ_TAG} first; minutes on a machine", flush=True)
             install()
             stage(DEV_CONTENT)
-            print(f"viewer dev: serving the marketing files on port {args.port}, rebuilt on every change",
+            print(f"viewer dev: serving the marketing files on port {port}, rebuilt on every change",
                   flush=True)
             os.chdir(QUARTZ_DIR)
-            os.execvp("npx", ["npx", "quartz", "build", "--serve", "--port", str(args.port),
-                              "-d", DEV_CONTENT])
+            try:
+                os.execvp("npx", ["npx", "quartz", "build", "--serve", "--port", str(port),
+                                  "--wsPort", str(free_port()), "-d", DEV_CONTENT])
+            except FileNotFoundError:
+                raise Failed("npx is not installed", [], "node --version")
 
         pages, kept, dropped = build()
         lines = [f"viewer build: {pages} pages and {kept - pages} other files in dist/"]

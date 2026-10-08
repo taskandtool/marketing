@@ -53,9 +53,10 @@ brand, media, specs and `raw/`: search, backlinks, and each creative shown
 as the piece (its copy, pictures and clips). Dev is the `web` service
 (`npm run dev`), every edit there on refresh. Production is `npm run
 deploy` (the `deploy` skill): the first deploy opens it to the team, and
-only a person makes it public, which publishes `raw/` and the research too;
-say so when the owner asks about it. Approvals are the Deliverables tab's,
-never the viewer's.
+only a person makes it public. The deploy keeps `/raw` and search for the
+team, so a public site shows the creatives, research, claims and brand,
+never `raw/`; say so when the owner asks about it. Approvals are the
+Deliverables tab's, never the viewer's.
 
 ```bash
 python3 scripts/viewer.py build     # "viewer build: 35 pages and 11 other files in dist/"

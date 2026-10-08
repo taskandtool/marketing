@@ -338,17 +338,14 @@ class Viewer(unittest.TestCase):
         viewer.ROOT, viewer.VIEWER, viewer.QUARTZ_DIR = self.saved
         shutil.rmtree(self.tmp, ignore_errors=True)
 
-    def test_home_page_links_only_what_exists_and_takes_the_business_name(self):
-        self.assertIn("Nothing is here yet", viewer.home_page())
-        put(os.path.join(self.app, "creatives", "2026-10-01-a", "creative.md"), GOOD)
-        put(os.path.join(self.app, "claims.md"), "# Claims\n")
-        put(os.path.join(self.app, "public", "business.md"), "---\nname: Brightwater Heating\n---\n")
-        page = viewer.home_page()
-        self.assertIn('title: "Brightwater Heating marketing"', page)
-        self.assertIn("- [Creatives](creatives/)", page)
-        self.assertIn("- [Claims](claims.md)", page)
-        self.assertNotIn("Emails", page)
-        self.assertIn("Deliverables tab", page)
+    def test_home_page_lists_every_section_from_the_start_and_takes_the_business_name(self):
+        fresh = viewer.home_page()
+        self.assertIn("title: \"Marketing\"", fresh)
+        for target, label, _ in viewer.HOME_ROWS:
+            self.assertIn(f"- [{label}]({target})", fresh)
+        self.assertIn("Deliverables tab", fresh)
+        put(os.path.join(self.app, "public", "business.md"), "---\nname: \"Joe's #1 Heating\"\n---\n")
+        self.assertIn('title: "Joe\'s #1 Heating marketing"', viewer.home_page())
 
     def test_stage_links_the_folders_and_files_and_never_copies(self):
         put(os.path.join(self.app, "claims.md"), "# Claims\n")
@@ -365,6 +362,8 @@ class Viewer(unittest.TestCase):
 
     def test_config_fills_the_local_plugins_and_the_title(self):
         text = viewer.config_text()
+        self.assertIn('"**/*.html"', text)
+        self.assertNotIn("@LEFT_OUT@", text)
         self.assertNotIn("@SAFE_TEXT@", text)
         self.assertNotIn("@CREATIVE_FILES@", text)
         self.assertIn(os.path.join(self.app, "viewer", "creative-files"), text)

@@ -11,9 +11,9 @@ configuration:
   analytics: null
   locale: en-US
   baseUrl: localhost
-  ignorePatterns:
-    - "**/*.json"
-    - "**/*.jsonl"
+  # filled in by scripts/viewer.py (LEFT_OUT): crawled HTML, scripts and the
+  # like are never served on the viewer's own address
+  ignorePatterns: "@LEFT_OUT@"
   defaultDateType: modified
   theme:
     fontOrigin: googleFonts
