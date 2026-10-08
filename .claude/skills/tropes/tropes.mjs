@@ -102,7 +102,6 @@ const FIX = {
   puffery: "a number, a name or a source beside it, or cut it",
 };
 export const HINT_RULES = ["puffery"];
-export const RULES = Object.keys(FIX);
 
 const finding = (rule, match, severity = HINT_RULES.includes(rule) ? "hint" : "error") =>
   ({ rule, match: String(match).trim(), fix: FIX[rule], severity });
