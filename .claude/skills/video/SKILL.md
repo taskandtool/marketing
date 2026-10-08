@@ -18,8 +18,8 @@ Copy and tick:
 - [ ] 2. Write the script into `creative.md`: the hook word for word, the
       middle as beats, the call to action word for word. Mark each beat as
       the owner's footage (`media/clips/`), a still, or a generated shot.
-- [ ] 3. For each generated shot, generate the hero still first (your image
-      tool), then write a shot brief (below) that uses it as the
+- [ ] 3. For each generated shot, make the hero still first
+      (`make-image`), then write a shot brief (below) that uses it as the
       reference or first frame.
 - [ ] 4. Put each shot brief under its own heading in `creative.md`
       (`## Shot 1`, `## Shot 2`; `## Prompt` stays the still's) and

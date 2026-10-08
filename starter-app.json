@@ -7,12 +7,12 @@
       {
         "provider": "openai-api",
         "strength": "suggested",
-        "why": "Generate pictures for ads and posts"
+        "why": "Make pictures on your own OpenAI account instead of Task & Tool credit"
       },
       {
         "provider": "openrouter-api",
         "strength": "suggested",
-        "why": "Generate short video clips and pictures for ads and posts (Veo, Gemini and others)"
+        "why": "Generate short video clips for ads and posts (Veo and others)"
       },
       {
         "provider": "higgsfield",

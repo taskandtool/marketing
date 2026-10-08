@@ -57,7 +57,8 @@ viewer/                  the viewer's Quartz config, pinned plugins, and its two
 
 `python3 scripts/check.py` checks every creative, the claims and the specs,
 and runs the copy through the `tropes` skill's script (Node). Pictures come
-from the AI's own image tool. `videogen.py` calls OpenRouter's video models;
+from the machine's `make-image` (Task & Tool's `images` skill), on Codex
+and Claude Code alike. `videogen.py` calls OpenRouter's video models;
 a Higgsfield connection (Seedance, Kling) brings its own instructions.
 
 ## The viewer
@@ -105,8 +106,9 @@ disk.
 
 ## What it connects to
 
-Everything is optional and asked for when it is needed: an image model
-(OpenAI or OpenRouter), a video model (OpenRouter or Higgsfield), ScrapeCreators for
+Everything is optional and asked for when it is needed: the owner's own
+OpenAI key for pictures (otherwise they are made on Task & Tool credit), a
+video model (OpenRouter or Higgsfield), ScrapeCreators for
 competitors' ads and posts, Apify for reviews on sites with no API and
 for posts in the niche, DataForSEO for search questions, Google Places for
 the business's listing, Search Console, Google Analytics and Meta's

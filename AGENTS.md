@@ -43,6 +43,7 @@ Read the one that fits the ask rather than working from memory.
 python3 scripts/check.py [folder …]   # the audit; then one line per creative: folder, status, kind, platform
 python3 scripts/check.py --status sent  # what is waiting for the owner's approval
 python3 scripts/videogen.py --prompt-file creatives/<folder>/creative.md --section "Shot 1" --out creatives/<folder>/shot-1.mp4
+python3 ~/tools/taskandtool.py make-image --prompt "..." --out creatives/<folder>/v1.png --size 4:5   # a picture, saved; never replaces one
 ```
 
 videogen sends the creative's `## Shot 1` section (or the one named by
@@ -78,19 +79,17 @@ asks.
 
 ## Pictures
 
-Make pictures with your image tool and save them in the creative's folder
-(`v1.png`, `v2.png`). If you have no image tool, an image provider arrives
-as a connection.
+Make them with `make-image` (the `images` skill), saved in the creative's
+folder (`v1.png`, `v2.png`), the prompt as sent under `## Prompt`.
 
 - The owner's own photo first (`media/_index.md`); generate when there is
-  no photo of the thing, or to place their product in a new scene.
+  no photo of the thing, or to place their product in a new scene (their
+  photo as `--ref`).
 - The Imagery block of `brand/visual-identity.md` goes into every prompt,
   so a set looks like one brand.
-- Each placement's ratio is its own picture, never a crop.
-- No interface, chart or product the business does not make; every word in
-  a picture is checked letter by letter against the copy.
-- Look at it full size and at 25%, run the `tropes` picture checks, change
-  one thing per round; the file you keep goes in `files:`.
+- No interface, chart or product the business does not make.
+- Run the `tropes` picture checks before showing it; the file you keep goes
+  in `files:`.
 
 ## The rules that matter
 
