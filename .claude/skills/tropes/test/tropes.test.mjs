@@ -71,6 +71,12 @@ test("dated vocabulary counts by density, not one word", () => {
   assert.ok(rules("We delve into intricate, meticulous work.").includes("dated-vocabulary"));
 });
 
+test("'X, not Y.' is only a hint; 'It's not X, it's Y' is an error", () => {
+  const level = (t, rule) => findings(t).find((f) => f.rule === rule)?.severity;
+  assert.equal(level("Cash only, not cards.", "negation-pivot"), "hint");
+  assert.equal(level("It's not just a roof, it's peace of mind.", "negation-pivot"), "error");
+});
+
 test("uniform sentence length", () => {
   const flat = "We fit new boilers in a day. We service old ones in an hour. We clear blocked drains on site. " +
     "We mend leaking taps for a fee. We test gas pipes once a year. We fit smart thermostats for you.";

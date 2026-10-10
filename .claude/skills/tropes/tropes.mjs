@@ -49,8 +49,9 @@ const NEGATION = [
   /\bnot (just|only|merely) [^.;:!?\n]{1,40},? but\b/gi,
   /\bnot because [^.;:!?\n]{1,60}[.;,] because\b/gi,
   /\bdon'?t just \w+(?: \w+)?, \w+/gi,
-  /\b\w+(?: \w+)?, not \w+(?: \w+)?[.!]/gi,
 ];
+// "Cash only, not cards." is often a plain fact, so this shape is only a hint
+const NEGATION_TAIL = /\b\w+(?: \w+)?, not \w+(?: \w+)?[.!]/gi;
 
 // A promise of fit that names nothing: what is shaped, to what? "Shape it by
 // chat" names an action and passes.
@@ -118,6 +119,7 @@ function phraseFindings(text) {
   if (text.includes("—")) out.push(finding("em-dash", "—"));
   for (const rx of PHRASES) for (const m of text.matchAll(rx)) out.push(finding("refused-phrase", m[0]));
   for (const rx of NEGATION) for (const m of text.matchAll(rx)) out.push(finding("negation-pivot", m[0]));
+  for (const m of text.matchAll(NEGATION_TAIL)) out.push(finding("negation-pivot", m[0], "hint"));
   for (const rx of VAGUE_FIT) for (const m of text.matchAll(rx)) out.push(finding("vague-fit", m[0]));
   for (const m of text.matchAll(ING_RIDER)) out.push(finding("ing-rider", m[0].replace(/^, /, "")));
   for (const m of text.matchAll(WEAK_CTA_IN_TEXT)) out.push(finding("weak-cta", m[0]));
@@ -155,7 +157,7 @@ function sectionFindings(text, { kind = "page", heading = "" } = {}) {
   if (era.length >= 2 && (era.length * 100) / n >= 1.5) out.push(finding("dated-vocabulary", [...new Set(era.map((e) => e.toLowerCase()))].sort().join(", ")));
   const lengths = sentences(text).map((s) => s.split(/\s+/).length);
   if (lengths.length >= 6 && Math.max(...lengths) - Math.min(...lengths) < 12) {
-    out.push(finding("uniform-length", `${Math.min(...lengths)} to ${Math.max(...lengths)} words`));
+    out.push(finding("uniform-length", `${Math.min(...lengths)} to ${Math.max(...lengths)} words`, "hint"));
   }
   if (heading) {
     const h = new Set(content(heading));

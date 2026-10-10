@@ -7,7 +7,7 @@ Structures outlast word lists: the vocabulary moves with each model generation (
 | Trope | Examples | Fix |
 |---|---|---|
 | Verb cosplay | leverage, harness, unlock, unleash, empower, elevate, transform, revolutionize, supercharge, streamline, foster, navigate, embark | The plain verb for the actual action: use, open, cut, book, fit |
-| Inflated adjectives | seamless, robust, cutting-edge, world-class, game-changing, comprehensive, holistic, innovative, bespoke, curated, next-level, all-in-one | A number, a material, a limit: "fitted in 3 days", "oak, not veneer" |
+| Inflated adjectives | seamless, robust, cutting-edge, world-class, game-changing, comprehensive, holistic, innovative, bespoke, curated, next-level, all-in-one | A number, a material, a limit: "fitted in 3 days", "solid oak doors" |
 | Significance inflation | stands as a testament, plays a pivotal/crucial role, underscores, evolving landscape, setting the stage, indelible mark | Say what happened and to whom, or cut it |
 | Brochure puffery | nestled, in the heart of, boasts, vibrant, rich heritage, renowned, diverse array | Say where it is and what it has |
 | Metaphor nouns | tapestry, realm, landscape, ecosystem, journey, solutions | Name the thing the business sells |
@@ -19,7 +19,7 @@ Structures outlast word lists: the vocabulary moves with each model generation (
 
 | Trope | Examples | Fix |
 |---|---|---|
-| **Negation pivot** (strongest tell) `negation-pivot` | "It's not X, it's Y", "not just X but Y", "X, not Y", "Not because X. Because Y.", "Y rather than X" | State Y. Nobody proposed X |
+| **Negation pivot** (strongest tell) `negation-pivot` | "It's not X, it's Y", "not just X but Y", "Not because X. Because Y.", "Y rather than X"; "X, not Y." is a hint, often a plain fact ("Cash only, not cards.") | State Y. Nobody proposed X |
 | Rule of three `triads` | three adjectives, three bullets, three examples per section | Use the number of things there really are. At most one triad a section |
 | Staccato triplet `triads` | "No fluff. No filler. No stress." "Fast. Simple. Effective." | One plain sentence with the real claim |
 | Throat-clearing openers | In today's fast-paced world; In a world where; Imagine a world; Welcome to; Are you looking for; When it comes to | Start with the offer |
@@ -43,7 +43,7 @@ Structures outlast word lists: the vocabulary moves with each model generation (
 
 | Trope | Fix |
 |---|---|
-| Uniform sentence length `uniform-length`: about 85% of model sentences fall between 15 and 28 words, while people range from 4 to 55 | In any 10 sentences the longest minus the shortest is more than 15 words |
+| Uniform sentence length `uniform-length` (a hint): every sentence about as long as the last | Over six or more sentences, the longest is at least 12 words longer than the shortest |
 | Low punctuation variety: long "and"-joined sentences, few commas/semicolons, no parentheses (Economist) | Break at the "and". Let one sentence carry an aside |
 | Paragraph uniformity (claim, example, restatement, repeated) | Vary the order. Some paragraphs are one line |
 | Em dashes `em-dash` doing a comma's or full stop's job (house rule; weak signal) | Comma, colon, or new sentence |

@@ -31,7 +31,7 @@ Exit 1 on an error.
 ## Fixing a finding
 
 - Rewrite the flagged line whole; never patch the phrase, and never add a
-  fact to fill the gap a cut left. A missing fact is a question for the owner.
+  fact to fill the gap a cut left. A missing fact is a `NEED:` line for the owner.
 - Strongest tells first: invented proof, the negation pivot, significance
   inflation, then vocabulary.
 - An owner who insists on a flagged phrase keeps it; the website marks it
