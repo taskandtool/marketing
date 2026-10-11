@@ -1,4 +1,5 @@
 ---
+title: "Meta: Facebook and Instagram"
 type: spec
 platform: meta
 last_verified: 2026-09-07
@@ -7,8 +8,6 @@ sources:
   - https://www.facebook.com/business/ads-guide/update/video/instagram-reels (fetched 2026-09-07)
   - https://www.facebook.com/business/ads-guide/update/carousel/facebook-feed (fetched 2026-09-07)
 ---
-
-# Meta: Facebook and Instagram
 
 The Stories image page was not reachable on 2026-09-07; Stories numbers below are from secondary sources (unverified) and Reels.
 

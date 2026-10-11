@@ -1,12 +1,11 @@
 ---
+title: Pinterest
 type: spec
 platform: pinterest
 last_verified: 2026-09-07
 sources:
   - https://help.pinterest.com/en/business/article/pinterest-product-specs (fetched 2026-09-07)
 ---
-
-# Pinterest
 
 ## Standard Pin and image ad
 
@@ -47,7 +46,7 @@ Longer pins (up to 1:2.1) are accepted for organic but can be cropped in feed; s
 | Length | up to 5 min | Pinterest specs (verified) |
 | Title | 100 chars | Pinterest specs (verified) |
 
-Idea ads use the common 9:16 safe box from the README; Pinterest does not publish its own percentages (unverified).
+Idea ads use the common 9:16 safe box in specs/_index.md; Pinterest does not publish its own percentages (unverified).
 
 ## Policy (secondary source, unverified)
 

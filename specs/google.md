@@ -1,4 +1,5 @@
 ---
+title: "Google Ads: Performance Max and Responsive Display"
 type: spec
 platform: google
 last_verified: 2026-09-07
@@ -6,8 +7,6 @@ sources:
   - https://support.google.com/google-ads/answer/7005917 (Responsive Display Ads, fetched 2026-09-07)
   - https://support.google.com/google-ads/answer/9823397 (RDA image sizes, fetched 2026-09-07)
 ---
-
-# Google Ads: Performance Max and Responsive Display
 
 The Performance Max asset page could not be reached on 2026-09-07; PMax numbers are from a secondary source and are unverified against the help page.
 

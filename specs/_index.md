@@ -1,10 +1,9 @@
 ---
+title: Platform specs
 type: spec
 platform: all
 last_verified: 2026-09-07
 ---
-
-# Platform spec sheets
 
 Re-verify rule: if `last_verified` in a sheet is older than 90 days, re-verify that sheet against the platform's official help page before building a creative on it (`scripts/check.py` notes a stale sheet). Then update `last_verified` and the `sources` list. If the page cannot be reached, build on the sheet as it is and tell the owner which numbers are unverified.
 

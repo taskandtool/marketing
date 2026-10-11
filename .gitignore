@@ -23,6 +23,7 @@ lists/*
 uploads/*
 !**/.gitkeep
 !**/README.md
+!**/_index.md
 
 # Tool noise
 /dist/

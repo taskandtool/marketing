@@ -1,4 +1,6 @@
-# Claims
+---
+title: Claims
+---
 
 Every fact a creative may state, numbered, each with its source in
 brackets. A creative's `claims:` lists these numbers. A claim with no

@@ -1,12 +1,11 @@
 ---
+title: LinkedIn
 type: spec
 platform: linkedin
 last_verified: 2026-09-07
 sources:
   - https://business.linkedin.com/marketing-solutions/success/ads-guide/single-image-ads (fetched 2026-09-07)
 ---
-
-# LinkedIn
 
 The LinkedIn help centre returned an error on 2026-09-07; only the single image ads guide was verified.
 

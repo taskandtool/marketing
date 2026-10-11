@@ -61,7 +61,7 @@ plugins:
       includeAll: false
       # A creative's status is left out: what waits for approval is the
       # Deliverables tab's, live; url is the post once it is live.
-      includedProperties: [kind, platform, format, angle, hook, campaign, claims, url, type, updated, sources]
+      includedProperties: [kind, platform, format, angle, hook, campaign, claims, url, type, updated, last_verified, sources]
       excludedProperties: []
       hidePropertiesView: false
       delimiters: ---

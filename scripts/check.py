@@ -11,7 +11,7 @@
   there names a source file that exists
 - the copy passes the tropes skill's script and the platform's text limits
 - a platform sheet last verified over 90 days ago is a note: re-verify it
-  before building on it (specs/README.md)
+  before building on it (specs/_index.md)
 
 Then it lists the creatives it checked, newest first, one line each:
 folder, status, kind and platform (the newest 20, and the first 20
@@ -175,7 +175,7 @@ def check_specs(app, findings, notes):
         findings.append("specs/ is missing (the platform sheets)")
         return
     for name in sorted(os.listdir(specs)):
-        if not name.endswith(".md") or name == "README.md":
+        if not name.endswith(".md") or name == "_index.md":
             continue
         fm, _ = read_record(os.path.join(specs, name))
         try:

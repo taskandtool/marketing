@@ -1,12 +1,11 @@
 ---
+title: YouTube
 type: spec
 platform: youtube
 last_verified: 2026-09-07
 sources:
   - https://support.google.com/youtube/answer/72431 (custom thumbnails, fetched 2026-09-07)
 ---
-
-# YouTube
 
 ## Thumbnails (long-form video)
 
@@ -31,7 +30,7 @@ Composition notes:
 | Shorts thumbnail | 9:16, YouTube Help lists 2160×3840 with minimum height 640 | YouTube Help 72431 (verified) |
 | Length | up to 3 minutes; 15 to 35 s working range for ad-style cuts | length limit is a common figure, unverified; working range from a secondary source, unverified |
 
-Shorts safe zone: YouTube does not publish percentages. Use the common 9:16 box from the README (top 14%, bottom 35%, sides 6%) and treat the right rail as busy the way TikTok's is (about 10%). The Shorts title and channel name sit over the bottom band, so the bottom 20% at minimum must be clear (unverified).
+Shorts safe zone: YouTube does not publish percentages. Use the common 9:16 box in specs/_index.md (top 14%, bottom 35%, sides 6%) and treat the right rail as busy the way TikTok's is (about 10%). The Shorts title and channel name sit over the bottom band, so the bottom 20% at minimum must be clear (unverified).
 
 ## Titles
 

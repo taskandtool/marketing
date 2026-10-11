@@ -1,12 +1,11 @@
 ---
+title: TikTok
 type: spec
 platform: tiktok
 last_verified: 2026-09-07
 sources:
   - https://ads.tiktok.com/help/article/video-ads-specifications (fetched 2026-09-07)
 ---
-
-# TikTok
 
 ## Video (in-feed, non-Spark)
 
@@ -38,7 +37,7 @@ Numbers conflict between sources. TikTok says the safe zone varies by orientatio
 | Top | about 10% | secondary source, unverified |
 | Right (like, comment, share rail) | about 10% | secondary source, unverified |
 | Bottom (caption, sound, progress) | about 20% | secondary source, unverified |
-| Meta-style box also used | top 14%, bottom 35%, sides 6% | see README; a stricter box that also clears TikTok's UI |
+| Meta-style box also used | top 14%, bottom 35%, sides 6% | see specs/_index.md; a stricter box that also clears TikTok's UI |
 
 Practical rule: build inside the stricter box (top 14%, bottom 35%, left 6%, right 10%), then check against TikTok's template.
 
