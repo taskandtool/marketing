@@ -346,6 +346,7 @@ class Viewer(unittest.TestCase):
         self.assertNotIn("@LEFT_OUT@", text)
         self.assertNotIn("@SAFE_TEXT@", text)
         self.assertNotIn("@CREATIVE_FILES@", text)
+        self.assertNotIn("@SWATCHES@", text)
         self.assertIn(os.path.join(self.app, "viewer", "creative-files"), text)
         self.assertIn("pageTitle: Marketing", text)
         put(os.path.join(self.app, "public", "business.md"), "---\nname: Acme\n---\n")
@@ -357,6 +358,7 @@ class Viewer(unittest.TestCase):
 
         self.assertEqual(lock["plugins"]["creative-files"]["commit"], "local")
         self.assertEqual(lock["plugins"]["safe-text"]["commit"], "local")
+        self.assertEqual(lock["plugins"]["swatches"]["commit"], "local")
 
     def test_the_quartz_patches_apply_once_and_refuse_other_code(self):
         dispatcher = os.path.join(self.quartz, "quartz/plugins/pageTypes/dispatcher.ts")
@@ -438,6 +440,21 @@ class Viewer(unittest.TestCase):
         self.assertEqual(out["slug"], "creatives/2026-10-01-us-vs-them/index")
         self.assertEqual(out["pageTitle"], "Us vs them")
         self.assertEqual(out["mediaTitle"], "Media")
+
+    def test_swatches_plugin(self):
+        script = r"""
+        import { swatch } from "./index.js"
+        const code = (value) => ({ type: "inlineCode", value })
+        const tree = { type: "root", children: [code("#4e3223"), code("#4e322"), code("#fff; x:url(y)"), code("npm run dev")] }
+        swatch(tree)
+        console.log(JSON.stringify(tree.children.map((n) => n.data?.hProperties?.style ?? null)))
+        """
+        r = subprocess.run(["node", "--input-type=module", "-e", script], capture_output=True, text=True,
+                           cwd=os.path.join(APP, "viewer", "swatches"))
+        self.assertEqual(r.returncode, 0, r.stderr)
+        styles = json.loads(r.stdout)
+        self.assertTrue(styles[0].startswith("border-left: 1.2em solid #4e3223;"))
+        self.assertEqual(styles[1:], [None, None, None])
 
 
 if __name__ == "__main__":

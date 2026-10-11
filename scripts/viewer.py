@@ -47,8 +47,9 @@ BUILD_CONTENT = os.path.join(os.path.dirname(QUARTZ_DIR), "content-build")
 # What the site shows: these folders and files, linked in, never copied.
 FOLDERS = ("creatives", "emails", "reports", "research", "brand", "public", "media", "specs", "raw")
 FILES = ("claims.md", "results.md", "plan.md")
-# The local plugins, beside the config: shown as text / a creative's files.
-LOCAL_PLUGINS = ("safe-text", "creative-files")
+# The local plugins, beside the config: shown as text / a creative's files /
+# a colour beside its hex.
+LOCAL_PLUGINS = ("safe-text", "creative-files", "swatches")
 def any_case(ext):
     """A glob for an extension in any case: Quartz matches case-sensitively."""
     return "".join(f"[{c.lower()}{c.upper()}]" if c.isalpha() else c for c in ext)

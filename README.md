@@ -81,6 +81,9 @@ which is live; the viewer shows the files.
   letter case) are never built into the site; the `safe-text` plugin shows any HTML in markdown as
   text and strips it from titles and tags; `creative-files` shows only files
   named beside the creative.
+- **Colours shown:** a hex colour written as code, `` `#4e3223` ``, shows
+  its colour beside it (the `swatches` plugin), so the brand's colours can
+  be checked by eye.
 
 The web service installs Quartz on its first start, outside the app
 (`~/.local/share/marketing-viewer/`), so setup does not wait for it. Quartz

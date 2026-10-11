@@ -47,6 +47,10 @@ plugins:
   - source: "@SAFE_TEXT@"
     enabled: true
     order: 1
+  # a hex colour written as code shows its colour beside it
+  - source: "@SWATCHES@"
+    enabled: true
+    order: 2
   # a creative or email shown as the piece: its title, copy, pictures and clips
   - source: "@CREATIVE_FILES@"
     enabled: true
