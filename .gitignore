@@ -9,10 +9,12 @@
 
 # Working material and output are the owner's, made on their own machine.
 # The folders and the notes that explain them ship with the app; nobody's
-# brand, research or creatives do.
+# brand, research, creatives, emails or reports do.
 /brand/*
 /public/*
 creatives/*
+emails/*
+reports/*
 research/*
 media/clips/*
 media/photos/*
@@ -24,6 +26,8 @@ uploads/*
 
 # Tool noise
 /dist/
+# Quartz runs npm install in the linked plugin folder on each new machine.
+/viewer/*/package-lock.json
 node_modules/
 __pycache__/
 *.pyc

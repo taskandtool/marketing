@@ -7,7 +7,8 @@ and it is the one thing only the owner has.
 ```
 media/photos/   stills
 media/clips/    video the owner filmed
-media/_index.md one line per file: what it shows, who is in it, whether it may be used in ads
+media/_index.md one line per file, a photo shown (`![what it shows](photos/<file>)`): what it shows,
+                who is in it, whether it may be used in ads
 ```
 
 Files arrive from the owner (the Files tab, a chat message), or from a

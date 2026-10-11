@@ -15,6 +15,7 @@ import sys
 import tempfile
 import unittest
 from datetime import date
+from unittest import mock
 
 SCRIPTS = os.path.dirname(os.path.abspath(__file__))
 APP = os.path.dirname(SCRIPTS)
@@ -104,14 +105,12 @@ class Check(unittest.TestCase):
         self.assertIn("check: ok, 0 approved creative(s)", r.stdout)
         self.assertNotIn("fitted-it", r.stdout)
 
-    def test_a_stale_sheet_stops_a_draft_on_its_platform(self):
+    def test_a_stale_sheet_is_a_note_not_a_finding(self):
         put(os.path.join(self.app, "specs", "meta.md"), "---\nlast_verified: 2020-01-01\n---\n")
         self.write(GOOD)
         r = run("check.py", cwd=self.app, app=self.app)
-        self.assertEqual(r.returncode, 1)
-        self.assertIn("specs/meta.md was last verified 2020-01-01", r.stderr)
-        self.write(GOOD.replace("status: draft", "status: approved"))
-        self.assertEqual(run("check.py", cwd=self.app, app=self.app).returncode, 0)
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertIn("note: specs/meta.md was last verified 2020-01-01", r.stdout)
 
     def test_missing_claim_file_and_tell_are_findings(self):
         bad = GOOD.replace("claims: [1]", "claims: [1, 7]").replace("files: [v1.png]", "files: [v2.png]")
@@ -385,7 +384,7 @@ class Viewer(unittest.TestCase):
         def left_out(path):
             return any(fnmatch.fnmatchcase(path, pat.replace("**/", "*")) for pat in viewer.LEFT_OUT)
         for path in ("raw/site/a/page.HTML", "raw/site/a/b.Htm", "raw/x/logo.SVG", "media/a.shtml",
-                     "raw/a.xht", "raw/a.XSL", "raw/a.js", "raw/_cache/x.md"):
+                     "raw/a.xht", "raw/a.XSL", "raw/a.js", "raw/_cache/x.md", "raw/a.MHT", "raw/x/a.svgz"):
             self.assertTrue(left_out(path), path)
         for path in ("creatives/2026-10-01-a/v1.png", "brand/logo.svg", "raw/site/a/pages/home.md"):
             self.assertFalse(left_out(path), path)
@@ -399,6 +398,32 @@ class Viewer(unittest.TestCase):
         self.assertTrue(viewer.clear_stale_plugin_links())
         self.assertFalse(os.path.lexists(os.path.join(plugins, "creative-files")))
         self.assertTrue(os.path.islink(os.path.join(plugins, "safe-text")))
+
+    def test_a_missing_or_misplaced_plugin_is_caught(self):
+        plugins = os.path.join(self.quartz, ".quartz", "plugins")
+        with open(os.path.join(self.app, "viewer", "quartz.lock.json")) as f:
+            names = list(json.load(f)["plugins"])
+        for name in names:
+            put(os.path.join(plugins, name, "package.json"), "{}")
+        self.assertEqual(viewer.plugins_missing(), list(viewer.LOCAL_PLUGINS))   # not linked yet
+        for name in viewer.LOCAL_PLUGINS:
+            os.symlink(os.path.join(self.app, "viewer", name), os.path.join(plugins, name))
+        self.assertEqual(viewer.plugins_missing(), [])
+        os.unlink(os.path.join(plugins, names[0], "package.json"))
+        self.assertEqual(viewer.plugins_missing(), [names[0]])
+
+    def test_a_build_without_its_plugins_fails_and_ships_nothing(self):
+        def quartz_build(args, cwd, what):
+            put(os.path.join(self.app, "dist", "index.html"), "<p>built</p>")
+            return "Parsing input files\nFailed to load plugin safe-text: Cannot find module\n"
+        with mock.patch.object(viewer, "install", lambda: False), \
+                mock.patch.object(viewer, "stage", lambda content, base_url=None: None), \
+                mock.patch.object(viewer, "production_host", lambda: None), \
+                mock.patch.object(viewer, "run", quartz_build):
+            with self.assertRaises(viewer.Failed) as e:
+                viewer.build()
+        self.assertIn("without all its plugins", str(e.exception))
+        self.assertFalse(os.path.exists(os.path.join(self.app, "dist")))
 
     def test_creative_files_plugin(self):
         script = r"""

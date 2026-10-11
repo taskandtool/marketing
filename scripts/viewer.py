@@ -60,8 +60,8 @@ def any_case(ext):
 LEFT_OUT = (["**/_cache/**"]
             + [f"**/*.{any_case(ext)}" for ext in (
                 "json", "jsonl", "html", "htm", "shtml", "xhtml", "xht",
-                "xml", "xsl", "xslt", "js", "mjs", "cjs")]
-            + [f"raw/**/*.{any_case('svg')}"])
+                "xml", "xsl", "xslt", "js", "mjs", "cjs", "mht", "mhtml")]
+            + [f"raw/**/*.{any_case(ext)}" for ext in ("svg", "svgz")])
 DEFAULT_TITLE = "Marketing"
 MAX_ASSET = 25 * 1024 * 1024      # Cloudflare's limit on one static file
 MAX_FILES = 20_000                # and on the files in one deploy
@@ -88,7 +88,8 @@ def node_major():
 def run(args, cwd, what):
     """Run a command quietly; on failure raise with the end of its output.
     Quartz and its plugins depend on two packages fetched from GitHub at
-    pinned commits, which npm 12 refuses unless allowed."""
+    pinned commits, which npm 12 refuses unless allowed. Returns stdout and
+    stderr together."""
     env = {**os.environ, "npm_config_allow_git": "all"}
     try:
         r = subprocess.run(args, cwd=cwd, capture_output=True, text=True, env=env)
@@ -97,13 +98,17 @@ def run(args, cwd, what):
     if r.returncode != 0:
         tail = (r.stdout + r.stderr).strip().splitlines()[-12:]
         raise Failed(f"{what} failed", tail, f"{CMD} install")
-    return r.stdout
+    return r.stdout + r.stderr
+
+
+def pinned_lock():
+    with open(os.path.join(VIEWER, "quartz.lock.json")) as f:
+        return json.load(f)
 
 
 def lock_text():
     """Our pinned plugins plus the local ones, as Quartz's lock."""
-    with open(os.path.join(VIEWER, "quartz.lock.json")) as f:
-        lock = json.load(f)
+    lock = pinned_lock()
     for name in LOCAL_PLUGINS:
         path = os.path.join(VIEWER, name)
         lock["plugins"][name] = {"source": path, "resolved": path, "commit": "local"}
@@ -267,8 +272,11 @@ def _install():
         have = None
     if clear_stale_plugin_links():
         have = None
-    if have != want:
+    if have != want or plugins_missing():
         run(["npx", "quartz", "plugin", "install"], QUARTZ_DIR, "installing Quartz's plugins")
+        missing = plugins_missing()
+        if missing:
+            raise Failed(f"Quartz's plugin install left out {', '.join(missing)}", [], f"{CMD} install")
         os.makedirs(os.path.dirname(stamp), exist_ok=True)
         with open(stamp, "w") as f:
             f.write(want + "\n")
@@ -276,9 +284,21 @@ def _install():
     return did
 
 
+def plugins_missing():
+    """The pinned plugins not in place, the local ones included: Quartz's
+    plugin install exits 0 with some failed, and a build without safe-text
+    would render raw/'s HTML."""
+    names = list(pinned_lock()["plugins"])
+    plugins = os.path.join(QUARTZ_DIR, ".quartz", "plugins")
+    missing = [n for n in names if not os.path.isfile(os.path.join(plugins, n, "package.json"))]
+    for name in LOCAL_PLUGINS:
+        if os.path.realpath(os.path.join(plugins, name)) != os.path.realpath(os.path.join(VIEWER, name)):
+            missing.append(name)
+    return missing
+
+
 def plugin_count():
-    with open(os.path.join(VIEWER, "quartz.lock.json")) as f:
-        return len(json.load(f)["plugins"]) + len(LOCAL_PLUGINS)
+    return len(pinned_lock()["plugins"]) + len(LOCAL_PLUGINS)
 
 
 # ---------------------------------------------------------------- staging
@@ -352,6 +372,10 @@ def prune(dist):
     return kept, sorted(dropped)
 
 
+# Quartz goes on building when a plugin fails to load, and says so only here.
+PLUGIN_FAILED = re.compile(r"Failed to (install|load|instantiate) plugin|Could not determine category")
+
+
 def build():
     install()
     # A build is for production: its link previews name production's address.
@@ -361,7 +385,12 @@ def build():
               "link previews say localhost until the next build", file=sys.stderr, flush=True)
     stage(BUILD_CONTENT, host)
     dist = os.path.join(ROOT, "dist")
-    run(["npx", "quartz", "build", "-d", BUILD_CONTENT, "-o", dist], QUARTZ_DIR, "the Quartz build")
+    out = run(["npx", "quartz", "build", "-d", BUILD_CONTENT, "-o", dist], QUARTZ_DIR, "the Quartz build")
+    failed = [line.strip() for line in out.splitlines() if PLUGIN_FAILED.search(line)]
+    if failed:
+        # Without its plugins (safe-text above all) the site must not ship.
+        shutil.rmtree(dist, ignore_errors=True)
+        raise Failed("the Quartz build ran without all its plugins; dist/ removed", failed[:5], f"{CMD} install")
     kept, dropped = prune(dist)
     pages = sum(1 for _d, _s, names in os.walk(dist) for n in names if n.endswith(".html"))
     return pages, kept, dropped

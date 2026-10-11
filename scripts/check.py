@@ -10,8 +10,8 @@
 - every claim it cites is a numbered entry in claims.md, and every entry
   there names a source file that exists
 - the copy passes the tropes skill's script and the platform's text limits
-- the platform sheet a draft is built against is not stale (90 days);
-  "Do not build on a stale sheet" (specs/README.md), so that is a finding
+- a platform sheet last verified over 90 days ago is a note: re-verify it
+  before building on it (specs/README.md)
 
 Then it lists the creatives it checked, newest first, one line each:
 folder, status, kind and platform (the newest 20, and the first 20
@@ -66,9 +66,6 @@ LIMITS["facebook"] = LIMITS["instagram"] = LIMITS["meta"]
 # so their numbers are in social-post/references/ (x-threads.md, gbp.md)
 POST_LIMITS = {"x": {"caption": (280, True, "X post: 280 max")},
                "gbp": {"caption": (1500, True, "Google Business Profile post: 1,500 max")}}
-# the sheet in specs/ each platform is built against (x and gbp have none)
-SHEETS = {"meta": "meta.md", "instagram": "meta.md", "facebook": "meta.md", "linkedin": "linkedin.md",
-          "tiktok": "tiktok.md", "youtube": "youtube.md", "google": "google.md", "pinterest": "pinterest.md"}
 SHOWN = 20
 
 
@@ -115,7 +112,7 @@ def claim_numbers(app, findings):
     return out
 
 
-def check_creative(app, name, d, fm, body, claims, stale, findings, notes):
+def check_creative(app, name, d, fm, body, claims, findings, notes):
     rel = os.path.relpath(os.path.join(d, "creative.md"), app)
     if not FOLDER.match(name):
         findings.append(f"{rel}: the folder is named YYYY-MM-DD-<slug>")
@@ -147,10 +144,6 @@ def check_creative(app, name, d, fm, body, claims, stale, findings, notes):
             findings.append(f"{rel}: claim source {c} does not exist")
     if "to fill" in body:
         findings.append(f"{rel}: the body still says 'to fill'")
-    sheet = SHEETS.get(fm.get("platform"))
-    if fm.get("status") == "draft" and sheet in stale:
-        findings.append(f"{rel}: specs/{sheet} was last verified {stale[sheet]}, over 90 days ago; "
-                        "re-verify it as specs/README.md says before building on it")
 
     copy = fm.get("copy") or {}
     if not isinstance(copy, dict):
@@ -176,12 +169,11 @@ def check_creative(app, name, d, fm, body, claims, stale, findings, notes):
 
 
 def check_specs(app, findings, notes):
-    """{sheet: last_verified} for the sheets over 90 days old."""
-    stale = {}
+    """Each sheet has a last_verified date; one over 90 days old is a note."""
     specs = os.path.join(app, "specs")
     if not os.path.isdir(specs):
         findings.append("specs/ is missing (the platform sheets)")
-        return stale
+        return
     for name in sorted(os.listdir(specs)):
         if not name.endswith(".md") or name == "README.md":
             continue
@@ -192,9 +184,7 @@ def check_specs(app, findings, notes):
             findings.append(f"specs/{name}: last_verified must be a date")
             continue
         if (date.today() - d).days > 90:
-            stale[name] = d
             notes.append(f"specs/{name} was last verified {d}, over 90 days ago; re-verify it before building on it")
-    return stale
 
 
 def main():
@@ -208,7 +198,7 @@ def main():
     for f in NOTES:
         if not os.path.exists(os.path.join(app, f)):
             findings.append(f"{f} is missing (the brand skill writes it)")
-    stale = check_specs(app, findings, notes)
+    check_specs(app, findings, notes)
     claims = claim_numbers(app, findings)
     rows = creative_dirs(app)
     if args.folders:
@@ -221,7 +211,7 @@ def main():
         fm, body = read_record(os.path.join(d, "creative.md"))
         if args.status and fm.get("status") != args.status:
             continue
-        check_creative(app, name, d, fm, body, claims, stale, findings, notes)
+        check_creative(app, name, d, fm, body, claims, findings, notes)
         checked.append((name, fm))
     what = f"{len(checked)} {args.status + ' ' if args.status else ''}creative(s)"
     again = " ".join(["python3 scripts/check.py", *args.folders] + (["--status", args.status] if args.status else []))

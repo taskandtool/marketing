@@ -41,7 +41,8 @@ starter-app.json the manifest: the connections it can use and the suggestions an
 ```
 brand/  public/          the brand record: look, voice, published facts
 claims.md                every fact a creative may state, numbered, each with its source
-media/                   the business's own photos and clips; _index.md says what may be used
+media/                   the owner's photos and clips sent here; _index.md says what may be used
+                         (the brand's curated photos are brand/images.md)
 raw/                     material as it arrived (crawls, downloads, what the owner said)
 research/                competitors, hooks seen, customers' words, conversations, the brief
 creatives/YYYY-MM-DD-<slug>/   one idea per folder: creative.md and its pictures and clips

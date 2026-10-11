@@ -53,7 +53,8 @@ posts or spends; a one-off stays in chat.
 ```
 brand/  public/         the brand record (the brand skill)
 claims.md               every fact a creative may state, numbered, each with its source
-media/                  the business's own photos and clips; _index.md says what may be used
+media/                  the owner's photos and clips sent here; _index.md says what may be used
+                        (the brand's curated photos are brand/images.md)
 raw/                    material as it arrived: raw/site/<host>/, raw/<source>/<who>/
 research/               competitors/<name>.md, hooks.md, audience.md, brief.md
 creatives/YYYY-MM-DD-<slug>/   one idea per folder: creative.md, v1.png, v2.png, shot-1.mp4

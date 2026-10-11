@@ -33,9 +33,11 @@ Read the one that fits the ask rather than working from memory.
 - The notes the work needs first are `brand/positioning.md`,
   `brand/voice.md`, `brand/visual-identity.md` and `public/business.md`;
   `scripts/check.py` fails until all four exist. There is no homepage here.
-- The owner's photos go to `media/photos/` and clips to `media/clips/`,
-  each with a line in `media/_index.md`; never `raw/photos/` or
-  `brand/images/`.
+- Photos are in two places, and both count: the brand's curated set in
+  `brand/images.md`, and the owner's photos and clips sent here, in
+  `media/photos/` and `media/clips/`, each with a line in `media/_index.md`
+  (a photo's line shows it: `![what it shows](photos/<file>)`); never
+  `raw/photos/`.
 
 ## Commands
 
@@ -75,16 +77,16 @@ restart the service while it installs.
 
 The viewer's look (colours, fonts, which panels show) is `viewer/quartz.config.yaml`;
 take the colours and fonts from `brand/visual-identity.md` when the owner
-asks.
+asks. After changing it, `python3 ~/tools/taskandtool.py restart`.
 
 ## Pictures
 
 Make them with `make-image` (the `images` skill), saved in the creative's
 folder (`v1.png`, `v2.png`), the prompt as sent under `## Prompt`.
 
-- The owner's own photo first (`media/_index.md`); generate when there is
-  no photo of the thing, or to place their product in a new scene (their
-  photo as `--ref`).
+- The owner's own photo first (`brand/images.md`, `media/_index.md`);
+  generate when there is no photo of the thing, or to place their product
+  in a new scene (their photo as `--ref`).
 - The Imagery block of `brand/visual-identity.md` goes into every prompt,
   so a set looks like one brand.
 - No interface, chart or product the business does not make.
