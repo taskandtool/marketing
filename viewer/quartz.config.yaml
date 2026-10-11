@@ -61,7 +61,7 @@ plugins:
       includeAll: false
       # A creative's status is left out: what waits for approval is the
       # Deliverables tab's, live; url is the post once it is live.
-      includedProperties: [kind, platform, format, angle, hook, campaign, claims, url, type, updated, last_verified, sources]
+      includedProperties: [kind, platform, format, angle, hook, campaign, claims, url, type, updated, last_verified]
       excludedProperties: []
       hidePropertiesView: false
       delimiters: ---
@@ -112,8 +112,6 @@ plugins:
   - source: github:quartz-community/content-page
     enabled: true
   - source: github:quartz-community/folder-page
-    enabled: true
-  - source: github:quartz-community/tag-page
     enabled: true
   - source: github:quartz-community/explorer
     enabled: true
@@ -191,8 +189,5 @@ layout:
         right: []
     content: {}
     folder:
-      positions:
-        right: []
-    tag:
       positions:
         right: []
