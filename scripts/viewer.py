@@ -11,8 +11,8 @@ from any directory.
 `install` puts Quartz outside the app (QUARTZ_DIR, default
 ~/.local/share/marketing-viewer/quartz-<tag>) and prints "already installed"
 when it is. `dev` is the web service's command: it installs if needed, then
-serves on $PORT (3000). `build` writes dist/ and leaves out any file
-Cloudflare will not take.
+serves on $PORT (3000), starting Quartz again if it crashes. `build` writes
+dist/ and leaves out any file Cloudflare will not take.
 
 The viewer's look is viewer/quartz.config.yaml (colours, fonts, panels);
 its plugins are pinned in viewer/quartz.lock.json. Approvals are not here:
@@ -24,9 +24,11 @@ import json
 import os
 import re
 import shutil
+import signal
 import socket
 import subprocess
 import sys
+import time
 from urllib.parse import urlparse
 
 from common import Parser, die, root
@@ -405,6 +407,40 @@ def free_port():
         return sock.getsockname()[1]
 
 
+def serve(command, clock=time.monotonic, pause=time.sleep):
+    """Run Quartz's dev server, and start it again when it crashes: one bad
+    rebuild (Quartz dies on an error mid-rebuild) must not take the dev
+    address down. Five crashes in a minute is a real fault, so that exits.
+    A stop from the service manager reaches Quartz and ends the loop."""
+    crashes = []
+    child = None
+
+    def stop(signum, _frame):
+        if child and child.poll() is None:
+            child.terminate()
+        sys.exit(128 + signum)
+
+    previous = signal.signal(signal.SIGTERM, stop)
+    try:
+        while True:
+            try:
+                child = subprocess.Popen(command(), cwd=QUARTZ_DIR)
+            except FileNotFoundError:
+                raise Failed("npx is not installed", [], "node --version")
+            code = child.wait()
+            if code == 0:
+                return code
+            now = clock()
+            crashes = [t for t in crashes if now - t < 60] + [now]
+            if len(crashes) >= 5:
+                raise Failed(f"Quartz crashed {len(crashes)} times in a minute (exit {code})",
+                             ["the error is in the output above"], f"{CMD} dev")
+            print(f"viewer dev: Quartz exited with {code}; starting it again", file=sys.stderr, flush=True)
+            pause(1)
+    finally:
+        signal.signal(signal.SIGTERM, previous)
+
+
 # ---------------------------------------------------------------- main
 
 def size_mb(n):
@@ -441,12 +477,8 @@ def main(argv):
             stage(DEV_CONTENT)
             print(f"viewer dev: serving the marketing files on port {port}, rebuilt on every change",
                   flush=True)
-            os.chdir(QUARTZ_DIR)
-            try:
-                os.execvp("npx", ["npx", "quartz", "build", "--serve", "--port", str(port),
+            return serve(lambda: ["npx", "quartz", "build", "--serve", "--port", str(port),
                                   "--wsPort", str(free_port()), "-d", DEV_CONTENT])
-            except FileNotFoundError:
-                raise Failed("npx is not installed", [], "node --version")
 
         pages, kept, dropped = build()
         lines = [f"viewer build: {pages} pages and {kept - pages} other files in dist/"]

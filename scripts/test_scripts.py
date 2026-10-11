@@ -399,6 +399,23 @@ class Viewer(unittest.TestCase):
         self.assertFalse(os.path.lexists(os.path.join(plugins, "creative-files")))
         self.assertTrue(os.path.islink(os.path.join(plugins, "safe-text")))
 
+    def test_serve_restarts_after_a_crash(self):
+        marker = os.path.join(self.tmp, "runs")
+        # Crashes on its first run, then exits clean: the loop starts it twice.
+        script = (f"import os,sys; p={marker!r}; n=os.path.exists(p); open(p,'a').write('x'); "
+                  "sys.exit(0 if n else 1)")
+        os.makedirs(self.quartz, exist_ok=True)
+        self.assertEqual(viewer.serve(lambda: [sys.executable, "-c", script], pause=lambda _s: None), 0)
+        with open(marker) as f:
+            self.assertEqual(f.read(), "xx")
+
+    def test_serve_gives_up_on_a_crash_loop(self):
+        os.makedirs(self.quartz, exist_ok=True)
+        with self.assertRaises(viewer.Failed) as e:
+            viewer.serve(lambda: [sys.executable, "-c", "raise SystemExit(1)"],
+                         clock=lambda: 100.0, pause=lambda _s: None)
+        self.assertIn("5 times in a minute", str(e.exception))
+
     def test_a_missing_or_misplaced_plugin_is_caught(self):
         plugins = os.path.join(self.quartz, ".quartz", "plugins")
         with open(os.path.join(self.app, "viewer", "quartz.lock.json")) as f:
