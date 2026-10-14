@@ -551,13 +551,14 @@ class Viewer(unittest.TestCase):
     def test_the_quartz_patches_apply_once_and_refuse_other_code(self):
         dispatcher = os.path.join(self.quartz, "quartz/plugins/pageTypes/dispatcher.ts")
         ignore = os.path.join(self.quartz, ".gitignore")
-        shipped = viewer.QUARTZ_PATCHES[0][1]
-        put(dispatcher, "before\n" + shipped + "after\n")
+        shipped, listing = viewer.QUARTZ_PATCHES[0][1], viewer.QUARTZ_PATCHES[1][1]
+        put(dispatcher, "before\n" + shipped + "between\n" + listing + "after\n")
         put(ignore, ".DS_Store\nnode_modules\npublic\nprof\ntsconfig.tsbuildinfo\n.quartz-cache\nprivate/\n.replit\n")
         viewer.patch_quartz()
         viewer.patch_quartz()
         with open(dispatcher) as f:
-            self.assertEqual(f.read(), "before\n" + viewer.QUARTZ_PATCHES[0][2] + "after\n")
+            self.assertEqual(f.read(), "before\n" + viewer.QUARTZ_PATCHES[0][2] + "between\n"
+                             + viewer.QUARTZ_PATCHES[1][2] + "after\n")
         with open(ignore) as f:
             lines = f.read().split("\n")
         for gone in ("public", "prof", "private/"):

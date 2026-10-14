@@ -184,6 +184,18 @@ QUARTZ_PATCHES = [
      "      ve.tree.children = htmlAst.children\n      ve.vfile.data.htmlAst = htmlAst\n",
      "      ve.vfile.data.htmlAst = htmlAst\n",
      "ve.tree.children = htmlAst.children"),
+    # 5.0.0's dev server rebuilds only the pages whose own file changed, so a
+    # creative added or removed never reached its folder's listing until a
+    # restart. A page added or removed now rebuilds every folder page above it.
+    ("quartz/plugins/pageTypes/dispatcher.ts",
+     "      for (const changeEvent of changeEvents) {\n        if (!changeEvent.file) continue\n",
+     "      for (const changeEvent of changeEvents) {\n"
+     "        if (changeEvent.type !== \"change\" && changeEvent.path.endsWith(\".md\")) {\n"
+     "          const dirs = changeEvent.path.split(\"/\").slice(0, -1)\n"
+     "          for (let i = 0; i <= dirs.length; i++) changedSlugs.add([...dirs.slice(0, i), \"index\"].join(\"/\"))\n"
+     "        }\n"
+     "        if (!changeEvent.file) continue\n",
+     "      for (const changeEvent of changeEvents) {\n        if (!changeEvent.file) continue\n"),
     # The dev server's watcher skips what Quartz's own .gitignore names, and
     # that names public, private/ and prof: edits to public/ never showed.
     (".gitignore", "\npublic\nprof\n", "\n", "\npublic\n"),
