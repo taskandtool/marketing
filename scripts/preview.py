@@ -85,8 +85,8 @@ def words(fm):
     copy = fm.get("copy") if isinstance(fm.get("copy"), dict) else {}
     text = copy.get("caption") or copy.get("primary_text") or ""
     tags = copy.get("hashtags")
-    if isinstance(tags, list) and tags:
-        text = (text + "\n\n" + " ".join(t if str(t).startswith("#") else f"#{t}" for t in tags)).strip()
+    if isinstance(tags, str) and tags.strip():
+        text = (text + "\n\n" + tags.strip()).strip()
     return {"text": str(text), "headline": str(copy.get("headline") or ""),
             "description": str(copy.get("description") or ""), "cta": str(copy.get("cta") or "")}
 

@@ -158,6 +158,12 @@ class Check(unittest.TestCase):
         r = run("check.py", cwd=self.app, app=self.app)
         self.assertIn("posted creative has the post's `url`", r.stderr)
 
+    def test_hashtags_are_one_line(self):
+        self.write(GOOD.replace("kind: ad", "kind: post").replace('  cta: "Book a service"', '  cta: "Book a service"\n  hashtags: [leeds, boilers]'))
+        r = run("check.py", cwd=self.app, app=self.app)
+        self.assertEqual(r.returncode, 1)
+        self.assertIn('copy.hashtags is one line as it will be pasted, "#one #two"', r.stderr)
+
     def test_sent_names_its_deliverable(self):
         self.write(GOOD.replace("status: draft", "status: sent"))
         r = run("check.py", cwd=self.app, app=self.app)
@@ -328,7 +334,7 @@ copy:
     Same two engineers since 2004, from Headingley to Horsforth, and the one who fitted your boiler is the one who services it.
 
     Who fitted yours?
-  hashtags: []
+  hashtags: "#leedsheating"
 ---
 
 ## Idea
@@ -382,7 +388,10 @@ class Preview(unittest.TestCase):
 
     def calls(self):
         path = os.path.join(self.home, "tools", "calls.json")
-        return [json.loads(l) for l in open(path)] if os.path.exists(path) else []
+        if not os.path.exists(path):
+            return []
+        with open(path) as fh:
+            return [json.loads(l) for l in fh]
 
     def test_a_post_is_drawn_as_the_feed_shows_it(self):
         r = self.preview("creatives/2026-10-01-fitted-it")
@@ -397,6 +406,7 @@ class Preview(unittest.TestCase):
         self.assertIn(">See more</button>", html)       # cut where Facebook cuts it
         self.assertIn("Who fitted yours?", html)        # the rest is behind it, not lost
         self.assertNotIn("|-", html)
+        self.assertIn("#leedsheating", html)              # the hashtags, as they will be pasted
         again = self.preview("2026-10-01-fitted-it")
         self.assertIn("unchanged", again.stdout)
 
@@ -634,7 +644,7 @@ class Viewer(unittest.TestCase):
         out.headings = nodes.filter((n) => n.type === "heading").map((n) => n.children[0].value)
         // a post is one card, as the feed shows it: caption, then its picture; no separate Files
         const post = m.pieceNodes({ kind: "post", platform: "facebook", files: ["v1.png"],
-                                    copy: { caption: "Line one\n\nWho fitted yours?", hashtags: ["local"] } })
+                                    copy: { caption: "Line one\n\nWho fitted yours?", hashtags: "#local" } })
         out.postHeadings = post.filter((n) => n.type === "heading").map((n) => n.children[0].value)
         const card = post[1]
         out.card = [card.data.hName, card.children[0].children[0].value, card.children[1].children[0].url]

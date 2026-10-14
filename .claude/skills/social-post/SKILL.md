@@ -32,7 +32,8 @@ Copy and tick:
       Pictures section of `AGENTS.md`).
 - [ ] 6. Write `creatives/YYYY-MM-DD-<slug>/creative.md` with `kind: post`,
       the whole caption as it will be pasted in `copy.caption`, and any
-      hashtags in `copy.hashtags`. Run `python3 scripts/check.py`, then
+      hashtags in `copy.hashtags` as one line (`"#sarasotacoffee
+      #downtownsarasota"`). Run `python3 scripts/check.py`, then
       `python3 scripts/preview.py <folder> --send "<line>"`: the owner sees
       it as the feed will show it. A week of posts is one call.
 - [ ] 7. **Posting**, once approved: through a posting connection the

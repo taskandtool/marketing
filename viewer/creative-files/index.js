@@ -56,7 +56,7 @@ export function cardNodes(frontmatter) {
   const kind = frontmatter?.kind
   if (kind !== "post" && kind !== "ad") return []
   const copy = frontmatter.copy && typeof frontmatter.copy === "object" ? frontmatter.copy : {}
-  const tags = Array.isArray(copy.hashtags) ? copy.hashtags.map((t) => (String(t).startsWith("#") ? t : "#" + t)).join(" ") : ""
+  const tags = typeof copy.hashtags === "string" ? copy.hashtags.trim() : ""
   const words = [copy.caption || copy.primary_text || "", tags].filter((s) => String(s).trim()).join("\n\n")
   const files = (Array.isArray(frontmatter.files) ? frontmatter.files : []).map(fileNode).filter(Boolean)
   const where = PLATFORMS[frontmatter.platform] ?? String(frontmatter.platform ?? "")

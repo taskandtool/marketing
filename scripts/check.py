@@ -153,6 +153,8 @@ def check_creative(app, name, d, fm, body, claims, findings, notes):
         findings.append(f"{rel}: copy must be a map")
         return
     ad = fm.get("kind") == "ad"
+    if copy.get("hashtags") is not None and not isinstance(copy["hashtags"], str):
+        findings.append(f"{rel}: copy.hashtags is one line as it will be pasted, \"#one #two\"")
     if ad and copy.get("hashtags"):
         findings.append(f"{rel}: an ad carries no hashtags (they are an exit)")
     fields = {k: v for k, v in copy.items() if isinstance(v, str) and v.strip()}
