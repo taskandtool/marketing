@@ -14,7 +14,7 @@ Version: 0.1.1 (taskandtool/skills)
 
 ## Copy, by script
 
-The app's own check runs the script: `npm run verify` (website) or
+The app's own check runs the script: `npm run check:copy` (website) or
 `python3 scripts/check.py` (marketing). For any other text:
 
 ```
