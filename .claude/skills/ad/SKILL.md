@@ -29,9 +29,9 @@ Copy and tick:
       ratio separately.
 - [ ] 5. **Audit.** `python3 scripts/check.py <folder>`, then the `tropes`
       skill. Fix everything.
-- [ ] 6. **Show.** Attach the files as deliverables with one line each:
-      the idea, the format, and what you changed in the audit. Set `status:
-      sent`.
+- [ ] 6. **Show.** `python3 scripts/preview.py <folders> --send "<line>"`,
+      a set to test in one call; in the chat, one line each: the idea, the
+      format, and what you changed in the audit.
 
 ## Rules
 

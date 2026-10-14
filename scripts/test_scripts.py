@@ -97,7 +97,7 @@ class Check(unittest.TestCase):
         self.assertIn("\nNext: the tropes skill's eye pass on 2026-10-01-fitted-it", r.stdout)
 
     def test_status_lists_only_that_status(self):
-        self.write(GOOD.replace("status: draft", "status: sent"))
+        self.write(GOOD.replace("status: draft", "status: sent\ndeliverable: 12"))
         r = run("check.py", "--status", "sent", cwd=self.app, app=self.app)
         self.assertEqual(r.returncode, 0, r.stderr)
         self.assertIn("check: ok, 1 sent creative(s)", r.stdout)
@@ -158,6 +158,13 @@ class Check(unittest.TestCase):
         r = run("check.py", cwd=self.app, app=self.app)
         self.assertIn("posted creative has the post's `url`", r.stderr)
 
+    def test_sent_names_its_deliverable(self):
+        self.write(GOOD.replace("status: draft", "status: sent"))
+        r = run("check.py", cwd=self.app, app=self.app)
+        self.assertEqual(r.returncode, 1)
+        self.assertIn("a sent creative names its `deliverable`", r.stderr)
+        self.assertIn("scripts/preview.py 2026-10-01-fitted-it --send", r.stderr)
+
     def test_the_app_is_found_from_the_script_not_the_cwd(self):
         self.write(GOOD)
         shutil.rmtree(os.path.join(self.app, "brand"))
@@ -172,7 +179,7 @@ class Check(unittest.TestCase):
         r = run("check.py", cwd=self.app, app=self.app)
         self.assertEqual(r.returncode, 0, r.stderr)
         self.assertLess(r.stdout.index("check: ok"), r.stdout.index("note: "))
-        bad = GOOD.replace("status: draft", "status: sent").replace("claims: [1]", "claims: [" + ", ".join(str(n) for n in range(10, 35)) + "]")
+        bad = GOOD.replace("status: draft", "status: sent\ndeliverable: 12").replace("claims: [1]", "claims: [" + ", ".join(str(n) for n in range(10, 35)) + "]")
         self.write(bad)
         r = run("check.py", "--status", "sent", cwd=self.app, app=self.app)
         self.assertEqual(r.returncode, 1)
@@ -211,7 +218,7 @@ class Generators(unittest.TestCase):
         self.assertIn("Try: python3 ~/tools/taskandtool.py request-connection openrouter-api --why", r.stderr)
 
     def test_help_and_misuse(self):
-        for script in ("check.py", "videogen.py"):
+        for script in ("check.py", "videogen.py", "preview.py"):
             for flag in ("--help", "-h"):
                 r = run(script, flag, cwd=APP)
                 self.assertEqual(r.returncode, 0, script + flag)
@@ -292,9 +299,181 @@ class Frontmatter(unittest.TestCase):
         self.assertEqual(data["copy"]["cta"], "Book a service")
         self.assertIn("## Idea", body)
 
+    def test_block_text_keeps_lines_and_hashtags(self):
+        data = common.parse_frontmatter(
+            "status: draft\ncopy:\n  caption: |-\n    Line one #local\n\n    Line two: still text\n"
+            "  hashtags: []\nnote: >-\n  folded\n  here\nfiles: [v1.png]")
+        self.assertEqual(data["copy"]["caption"], "Line one #local\n\nLine two: still text")
+        self.assertEqual(data["copy"]["hashtags"], [])
+        self.assertEqual(data["note"], "folded here")
+        self.assertEqual(data["files"], ["v1.png"])
+        self.assertEqual(data["status"], "draft")
+
     def test_folder_pattern(self):
         self.assertTrue(common.FOLDER.match("2026-10-01-us-vs-them"))
         self.assertFalse(common.FOLDER.match("us-vs-them"))
+
+
+POST = """---
+kind: post
+platform: facebook
+format: photo-and-short-story
+angle: origin
+hook: founder-story
+status: draft
+claims: [1]
+files: [v1.png]
+copy:
+  caption: |-
+    Same two engineers since 2004, from Headingley to Horsforth, and the one who fitted your boiler is the one who services it.
+
+    Who fitted yours?
+  hashtags: []
+---
+
+## Idea
+The engineer who fitted it.
+"""
+
+# the bridge, as a turn on a machine finds it: it records what it was asked
+FAKE_BRIDGE = """import json, sys, os
+items = json.loads(sys.stdin.read())
+open(os.path.join(os.path.dirname(__file__), "calls.json"), "a").write(json.dumps({"argv": sys.argv[1:], "items": items}) + "\\n")
+if os.environ.get("BRIDGE_FAILS"):
+    print(json.dumps({"ok": False, "error": "the store is unreachable", "try": "the same command in a moment"}), file=sys.stderr)
+    sys.exit(1)
+print(json.dumps({"ok": True, "deliverables": [{"id": 40 + n, "title": i["title"]} for n, i in enumerate(items)]}))
+"""
+
+
+class Preview(unittest.TestCase):
+    def setUp(self):
+        self.app = scratch_app()
+        for f in ["brand/positioning.md", "brand/voice.md", "brand/visual-identity.md", "public/proof.md"]:
+            put(os.path.join(self.app, f), "# note\n")
+        put(os.path.join(self.app, "public", "business.md"),
+            '---\nname: Harlow Heating\nsame_as: ["https://www.instagram.com/harlowheat", "https://x.com/harlow_heat"]\n---\n')
+        put(os.path.join(self.app, "brand", "logo", "logo.png"), b"\x89PNGlogo")
+        put(os.path.join(self.app, "specs", "meta.md"), f"---\nlast_verified: {date.today()}\n---\n")
+        put(os.path.join(self.app, "claims.md"), "# Claims\n\n1. Same two engineers since 2004 (public/proof.md)\n")
+        self.home = tempfile.mkdtemp()
+        put(os.path.join(self.home, "tools", "taskandtool.py"), FAKE_BRIDGE)
+        self.make("2026-10-01-fitted-it", POST)
+
+    def tearDown(self):
+        shutil.rmtree(self.app)
+        shutil.rmtree(self.home)
+
+    def make(self, name, text):
+        d = os.path.join(self.app, "creatives", name)
+        put(os.path.join(d, "creative.md"), text)
+        put(os.path.join(d, "v1.png"), b"\x89PNGpicture")
+        return d
+
+    def preview(self, *args, **env):
+        # the check it runs calls node, which a version manager finds through the real HOME
+        node = subprocess.run(["node", "-e", "console.log(process.execPath)"], capture_output=True, text=True).stdout.strip()
+        path = os.path.dirname(node) + os.pathsep + os.environ["PATH"]
+        return run("preview.py", *args, cwd=self.app, app=self.app, home=self.home, PATH=path, **env)
+
+    def page(self, name):
+        with open(os.path.join(self.app, "creatives", name, "preview.html")) as fh:
+            return fh.read()
+
+    def calls(self):
+        path = os.path.join(self.home, "tools", "calls.json")
+        return [json.loads(l) for l in open(path)] if os.path.exists(path) else []
+
+    def test_a_post_is_drawn_as_the_feed_shows_it(self):
+        r = self.preview("creatives/2026-10-01-fitted-it")
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertIn("preview: 1 preview written", r.stdout)
+        self.assertIn("creatives/2026-10-01-fitted-it/preview.html", r.stdout)
+        self.assertIn("Facebook post, 1 picture", r.stdout)
+        self.assertIn("Next: open them to look, then python3 scripts/preview.py 2026-10-01-fitted-it --send", r.stdout)
+        html = self.page("2026-10-01-fitted-it")
+        self.assertIn("Harlow Heating", html)
+        self.assertIn("data:image/png;base64,", html)  # the picture and logo travel inside the page
+        self.assertIn(">See more</button>", html)       # cut where Facebook cuts it
+        self.assertIn("Who fitted yours?", html)        # the rest is behind it, not lost
+        self.assertNotIn("|-", html)
+        again = self.preview("2026-10-01-fitted-it")
+        self.assertIn("unchanged", again.stdout)
+
+    def test_each_platform_has_its_layout_and_others_are_a_plain_card(self):
+        for platform, mark in [("instagram", "harlowheat"), ("x", "@harlow_heat"), ("linkedin", "see more"),
+                               ("tiktok", 'class="feed tt"'), ("gbp", "Google Business Profile")]:
+            self.make(f"2026-10-02-{platform}", POST.replace("platform: facebook", f"platform: {platform}"))
+            r = self.preview(f"2026-10-02-{platform}")
+            self.assertEqual(r.returncode, 0, r.stderr)
+            self.assertIn(mark, self.page(f"2026-10-02-{platform}"), platform)
+        self.assertIn("a plain card", r.stdout)
+
+    def test_an_ad_shows_its_headline_and_call_to_action(self):
+        self.make("2026-10-03-ad", GOOD.replace("platform: meta", "platform: facebook"))
+        self.preview("2026-10-03-ad")
+        html = self.page("2026-10-03-ad")
+        self.assertIn("Sponsored", html)
+        self.assertIn("The engineer who fitted it services it", html)
+        self.assertIn('class="cta">Book a service', html)
+
+    def test_send_shows_one_group_and_records_each_deliverable(self):
+        self.make("2026-10-02-x", POST.replace("platform: facebook", "platform: x"))
+        r = self.preview("2026-10-01-fitted-it", "2026-10-02-x", "--send", "Two posts for Friday")
+        self.assertEqual(r.returncode, 0, r.stderr)
+        self.assertIn("preview: 2 shown in this chat as deliverables, marked sent", r.stdout)
+        self.assertIn("deliverable:40", r.stdout)
+        (call,) = self.calls()
+        self.assertEqual(call["argv"][:2], ["create-deliverables", "--file"])
+        self.assertIn("Two posts for Friday", call["argv"])
+        self.assertEqual([os.path.basename(os.path.dirname(i["path"])) for i in call["items"]],
+                         ["2026-10-01-fitted-it", "2026-10-02-x"])
+        self.assertEqual(call["items"][0]["title"], "Fitted it (Facebook post)")
+        fm, _ = common.read_record(os.path.join(self.app, "creatives", "2026-10-02-x", "creative.md"))
+        self.assertEqual((fm["status"], fm["deliverable"]), ("sent", 41))
+        self.assertEqual(fm["copy"]["caption"].splitlines()[-1], "Who fitted yours?")  # the rest untouched
+        self.assertEqual(run("check.py", cwd=self.app, app=self.app).returncode, 0)
+
+        again = self.preview("2026-10-01-fitted-it", "--send", "Again")
+        self.assertEqual(again.returncode, 0, again.stderr)
+        self.assertIn("nothing new to show", again.stdout)
+        self.assertIn("already shown as deliverable:40 (sent), left alone (--again shows a revision)", again.stdout)
+        self.assertEqual(len(self.calls()), 1)
+        revision = self.preview("2026-10-01-fitted-it", "--send", "v2", "--again")
+        self.assertIn("deliverable:40", revision.stdout)
+        self.assertEqual(len(self.calls()), 2)
+
+    def test_send_refuses_what_fails_the_check_and_a_refused_upload(self):
+        self.make("2026-10-04-bad", POST.replace("claims: [1]", "claims: [9]"))
+        r = self.preview("2026-10-04-bad", "--send", "One post")
+        self.assertEqual(r.returncode, 1)
+        self.assertEqual(r.stdout, "")
+        self.assertIn("nothing was sent", r.stderr)
+        self.assertIn("claim 9 is not in claims.md", r.stderr)
+        self.assertEqual(self.calls(), [])
+
+        r = self.preview("2026-10-01-fitted-it", "--send", "One post", BRIDGE_FAILS="1")
+        self.assertEqual(r.returncode, 1)
+        self.assertIn("the deliverables were not created: the store is unreachable", r.stderr)
+        self.assertIn("Nothing was marked sent", r.stderr)
+        self.assertIn("Try:", r.stderr)
+        fm, _ = common.read_record(os.path.join(self.app, "creatives", "2026-10-01-fitted-it", "creative.md"))
+        self.assertEqual(fm["status"], "draft")
+
+    def test_a_page_too_large_for_a_deliverable_is_refused(self):
+        r = self.preview("2026-10-01-fitted-it", PREVIEW_MAX_BYTES="1000")
+        self.assertEqual(r.returncode, 1)
+        self.assertEqual(r.stdout, "")
+        self.assertIn("a deliverable holds at most", r.stderr)
+        self.assertIn("Try: list fewer files, or a shorter clip", r.stderr)
+
+    def test_misuse(self):
+        for args in (["2026-09-09-nope"], ["2026-10-01-fitted-it", "--again"], ["2026-10-01-fitted-it", "--send", " "], []):
+            r = self.preview(*args)
+            self.assertEqual(r.returncode, 2, args)
+            self.assertEqual(r.stdout, "", args)
+            self.assertIn("Try:", r.stderr, args)
+        self.assertIn("Folders: 2026-10-01-fitted-it", self.preview("2026-09-09-nope").stderr)
 
 
 import viewer  # noqa: E402
@@ -453,6 +632,14 @@ class Viewer(unittest.TestCase):
         out.cta = m.label("cta")
         const nodes = m.pieceNodes({ copy: { headline: "Hi", cta: "Book" }, files: ["v1.png"] })
         out.headings = nodes.filter((n) => n.type === "heading").map((n) => n.children[0].value)
+        // a post is one card, as the feed shows it: caption, then its picture; no separate Files
+        const post = m.pieceNodes({ kind: "post", platform: "facebook", files: ["v1.png"],
+                                    copy: { caption: "Line one\n\nWho fitted yours?", hashtags: ["local"] } })
+        out.postHeadings = post.filter((n) => n.type === "heading").map((n) => n.children[0].value)
+        const card = post[1]
+        out.card = [card.data.hName, card.children[0].children[0].value, card.children[1].children[0].url]
+        out.ad = m.cardNodes({ kind: "ad", platform: "meta", files: [], copy: { primary_text: "P", headline: "H", cta: "Book" } })[0].children[0].value
+        out.email = m.cardNodes({ kind: "newsletter", files: ["a.png"] })
         // the transform: a creative becomes its folder's page, titled by the folder
         const plugin = m.default().markdownPlugins({ allSlugs: [] })[0]()
         const tree = { type: "root", children: [] }
@@ -478,6 +665,10 @@ class Viewer(unittest.TestCase):
         self.assertEqual(out["video"]["hName"], "video")
         self.assertEqual(out["cta"], "Call to action")
         self.assertEqual(out["headings"], ["Copy", "File"])
+        self.assertEqual(out["postHeadings"], ["On Facebook", "Copy"])
+        self.assertEqual(out["card"], ["div", "Line one\n\nWho fitted yours?\n\n#local", "v1.png"])
+        self.assertEqual(out["ad"], "On Facebook, as an ad")
+        self.assertEqual(out["email"], [])
         self.assertEqual(out["inserted"], ["File", "paragraph"])
         self.assertEqual(out["slug"], "creatives/2026-10-01-us-vs-them/index")
         self.assertEqual(out["pageTitle"], "Us vs them")

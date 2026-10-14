@@ -134,6 +134,9 @@ def check_creative(app, name, d, fm, body, claims, findings, notes):
             findings.append(f"{rel}: listed file {f} is missing")
     if fm.get("status") in ("sent", "approved", "posted") and not files:
         findings.append(f"{rel}: a {fm.get('status')} creative lists the files the owner saw")
+    if fm.get("status") == "sent" and not fm.get("deliverable"):
+        findings.append(f"{rel}: a sent creative names its `deliverable`; python3 scripts/preview.py {name} --send "
+                        "\"<one line>\" shows it and writes both")
     if fm.get("status") == "posted" and not fm.get("url"):
         findings.append(f"{rel}: a posted creative has the post's `url`")
     for c in fm.get("claims") or []:

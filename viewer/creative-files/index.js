@@ -45,8 +45,33 @@ export function label(key) {
 }
 
 /** The nodes that go before the body: the copy, then the files. */
+const PLATFORMS = { facebook: "Facebook", meta: "Facebook", instagram: "Instagram", x: "X", linkedin: "LinkedIn",
+  tiktok: "TikTok", gbp: "Google Business Profile", pinterest: "Pinterest", youtube: "YouTube", google: "Google" }
+const box = (style, children) => ({ type: "paragraph", children, data: { hName: "div", hProperties: { style } } })
+
+/** A post or ad as one card, the way a feed shows it: the business, the
+ * caption, then the pictures and clips. The feed's own look per platform is
+ * scripts/preview.py's; this is the same piece in the viewer's colours. */
+export function cardNodes(frontmatter) {
+  const kind = frontmatter?.kind
+  if (kind !== "post" && kind !== "ad") return []
+  const copy = frontmatter.copy && typeof frontmatter.copy === "object" ? frontmatter.copy : {}
+  const tags = Array.isArray(copy.hashtags) ? copy.hashtags.map((t) => (String(t).startsWith("#") ? t : "#" + t)).join(" ") : ""
+  const words = [copy.caption || copy.primary_text || "", tags].filter((s) => String(s).trim()).join("\n\n")
+  const files = (Array.isArray(frontmatter.files) ? frontmatter.files : []).map(fileNode).filter(Boolean)
+  const where = PLATFORMS[frontmatter.platform] ?? String(frontmatter.platform ?? "")
+  const children = []
+  if (words) children.push(box("white-space:pre-line;margin:0 0 .75rem", [text(words)]))
+  if (copy.headline) children.push(box("font-weight:600;margin:.75rem 0 0", [text(copy.headline)]))
+  if (copy.cta) children.push(box("margin:.25rem 0 0;opacity:.8", [text(copy.cta)]))
+  children.splice(words ? 1 : 0, 0, ...files)
+  const style = "max-width:500px;padding:1rem;border:1px solid var(--lightgray);border-radius:10px;background:var(--light)"
+  return [heading(`On ${where}${kind === "ad" ? ", as an ad" : ""}`), box(style, children)]
+}
+
 export function pieceNodes(frontmatter) {
-  const out = []
+  const card = cardNodes(frontmatter)
+  const out = [...card]
   const copy = frontmatter?.copy
   if (copy && typeof copy === "object" && !Array.isArray(copy)) {
     const rows = Object.entries(copy).filter(([, v]) => v != null && String(v).trim() !== "")
@@ -55,8 +80,9 @@ export function pieceNodes(frontmatter) {
       for (const [k, v] of rows) out.push(para({ type: "strong", children: [text(label(k))] }, text(": " + v)))
     }
   }
+  // a post's pictures are in its card; any other piece lists its files
   const files = Array.isArray(frontmatter?.files) ? frontmatter.files : []
-  const nodes = files.map(fileNode).filter(Boolean)
+  const nodes = card.length ? [] : files.map(fileNode).filter(Boolean)
   if (nodes.length) out.push(heading(nodes.length === 1 ? "File" : "Files"), ...nodes)
   return out
 }

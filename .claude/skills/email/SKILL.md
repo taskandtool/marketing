@@ -36,8 +36,8 @@ result, a lesson, a question customers keep asking), a subject line under
 `emails/YYYY-MM-DD-<slug>/email.md`, frontmatter `kind: cold | newsletter`,
 `audience` and `status`, then each email with its subject, preview line and
 body. The words go through `copywriting`, facts only from `claims.md`, then
-the `tropes` audit. Show the folder as a deliverable, as the `marketing`
-skill says.
+the `tropes` audit. Show `email.md` as a deliverable (`create-deliverables`,
+the `work` skill).
 
 ## Drafts and sending
 

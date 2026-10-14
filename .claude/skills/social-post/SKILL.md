@@ -26,14 +26,15 @@ Copy and tick:
 - [ ] 4. **The ask**, one, matched to what the platform rewards: "Save
       this", "Send this to someone planning a kitchen", "Reply with yours".
       Links stay out of the body on Facebook, LinkedIn, X and Threads.
-- [ ] 5. **The picture**: the owner's own photo first, a carousel of real
-      job photos, a slideshow (`references/slideshow.md`), or a short clip
-      (the `video` skill). Use generated pictures only for illustrations
-      and backgrounds (the Pictures section of `AGENTS.md`).
+- [ ] 5. **The picture**: the owner's photo as it is or edited, a
+      carousel of real job photos, a slideshow (`references/slideshow.md`),
+      a short clip (the `video` skill), or one made from scratch (the
+      Pictures section of `AGENTS.md`).
 - [ ] 6. Write `creatives/YYYY-MM-DD-<slug>/creative.md` with `kind: post`,
       the whole caption as it will be pasted in `copy.caption`, and any
-      hashtags in `copy.hashtags`. Run `python3 scripts/check.py`, then show
-      the owner the picture and the caption as it will appear.
+      hashtags in `copy.hashtags`. Run `python3 scripts/check.py`, then
+      `python3 scripts/preview.py <folder> --send "<line>"`: the owner sees
+      it as the feed will show it. A week of posts is one call.
 - [ ] 7. **Posting**, once approved: through a posting connection the
       owner has (Zernio, Hootsuite), scheduled for the time they chose,
       then `status: posted` and the live `url`. With none, the owner posts

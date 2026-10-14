@@ -15,8 +15,10 @@ Brand (`brand`) → research → ideas (hooks by `copywriting`) → make (`ad`,
 the `tropes` audit → review → `results`. Start wherever the folders say the
 work is; nothing is made from notes that still say "to fill".
 
-Review: show the files as deliverables and set `status: sent`; when the
-owner answers (`get-deliverables`), set approved or rejected.
+Review: `python3 scripts/preview.py <folders> --send "<line>"` shows each
+piece as its feed shows it, one deliverable each, and writes `status:
+sent` and its `deliverable`; never set those by hand. When the owner
+answers (`get-deliverables`), set approved or rejected.
 
 Months-long strategies are `playbooks`'; the chosen ones are in `plan.md`.
 
@@ -65,6 +67,7 @@ framework: pas               # optional: pas | bab | storybrand | jtbd | objecti
 awareness: solution          # unaware | problem | solution | product | most
 campaign: winter-2026        # optional
 status: draft                # draft | sent | approved | rejected | posted
+deliverable: 4812            # written by preview.py --send
 claims: [2, 5]               # numbers in claims.md
 files: [v1.png]
 url: ""                      # the live post, once posted

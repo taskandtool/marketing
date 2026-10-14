@@ -42,6 +42,7 @@ Read the one that fits the ask rather than working from memory.
 ```bash
 python3 scripts/check.py [folder …]   # the audit; then one line per creative: folder, status, kind, platform
 python3 scripts/check.py --status sent  # what is waiting for the owner's approval
+python3 scripts/preview.py <folder> […] --send "one line for the owner"  # each post or ad drawn as its feed shows it, one deliverable each, marked sent; without --send it only writes preview.html
 python3 scripts/videogen.py --prompt-file creatives/<folder>/creative.md --section "Shot 1" --out creatives/<folder>/shot-1.mp4
 python3 ~/tools/taskandtool.py make-image --prompt-file creatives/<folder>/creative.md --section Prompt --out creatives/<folder>/v1.png --size 4:5   # a picture; never replaces one
 ```
@@ -74,10 +75,13 @@ asks. After changing it, `python3 ~/tools/taskandtool.py restart`.
 Make them with `make-image` (the `images` skill), saved in the creative's
 folder (`v1.png`, `v2.png`), the prompt as sent under `## Prompt`.
 
-- The owner's own photo first (`brand/images.md`, `media/_index.md`);
-  generate when there is no photo of the thing, or to place their product
-  in a new scene (their photo as `--ref`); never a generated customer,
-  staff, testimonial face or customer's home.
+- Start from the owner's own photo when one fits (`brand/images.md`,
+  `media/_index.md`): use it as it is, or edit it with `--ref` (a new
+  scene, light or angle; what a person is doing or wearing, or who is in
+  it, when the owner asks). Make one from scratch when no photo fits.
+  Show two or three variants of an edit that keeps a person's face.
+- Never a picture that passes off a made-up person as a real customer,
+  staff member or reviewer, or a made-up result as theirs.
 - The Imagery block of `brand/visual-identity.md` goes into every prompt,
   so a set looks like one brand.
 - No interface, chart or product the business does not make.

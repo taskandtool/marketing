@@ -241,10 +241,13 @@ def _split_top(s):
 def parse_frontmatter(text):
     """A small YAML subset: `key: scalar`, `key: [a, b]`, `key: {a: 1}`,
     block lists of scalars or flow maps (`- { ... }`), and one level of
-    nested maps (`copy:` followed by indented `key: value` lines).
-    Comments after `#` outside quotes are dropped."""
+    nested maps (`copy:` followed by indented `key: value` lines), and
+    block text (`caption: |-` and its indented lines; `|`, `>` and their
+    `-` forms). Comments after `#` outside quotes are dropped, except in
+    block text, where a `#` is a hashtag."""
     data = {}
-    lines = [_strip_comment(l) for l in text.split("\n")]
+    raw = text.split("\n")
+    lines = [_strip_comment(l) for l in raw]
     i = 0
     while i < len(lines):
         line = lines[i]
@@ -256,34 +259,59 @@ def parse_frontmatter(text):
             i += 1
             continue
         key, rest = m.group(1), m.group(2)
+        if BLOCK_TEXT.match(rest.strip()):
+            data[key], i = _block_text(raw, i + 1, 0, rest.strip())
+            continue
         if rest.strip() != "":
             data[key] = _parse_scalar(rest)
             i += 1
             continue
         # block: list or map follows
-        block = []
-        i += 1
+        start = i + 1
+        i = start
         while i < len(lines) and (lines[i].startswith("  ") or lines[i].startswith("\t") or not lines[i].strip()):
-            if lines[i].strip():
-                block.append(lines[i])
             i += 1
+        block = [(j, lines[j]) for j in range(start, i) if lines[j].strip()]
         if not block:
             data[key] = None
-        elif block[0].lstrip().startswith("- "):
-            items = []
-            for b in block:
-                b = b.strip()
-                if b.startswith("- "):
-                    items.append(_parse_scalar(b[2:]))
-            data[key] = items
+        elif block[0][1].lstrip().startswith("- "):
+            data[key] = [_parse_scalar(b.strip()[2:]) for _, b in block if b.strip().startswith("- ")]
         else:
-            sub = {}
-            for b in block:
-                mm = re.match(r"^\s+([A-Za-z_][\w-]*):\s*(.*)$", b)
+            sub, j = {}, start
+            while j < i:
+                mm = re.match(r"^(\s+)([A-Za-z_][\w-]*):\s*(.*)$", lines[j])
+                if mm and BLOCK_TEXT.match(mm.group(3).strip()):
+                    sub[mm.group(2)], j = _block_text(raw, j + 1, len(mm.group(1)), mm.group(3).strip())
+                    continue
                 if mm:
-                    sub[mm.group(1)] = _parse_scalar(mm.group(2))
+                    sub[mm.group(2)] = _parse_scalar(mm.group(3))
+                j += 1
             data[key] = sub
     return data
+
+
+BLOCK_TEXT = re.compile(r"^[|>][-+]?$")
+
+
+def _block_text(raw, i, indent, style):
+    """(text, next line index): the lines from `i` indented deeper than
+    `indent`, as YAML block text in `style` (`|` keeps the line breaks, `>`
+    folds them; `-` drops the final newline)."""
+    body = []
+    while i < len(raw) and (not raw[i].strip() or len(raw[i]) - len(raw[i].lstrip()) > indent):
+        body.append(raw[i])
+        i += 1
+    while body and not body[-1].strip():
+        body.pop()
+        i -= 1
+    cut = min((len(l) - len(l.lstrip()) for l in body if l.strip()), default=0)
+    lines = [l[cut:] if l.strip() else "" for l in body]
+    if style.startswith(">"):
+        text = re.sub(r"(?<!\n)\n(?!\n)", " ", "\n".join(lines))
+        text = re.sub(r"\n\n", "\n", text)
+    else:
+        text = "\n".join(lines)
+    return (text if style.endswith("-") else text + "\n" if text else ""), i
 
 
 def _strip_comment(line):
