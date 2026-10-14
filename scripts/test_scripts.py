@@ -411,8 +411,8 @@ class Preview(unittest.TestCase):
         self.assertIn("unchanged", again.stdout)
 
     def test_each_platform_has_its_layout_and_others_are_a_plain_card(self):
-        for platform, mark in [("instagram", "harlowheat"), ("x", "@harlow_heat"), ("linkedin", "see more"),
-                               ("tiktok", 'class="feed tt"'), ("gbp", "Google Business Profile")]:
+        for platform, mark in [("instagram", "harlowheat"), ("x", "@harlow_heat"), ("linkedin", 'class="li"'),
+                               ("tiktok", 'class="tt"'), ("gbp", "Google Business Profile")]:
             self.make(f"2026-10-02-{platform}", POST.replace("platform: facebook", f"platform: {platform}"))
             r = self.preview(f"2026-10-02-{platform}")
             self.assertEqual(r.returncode, 0, r.stderr)
