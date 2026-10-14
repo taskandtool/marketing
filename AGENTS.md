@@ -44,7 +44,7 @@ python3 scripts/check.py [folder …]   # the audit; then one line per creative:
 python3 scripts/check.py --status sent  # what is waiting for the owner's approval
 python3 scripts/preview.py <folder> […] --send "one line for the owner"  # each post or ad drawn as its feed shows it, one deliverable each, marked sent; without --send it only writes preview.html
 python3 scripts/videogen.py --prompt-file creatives/<folder>/creative.md --section "Shot 1" --out creatives/<folder>/shot-1.mp4
-python3 ~/tools/taskandtool.py make-image --prompt-file creatives/<folder>/creative.md --section Prompt --out creatives/<folder>/v1.png --size 4:5   # a picture; never replaces one
+python3 ~/tools/taskandtool.py make-image --prompt-file creatives/<folder>/creative.md --section Prompt --out creatives/<folder>/v1.jpg --size 4:5   # a picture; never replaces one
 ```
 
 ## The viewer
@@ -73,13 +73,22 @@ asks. After changing it, `python3 ~/tools/taskandtool.py restart`.
 ## Pictures
 
 Make them with `make-image` (the `images` skill), saved in the creative's
-folder (`v1.png`, `v2.png`), the prompt as sent under `## Prompt`.
+folder (`v1.jpg`, `v2.jpg`; `.png` only when transparent), the prompt as
+sent under `## Prompt`.
 
 - Start from the owner's own photo when one fits (`brand/images.md`,
   `media/_index.md`): use it as it is, or edit it with `--ref` (a new
   scene, light or angle; what a person is doing or wearing, or who is in
   it, when the owner asks). Make one from scratch when no photo fits.
   Show two or three variants of an edit that keeps a person's face.
+- Choose from `brand/images.md` in one look, never photo by photo:
+  `tt-crawl sheet brand/images/* --out /tmp/photos.png` numbers them on
+  one image.
+- Several variants are judged by a fresh sub-agent (not a fork): give it
+  the files, the brief and `.claude/skills/tropes/references/images.md`,
+  ask it to look at each at full size and return `| file | what is wrong |
+  keep? |`, and choose from its table. Without a sub-agent, look yourself
+  and say so.
 - Never a picture that passes off a made-up person as a real customer,
   staff member or reviewer, or a made-up result as theirs.
 - The Imagery block of `brand/visual-identity.md` goes into every prompt,

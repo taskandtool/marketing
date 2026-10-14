@@ -39,7 +39,7 @@ media/                  the owner's photos and clips sent here; _index.md says w
                         (the brand's curated photos are brand/images.md)
 raw/                    material as it arrived: raw/site/<host>/, raw/<source>/<who>/
 research/               competitors/<name>.md, hooks.md, audience.md, brief.md
-creatives/YYYY-MM-DD-<slug>/   one idea per folder: creative.md, v1.png, v2.png, shot-1.mp4
+creatives/YYYY-MM-DD-<slug>/   one idea per folder: creative.md, v1.jpg, v2.jpg, shot-1.mp4
 emails/YYYY-MM-DD-<slug>/      one email or sequence per folder: email.md (the email skill)
 results.md              numbers per creative and per month, newest first
 plan.md                 the playbooks chosen, and why (the playbooks skill)
@@ -69,7 +69,7 @@ campaign: winter-2026        # optional
 status: draft                # draft | sent | approved | rejected | posted
 deliverable: 4812            # written by preview.py --send
 claims: [2, 5]               # numbers in claims.md
-files: [v1.png]
+files: [v1.jpg]
 url: ""                      # the live post, once posted
 copy:
   headline: "The engineer who fitted it services it"
