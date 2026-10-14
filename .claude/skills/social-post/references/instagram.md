@@ -27,7 +27,7 @@ Recipes for the feed, Reels and Stories. The worked examples use Harlow Joinery,
 ## What performs
 
 - Shares and sends are the strongest distribution signal. Buffer (2026): DM shares are "the most heavily weighted signal for distribution" of Reels. Hootsuite (Jul 2026) ranks watch time, then shares and sends, saves, likes, comments. Sprout: private sharing "is now arguably the strongest signal of value". Mosseri's exact "sends per reach" phrasing is unverified; the direction is verified.
-- Write for the "worth sending to one person" test, not the "like" test.
+- Write for the "worth sending to one person" test.
 - Engagement rate by format (Socialinsider, 2026): carousels 0.55%, Reels 0.52%, images 0.37% (images down 17% year on year).
 - Saves per post at 100k to 1M followers (Socialinsider): carousels 98, Reels 96, images 43. Metricool (24M posts, Jun 2026): "carousels generate 9x more saves than single-image posts".
 - Carousels with more than 10 slides get increased reach (Socialinsider); the cap is 20. Sprout (May 2026): "Use as many slides as the story demands, then cut. Every frame must earn its place." Buffer: explicit swipe prompts lift engagement, and mixed image and video carousels perform best.
@@ -125,9 +125,6 @@ Pitfalls: more than about five slides in one go, feed posts reshared with nothin
 
 ## Never
 
-- A hashtag wall, tags before the hook, or tags before the cutoff.
-- Reposts with another app's watermark, or a customer's content without permission.
+- Tags before the hook, or before the cutoff.
 - A link in the caption, or "link in bio" without saying what it leads to.
-- Engagement asks with nothing behind them: "double tap if", "tag a friend who".
 - Stock photos standing in for the work.
-- The `tropes` skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.

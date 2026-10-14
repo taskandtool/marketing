@@ -1,6 +1,6 @@
 ---
 name: research
-description: "Researches a market before making creatives: competitors' sites, ads and posts, customers' reviews and comments, search questions, conversations worth joining, into research/ and a brief of ranked hypotheses. Use when the owner asks what competitors are doing, where to reply, before the first ideas, or monthly. Not for the business's own facts (brand)."
+description: "Researches the market before anything is made: competitors' sites, ads and posts, customers' reviews and comments, search questions and conversations worth joining, into research/ and a ranked brief. Use when the owner asks what competitors are doing or where to reply, before the first ideas, or monthly. Not for the business's own facts (brand)."
 ---
 
 # Research
@@ -18,14 +18,12 @@ Fetching:
   LinkedIn, Facebook groups and forums, and the TikTok Creative Center's
   top ads for the industry: `apify`
 - People Also Ask, autocomplete and monthly search volume: `dataforseo`
-- a business's Google listing and reviews: `google-places`, as below
+- a business's Google listing: the brand skill's `tt-crawl places` line
 
-Ask for a connection that is not granted, as the first line below does for
-scrapecreators.
+Ask for a connection that is not granted, as this does for scrapecreators.
 
 ```bash
 python3 ~/tools/taskandtool.py request-connection scrapecreators --why "competitors' ads and posts"
-GOOGLE_PLACES_API_URL=$PHOENIX_URL/api/machine/gateway/google-places/v1 GOOGLE_PLACES_API_KEY=$MACHINE_TOKEN tt-crawl places "Name, City"
 ```
 
 ## Steps
@@ -116,8 +114,3 @@ anything is live: the owner's own comments and results first, then new
 conversations worth joining. Quarterly, or
 before a launch or a price change: reviews, searches and organic again, and
 a new brief.
-
-## References
-
-- `references/libraries.md`: what Meta, Google, LinkedIn and TikTok's ad
-  libraries show, where, for how long, and how to read each

@@ -1,6 +1,6 @@
 ---
 name: playbooks
-description: "Growth strategies a business could run for months: paid ads with remarketing, cold email, LinkedIn and X outreach, a show and newsletter, podcast guesting, creators, search pages, signup emails. Use when the owner asks how to grow, reach more buyers, find leads, for a marketing plan, or to set one up. Not for one ad, post or email."
+description: "Growth strategies run for months: paid ads and remarketing, cold email, LinkedIn and X outreach, a show and newsletter, podcast guesting, creators, search pages, signup emails. Use when the owner asks how to grow or reach more buyers, for leads or a marketing plan, or to set one up. Not for one ad, post or email."
 ---
 
 # Playbooks
@@ -36,7 +36,7 @@ fitting one out because it is automated or costs money.
 | Signup emails | a free trial, signup, quote or booking to follow up | `references/signup-emails.md` |
 | Weekly update email | a list of customers or signups | `references/weekly-update.md` |
 
-They compound. A business selling to businesses might run cold email, show
+They compound: a business selling to businesses might run cold email, show
 the same list ads, invite its buyers onto a show, send a newsletter from
 each episode, clip it for social, and grow the newsletter from the cold
 email.

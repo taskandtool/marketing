@@ -6,11 +6,11 @@ description: "Finds and removes the tells of AI-made work in copy, pictures and 
 # Tropes
 
 A tell is an unspecified default: the model's average where this business's
-particular should be. Readers trust work that reads as generated less, and
-so do platforms, so it costs the owner twice: in customers and in reach. The
-fix is never a synonym; it is the specific thing that was missing.
+particular should be. Readers and platforms trust work that reads as
+generated less, so it costs the owner customers and reach. Fix it with the
+specific thing that was missing, not a synonym.
 
-Version: 0.1.0 (taskandtool/skills)
+Version: 0.1.1 (taskandtool/skills)
 
 ## Copy, by script
 
@@ -23,10 +23,8 @@ node .claude/skills/tropes/tropes.mjs [--kind page|post|ad] [--json] <file|->
 
 Markdown headings split the text into sections; each is checked with its
 heading and against the others. Each finding prints its rule, the words and
-the fix. `error` fails the check; `hint` (puffery, and on a page we/you and
-lists of three) is something to look at, not a failure: a real list of
-three things stays.
-Exit 1 on an error.
+the fix. `error` fails the check (exit 1); `hint` is worth a look and never
+fails: a real list of three stays.
 
 ## Fixing a finding
 

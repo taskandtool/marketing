@@ -11,7 +11,7 @@ Structures outlast word lists: the vocabulary moves with each model generation (
 | Significance inflation | stands as a testament, plays a pivotal/crucial role, underscores, evolving landscape, setting the stage, indelible mark | Say what happened and to whom, or cut it |
 | Brochure puffery | nestled, in the heart of, boasts, vibrant, rich heritage, renowned, diverse array | Say where it is and what it has |
 | Metaphor nouns | tapestry, realm, landscape, ecosystem, journey, solutions | Name the thing the business sells |
-| Era vocabulary `dated-vocabulary` | delve, intricate, meticulous, showcasing, highlighting, fostering, enhance, align with | Density counts, one word doesn't. Treat the list as dated: re-check every 6 months |
+| Era vocabulary `dated-vocabulary` | delve, intricate, meticulous, showcasing, highlighting, fostering, enhance, align with | Density counts, one word doesn't |
 | Boosters with no anchor | significantly, remarkably, incredibly, truly | The figure, or nothing |
 | Small-business clichés | We're passionate about, We pride ourselves, We do things differently, Your partner in X, Making X simple | A fact only this business can say |
 

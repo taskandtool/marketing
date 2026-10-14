@@ -11,7 +11,7 @@ sources:
 
 # Google Business Profile posts
 
-Recipes for the three post types on a Business Profile: Updates, Offers and Events. GBP posts show on the business's Google listing and in Maps, to people already searching for the service in the area, so they are closer to a shop window than a feed. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real post takes its figures from `claims.md`.
+Recipes for the three post types on a Business Profile: Updates, Offers and Events. GBP posts show on the business's Google listing and in Maps, to people already searching for the service in the area. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real post takes its figures from `claims.md`.
 
 ## What performs
 
@@ -23,7 +23,7 @@ Recipes for the three post types on a Business Profile: Updates, Offers and Even
 ## Norms
 
 - Post types (Google): an Update has a description, a photo or video, and an optional button. An Offer requires "a title, dates, and time" plus an optional description, photo, coupon code and terms. An Event needs "a title, start and end dates, and times".
-- Length: the 1,500-character description and 58-character title limits are widely reported: unverified. Rule: a title-style first line under 58 characters, then two or three sentences.
+- Length: the 1,500-character description and 58-character title limits are widely reported: unverified. Write a title-style first line under 58 characters, then two or three sentences.
 - Google's content rules: no misspellings, no auto-generated text, no phone numbers in the copy. Use the button for calls.
 - Photos: JPG or PNG, 10 KB to 5 MB, 720 x 720 recommended, 250 x 250 minimum, "in focus and well lit" with "no significant alterations". Video: 30 seconds or under, 75 MB or under, 720p or better.
 - Hooks: the service and the area in the first line. People reading this are already searching for it.
@@ -63,5 +63,3 @@ Pitfalls: the time only in the image, an Event with no button, the same Event le
 - Hashtags of any kind.
 - Auto-generated text or copy pasted from the website unchanged.
 - Expired Offers or past Events left live.
-- Watermarked reposts, or a customer's photo without permission.
-- The `tropes` skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.

@@ -124,7 +124,6 @@ Pitfalls: naming a client without written permission, paraphrasing their words, 
 
 - Broetry: every sentence on its own line, dramatic one-word lines, a cliff-hanger before "see more", a moral at the end. Sprout: LinkedIn down-ranks "low-value content that prioritizes engagement mechanics over original insight".
 - "Agree?" and "Thoughts?" as the whole call to action.
-- A link in the body, a hashtag wall, more than five mentions.
+- More than five mentions.
 - Reposts of other people's carousels, watermarked or not, presented as your own.
 - Stock photos of handshakes, laptops and skylines.
-- The `tropes` skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.

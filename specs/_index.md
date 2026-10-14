@@ -47,6 +47,4 @@ A 4:5 master (1080×1350) cropped to 9:16 loses the sides and puts the headline 
 ## Output conventions
 
 - Emit JPG or PNG. Not WebP.
-- Convert to sRGB and embed the profile. Sharp strips ICC by default; use `.withMetadata()`. Pillow saves no profile unless `icc_profile` is passed.
 - Text on image at 1080 wide: body at least 36 px, headline at least 60 px. Contrast 4.5:1 body and 3:1 large text, sampled against the darkest and lightest region under the overlay.
-- QA gate every export on dimensions, file size, safe-zone intersection, and the sRGB tag.

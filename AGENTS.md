@@ -15,13 +15,13 @@ and the order of work are in `marketing`):
 - "set up my brand", facts, photos or a link about the business: `brand`
 - "what are competitors doing", customers' words, where to reply: `research`
 - "give me ideas", a campaign: `ideas`
-- "how do we grow", "reach more of our buyers", "they're on LinkedIn",
-  leads, a marketing plan, cold outreach, podcasts, creators, search
-  pages: `playbooks`
+- "how do we grow", "reach more of our buyers", leads, a marketing plan,
+  a channel run for months (cold email at volume, podcasts, creators,
+  search pages): `playbooks`
 - "write me ads", "a set to test", a creative for one platform: `ad`
 - "a post", "a caption", "this week's posts", a slideshow, repurpose:
   `social-post`
-- "a cold email", "an outreach sequence", "a newsletter": `email`
+- "write a cold email" or a short sequence, "a newsletter": `email`
 - the words of a piece and its hook: `copywriting`; its picture: the
   Pictures section below; a clip: `video`
 - before the owner sees anything: `tropes`
@@ -35,9 +35,7 @@ Read the one that fits the ask rather than working from memory.
   `scripts/check.py` fails until all four exist. There is no homepage here.
 - Photos are in two places, and both count: the brand's curated set in
   `brand/images.md`, and the owner's photos and clips sent here, in
-  `media/photos/` and `media/clips/`, each with a line in `media/_index.md`
-  (a photo's line shows it: `![what it shows](photos/<file>)`); never
-  `raw/photos/`.
+  `media/photos/` and `media/clips/`, each with a line in `media/_index.md`.
 
 ## Commands
 
@@ -48,21 +46,13 @@ python3 scripts/videogen.py --prompt-file creatives/<folder>/creative.md --secti
 python3 ~/tools/taskandtool.py make-image --prompt-file creatives/<folder>/creative.md --section Prompt --out creatives/<folder>/v1.png --size 4:5   # a picture; never replaces one
 ```
 
-videogen sends the creative's `## Shot 1` section (or the one named by
-`--section "Shot 2"`), prints the file it wrote, and never replaces an
-existing one; `--check` says which model is configured.
-
 ## The viewer
 
-Quartz over the creatives, emails, results, reports, research, claims,
-brand, media, specs and `raw/`: search, backlinks, and each creative shown
-as the piece (its copy, pictures and clips). Dev is the `web` service
-(`npm run dev`); every edit shows there on refresh. Production is `npm run
-deploy` (the `deploy` skill): the first deploy opens it to the team, and
-only a person makes it public. That setting alone decides who can see it.
-Team only: the whole site is the team's. Public: all of it is anyone's,
-`raw/` and the research included. Say so when the owner asks about it.
-Approvals happen in the Deliverables tab, never in the viewer.
+Quartz over the app's notes, each creative shown as the piece. Dev is the
+`web` service (`npm run dev`); edits show on refresh. Production is `npm
+run deploy` (the `deploy` skill). Who sees it is the publishing setting
+alone, and public means all of it, `raw/` and research included: say so
+when asked. Approvals happen in the Deliverables tab, never in the viewer.
 
 ```bash
 python3 scripts/viewer.py build     # "viewer build: 35 pages and 11 other files in dist/"
@@ -86,20 +76,16 @@ folder (`v1.png`, `v2.png`), the prompt as sent under `## Prompt`.
 
 - The owner's own photo first (`brand/images.md`, `media/_index.md`);
   generate when there is no photo of the thing, or to place their product
-  in a new scene (their photo as `--ref`).
+  in a new scene (their photo as `--ref`); never a generated customer,
+  staff, testimonial face or customer's home.
 - The Imagery block of `brand/visual-identity.md` goes into every prompt,
   so a set looks like one brand.
 - No interface, chart or product the business does not make.
-- Run the `tropes` picture checks before showing it; the file you keep goes
-  in `files:`.
 
 ## The rules that matter
 
 - Every fact on a creative is a numbered line in `claims.md` with its
   source. A missing fact is a question for the owner, never a guess.
-- The owner's real photos and clips beat anything generated, and a
-  generated picture never shows a customer, staff, a testimonial face or a
-  customer's home.
 - `python3 scripts/check.py` passes and the `tropes` audit is done before
   the owner sees a creative.
 - Never name a competitor in a creative, never copy one.

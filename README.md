@@ -31,7 +31,7 @@ calls for them.
   results/       ad, post and search numbers from the owner's accounts; the monthly report
   tropes/        the audit for the tells of AI-made copy, pictures and video, and its
                  copy script (shared, like brand)
-.taskandtool/setup.sh  Pillow, requests, tt-crawl and its browsers, and the viewer's web service
+.taskandtool/setup.sh  requests, tt-crawl and its browsers, and the viewer's web service
 AGENTS.md        what the AI reads first; CLAUDE.md imports it
 starter-app.json the manifest: the connections it can use and the suggestions an empty chat offers
 ```
@@ -53,7 +53,8 @@ lists/                   the people a playbook reaches: prospects, engagers, who
 reports/YYYY-MM.md       the monthly report
 specs/<platform>.md      sizes, limits and policy per platform, dated
 scripts/                 check · videogen · viewer, and their tests
-viewer/                  the viewer's Quartz config, pinned plugins, and its two local plugins
+viewer/                  the viewer's Quartz config, pinned plugins, and its three local plugins
+                         (creative-files, safe-text, swatches)
 ```
 
 `python3 scripts/check.py` checks every creative, the claims and the specs,
@@ -88,8 +89,8 @@ which is live; the viewer shows the files.
 
 The web service installs Quartz on its first start, outside the app
 (`~/.local/share/marketing-viewer/`), so setup does not wait for it. Quartz
-is pinned to a tag, with its plugins pinned in `viewer/quartz.lock.json`;
-the install fixes Quartz 5.0.0 listing a folder twice. It needs Node 22.
+is pinned to a tag, with its plugins pinned in `viewer/quartz.lock.json`.
+It needs Node 22.
 
 ## Install
 
@@ -104,7 +105,7 @@ cd my-marketing
 bash .taskandtool/setup.sh
 ```
 
-Off the platform, `create_deliverables` (the bridge that puts a file in
+Off the platform, `create-deliverables` (the bridge that puts a file in
 front of the owner in the Task & Tool chat) is not there; the files are on
 disk.
 

@@ -23,7 +23,7 @@ the place to start.
 - Research what the buyer is in pain about and what they want, from sales
   calls, reviews and the `research` brief.
 - Every ad built as hook, the future they want, how to get there, and the
-  action. Statics and short clips, including person-to-camera clips.
+  action. Statics and short clips.
 - A small cohort of new ads into each ad set daily or weekly (Cody runs
   about five a day per ad set).
 - Losers off by a rule the owner agreed (for example, cost per lead well

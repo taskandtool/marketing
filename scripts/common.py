@@ -41,7 +41,7 @@ class Parser(argparse.ArgumentParser):
         die(f"{self.prog}: {message}\n  Try: python3 scripts/{self.prog} --help", 2)
 
 
-# ── the generators' shared arguments ────────────────────────────────────
+# ── videogen's shared arguments ─────────────────────────────────────────
 
 def read_prompt(path, name, example, section="Prompt"):
     """The prompt in `path`: the `## <section>` part of a creative.md (up to
@@ -90,16 +90,14 @@ def creative_folder(out):
     return parent if FOLDER.match(parent) else None
 
 
-# ── the generators' providers ───────────────────────────────────────────
+# ── videogen's providers ────────────────────────────────────────────────
 
 # the key that configures each provider
 PROVIDER_ENV = {"openrouter": "OPENROUTER_API_KEY"}
 
 
 def env(name):
-    """`name` from the environment, else from ~/.env: a turn clears the AI
-    provider names (OPENROUTER_API_KEY and the like) from the AI's own
-    shell, but a key the owner granted stays in ~/.env."""
+    """`name` from the environment, else from ~/.env (where a key the owner delivered to the machine lands)."""
     if os.environ.get(name):
         return os.environ[name]
     try:

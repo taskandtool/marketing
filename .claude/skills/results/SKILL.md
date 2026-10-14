@@ -1,6 +1,6 @@
 ---
 name: results
-description: "Measures what ran: search numbers from the owner's Google accounts, ad and post numbers from Meta or their exports, into results.md, and a monthly report that ends with what to make next. Use when the owner asks how ads or posts did, for the monthly report, or to put it on a schedule. Not for competitors' numbers (research)."
+description: "Measures what ran: the owner's search, ad and post numbers from Google, Meta or their exports into results.md, and a monthly report ending in what to make next. Use when the owner asks how ads or posts did, for the monthly report, or to schedule it. Not for competitors' numbers (research)."
 ---
 
 # Results

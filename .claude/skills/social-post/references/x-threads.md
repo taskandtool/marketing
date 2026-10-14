@@ -19,7 +19,7 @@ Two text-first platforms in one file. For a one-person business they are optiona
 X
 - Weights (via Sprout): a reply is worth about 13.5 likes, a repost about 20, a bookmark about 10. Links cut reach by "50-90%" (Musk, via Sprout). A post loses half its visibility every six hours. Media beats plain text.
 - Hootsuite: posts under 100 characters get about 17% more engagement; quote posts get about twice the engagement of plain reposts.
-- Threads on X (Buffer): only when the content is genuinely multi-step. The first post must stand alone; number the rest.
+- Threads on X (Buffer): only for multi-step content. The first post must stand alone; number the rest.
 - Sprout and Hootsuite for small businesses: one-line observations, a photo of the work, replies to local accounts. Two or three posts a day only if free; otherwise skip.
 
 Threads (Meta)
@@ -60,7 +60,7 @@ Visual: none.
 Pitfalls: replying with a link, pitching the business, replying to arguments.
 
 ### Thread (X only)
-When: genuinely multi-step content. A checklist, a job told in stages. Rarely.
+When: multi-step content. A checklist, a job told in stages. Rarely.
 Structure: post 1 stands alone and states the payoff. Posts numbered 2/, 3/ and so on, one step each, a photo on most. Last post a plain wrap-up, link in a reply.
 Copy: "1/ Three questions to ask before you sign a kitchen quote. 2/ Who measures the room, and is it the same person who fits it? 3/ Is the price from a drawing of your room or from a showroom range? 4/ What happens on fit day if the wall is not straight? 5/ Those are the three. Our checklist is in the reply below."
 Visual: a photo on posts 2 to 4.
@@ -75,11 +75,8 @@ Pitfalls: leaving replies unanswered, more than one tag, a link in the post.
 
 ## Never
 
-- A link in the body on either platform.
-- Hashtags on X, or more than one topic tag on Threads. No hashtag walls.
-- Reposts or screenshots of other people's posts with the watermark on, presented as your own.
+- Hashtags on X, or more than one topic tag on Threads.
 - Reply farming: "Agree?", "RT if", "Who else?".
 - Engagement pods, follow-for-follow, buying reach.
 - Threads for the sake of threads, or a "thread:" opener.
 - Arguments with local accounts, politics, complaints about named competitors.
-- The `tropes` skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.

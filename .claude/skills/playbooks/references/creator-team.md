@@ -9,8 +9,7 @@ sources:
 # Short-form creator team
 
 Hire a handful of short-form creators, each posting a video a day, then
-find the formats that break out and have everyone make those. Volume finds
-the outliers; sharing them makes the whole team better.
+find the formats that break out and have everyone make those.
 
 ## Fits
 
@@ -19,8 +18,7 @@ for five to ten creators for a few months.
 
 ## What it looks like
 
-- Five to ten creators, one video each a day, on their own accounts or the
-  brand's.
+- Each creator posts one video a day, on their own account or the brand's.
 - Every video tracked; the outliers (several times the usual views) picked
   out each week.
 - The winning format written up and shared with all of them.

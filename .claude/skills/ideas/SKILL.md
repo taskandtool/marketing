@@ -52,11 +52,4 @@ run it unchanged); proof exists in `claims.md`; fits the reader's stage; not
 a smaller echo of what competitors say; the first frame or line both stops
 and signals relevance; the body pays off the hook; it could have been posted
 by a person; it differs from the others in the set; it can be made with what
-the business has. This is judgement made explicit, not a validated model;
-the market picks the winners.
-
-## References
-
-- `references/frameworks.md`: awareness stages, market sophistication,
-  problem-agitate-solve, before-after-bridge, StoryBrand, jobs to be done,
-  and a worked example of each
+the business has.

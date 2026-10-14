@@ -35,8 +35,7 @@ it learns. Conversion tracking comes first (the `results` skill,
 - Making the ads: the `ad` skill, as a set of distinct ideas.
 - Launching and audiences: Meta with ads management, Google with Google
   Ads (its developer token needs Google's approval), or the owner in each
-  ads manager. Ads go up paused for the owner to switch on.
-- Tracking: the `results` skill, "Tracking".
+  ads manager.
 
 ## Watch
 
@@ -57,5 +56,3 @@ the owner.
   before upload, as the platforms require.
 - Google's Customer Match targeting needs a long, well-spent account
   history; a small account can still use a list to exclude customers.
-- Health, finance, housing and before-and-after ads follow the platform's
-  sheet in `specs/`.

@@ -8,8 +8,8 @@
 # The app's own files are not this script's business: they arrive with the
 # clone. What it does, each step skipped when already done:
 #   1. makes sure the working copy is a git repo with a commit in it
-#   2. installs the Python tools the scripts use (Pillow, requests) and
-#      tt-crawl (the site reader the brand and research skills use)
+#   2. installs the Python tools the scripts use (requests) and tt-crawl
+#      (the site reader the brand and research skills use)
 #   3. runs tt-crawl setup: the launcher and the browsers it reads sites
 #      with (Chrome, and Obscura)
 #   4. registers the `web` service that serves the marketing files as a
@@ -37,13 +37,13 @@ if ! git rev-parse --verify HEAD >/dev/null 2>&1 && [ -f AGENTS.md ]; then
 fi
 
 # 2. Python tools.
-echo "== python tools (Pillow, requests) + tt-crawl $CRAWLER_REF"
-python3 -m pip install --quiet --upgrade Pillow requests 2>&1 | tail -1 || true
+echo "== python tools (requests) + tt-crawl $CRAWLER_REF"
+python3 -m pip install --quiet --upgrade requests 2>&1 | tail -1 || true
 # The crawler's main, every run: the first install brings its dependencies;
 # the second replaces its own code even when its version number did not move.
 python3 -m pip install --quiet --upgrade "ttcrawl @ $CRAWLER" 2>&1 | tail -1 || true
 python3 -m pip install --quiet --force-reinstall --no-deps "ttcrawl @ $CRAWLER" 2>&1 | tail -1 || true
-python3 -c "import PIL, requests; print('Pillow', PIL.__version__, 'requests', requests.__version__)"
+python3 -c "import requests; print('requests', requests.__version__)"
 # 3. tt-crawl on the PATH, then the browsers it drives: Chrome reads a site
 # and its screenshots, Obscura is its fallback.
 python3 -m ttcrawl setup || echo "tt-crawl setup did not finish every step; its output above says which"

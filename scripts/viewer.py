@@ -486,7 +486,7 @@ def main(argv):
             lines.append(f"  left out, over Cloudflare's 25 MiB a file: {path} ({size_mb(size)})")
         if kept > MAX_FILES:
             lines.append(f"  {kept} files: Cloudflare may refuse a deploy of more than {MAX_FILES:,}")
-        lines.append("\nNext: npm run deploy publishes dist/ to production")
+        lines.append("\nNext: python3 ~/tools/taskandtool.py status (dev shows the same pages)")
         print("\n".join(lines))
         return 0
     except Failed as e:

@@ -66,7 +66,7 @@ Total: about 10 to 13 made posts a week from two or three ideas. If that is too 
 
 ## Ad copy versus organic copy
 
-The same business, the same voice, different jobs. An ad pays for attention and asks for the sale; an organic post earns a send and delays the sale.
+Same voice, different jobs: an ad pays for attention and asks for the sale; an organic post earns a send and delays the sale.
 
 | Element | Ad copy | Organic copy |
 |---|---|---|

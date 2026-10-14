@@ -23,8 +23,8 @@ it (an edit of the photo). Otherwise `make-image` sets the line in the
 picture. Each slide gets a `slide-N.md` with its prompt under a `## Prompt`
 heading, and the `slide-N.png` made from it (`--prompt-file slide-N.md
 --section Prompt`),
-numbered in order; every slide after the first passes `--ref slide-1.png`,
-so the set keeps one look. The caption
+numbered in order; every slide after the first passes `--ref slide-1.png`.
+The caption
 and hashtags go in `creative.md` as for any post, and its `files` lists
 every `slide-N.png`. Read every slide at full size for
 misspelt words before the owner sees the set.

@@ -1,12 +1,11 @@
 ---
 name: social-post
-description: "Writes organic social posts in the business's voice for Instagram, Facebook, LinkedIn, TikTok, Google Business, Pinterest, X and Threads, or turns one idea into a week of posts, including TikTok slideshows and carousels. Use when the owner says write a post, caption or slideshow, what should we post this week, or repurpose this. Not for paid ads (ad)."
+description: "Writes organic social posts in the owner's voice for Instagram, Facebook, LinkedIn, TikTok, Google Business, Pinterest, X and Threads, slideshows and carousels included, or one idea as a week of posts. Use for a post, a caption, this week's posts, or repurpose this. Not for paid ads (ad)."
 ---
 
 # Social post
 
-Organic is not an ad with the price taken out. An ad buys attention from
-people who did not ask; a post earns it from the people shown it, through
+An ad buys attention from people who did not ask; a post earns it from the people shown it, through
 sends, saves, comments and watch time. It opens with a moment, a number or a
 question the reader recognises, gives something worth keeping, and asks for
 the one small thing the platform rewards.

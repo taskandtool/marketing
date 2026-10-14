@@ -25,7 +25,7 @@ Recipes for a business Page. The worked examples use Harlow Joinery, a made-up w
 
 ## Norms
 
-- Limits: `specs/meta.md`. Rule: the whole point in the first two lines, under 80 characters where possible.
+- Limits: `specs/meta.md`. The whole point in the first two lines, under 80 characters where possible.
 - Hooks: a specific local fact, a photo that shows the change, or one real question.
 - Hashtags: none, or one.
 - Links: first comment, or the Page's About section. In the body only when the link itself is the point.
@@ -93,10 +93,6 @@ Pitfalls: the link in the body, a preview card with a stock image.
 
 ## Never
 
-- Engagement bait: "tag a friend", "like if you agree", "comment YES", "share to win".
-- A link in the body of a post that is not a link post.
 - Stock imagery, or text on an image that looks like an ad.
-- Hashtag walls, or the Instagram caption pasted in with the tags still on it.
-- Reposts with another app's watermark, or a customer's content without permission.
+- The Instagram caption pasted in with the tags still on it.
 - Angry-reaction bait: local politics, complaints about named competitors, arguments in the comments.
-- The `tropes` skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.

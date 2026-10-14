@@ -23,7 +23,7 @@ Recipes for a business account. Pinterest is a search engine with a long tail: a
 - Every pin is 2:3, 1000 x 1500 or larger. Vertical only.
 - Title: keyword first, inside the part that shows (limits: `specs/pinterest.md`).
 - Description: one or two sentences with the natural search phrase ("fitted kitchen with an alcove, Bristol"), no hashtags needed, no calls to action shouted.
-- Hashtags: none, or one or two at the end. Keywords do the work.
+- Hashtags: none, or one or two at the end.
 - Links: native. Every pin links to the matching page on your site: the project page, the service page, the guide. Never the homepage for everything.
 - Alt text: Pinterest has a field for it. One literal sentence with the keyword.
 - Boards: named for what people search ("Fitted kitchens Bristol", "Small kitchen layouts"), not for the business ("Our work").
@@ -57,8 +57,6 @@ Pitfalls: a price on the pin that will go stale, a discount with a deadline (pin
 - Horizontal or square pins, or a pin taller than 2:3.
 - Re-pinning the same image again and again instead of making a fresh one.
 - Stock photos, or a product cut out on white with no room around it.
-- Watermarked reposts of other people's pins as your own, or a customer's photo without permission.
-- A hashtag wall, or a title stuffed with keywords ("Kitchen kitchens fitted kitchen Bristol kitchen design").
+- A title stuffed with keywords ("Kitchen kitchens fitted kitchen Bristol kitchen design").
 - Dated offers and prices on a pin that will still be found in two years.
 - A link to the homepage for every pin, or a link to a page that does not match the image.
-- The `tropes` skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.

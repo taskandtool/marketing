@@ -17,7 +17,7 @@ Recipes for a small business account. The worked examples use Harlow Joinery, a 
 - Ranking order (Hootsuite, Sprout): user interactions (likes, shares, comments, watch time, follows) first, then content information (captions, hashtags, sounds), then user and device settings. Follower count does not drive search or the For You feed.
 - Sprout, quoting TikTok: "High-quality content sees follower growth over 40 times greater than with other posts". Sprout relays TikTok's Creator Academy advice to post one to four times a day when testing; this is not verified at the source.
 - Search is the growth path for a small account. Hootsuite: "TikTok's algorithm also processes spoken audio", so the keyword said aloud counts as well as the on-screen title and the caption.
-- Shares and watch time decide reach regardless of followers. A video one person sends to one other person beats a video ten people like.
+- Shares and watch time decide reach: a video one person sends on beats one ten people like.
 - Content pillars that work for small businesses (Sprout, Nov 2025): educational ("quick how-to, a creator demo or a funny take on a customer pain point"), behind the scenes ("A day in the life of a florist during wedding season"), trend participation (early, with your own twist), customer stories (testimonials, before and afters, UGC with a voiceover).
 
 ## Norms
@@ -65,10 +65,8 @@ Pitfalls: editing the review, a customer filmed without written permission, an a
 
 ## Never
 
-- Another app's watermark on the video. Instagram and TikTok both demote it.
-- Hashtag-only captions, or a hashtag wall of ten tags.
+- Hashtag-only captions.
 - A link in the caption.
 - Polished ad footage with a logo sting at the start.
 - A trend used without the trade in it.
 - Stock footage, or a voice that is not a person from the business.
-- The `tropes` skill's refused phrases: "Welcome to", "Here's the thing", "Whether you're X or Y", "Say goodbye to", "game-changer", "We're passionate about", "Let's dive in", "solutions" as the noun, the "It's not X. It's Y." pivot, the "Fast. Simple. Effective." tricolon, em dashes, invented proof.

@@ -27,13 +27,11 @@ instructions, those win.
 
 ## Keeping shots consistent
 
-1. Make the hero still first with the image model and use it as the
-   reference or first frame of every clip.
-2. Repeat the same subject labels and the same CONSTANTS paragraph word for
+1. Repeat the same subject labels and the same CONSTANTS paragraph word for
    word in every brief.
-3. Make several shots inside one generation where the model allows it,
+2. Make several shots inside one generation where the model allows it,
    rather than stitching separate clips.
-4. Keep reference images at or below the output resolution.
+3. Keep reference images at or below the output resolution.
 
 ## Failures and fixes
 

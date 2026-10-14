@@ -12,11 +12,7 @@ What the benchmark says about the field, before any single format: text-only and
 
 ## How to choose
 
-- An ad is one **angle** (what we are saying) in one **format** (how the image is built) with one **hook** (the first line). Pick all three on purpose. Angles come from the `ideas` skill, hooks from the `copywriting` skill.
-- **One idea per ad.** If a draft carries two claims, split it into two ads.
-- **The 3 x 3 starter set.** For a new business or campaign, produce three angles in three formats each, nine ads. A sensible default for a service business: outcome, social proof and problem, each in a photo + statement, a testimonial and one native or lo-fi format. For a business with an offer, the offer-first banner is in the first nine.
 - **Distinct concepts beat variants.** Since Meta's Andromeda ranking rollout (global, Oct 2025) an ad set does better with 8 to 15 ads that each carry a different angle than with one ad in twelve colourways. Keep similarity between concepts in an ad set under about 40% (Segwise figure, unverified). Vary the copy shape too: a question, a list, a quote, a statement.
-- **Lo-fi wins more often than it is used.** Sticky notes, screenshots, text threads and phone photos are not a fallback for a business without a photographer; they are a first choice.
 - **Funnel stage**, as each recipe's When line names it: top (cold, has not heard of us), mid (warm, has seen us or has the problem in mind), bottom (hot, has visited, enquired or abandoned).
 - **Sizes.** Feed 4:5 at 1080 x 1350 (1:1 underperforms); Stories and Reels 9:16 at 1080 x 1920 with copy kept out of the top 14% and bottom 35%. Meta penalises images with a short edge under 1080 (unverified).
 
@@ -74,7 +70,7 @@ When: Top to mid funnel. The business has a customer or owner post, or can write
 Structure: A screenshot of a single post, or a post with one reply, on a plain ground.
 Copy: Written the way people talk about the problem in public, not the way we describe the product. Example (owner's post): "Fitted a kitchen today where the previous fitters had scribed the plinth to a floor that isn't there any more. Measure the room you have, not the plan." Pair it in the primary text with 150 to 250 words of problem, agitation and solution for the 35+ Facebook feed audience.
 Visual: The post at real proportions with real chrome. Copy-space is the post.
-Why it works: It mirrors how buyers already discuss the category, so it reads as a conversation rather than an offer.
+Why it works: It mirrors how buyers already discuss the category, so it reads as a conversation.
 Pitfalls: Publish the post for real before screenshotting it; a screenshot of a post that does not exist is fabricated proof. Never lift a stranger's post without permission. Do not add a headline outside the screenshot.
 
 ### Founder note or letter
@@ -186,7 +182,7 @@ When: High-consideration purchases, mid funnel. The reader wants to learn before
 Structure: An editorial headline, one photo, two or three bullet findings, a source line, a soft call to action.
 Copy: Headline in the register of a magazine piece, not an offer. Example: "Why fitted kitchens in older Bristol homes fail at the walls. Three things a joiner checks before cutting: whether the floor is level (most are not), whether the walls are plumb (a 12 mm lean is common), where the services come through. Source: Harlow Joinery survey notes, 2025. Read the full checklist."
 Visual: Photo as a magazine would crop it, the headline over or under it, bullets in a column. Copy-space is a third of the frame.
-Why it works: It answers the question the buyer typed into a search box, so it is read rather than skipped.
+Why it works: It answers the question the buyer typed into a search box, so it is read, not skipped.
 Pitfalls: A wall of text at feed size; the bullets stay short and the long version lives on the landing page. Label it as an ad where the platform requires. Findings need a source in the ledger, even if the source is our own job notes.
 
 ### First-frame iteration
@@ -322,7 +318,7 @@ When: Mid funnel, for anything with a screen or a result that shows on one: a qu
 Structure: A phone-shaped card with a title and a few rows (label and value), one highlighted line, the business name small.
 Copy: "[Screen title]. [Row: label, value] x3. [The line that matters, in the accent]." Example: "Your drawing. Measured: Tuesday. Drawn: Friday. Price: on the drawing. Fitting: 3 days."
 Visual: A real screenshot of the real product. Never an interface painted by an image model.
-Why it works: A screen reads as evidence, not as a claim.
+Why it works: A screen reads as evidence.
 Pitfalls: A mocked-up screen for a product that has no screen; numbers not in the ledger; a fake brand's interface.
 
 ### Editorial (magazine style)
@@ -391,15 +387,7 @@ Pitfalls: A badge the business does not hold; a drawn badge; an award with no is
 
 ## Copy rules for any static
 
-1. **Twelve words or fewer on the image.** The rest goes in the primary text. Reviews and letters are the exception; keep them under 80 words and set them at reading size.
-2. **Hook first.** The first line on the image is the reason to stop, never the business name. The name goes small or in the profile.
-3. **Verb-first call to action.** "Book a survey", "See the kitchens", "Get the checklist". Not "Learn more", "Click here" or "Get started".
-4. **No hashtags** on the image or in ad copy; they are an exit from the ad.
-5. **No "It's not X, it's Y"** or "not just X but Y". It is the strongest single tell of generated copy.
-6. **No tricolons.** No "No fuss. No filler. No delay." At most one list of three per ad, and only when the list really has three things.
-7. **No invented proof.** No numbers, names, reviews, awards, press or prices that are not in the claims ledger. An empty proof slot is fine; a fake one is not.
-8. **The claims ledger.** Every fact on an ad (a number, a quote, a lead time, a price, a material) is a numbered line in `claims.md` with its source before the ad is generated. The reviewer checks the ad against the ledger, not the other way round. If a claim is unusual (a result most customers will not get), the ad says what is typical.
-9. **Specific over adjective.** "18 mm birch ply" not "quality materials". "Eight weeks" not "fast". If a sentence has no noun, number, place or date from the brief, rewrite it or cut it.
-10. **Plain words.** No bespoke, seamless, elevate, unlock, journey, solutions, passionate, world-class, next level. The brand's own never-list in `brand/voice.md` applies on top.
-11. **Policy on every draft.** Personal attributes (Meta): describe the product or the situation, never the reader. Before/after: not for health, weight or skincare. Competitors: a category, never a name. Endorsements: real, unedited, disclosed if paid.
-12. **Landing page matches the hook.** The page the ad sends to must say the same thing in the same words, or the click is wasted.
+1. **Hook first.** The first line on the image is the reason to stop, never the business name. The name goes small or in the profile.
+2. **Policy on every draft.** Personal attributes (Meta): describe the product or the situation, never the reader. Before/after: not for health, weight or skincare. Competitors: a category, never a name. Endorsements: real, unedited, disclosed if paid.
+3. **Landing page matches the hook.** The page the ad sends to must say the same thing in the same words, or the click is wasted.
+4. **Reviews and letters** run up to 80 words at reading size.

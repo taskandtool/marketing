@@ -23,16 +23,16 @@ the buyer are against it.
 
 ## What it looks like
 
-- **A list.** Contacts that match the buyer from a contact database, or
+- A list: contacts that match the buyer from a contact database, or
   warmer ones: the people who liked or commented on a LinkedIn post (the
   owner's own posts first, then posts in the niche), collected by a
   scraper and given emails by the database from their profile link.
-- **Verified.** Every address checked before it is sent to; bad addresses
+- Every address verified before it is sent to; bad addresses
   ruin a sending domain.
-- **Sent from a sending tool** across many mailboxes on separate domains,
+- Sent from a sending tool across many mailboxes on separate domains,
   warmed up first. Cody's scale is about 100,000 emails a month to some
   50,000 people.
-- **Short.** Cody sends two: the first asks for a meeting, the second
+- Short: Cody sends two. The first asks for a meeting, the second
   sends a link to sign up or book.
 
 ## Tools

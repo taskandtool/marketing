@@ -27,15 +27,14 @@ be said. The words come from those two files and the idea in `creative.md`.
    claim cut because it has no source is never softened into a vaguer one, and
    customers, results, awards or urgency are never invented.
 6. **Vary the rhythm.** Mix four-word and forty-word sentences; at most one
-   list of three; commas and the odd aside; no em dashes.
+   list of three; commas and the odd aside.
 7. **One idea, one action.** The call to action names the outcome ("Book a
    service"), not the mechanism ("Learn more"), worded the same everywhere.
 
 ## Hooks
 
 The hook (the opening line, the first second of a video, or the first
-frame) does two jobs: it interrupts, and it says who it is for. One without
-the other is clickbait or invisible. Pick the hook type for the reader's
+frame) does two jobs: it interrupts, and it says who it is for. Pick the hook type for the reader's
 awareness stage (`references/hooks.md`), write five to eight openings in
 the customers' words (`research/audience.md`), keep the best two and record
 the rest in `research/hooks.md`. The proposition lands in the first line or
@@ -52,9 +51,7 @@ picture, twelve words or fewer.
 
 Edit in this order: truth (is every fact in `claims.md`), meaning (one
 idea), structure, voice, language, sound (read it aloud), compression.
-Then `python3 scripts/check.py <folder>` (it runs the `tropes` skill's
-script on every copy field) and the `tropes` skill, which says how a
-finding is fixed.
+Then `python3 scripts/check.py <folder>`.
 
 ## Example
 

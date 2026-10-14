@@ -22,13 +22,13 @@ Examples use a made-up two-van heating firm in Leeds.
 
 ## By awareness stage
 
-| Stage | Lead with | Hooks |
-|---|---|---|
-| Unaware | a story or a surprising fact, never the product | myth, bold claim, POV |
-| Problem-aware | the pain in their words | problem, callout, question |
-| Solution-aware | why this way works and others don't | us vs them, this vs that, demo |
-| Product-aware | objections answered, proof | proof opener, confession, people always ask |
-| Most aware | the offer | the offer itself, plainly |
+| Stage | Hooks |
+|---|---|
+| Unaware | myth, bold claim, POV |
+| Problem-aware | problem, callout, question |
+| Solution-aware | us vs them, this vs that, demo |
+| Product-aware | proof opener, confession, people always ask |
+| Most aware | the offer itself, plainly |
 
 ## Did it work
 

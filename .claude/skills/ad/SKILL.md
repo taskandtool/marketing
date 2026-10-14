@@ -6,8 +6,11 @@ description: "Makes a paid ad from an idea: the format, the hook, copy and pictu
 # Ad
 
 An ad is one idea in one format with one hook, made to one platform's
-specs. A test set is three ideas in three formats or hooks: nine ads that
-differ in argument, not colour.
+specs. A test set for a new business or campaign is three angles in three
+formats each: nine ads that differ in argument, not colour. A sensible
+default for a service business: outcome, social proof and problem, each in
+a photo + statement, a testimonial and one native or lo-fi format; with an
+offer, the offer-first banner is in the first nine.
 
 ## Steps
 
@@ -17,8 +20,7 @@ Copy and tick:
       wrote, or write one with it first.
 - [ ] 2. **Format.** Pick from `references/formats.md` (read the entry, not
       the file). Lo-fi formats (a sticky note, a phone photo, a screenshot)
-      win more often than they are used; they are a first choice, not a
-      fallback.
+      win more often than they are used; they are a first choice.
 - [ ] 3. **Hook and copy** (the `copywriting` skill) into `copy:`
       (`headline`, `primary_text`, `description` or `caption`, `cta`).
 - [ ] 4. **Picture or video** (the Pictures section of `AGENTS.md`, or the
@@ -38,11 +40,3 @@ Copy and tick:
 - Health, finance and before-and-after claims follow the platform's sheet
   in `specs/`. `scripts/check.py` fails on hashtags and personal attributes
   ("Are you in debt?") in an ad.
-
-When the ad has run, the `results` skill records the results.
-
-## References
-
-- `references/formats.md`: 45 static formats as recipes, with when each
-  works and its pitfalls
-- `specs/<platform>.md`: sizes, text limits, safe zones and policy, dated

@@ -1,6 +1,6 @@
 ---
 name: marketing
-description: "Maps the marketing app: its folders, the shape of a creative.md, and the order of work from research to results. Use at the start of a session here, when the owner asks what to do next, what is waiting for approval, or where something is filed. Not for making a piece (ad, social-post) or measuring one (results)."
+description: "Maps the marketing app: its folders, the shape of a creative.md, and the order of work. Use at the start of a session, when the owner asks what next, what is waiting for approval, or where something is filed. Not for making a piece (ad, social-post) or measuring one (results)."
 ---
 
 # Marketing
@@ -10,43 +10,23 @@ emails, and files them for the owner to review.
 
 ## The loop
 
-Each step has its own skill. Start wherever the folders say the work is.
+Brand (`brand`) → research → ideas (hooks by `copywriting`) → make (`ad`,
+`social-post`, `email`; clips by `video`) → `python3 scripts/check.py` and
+the `tropes` audit → review → `results`. Start wherever the folders say the
+work is; nothing is made from notes that still say "to fill".
 
-1. **Brand.** `brand/` and `public/` filled (the `brand` skill). Nothing is
-   made from notes that still say "to fill".
-2. **Research.** What competitors run, what customers say, what people
-   search (the `research` skill) into `research/`.
-3. **Ideas.** Angles and frameworks turned into ranked ideas worth making
-   (the `ideas` skill), each with a hook (the `copywriting` skill).
-4. **Make.** An ad (the `ad` skill), a post (the `social-post` skill) or an
-   email (the `email` skill):
-   words through `copywriting`, pictures as `AGENTS.md` says, clips
-   through `video`.
-5. **Audit.** `python3 scripts/check.py`, then read the work by eye against
-   the `tropes` skill. Fix every finding before the owner sees anything.
-6. **Review.** Show the owner the files as deliverables and set `status:
-   sent`. The owner's approval or rejection then changes `status` again.
-7. **Results.** What ran and what it did goes in `results.md`, and a
-   monthly report says what to make next (the `results` skill).
+Review: show the files as deliverables and set `status: sent`; when the
+owner answers (`get-deliverables`), set approved or rejected.
 
-Beyond single pieces, the strategies a business could run for months are
-the `playbooks` skill's; the chosen ones are in `plan.md`.
+Months-long strategies are `playbooks`'; the chosen ones are in `plan.md`.
 
 ## Making it repeat
 
-When the owner wants something done every week (a batch of posts, a list
-job, a report), do it once by hand in chat until they like the result.
-Then save what worked: the mechanical part (calls, files, counts) as a
-script in `scripts/`, the part that needs judgement as a prompt in
-`jobs/<name>.md`, and schedule it (the `schedule-job` skill). Write a
-script when the same steps would be redone each time, or when it sends,
-posts or spends; a one-off stays in chat.
-
-- It keeps a record of what it has done, so a second run never sends,
-  posts or spends twice. Most runs find nothing new and do nothing.
-- It prints what it did in a line or two and exits non-zero on failure.
-- What it sends, posts or spends stops at a draft or a paused ad for the
-  owner, unless they said otherwise for that job.
+Something the owner wants every week: do it by hand in chat until they
+like it, then put the mechanical part in `scripts/`, the judgement in
+`jobs/<name>.md`, and schedule it (`schedule-job`). A job keeps a record so
+a rerun never sends, posts or spends twice, and stops at a draft or a
+paused ad unless the owner said otherwise.
 
 ## Where things are
 
@@ -109,5 +89,3 @@ v1: headline too long at phone size; v2 shortened it.
 ```
 
 One idea per creative; a second idea is the next folder.
-`python3 scripts/check.py` checks the fields, the files, the claims and the
-copy. A creative is never shown with a finding open.

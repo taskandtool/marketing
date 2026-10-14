@@ -23,9 +23,9 @@ Copy and tick:
       reference or first frame.
 - [ ] 4. Put each shot brief under its own heading in `creative.md`
       (`## Shot 1`, `## Shot 2`; `## Prompt` stays the still's) and
-      generate: `python3 scripts/videogen.py --prompt-file
-      creatives/<folder>/creative.md --section "Shot 1" --ratio 9:16
-      --seconds 6 --out creatives/<folder>/shot-1.mp4`. With a Higgsfield
+      generate each: `python3 scripts/videogen.py --prompt-file
+      creatives/<folder>/creative.md --section "Shot 1" --out
+      creatives/<folder>/shot-1.mp4` (`--help` for ratio and length). With a Higgsfield
       connection, generate it the way its instructions say instead.
 - [ ] 5. Check frames at 0, 25, 50, 75 and 100% (the `tropes` video
       checks). Regenerate what drifts.
@@ -40,9 +40,6 @@ Copy and tick:
 | 6 s | 0 to 2: the striking picture with the product or result in it. 2 to 5: one proof or reaction. 5 to 6: the name and the action, on screen and spoken. One idea. |
 | 15 s | 0 to 3: the hook with the proposition. 3 to 6: the promise kept (how it works, a demo). 6 to 12: two or three proof beats, a change every 2 to 3 s. 12 to 15: the call to action card, spoken. |
 | 30 s | 0 to 3: hook. 3 to 8: the problem made concrete. 8 to 20: demo or story in three or four beats, a new angle or number near 10 to 12 s. 20 to 26: proof. 26 to 30: offer and action. |
-
-These are a working synthesis of TikTok's and Google's guidance, not a
-platform spec.
 
 ## Rules
 
