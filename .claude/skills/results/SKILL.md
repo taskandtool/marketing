@@ -11,8 +11,9 @@ give.
 
 ## Where the numbers come from
 
-- **Search:** `google-gsc` (queries, clicks and impressions by page) and
-  `google-ga4` (visits and conversions by source).
+- **Search:** the `google-search-console` connection (queries, clicks and
+  impressions by page) and the `google-analytics` connection, endpoint
+  `google-analytics-data` (visits and conversions by source).
 - **Meta ads and Facebook and Instagram posts:** the `meta-graph`
   connection, when the owner ticked its insights and `ads_read` access on
   connecting. Ads: spend, impressions, clicks, leads. Posts: reach, saves,
@@ -27,7 +28,8 @@ A connection's own instructions say how to call it. Ask once for a
 connection that is not granted, saying what it unlocks:
 
 ```bash
-python3 ~/tools/taskandtool.py request-connection google --why "your search traffic and visits for the monthly report"
+python3 ~/tools/taskandtool.py request-connection google-search-console --why "your search traffic for the monthly report"
+python3 ~/tools/taskandtool.py request-connection google-analytics --why "your visits and conversions for the monthly report"
 ```
 
 ## Tracking
