@@ -63,7 +63,7 @@ LIMITS = {
 }
 LIMITS["facebook"] = LIMITS["instagram"] = LIMITS["meta"]
 # an organic post's caption where it is capped hard; x and gbp have no sheet,
-# so their numbers are in social-post/references/ (x-threads.md, gbp.md)
+# so their numbers are in social-post/references/ (x.md, gbp.md)
 POST_LIMITS = {"x": {"caption": (280, True, "X post: 280 max")},
                "gbp": {"caption": (1500, True, "Google Business Profile post: 1,500 max")}}
 SHOWN = 20

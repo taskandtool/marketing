@@ -42,6 +42,6 @@ answers for the owner.
 
 ## Gotchas
 
-- LinkedIn and X limit and ban automated accounts. Say so, start below the
-  tool's suggested daily limits, and let the owner decide.
-- The owner's own profile is at stake; never their only account for work.
+- LinkedIn and X limit and ban automated accounts, and it is the owner's
+  own profile at stake. Say so, start below the tool's suggested daily
+  limits, and let the owner decide.

@@ -23,7 +23,8 @@ willing to host every week for a year. Slow: judged at twelve months.
   people the business wants as customers.
 - A newsletter each week built on the episode: the best ideas, written to
   stand alone.
-- The list grown from cold email (`cold-email.md`) and every other channel.
+- The list grown by inviting people to subscribe: from cold email
+  (`cold-email.md`) and every other channel.
 - Each episode cut into many clips and written posts: one insight each,
   rewritten per platform.
 - The best episodes turned into a lead magnet: a checklist, a swipe file.
@@ -53,5 +54,4 @@ a list of clip timestamps, ready for the owner.
 
 - A guest's words in an ad need their consent; on the show and in clips
   they agreed to.
-- The newsletter goes only to people who signed up or were told they would
-  get it.
+- The newsletter goes only to people who signed up (the `email` skill).

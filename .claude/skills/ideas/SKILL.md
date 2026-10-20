@@ -27,8 +27,8 @@ Copy and tick:
       asked for or else nine, that differ in argument, not in colour or
       wording.
 - [ ] 5. For each kept idea, create `creatives/YYYY-MM-DD-<slug>/creative.md`
-      with `status: draft`, the angle, the stage, the framework, the claims,
-      and the idea in two sentences. The hook comes next (the `copywriting` skill).
+      with `status: draft`, `angle`, `awareness`, `framework`, `claims`,
+      and the idea in two sentences under `## Idea`. The hook comes next (the `copywriting` skill).
 - [ ] 6. Show the owner the kept ideas as a short list, one line each, and ask
       which to make first.
 

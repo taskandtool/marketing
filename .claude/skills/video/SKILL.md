@@ -6,8 +6,8 @@ description: "Plans and makes short video ads and posts: the beat structure, sho
 # Video
 
 The picture carries the idea, captions carry the words, sound adds energy.
-A generated clip is a three-to-eight-second beat (a product close-up, a
-setting, a reveal), never the whole ad.
+A generated clip is one beat of four to eight seconds (a product close-up,
+a setting, a reveal), never the whole ad.
 
 ## Steps
 
@@ -25,8 +25,9 @@ Copy and tick:
       (`## Shot 1`, `## Shot 2`; `## Prompt` stays the still's) and
       generate each: `python3 scripts/videogen.py --prompt-file
       creatives/<folder>/creative.md --section "Shot 1" --out
-      creatives/<folder>/shot-1.mp4` (`--help` for ratio and length). With a Higgsfield
-      connection, generate it the way its instructions say instead.
+      creatives/<folder>/shot-1.mp4` (`--help` for ratio and length). With
+      a Higgsfield connection, generate it the way its instructions say
+      instead.
 - [ ] 5. Check frames at 0, 25, 50, 75 and 100% (the `tropes` video
       checks). Regenerate what drifts.
 - [ ] 6. List the shots, the script and the music choice in the creative;

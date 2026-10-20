@@ -35,8 +35,8 @@ ads. They are for messaging research, not benchmarking.
 
 ## Run length
 
-Under 14 days is a test; 21 to 45 is acceptable; 45 to 60 and more is
-strong; 90 and more is a staple. A long-running ad has probably not been
+Under 14 days is a test; 21 to 45 is acceptable; 45 to 90 is strong;
+90 and more is a staple. A long-running ad has probably not been
 losing money, which means adequate, not best. Variants and recurrence across
 competitors say more than age alone.
 

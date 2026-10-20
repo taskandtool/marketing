@@ -1,6 +1,6 @@
 ---
 name: copywriting
-description: "Writes and edits the words of an ad or post in the business's own voice: the hook, headline, primary text, caption, call to action, script. Use whenever a creative's words are written or rewritten, for new hooks on a winning ad, or when the owner says it doesn't sound like them. Not for choosing the idea (ideas)."
+description: "Writes and edits the words of an ad, post or email in the business's own voice: the hook, headline, primary text, caption, call to action, script. Use whenever a creative's words are written or rewritten, for new hooks on a winning ad, or when the owner says it doesn't sound like them. Not for choosing the idea (ideas)."
 ---
 
 # Copywriting
@@ -16,7 +16,7 @@ be said. The words come from those two files and the idea in `creative.md`.
    repeat the offer from it alone.
 2. **Words a person would say aloud.** Would the owner say it on the phone
    to a customer? Plain verbs (use, fit, book), their contractions, no
-   metaphor nouns. Invite, don't instruct.
+   metaphor nouns.
 3. **Specifics.** At least one particular per piece from the owner's
    material: a place, a material, a number with its unit, a name, a date.
    Numerals for numbers.
@@ -34,8 +34,8 @@ be said. The words come from those two files and the idea in `creative.md`.
 ## Hooks
 
 The hook (the opening line, the first second of a video, or the first
-frame) does two jobs: it interrupts, and it says who it is for. Pick the hook type for the reader's
-awareness stage (`references/hooks.md`), write five to eight openings in
+frame) does two jobs: it interrupts, and it says who it is for. Pick the
+hook type for the reader's awareness stage (`references/hooks.md`), write five to eight openings in
 the customers' words (`research/audience.md`), keep the best two and record
 the rest in `research/hooks.md`. The proposition lands in the first line or
 the first three seconds and works muted; the body pays it off.

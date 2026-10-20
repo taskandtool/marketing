@@ -1,12 +1,12 @@
 ---
 name: social-post
-description: "Writes organic social posts in the owner's voice for Instagram, Facebook, LinkedIn, TikTok, Google Business, Pinterest, X and Threads, slideshows and carousels included, or one idea as a week of posts. Use for a post, a caption, this week's posts, or repurpose this. Not for paid ads (ad)."
+description: "Writes organic social posts in the owner's voice for Instagram, Facebook, LinkedIn, TikTok, Google Business, Pinterest and X, slideshows and carousels included, or one idea as a week of posts. Use for a post, a caption, this week's posts, or repurpose this. Not for paid ads (ad)."
 ---
 
 # Social post
 
-An ad buys attention from people who did not ask; a post earns it from the people shown it, through
-sends, saves, comments and watch time. It opens with a moment, a number or a
+An ad buys attention from people who did not ask; a post earns it from
+the people shown it, through sends, saves, comments and watch time. It opens with a moment, a number or a
 question the reader recognises, gives something worth keeping, and asks for
 the one small thing the platform rewards.
 
@@ -25,7 +25,7 @@ Copy and tick:
       their `references/` file).
 - [ ] 4. **The ask**, one, matched to what the platform rewards: "Save
       this", "Send this to someone planning a kitchen", "Reply with yours".
-      Links stay out of the body on Facebook, LinkedIn, X and Threads.
+      Links stay out of the body on Facebook, LinkedIn and X.
 - [ ] 5. **The picture**: the owner's photo as it is or edited, a
       carousel of real job photos, a slideshow (`references/slideshow.md`),
       a short clip (the `video` skill), or one made from scratch (the
@@ -58,8 +58,6 @@ repost or cross-post unchanged lose reach on Instagram and Facebook.
 
 ## Rules
 
-- The owner posts on LinkedIn and the company page reshares; personal
-  profiles reach further there.
 - Replying to comments is part of the post; suggest the owner does it in the
   first hour.
 - No engagement bait ("tag a friend"), no hashtag walls, no watermarked
@@ -69,8 +67,7 @@ repost or cross-post unchanged lose reach on Instagram and Facebook.
 
 ## References
 
-- `references/slideshow.md`: TikTok slideshows and carousels, slide by slide
 - `references/repurpose.md`: the pillars, one idea across platforms, the
   weekly cadence
-- `references/<platform>.md`: instagram, facebook, linkedin, tiktok, gbp,
-  pinterest, x-threads: what performs, the norms, recipes
+- `references/<platform>.md` (instagram, facebook, linkedin, tiktok, gbp,
+  pinterest, x): what performs, the norms, recipes

@@ -42,11 +42,10 @@ The idea for the worked example: "Three mistakes people make when they get a kit
 | 4 | Facebook photo post | Comments. The shortest version, one real photo, a question. | Photo: the tape on the wall. "Three kitchen quotes, none of them measured the room. This wall in Redland is 12 mm out. Did anyone measure yours before quoting?" |
 | 5 | GBP Update | Clicks. Service and area in the first line, a button. | "Kitchen quotes measured in your home, Bristol. Every Harlow quote comes from a measured drawing of your room, because walls are never straight. Fitted kitchens across Bristol and North Somerset. Button: Learn more (the how-we-quote page)." Photo: Jo with the drawing at a customer's table. |
 | 6 (optional) | Pinterest guide pin | Search, months later. Evergreen. | Title: "How to check a kitchen quote". Overlay: "3 quote mistakes". Links to the checklist page. |
-| 7 (optional) | Threads line | Replies. One observation, one topic tag. | "Three kitchen quotes on one table, none from a measured room. The wall was 12 mm out. #kitchenrenovation" |
 
 Rules the example follows:
 - Each version is written again, not copied. The carousel is the long form; everything else is a cut of it.
-- The link lives in one place per platform: bio on Instagram, first comment on LinkedIn and Facebook, the button on GBP, native on Pinterest, nowhere on TikTok and Threads.
+- The link lives in one place per platform: bio on Instagram, first comment on LinkedIn and Facebook, the button on GBP, native on Pinterest, nowhere on TikTok.
 - Post them across the week, not on the same day, so each platform's audience gets the idea once.
 - Anything that comes back as a comment or reply is next week's idea.
 
@@ -60,7 +59,7 @@ Rules the example follows:
 | TikTok | 3 if video is cheap, otherwise 0 | the same Reels with the TikTok caption rules; skip rather than post badly |
 | Google Business Profile | 1 Update | plus an Offer or Event whenever there is a real one; photos added as jobs finish |
 | Pinterest | 1 fresh pin | batched from finished jobs |
-| Threads and X | only if free | one line a day, replies answered; neither replaces the platforms above |
+| X | only if free | one line a day, replies answered; it never replaces the platforms above |
 
 Total: about 10 to 13 made posts a week from two or three ideas. If that is too many, drop TikTok, Pinterest and X first. Never drop GBP or the reviews.
 
@@ -72,8 +71,8 @@ Same voice, different jobs: an ad pays for attention and asks for the sale; an o
 |---|---|---|
 | Hook | States the offer or the benefit in line one | Opens with a specific moment, a number or a question, and delays the offer |
 | Call to action | A button verb: "Book now", "Get a quote" | A low-friction ask matched to the platform's metric: "Save this", "Send to someone who...", "Reply with...", "Link in first comment" |
-| Hashtags | None | 3 to 5 on Instagram, TikTok and LinkedIn; 0 to 1 on Facebook; one topic tag on Threads; none on X or GBP |
-| Links | Always, in the ad's own link field | Never in the body on Facebook, LinkedIn, X or Threads; "link in bio" on Instagram; the button on GBP; native on Pinterest |
+| Hashtags | None | 3 to 5 on Instagram, TikTok and LinkedIn; 0 to 1 on Facebook; none on X or GBP |
+| Links | Always, in the ad's own link field | Never in the body on Facebook, LinkedIn or X; "link in bio" on Instagram; the button on GBP; native on Pinterest |
 | Tone | Polished, brand-voiced, one claim per ad, every claim from the ledger | First person, specific, phone-shot, admits what went wrong, written to be forwarded to one person |
 | Proof | Named, permissioned, from `claims.md` | The same rule, plus the story around it |
 | Selling | Every ad sells | No more than one post in five is an offer |

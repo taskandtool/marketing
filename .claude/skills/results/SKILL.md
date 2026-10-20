@@ -14,9 +14,9 @@ give.
 - **Search:** the `google-search-console` connection (queries, clicks and
   impressions by page) and the `google-analytics` connection, endpoint
   `google-analytics-data` (visits and conversions by source).
-- **Meta ads and Facebook and Instagram posts:** the `meta-graph`
-  connection, when the owner ticked its insights and `ads_read` access on
-  connecting. Ads: spend, impressions, clicks, leads. Posts: reach, saves,
+- **Meta ads and Facebook and Instagram posts:** the `meta` connection
+  (endpoint `meta-graph`), when the owner ticked its insights and
+  `ads_read` access on connecting. Ads: spend, impressions, clicks, leads. Posts: reach, saves,
   shares, comments. A call refused for a missing permission means it was
   not ticked: say which to add, and use their export meanwhile.
 - **Every other platform:** the owner's export from the ads manager or the
@@ -49,8 +49,8 @@ owner's yes.
 Newest first, one block per creative per period: the folder as a link to
 it (`[2026-10-01-roof-leak](creatives/2026-10-01-roof-leak/)`, never to its
 `creative.md`: the viewer shows the piece at its folder), the platform, the
-dates, then what the account gave. A report links the same way. Ads: spend, hook rate,
-hold rate, click-through, cost per lead. Posts: reach, saves, shares,
+dates, then what the account gave. A report links the same way. Ads:
+spend, hook rate, hold rate, click-through, cost per lead. Posts: reach, saves, shares,
 comments. Each number with its unit and its source. Search goes in its own
 block per period: the queries and pages that brought visits.
 

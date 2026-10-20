@@ -17,10 +17,9 @@ work is; nothing is made from notes that still say "to fill".
 
 Review: `python3 scripts/preview.py <folders> --send "<line>"` shows each
 piece as its feed shows it, one deliverable each, and writes `status:
-sent` and its `deliverable`; never set those by hand. When the owner
-answers (`get-deliverables`), set approved or rejected.
-
-Months-long strategies are `playbooks`'; the chosen ones are in `plan.md`.
+sent` and its `deliverable`; never set those by hand. The owner's answer
+arrives as a message in this chat; then set `status: approved` or
+`rejected`.
 
 ## Making it repeat
 
@@ -38,7 +37,7 @@ claims.md               every fact a creative may state, numbered, each with its
 media/                  the owner's photos and clips sent here; _index.md says what may be used
                         (the brand's curated photos are brand/images.md)
 raw/                    material as it arrived: raw/site/<host>/, raw/<source>/<who>/
-research/               competitors/<name>.md, hooks.md, audience.md, brief.md
+research/               competitors/<name>.md, hooks.md, audience.md, conversations.md, brief.md
 creatives/YYYY-MM-DD-<slug>/   one idea per folder: creative.md, v1.jpg, v2.jpg, shot-1.mp4
 emails/YYYY-MM-DD-<slug>/      one email or sequence per folder: email.md (the email skill)
 results.md              numbers per creative and per month, newest first
@@ -90,5 +89,3 @@ For solution-aware homeowners comparing firms.
 ## Notes
 v1: headline too long at phone size; v2 shortened it.
 ```
-
-One idea per creative; a second idea is the next folder.

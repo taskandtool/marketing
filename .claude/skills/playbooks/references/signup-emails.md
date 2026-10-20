@@ -44,4 +44,4 @@ A daily job drafts answers to new replies for the owner.
 
 ## Gotchas
 
-- It goes only to people who signed up. Every email can be stopped.
+- It goes only to people who signed up, and every email says how to stop them.

@@ -7,10 +7,11 @@ description: "Makes a paid ad from an idea: the format, the hook, copy and pictu
 
 An ad is one idea in one format with one hook, made to one platform's
 specs. A test set for a new business or campaign is three angles in three
-formats each: nine ads that differ in argument, not colour. A sensible
-default for a service business: outcome, social proof and problem, each in
-a photo + statement, a testimonial and one native or lo-fi format; with an
-offer, the offer-first banner is in the first nine.
+formats each: nine ads that differ in argument, not colour. The default
+for a service business: outcome, social proof and problem, each as a photo
+with one line on it (lifestyle / product in use), a testimonial, and one
+lo-fi or native format; with an offer, the offer-first banner is in the
+first nine.
 
 ## Steps
 

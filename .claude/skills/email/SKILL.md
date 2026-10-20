@@ -17,8 +17,9 @@ Email goes out from the owner's own account, never ours.
 - **One reader, one reason, one ask.** Plain text, under 120 words. The
   first line is about them (the reason), never about the business. No
   images, and no link in the first email beyond the signature.
-- **A sequence is three emails over about ten days:** the first, a short
-  follow-up that adds something new, and a last note that closes the loop.
+- **A sequence is two or three emails over about ten days:** the first, a
+  short follow-up that adds something new, and at most a last note that
+  closes the loop.
 - **Every email carries the business's postal address and a way out**
   ("Reply no and I won't write again"). Where the reader lives decides the
   rest: in the EU and UK, writing to a person at a company needs a real
@@ -41,16 +42,15 @@ the `work` skill).
 
 ## Drafts and sending
 
-- **Gmail:** when the owner's Google connection has Gmail compose access,
-  create one draft per recipient through the `google-gmail` connection
+- **Gmail:** when the owner's `google` connection has Gmail compose
+  access, one draft per recipient on its `google-gmail` endpoint
   (`POST /gmail/v1/users/me/drafts`); `POST /gmail/v1/users/me/drafts/send`
-  sends one.
+  sends one, once the owner says so. A handful of cold emails go this way.
 - **Klaviyo:** a newsletter goes in as a campaign through the `klaviyo`
-  connection.
-- **Cold email goes from the owner's own mailboxes:** a handful from
-  Gmail drafts; at volume, the leads go into a campaign in a sending tool
-  the owner connected (Instantly, Smartlead), sending from mailboxes on
-  separate domains, never the main one. The owner starts the campaign. Postmark and Resend are for
-  transactional mail, and their terms forbid cold email.
+  connection; the owner sends it.
+- **Cold email at volume:** the leads go into a campaign in a sending tool
+  the owner connected (`instantly`), sending from mailboxes on separate
+  domains, never the main one. The owner starts the campaign. Postmark and
+  Resend are for transactional mail, and their terms forbid cold email.
 - **Neither connected:** the files are the drafts; say so, and the owner
   pastes them.

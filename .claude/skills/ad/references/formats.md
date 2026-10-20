@@ -14,7 +14,6 @@ What the benchmark says about the field, before any single format: text-only and
 
 - **Distinct concepts beat variants.** Since Meta's Andromeda ranking rollout (global, Oct 2025) an ad set does better with 8 to 15 ads that each carry a different angle than with one ad in twelve colourways. Keep similarity between concepts in an ad set under about 40% (Segwise figure, unverified). Vary the copy shape too: a question, a list, a quote, a statement.
 - **Funnel stage**, as each recipe's When line names it: top (cold, has not heard of us), mid (warm, has seen us or has the problem in mind), bottom (hot, has visited, enquired or abandoned).
-- **Sizes.** Feed 4:5 at 1080 x 1350 (1:1 underperforms); Stories and Reels 9:16 at 1080 x 1920 with copy kept out of the top 14% and bottom 35%. Meta penalises images with a short edge under 1080 (unverified).
 
 ## The recipes
 

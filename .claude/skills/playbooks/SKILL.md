@@ -52,9 +52,10 @@ holds. Tell the owner what is connected already and can do the job, what
 else a playbook would want (the kind of tool, an example or two, that it
 bills their account), and that they can look over and add connections on
 the app's Connections tab. Once they choose, ask for what is missing by
-the vendor's name in lowercase (`python3 ~/tools/taskandtool.py
-request-connection apollo --why "find the emails of practice managers"`);
-a tool the catalogue lacks is added there as Build your own.
+its catalogue name (`apollo`, `listen-notes`, `brightdata`):
+`python3 ~/tools/taskandtool.py request-connection apollo --why "find the
+emails of practice managers"`. A tool the catalogue lacks is added there
+as Build your own.
 
 ## Rules
 

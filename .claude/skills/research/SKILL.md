@@ -1,6 +1,6 @@
 ---
 name: research
-description: "Researches the market before anything is made: competitors' sites, ads and posts, customers' reviews and comments, search questions and conversations worth joining, into research/ and a ranked brief. Use when the owner asks what competitors are doing or where to reply, before the first ideas, or monthly. Not for the business's own facts (brand)."
+description: "Researches the market: competitors' sites, ads and posts, customers' reviews and comments, search questions and conversations worth replying to, into research/ and a brief. Use when the owner asks what competitors are doing, what customers say or where to reply, before the first ideas, or monthly. Not for the business's own facts (brand)."
 ---
 
 # Research
@@ -70,11 +70,11 @@ Copy and tick:
 
 Strongest first: the same angle across three or more competitors (the
 market has validated it); several variants of one concept (someone paid to
-iterate); days running while still active (30 means it survived testing, 90
-is a staple); reach where a library shows it; the same ad across platforms.
-Discount brand, retargeting and catalogue ads, which run for years by
-design. A library never shows how well an ad works; only the owner's own
-account does, and that outranks everything here.
+iterate); days running while still active (the bands, and the ads to
+discount, are in `references/libraries.md`); reach where a library shows
+it; the same ad across platforms. A library never shows how well an ad
+works; only the owner's own account does, and that outranks everything
+here.
 
 ## The brief
 
@@ -99,9 +99,9 @@ the same claim (the `ideas` skill decides what that means).
   competitor's words or images, and never paste either into a prompt.
 - **A customer's words in an ad need their consent**, whoever they were
   written about. Mined language shapes the wording; it is not quoted.
-- **Read, don't harvest.** A handful of pages, short quotes into a private
-  note. No bulk collection from Yelp, Reddit or Amazon for research, and
-  no automated likes or comments.
+- **Read, don't harvest.** Fetch the reviews and threads the brief needs,
+  with a results limit on every run, and keep short quotes; no automated
+  likes or comments.
 - **Stop at a login, an age gate or a CAPTCHA** and say so. A connection the
   owner grants is the sanctioned way past it, used the way its instructions
   say.
@@ -111,6 +111,5 @@ the same claim (the `ideas` skill decides what that means).
 A full pass at setup. Monthly: re-read competitors' active ads and note
 what is new, what stopped, and what crossed 30 or 90 days. Weekly while
 anything is live: the owner's own comments and results first, then new
-conversations worth joining. Quarterly, or
-before a launch or a price change: reviews, searches and organic again, and
-a new brief.
+conversations worth joining. Quarterly, or before a launch or a price
+change: reviews, searches and organic again, and a new brief.
