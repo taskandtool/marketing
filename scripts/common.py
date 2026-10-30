@@ -97,7 +97,7 @@ PROVIDER_ENV = {"openrouter": "OPENROUTER_API_KEY"}
 
 
 def env(name):
-    """`name` from the environment, else from ~/.env (where a key the owner delivered to the machine lands)."""
+    """`name` from the environment, else from ~/.env (where a key the owner delivered to the machine is written)."""
     if os.environ.get(name):
         return os.environ[name]
     try:

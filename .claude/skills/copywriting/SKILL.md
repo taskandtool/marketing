@@ -1,44 +1,27 @@
 ---
 name: copywriting
-description: "Writes and edits the words of an ad, post or email in the business's own voice: the hook, headline, primary text, caption, call to action, script. Use whenever a creative's words are written or rewritten, for new hooks on a winning ad, or when the owner says it doesn't sound like them. Not for choosing the idea (ideas)."
+description: "Writes the hook of an ad, post or email and fits its words to the platform: hook types by awareness stage, lengths and visible cutoffs. Use when a creative's words are written, for new hooks on a winning ad, or to fit a piece to its platform. Not for choosing the idea (ideas)."
 ---
 
 # Copywriting
 
-Read `brand/voice.md` first, every time: the card, the owner's sentences,
-the signatures, the never-list, the lexicon. Then `claims.md` for what may
-be said. The words come from those two files and the idea in `creative.md`.
+Read the `writing` skill first: the standard every word is held to, the
+editing order and the cold read. This skill adds what an ad, a post or an
+email needs on top of it.
 
-## The standard
-
-1. **Clear over clever.** Each line answers one reader question at a
-   glance. The headline says what the reader can do here; a stranger could
-   repeat the offer from it alone.
-2. **Words a person would say aloud.** Would the owner say it on the phone
-   to a customer? Plain verbs (use, fit, book), their contractions, no
-   metaphor nouns.
-3. **Specifics.** At least one particular per piece from the owner's
-   material: a place, a material, a number with its unit, a name, a date.
-   Numerals for numbers.
-4. **Their voice.** The owner's sentences and customers' own words are the
-   model. Where the owner's own copy is marketese, write plainer than they
-   do.
-5. **Facts as `AGENTS.md` says.** A rating carries its count and source. A
-   claim cut because it has no source is never softened into a vaguer one, and
-   customers, results, awards or urgency are never invented.
-6. **Vary the rhythm.** Mix four-word and forty-word sentences; at most one
-   list of three; commas and the odd aside.
-7. **One idea, one action.** The call to action names the outcome ("Book a
-   service"), not the mechanism ("Learn more"), worded the same everywhere.
+The words come from `brand/voice.md` (the card, the owner's sentences, the
+signatures, the never-list, the lexicon), `claims.md` for what may be said,
+and the idea in `creative.md`.
 
 ## Hooks
 
 The hook (the opening line, the first second of a video, or the first
 frame) does two jobs: it interrupts, and it says who it is for. Pick the
-hook type for the reader's awareness stage (`references/hooks.md`), write five to eight openings in
-the customers' words (`research/audience.md`), keep the best two and record
-the rest in `research/hooks.md`. The proposition lands in the first line or
-the first three seconds and works muted; the body pays it off.
+hook type for the reader's awareness stage (`references/hooks.md`), write
+five to eight openings in the customers' words (`research/audience.md`),
+keep the best two and record the rest in `research/hooks.md`. The offer is
+in the first line or the first three seconds and works muted; the body pays
+it off.
 
 ## Lengths
 
@@ -47,20 +30,8 @@ The platform's sheet in `specs/` has the hard limits and visible cutoffs;
 words; primary text that makes its point before the visible cutoff; on a
 picture, twelve words or fewer.
 
-## Editing
+## Checking
 
-Edit in this order: truth (is every fact in `claims.md`), meaning (one
-idea), structure, voice, language, sound (read it aloud), compression.
-Then `python3 scripts/check.py <folder>`.
-
-## Example
-
-Idea: we send the engineer who fitted it. Voice: plain, first person
-plural, names streets.
-
-Draft: "Experience seamless boiler care with our dedicated team of experts.
-It's not just a service, it's peace of mind."
-
-Rewrite: "The engineer who fitted your boiler services it. Same two of us
-since 2004, from Headingley to Horsforth. Book your service before the
-first cold week."
+`python3 scripts/check.py <folder>` holds the piece to the platform's
+limits and runs the `tropes` check. Then the `writing` skill's cold read on
+the piece this turn changed.

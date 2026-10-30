@@ -10,6 +10,8 @@
 - every claim it cites is a numbered entry in claims.md, and every entry
   there names a source file that exists
 - the copy passes the tropes skill's script and the platform's text limits
+- every line the AI wrote outside the creatives (emails/, reports/,
+  research/, plan.md, results.md) passes the tropes skill's scan
 - a platform sheet last verified over 90 days ago is a note: re-verify it
   before building on it (specs/_index.md)
 
@@ -192,6 +194,26 @@ def check_specs(app, findings, notes):
             notes.append(f"specs/{name} was last verified {d}, over 90 days ago; re-verify it before building on it")
 
 
+WRITTEN = ["emails", "reports", "research", "plan.md", "results.md"]
+
+
+def scan_written(app, findings):
+    """Every line the AI wrote outside the creatives, through the tropes skill's scan."""
+    paths = [p for p in WRITTEN if os.path.exists(os.path.join(app, p))]
+    if not paths:
+        return
+    try:
+        r = subprocess.run(["node", TROPES, "--scan", "--json", *paths], cwd=app, capture_output=True, text=True)
+    except FileNotFoundError:
+        die("check: node is not installed; the copy check (the tropes skill) needs it\n"
+            "  Try: install Node, then python3 scripts/check.py")
+    if r.returncode == 2 or not r.stdout.strip():
+        die(f"check: the tropes skill's scan failed, so nothing was checked\n  {r.stderr.strip()[:600]}\n"
+            "  Try: node .claude/skills/tropes/tropes.mjs --help")
+    for f in json.loads(r.stdout):
+        findings.append(f"{f['file']}:{f['line']}: {f['rule']} \"{f['match'][:80]}\": {f['fix']}")
+
+
 def main():
     ap = Parser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("folders", nargs="*", help="creative folders to check (default: all)")
@@ -211,6 +233,7 @@ def main():
         for m in sorted(wanted - {n for n, _ in rows}):
             findings.append(f"no creative folder {m} (ls creatives/)")
         rows = [r for r in rows if r[0] in wanted]
+    scan_written(app, findings)
     checked = []
     for name, d in rows:
         fm, body = read_record(os.path.join(d, "creative.md"))

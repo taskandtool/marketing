@@ -22,7 +22,8 @@ and the order of work are in `marketing`):
 - "a post", "a caption", "this week's posts", a slideshow, repurpose:
   `social-post`
 - "write a cold email" or a short sequence, "a newsletter": `email`
-- the words of a piece and its hook: `copywriting`; its picture: the
+- the words of any piece: `writing`; its hook and platform lengths:
+  `copywriting`; its picture: the
   Pictures section below; a clip: `video`
 - before the owner sees anything: `tropes`
 

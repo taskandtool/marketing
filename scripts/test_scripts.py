@@ -701,5 +701,13 @@ class Viewer(unittest.TestCase):
         self.assertEqual(styles[1:], [None, None, None])
 
 
+class Words(unittest.TestCase):
+    def test_no_tells_of_ai_written_text(self):
+        """Every line of the scripts, the skills and AGENTS.md, through the tropes skill's scan."""
+        r = subprocess.run(["node", ".claude/skills/tropes/tropes.mjs", "--scan", "scripts", "specs", ".claude", "AGENTS.md"],
+                           cwd=APP, capture_output=True, text=True)
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

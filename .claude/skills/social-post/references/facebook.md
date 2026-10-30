@@ -25,7 +25,7 @@ Recipes for a business Page. The worked examples use Harlow Joinery, a made-up w
 
 ## Norms
 
-- Limits: `specs/meta.md`. The whole point in the first two lines, under 80 characters where possible.
+- Limits: `specs/meta.md`. The main point in the first two lines, under 80 characters where possible.
 - Hooks: a specific local fact, a photo that shows the change, or one real question.
 - Hashtags: none, or one.
 - Links: first comment, or the Page's About section. In the body only when the link itself is the point.

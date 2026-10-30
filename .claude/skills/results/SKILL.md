@@ -64,7 +64,7 @@ block per period: the queries and pages that brought visits.
 - three things to make next, each tied to a number above (on a winner, new
   hooks on the same body; on a loser, a new angle)
 
-Read it with the `tropes` skill, then show it as a deliverable:
+Run `python3 scripts/check.py` (it scans `reports/`), then show it as a deliverable:
 
 ```bash
 echo '[{"path": "reports/2026-10.md", "title": "October report", "status": "info"}]' \
