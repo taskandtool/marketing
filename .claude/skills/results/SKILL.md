@@ -78,5 +78,5 @@ report needs judgement. Cron is UTC; pick an hour that is morning in the
 business's zone.
 
 ```bash
-python3 ~/tools/taskandtool.py schedule-job monthly-results --when "0 14 1 * *" --prompt "Pull last month's results and send the monthly report (results skill)."
+python3 ~/tools/taskandtool.py schedule-job "Monthly results" --when "0 14 1 * *" --prompt "Pull last month's results and send the monthly report (results skill)."
 ```
