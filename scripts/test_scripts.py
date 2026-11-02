@@ -120,18 +120,18 @@ class Check(unittest.TestCase):
         self.assertEqual(r.returncode, 1)
         self.assertIn("claim 7 is not in claims.md", r.stderr)
         self.assertIn("listed file v2.png is missing", r.stderr)
-        self.assertIn('copy.cta: weak-cta "Learn more"', r.stderr)
+        self.assertIn('copy.cta: weak-cta "Learn more"', r.stdout)  # a hint, never a failure
 
     def test_copy_tells_and_hints(self):
         bad = GOOD.replace('"The engineer who fitted it services it"', '"It\'s not just a boiler, it\'s peace of mind"')
-        bad = bad.replace("Book before the first cold week.", "Book before the first cold week. A trusted local firm.")
+        bad = bad.replace("Book before the first cold week.", "Book before the first cold week. Honestly, we'd book now.")
         bad = bad.replace("Same two engineers", "Struggling with debt? Same two engineers")
         self.write(bad)
         r = run("check.py", cwd=self.app, app=self.app)
         self.assertEqual(r.returncode, 1)
         self.assertIn("copy.headline: negation-pivot", r.stderr)
         self.assertIn("copy.primary_text: personal-attribute", r.stderr)
-        self.assertIn("note: creatives/2026-10-01-fitted-it/creative.md: copy.primary_text: puffery", r.stdout)
+        self.assertIn("note: creatives/2026-10-01-fitted-it/creative.md: copy.primary_text: model-tell", r.stdout)
         self.write(bad.replace("kind: ad", "kind: post"))
         self.assertNotIn("personal-attribute", run("check.py", cwd=self.app, app=self.app).stderr)
 
@@ -181,7 +181,7 @@ class Check(unittest.TestCase):
             self.assertIn("3 finding(s) in 1 creative", r.stderr)
 
     def test_summary_before_notes_and_capped_findings_keep_the_filter(self):
-        self.write(GOOD.replace("Book before the first cold week.", "Book before the first cold week. A trusted local firm."))
+        self.write(GOOD.replace("Book before the first cold week.", "Book before the first cold week. Honestly, we'd book now."))
         r = run("check.py", cwd=self.app, app=self.app)
         self.assertEqual(r.returncode, 0, r.stderr)
         self.assertLess(r.stdout.index("check: ok"), r.stdout.index("note: "))
