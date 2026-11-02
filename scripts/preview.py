@@ -497,7 +497,7 @@ def main():
     for l in left:
         print(l)
     print("\nNext: say in this chat what approval will do; the owner's answer arrives here "
-          "(python3 ~/tools/taskandtool.py get-deliverables)" if to_send
+          "(python3 ~/tools/taskandtool.py list-deliverables)" if to_send
           else f"\nNext: python3 scripts/check.py --status sent lists what waits for the owner")
 
 

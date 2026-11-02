@@ -41,7 +41,7 @@ class Parser(argparse.ArgumentParser):
         die(f"{self.prog}: {message}\n  Try: python3 scripts/{self.prog} --help", 2)
 
 
-# ── videogen's shared arguments ─────────────────────────────────────────
+# ── make_video's shared arguments ─────────────────────────────────────────
 
 def read_prompt(path, name, example, section="Prompt"):
     """The prompt in `path`: the `## <section>` part of a creative.md (up to
@@ -90,7 +90,7 @@ def creative_folder(out):
     return parent if FOLDER.match(parent) else None
 
 
-# ── videogen's providers ────────────────────────────────────────────────
+# ── make_video's providers ────────────────────────────────────────────────
 
 # the key that configures each provider
 PROVIDER_ENV = {"openrouter": "OPENROUTER_API_KEY"}

@@ -52,7 +52,7 @@ plan.md                  the playbooks chosen, and why
 lists/                   the people a playbook reaches: prospects, engagers, who said no
 reports/YYYY-MM.md       the monthly report
 specs/<platform>.md      sizes, limits and policy per platform, dated
-scripts/                 check · preview · videogen · viewer, and their tests
+scripts/                 check · preview · make_video · viewer, and their tests
 viewer/                  the viewer's Quartz config, pinned plugins, and its three local plugins
                          (creative-files, safe-text, swatches)
 ```
@@ -63,7 +63,7 @@ and runs the copy through the `tropes` skill's script (Node).
 Instagram, X, LinkedIn or TikTok shows it, in one standalone
 `preview.html`; `--send` puts it in front of the owner. Pictures come
 from the machine's `make-image` (Task & Tool's `images` skill), on Codex
-and Claude Code alike. `videogen.py` calls OpenRouter's video models;
+and Claude Code alike. `make_video.py` calls OpenRouter's video models;
 a Higgsfield connection (Seedance, Kling) brings its own instructions.
 
 ## The viewer

@@ -23,7 +23,7 @@ Copy and tick:
       reference or first frame.
 - [ ] 4. Put each shot brief under its own heading in `creative.md`
       (`## Shot 1`, `## Shot 2`; `## Prompt` stays the still's) and
-      generate each: `python3 scripts/videogen.py --prompt-file
+      generate each: `python3 scripts/make_video.py --prompt-file
       creatives/<folder>/creative.md --section "Shot 1" --out
       creatives/<folder>/shot-1.mp4` (`--help` for ratio and length). With
       a Higgsfield connection, generate it the way its instructions say

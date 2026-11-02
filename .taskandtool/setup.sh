@@ -44,6 +44,7 @@ python3 -m pip install --quiet --upgrade requests 2>&1 | tail -1 || true
 python3 -m pip install --quiet --upgrade "ttcrawl @ $CRAWLER" 2>&1 | tail -1 || true
 python3 -m pip install --quiet --force-reinstall --no-deps "ttcrawl @ $CRAWLER" 2>&1 | tail -1 || true
 python3 -c "import requests; print('requests', requests.__version__)"
+python3 -c "import PIL" 2>/dev/null || python3 -m pip install --quiet pillow 2>&1 | tail -1 || echo "== warning: Pillow did not install; the brand skill's web_photos.py needs it"
 # 3. tt-crawl on the PATH, then the browsers it drives: Chrome reads a site
 # and its screenshots, Obscura is its fallback.
 python3 -m ttcrawl setup || echo "tt-crawl setup did not finish every step; its output above says which"
