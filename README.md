@@ -31,7 +31,8 @@ calls for them.
   results/       ad, post and search numbers from the owner's accounts; the monthly report
   tropes/        the audit for the tells of AI-made copy, pictures and video, and its
                  copy script (shared, like brand)
-.taskandtool/setup.sh  requests, tt-crawl and its browsers, and the viewer's web service
+.taskandtool/setup.sh  requests and the viewer's web service
+.taskandtool/after-setup.sh  tt-crawl and its browsers, once the app is up
 AGENTS.md        what the AI reads first; CLAUDE.md imports it
 starter-app.json the manifest: the connections it can use and the suggestions an empty chat offers
 ```
@@ -98,7 +99,8 @@ It needs Node 22.
 ## Install
 
 **On Task & Tool.** Pick Marketing when you create an app. The machine
-clones this repository into the app and runs `.taskandtool/setup.sh`.
+clones this repository into the app and runs `.taskandtool/setup.sh`, then
+`after-setup.sh`.
 
 **Anywhere else.**
 
@@ -106,6 +108,7 @@ clones this repository into the app and runs `.taskandtool/setup.sh`.
 git clone https://github.com/taskandtool/marketing my-marketing
 cd my-marketing
 bash .taskandtool/setup.sh
+bash .taskandtool/after-setup.sh
 ```
 
 Off the platform, `create-deliverables` (the bridge that puts a file in
