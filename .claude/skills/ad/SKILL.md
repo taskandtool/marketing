@@ -36,6 +36,10 @@ Copy and tick:
 
 ## Rules
 
+- **One name for an ad everywhere.** Name it in Ads Manager as its folder here, and set its URL
+  parameters to `utm_source=facebook&utm_medium=paid&utm_campaign={{campaign.name}}&utm_content={{ad.name}}`.
+  Meta fills those in, so its spend and the CRM's leads match on that name.
+
 - The words on the picture are readable at phone size, the headline larger
   than the logo, and the call to action worded as in the copy.
 - Health, finance and before-and-after claims follow the platform's sheet
