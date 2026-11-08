@@ -14,14 +14,15 @@ and the order of work are in `marketing`):
   `results`
 - "set up my brand", facts, photos or a link about the business: `brand`
 - "what are competitors doing", customers' words, where to reply: `research`
-- "give me ideas", a campaign: `ideas`
+- "give me ideas", a campaign: `ad-ideas`
 - "how do we grow", "reach more of our buyers", leads, a marketing plan,
   a channel run for months (cold email at volume, podcasts, creators,
-  search pages): `playbooks`
+  search pages): `growth-plan`
 - "write me ads", "a set to test", a creative for one platform: `ad`
 - "a post", "a caption", "this week's posts", a slideshow, repurpose:
   `social-post`
 - "write a cold email" or a short sequence, "a newsletter": `email`
+- "a blog post", an article, ideas for one: `writing`
 - the words of any piece: `writing`; its hook and platform lengths:
   `copywriting`; its picture: the
   Pictures section below; a clip: `video`

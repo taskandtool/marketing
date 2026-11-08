@@ -41,8 +41,8 @@ research/               competitors/<name>.md, hooks.md, audience.md, conversati
 creatives/YYYY-MM-DD-<slug>/   one idea per folder: creative.md, v1.jpg, v2.jpg, shot-1.mp4
 emails/YYYY-MM-DD-<slug>/      one email or sequence per folder: email.md (the email skill)
 results.md              numbers per creative and per month, newest first
-plan.md                 the playbooks chosen, and why (the playbooks skill)
-lists/                  the people a playbook reaches: prospects, engagers, who said no
+plan.md                 the strategies chosen, and why (the growth-plan skill)
+lists/                  the people a strategy reaches: prospects, engagers, who said no
 jobs/<name>.md          the prompt a scheduled job follows
 reports/YYYY-MM.md      the monthly report
 specs/<platform>.md     sizes, limits and policy, each with last_verified

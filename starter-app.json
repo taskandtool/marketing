@@ -89,7 +89,7 @@
     {
       "id": "how-could-we-grow",
       "label": "How could we grow?",
-      "prompt": "How could we grow? Suggest the two or three playbooks that fit us best, and what each needs.",
+      "prompt": "How could we grow? Suggest the two or three strategies that fit us best, and what each needs.",
       "when": [
         {
           "path": "brand/positioning.md",

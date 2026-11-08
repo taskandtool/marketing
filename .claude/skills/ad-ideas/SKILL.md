@@ -1,9 +1,9 @@
 ---
-name: ideas
-description: "Turns the brand and research into ideas worth making: angles and frameworks (StoryBrand, problem-agitate-solve, before-after-bridge, jobs to be done, objections), ranked before anything is made. Use when the owner wants new ideas, a campaign, or asks what to make. Not for the words or the finished piece."
+name: ad-ideas
+description: "Turns brand and research into ideas for ads and campaigns: angles and frameworks (StoryBrand, problem-agitate-solve, before-after-bridge, jobs to be done, objections), ranked before anything is made. Use when the owner wants ad ideas or a campaign. Not for a blog post, article, single post or email."
 ---
 
-# Ideas
+# Ad ideas
 
 An idea is one argument for one reader at one stage of awareness. The best
 come from evidence: customers' words, what competitors already claim, the

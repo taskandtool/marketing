@@ -11,7 +11,7 @@ reason to open it and one thing to do.
 ## Cold email
 
 - **The list** is the owner's, or one from a contact service (the
-  `playbooks` skill), in `lists/`: name, company, email, and why this
+  `growth-plan` skill), in `lists/`: name, company, email, and why this
   person. Never guess an address, and verify a bought list before sending.
   A row with no reason is a question for the owner.
 - **Plain text, under 120 words.** The first line is about the reader. No

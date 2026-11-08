@@ -199,7 +199,7 @@ class Check(unittest.TestCase):
         shutil.copy(os.path.join(APP, "claims.md"), os.path.join(self.app, "claims.md"))
         r = run("check.py", cwd=self.app, app=self.app)
         self.assertEqual(r.returncode, 0, r.stderr)
-        self.assertIn("Next: the ideas skill", r.stdout)
+        self.assertIn("Next: the ad-ideas skill", r.stdout)
 
     def test_a_tiktok_post_is_not_held_to_the_ad_caption(self):
         post = GOOD.replace("kind: ad", "kind: post").replace("platform: meta", "platform: tiktok").replace(

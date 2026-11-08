@@ -266,7 +266,7 @@ def main():
         print(f"\nNext: the tropes skill's eye pass on {drafts[0]}" + (f" and {len(drafts) - 1} more draft(s)" if len(drafts) > 1 else "")
               + ", before the owner sees it")
     elif not checked:
-        print("\nNext: the ideas skill writes the first creative")
+        print("\nNext: the ad-ideas skill writes the first creative")
     elif args.status == "sent":
         print("\nNext: the owner answers on the waiting deliverables (the work skill)")
     else:

@@ -7,7 +7,7 @@ description: "Researches the market: competitors' sites, ads and posts, customer
 
 Ads show what competitors keep paying for. Posts, comments, reviews and
 searches show what customers say. Do both, customers first, and end with a
-brief the `ideas` skill can act on.
+brief the `ad-ideas` skill can act on.
 
 Fetching:
 
@@ -86,14 +86,14 @@ as "We believe [hook, format or angle] will work because [observation over
 time] suggests [what the audience does]."
 
 Also note where the market sits: whether every competitor already makes
-the same claim (the `ideas` skill decides what that means).
+the same claim (the `ad-ideas` skill decides what that means).
 
 ## Lines not to cross
 
 - **Record phrases, not people.** Keep comment and review text with its URL
   and date; keep no names, handles, photos or profile links here. A public
-  post is still personal data. Lists of people for outreach are the
-  `playbooks` skill's, collected by a connected service into `lists/`.
+  post is still personal data. Lists of people to contact
+  come from a connected service and are kept apart from `research/`.
 - **Patterns, never copies.** Write down the idea one level above the
   execution ("before and after of a real job, split frame"), never a
   competitor's words or images, and never paste either into a prompt.

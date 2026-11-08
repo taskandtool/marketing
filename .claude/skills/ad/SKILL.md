@@ -16,7 +16,7 @@ nine.
 
 Copy and tick:
 
-- [ ] 1. Start from a `creatives/<folder>/creative.md` from the `ideas`
+- [ ] 1. Start from a `creatives/<folder>/creative.md` from the `ad-ideas`
       skill, or write one with it first.
 - [ ] 2. **Format** from `references/formats.md` (read only its entry).
       Lo-fi formats (a sticky note, a phone photo, a screenshot) win more

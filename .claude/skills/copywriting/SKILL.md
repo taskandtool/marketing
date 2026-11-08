@@ -1,6 +1,6 @@
 ---
 name: copywriting
-description: "Writes the hook of an ad, post or email and fits its words to the platform: hook types by awareness stage, lengths and visible cutoffs. Use when a creative's words are written, for new hooks on a winning ad, or to fit a piece to its platform. Not for choosing the idea (ideas)."
+description: "Writes the hook of an ad, post or email and fits its words to the platform: hook types by awareness stage, lengths and visible cutoffs. Use when a creative's words are written, for new hooks on a winning ad, or to fit a piece to its platform. Not for choosing the idea (ad-ideas)."
 ---
 
 # Copywriting

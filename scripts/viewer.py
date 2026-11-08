@@ -326,7 +326,7 @@ HOME_ROWS = [
     ("emails/", "Emails", "cold emails, sequences and newsletters"),
     ("results.md", "Results", "what ran and what it did, newest first"),
     ("reports/", "Monthly reports", "each month's numbers and what to make next"),
-    ("plan.md", "Plan", "the playbooks chosen, and why"),
+    ("plan.md", "Plan", "the strategies chosen, and why"),
     ("research/", "Research", "competitors, hooks, what customers say, and the brief"),
     ("claims.md", "Claims", "every fact a piece may state, with its source"),
     ("brand/", "Brand", "positioning, voice and visual identity"),
