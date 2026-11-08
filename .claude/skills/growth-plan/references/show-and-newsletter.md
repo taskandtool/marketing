@@ -24,7 +24,7 @@ willing to host every week for a year. Slow: judged at twelve months.
 - A newsletter each week built on the episode: the best ideas, written to
   stand alone.
 - The list grown by inviting people to subscribe: from cold email
-  (`cold-email.md`) and every other channel.
+  (the `cold-email` skill) and every other channel.
 - Each episode cut into many clips and written posts: one insight each,
   rewritten per platform.
 - The best episodes turned into a lead magnet: a checklist, a swipe file.

@@ -11,7 +11,7 @@ emails, and files them for the owner to review.
 ## The loop
 
 Brand (`brand`) → research → ideas (hooks by `copywriting`) → make (`ad`,
-`social-post`, `email`; clips by `video`) → `python3 scripts/check.py` and
+`social-post`, `email`, `cold-email`; clips by `video`) → `python3 scripts/check.py` and
 the `tropes` audit → review → `results`. Start wherever the folders say the
 work is; nothing is made from notes that still say "to fill".
 

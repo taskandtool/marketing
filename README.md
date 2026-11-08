@@ -25,9 +25,10 @@ calls for them.
   video/         beats, show don't tell, sound and music, shot briefs for a video model
   ad/            a paid ad to a platform's specs; 45 static formats as recipes
   social-post/   organic posts per platform, one idea across a week
-  email/         cold emails and newsletters, saved as drafts the owner sends
-  growth-plan/   growth strategies to run for months (paid ads, cold email, podcasts,
-                 creators, search pages, signup emails), one file each
+  cold-email/    cold email to businesses: the list, verifying it, sending, replies
+  email/         newsletters, follow-ups and notes to customers, as drafts the owner sends
+  growth-plan/   which strategies to run for months and what each needs; a file each
+                 for the ones this app advises on (podcasts, creators, search pages)
   results/       ad, post and search numbers from the owner's accounts; the monthly report
   tropes/        the audit for the tells of AI-made copy, pictures and video, and its
                  copy script (shared, like brand)

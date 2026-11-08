@@ -29,8 +29,8 @@ forty minutes. Works for local businesses too, on local and trade shows.
 
 - Finding shows and hosts: a podcast database (Rephonic for hosts'
   emails, Listen Notes for search).
-- The pitch: the `email` skill, sent as in `cold-email.md` or from the
-  owner's own mailbox at a small volume; posts after: `social-post`.
+- The pitch: the `cold-email` skill, or from the owner's own mailbox at
+  a small volume; posts after: `social-post`.
 
 ## Watch
 

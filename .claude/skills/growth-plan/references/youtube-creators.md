@@ -28,7 +28,7 @@ making tutorials or reviews in it.
 
 - Finding and measuring creators: public counts through a scraper
   (ScrapeCreators, Apify).
-- Outreach: the `email` skill. Affiliate tracking: the owner's affiliate
+- Outreach: the `cold-email` skill. Affiliate tracking: the owner's affiliate
   tool.
 - Their videos as ads: the `ad` skill.
 

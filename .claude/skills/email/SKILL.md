@@ -1,71 +1,69 @@
 ---
 name: email
-description: "Writes cold emails and newsletters in the owner's voice: a short outreach sequence to a list the owner provides, or this month's newsletter, as drafts in the owner's own Gmail or Klaviyo. Use for a cold email, an outreach sequence, a newsletter, or an email to past customers. Not for ads or posts (ad, social-post)."
+description: "Writes email to people who already know the business: the newsletter, follow-ups after a signup, booking or quote, and notes to past customers, as drafts in the owner's Gmail or Klaviyo. Use for a newsletter, a follow-up sequence, or an email to customers or the list. Not for cold email (cold-email)."
 ---
 
 # Email
 
-Email goes out from the owner's own account, never ours. Every email has one
-reason to open it and one thing to do.
+Email to people who signed up, booked, asked for a quote or bought. It
+goes out from the owner's own account, never ours, and only to people who
+agreed to hear from the business. Every email has one reason to open it and
+one thing to do, and says how to stop getting them.
 
-## Cold email
+## Kinds
 
-- **The list** is the owner's, or one from a contact service (the
-  `growth-plan` skill), in `lists/`: name, company, email, and why this
-  person. Never guess an address, and verify a bought list before sending.
-  A row with no reason is a question for the owner.
-- **Plain text, under 120 words.** The first line is about the reader. No
-  images, and no link in the first email beyond the signature.
-- **A sequence is two or three emails over about ten days:** the first, a
-  follow-up that adds something new, and at most one last note.
-- **Every email carries the business's postal address and a way out**
-  ("Reply no and I won't write again"). Where the reader lives decides the
-  rest. In the EU and UK, writing to a person at a company needs a real
-  business reason, and writing to a consumer needs their consent. When
-  unsure, ask the owner.
+- **Newsletter:** one idea from recent work (a result, a lesson, a question
+  customers keep asking), a subject under 50 characters, one link. Weekly
+  or monthly at the same time; a week with nothing new is skipped, not
+  padded. Material comes from `creatives/`, `results.md` and what the owner
+  says.
+- **Follow-ups** after a signup, booking or quote, starting the moment it
+  happens:
+  - straight away: thanks, and what happens next;
+  - a day later: how to get the most from it, or what to have ready;
+  - then a few days apart: why the business does it this way, one
+    customer's story an email, and a check-in from the owner ("any
+    questions?").
 
-Example:
+  Stop when they buy, book or reply. Replies come to a real inbox, and an
+  answer is drafted for the owner.
+- **Past customers:** the reminder they would want (a yearly service, the
+  season's job), or one piece of news worth their time. Never a
+  discount blast to everyone.
+
+Example, a newsletter:
 
 ```
-Subject: Your Larkfield office plants
+Subject: Why your radiators are cold at the top
 
-Hi Dana,
+Hi Ruth,
 
-I walked past Hartley & Co on Tuesday and saw the big fig in your window is losing leaves. That's usually a draught or too much water in winter.
+Three of the jobs we did this month were radiators cold at the top. All three needed bleeding, not a new boiler.
 
-I look after plants for six offices in Larkfield. A visit is every two weeks, £40 a month for up to ten plants, and I replace anything that dies.
+It takes two minutes with a radiator key. Turn the heating off, open the valve at the top corner a quarter turn until water comes out, then close it. Check the pressure gauge is back between 1 and 1.5.
 
-Would a free check of the fig be useful? I can come by any morning next week.
+If it's still cold after that, reply and I'll tell you what to check next.
 
-Sam Okafor, Greenroom Plants, 14 Mill Lane, Larkfield
-Reply no and I won't write again.
+Mark, Hollis Heating
+Not useful? Unsubscribe here.
 ```
-
-## Newsletter
-
-Only to people who signed up. One idea from this month's work (a result, a
-lesson, a question customers keep asking), a subject under 50 characters,
-and one link.
 
 ## Files
 
-`emails/YYYY-MM-DD-<slug>/email.md`: frontmatter `kind: cold | newsletter`,
-`audience` and `status`, then each email's subject, preview line and body.
-Facts only from `claims.md`. Run `python3 scripts/check.py` (it scans
-`emails/`), then show `email.md` as a deliverable (`create-deliverables`, in
-the `work` skill).
+`emails/YYYY-MM-DD-<slug>/email.md`: frontmatter `kind: newsletter |
+follow-up | customers`, `audience` and `status`, then each email's
+subject, preview line and body (a follow-up sequence lists when each one
+goes). Facts only from `claims.md`. Run `python3 scripts/check.py` (it
+scans `emails/`), then show `email.md` as a deliverable
+(`create-deliverables`, in the `work` skill).
 
 ## Drafts and sending
 
-- **Gmail:** when the owner's `google` connection has Gmail compose access,
-  make one draft per recipient on its `google-gmail` endpoint
-  (`POST /gmail/v1/users/me/drafts`). `POST /gmail/v1/users/me/drafts/send`
-  sends one, once the owner says so. A handful of cold emails go this way.
-- **Klaviyo:** a newsletter goes in as a campaign through the `klaviyo`
-  connection, and the owner sends it.
-- **Cold email at volume:** the leads go into a campaign in a sending tool
-  the owner connected (`instantly`). It sends from mailboxes on separate
-  domains, never the main one, and the owner starts the campaign. Postmark
-  and Resend are for transactional mail, and their terms forbid cold email.
+- **Klaviyo:** a newsletter goes in as a campaign, and a follow-up sequence
+  as a flow, through the `klaviyo` connection. The owner sends or turns it
+  on.
+- **Gmail:** a note to a few customers goes as one draft each through the
+  owner's `google` connection (`POST /gmail/v1/users/me/drafts`), sent only
+  when the owner says.
 - **Neither connected:** the files are the drafts. Say so, and the owner
   pastes them.

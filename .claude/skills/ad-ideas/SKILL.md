@@ -7,7 +7,9 @@ description: "Turns brand and research into ideas for ads and campaigns: angles 
 
 An idea is one argument for one reader at one stage of awareness. The best
 come from evidence: customers' words, what competitors already claim, the
-circumstance the customer is in, and proof the business can show.
+circumstance the customer is in, and proof the business can show. For a
+service business, the three that usually win first are the outcome, social
+proof and the problem; with an offer, the offer itself is a fourth.
 
 ## Steps
 
@@ -24,8 +26,8 @@ Copy and tick:
       below, each as one line: reader, stage, argument, the proof in
       `claims.md`.
 - [ ] 4. Score each (below) and keep the top scorers, as many as the owner
-      asked for or else nine, that differ in argument, not in colour or
-      wording.
+      asked for or else three (a test set: the `ad` skill makes each in
+      three formats), that differ in argument, not in colour or wording.
 - [ ] 5. For each kept idea, create `creatives/YYYY-MM-DD-<slug>/creative.md`
       with `status: draft`, `angle`, `awareness`, `framework`, `claims`,
       and the idea in two sentences under `## Idea`. The hook comes next (the `copywriting` skill).
@@ -55,9 +57,12 @@ The weak one has no reader, no stage and nothing to prove it.
 
 ## Scoring, before spending
 
-Score each idea 0 to 2 on: specific to this business (a competitor could not
-run it unchanged); proof exists in `claims.md`; fits the reader's stage; not
-a smaller echo of what competitors say; the first frame or line both stops
-and signals relevance; the body pays off the hook; it could have been posted
-by a person; it differs from the others in the set; it can be made with what
-the business has.
+Score each idea 0 to 2 on each of these:
+
+- Specific to this business: a competitor could not run it unchanged.
+- The proof is in `claims.md`.
+- It fits the reader's stage.
+- It isn't a smaller echo of what competitors say.
+- A person could have posted it.
+- It differs from the others in the set.
+- It can be made with what the business has.

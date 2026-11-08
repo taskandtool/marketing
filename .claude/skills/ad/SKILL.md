@@ -6,11 +6,10 @@ description: "Makes a paid ad from an idea: the format, the hook, copy and pictu
 # Ad
 
 One idea in one format with one hook, made to one platform's specs. A test
-set is three angles in three formats: nine ads that make different
-arguments. For a service business, start with the outcome, social proof
-and the problem, each as a photo with one line on it, a testimonial, and a
-lo-fi or native format. With an offer, the offer-first banner is one of the
-nine.
+set is three ideas from the `ad-ideas` skill, each in three formats: nine
+ads. For a service business, the formats that usually win first are a
+photo with one line on it, a testimonial, and a lo-fi or native one; with
+an offer, an offer-first banner.
 
 ## Steps
 

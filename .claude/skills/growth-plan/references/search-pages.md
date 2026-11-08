@@ -25,7 +25,6 @@ business has its own version: the service plus the town.
 - Each page written from what already ranks for that search, better and
   more specific, with a clear call to sign up or book.
 - Every visitor pixelled for remarketing (`paid-ads.md`).
-- Volume once it works: Cody runs about a hundred articles a month.
 
 ## Tools
 

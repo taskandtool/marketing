@@ -1,40 +1,41 @@
 ---
 name: growth-plan
-description: "Plans how the business grows, with strategies run for months: paid ads and remarketing, cold email and DMs, a show and newsletter, podcasts, creators, search pages, signup emails. Use when the owner asks how to grow, for leads or a marketing plan. Not for one ad, post or email."
+description: "Plans how the business grows: which two or three strategies to run for months (paid ads, cold email, posting, creators, podcasts, search pages, follow-ups) and what each needs. Use when the owner asks how to grow, for more customers or leads, or a marketing plan. Not for one ad, post or email."
 ---
 
 # Growth plan
 
 A strategy is a way of winning customers that runs for months: a channel,
-the services it runs on, and the number that says it works. These come
-from Cody Schneider's public posts (@codyschneider, 2025 to 2026),
-rewritten for this app. They are ideas to offer, not procedures. The tools
-a file names are examples: whatever the owner has connected that does the
-job works the same way, and the flow does not change with the tool.
+the services it runs on, and the number that says it works. Where this app
+runs a strategy itself, its own skill has the how; the files here cover
+the rest, drawn from Cody Schneider's public posts (@codyschneider, 2025 to
+2026). The tools a file names are examples: whatever the owner has
+connected that does the job works the same way.
 
 ## Choosing
 
-Propose two or three, never the whole list. What decides it: who buys
-(businesses or people, local or national), what exists already (a list,
-traffic, proof in `claims.md`, an ad budget, the owner's time on camera),
-and how soon it has to pay. Read a strategy's file before proposing it.
+Propose two or three, never the whole list. Start from who buys
+(businesses or households) and where (nearby or anywhere), then what
+exists already (a list, traffic, proof in `claims.md`, an ad budget, the
+owner's time on camera) and how soon it has to pay. Read a strategy's
+skill or file before proposing it.
 Lay each one out with what it needs and its risks, the automated and paid
 versions included, and let the owner decide how far to go; never leave a
 fitting one out because it is automated or costs money.
 
-| Strategy | Fits | File |
+| Strategy | Fits | How |
 |---|---|---|
 | Paid ads and remarketing | a clear offer and a budget; tracking first | `references/paid-ads.md` |
 | Ad creative at scale | ads already running, a budget for testing | `references/ad-testing.md` |
-| Cold email | sells to businesses; a reachable buyer | `references/cold-email.md` |
+| Cold email | sells to businesses; a reachable buyer | the `cold-email` skill |
 | Cold DMs | buyers active on LinkedIn or X | `references/cold-dms.md` |
 | A show and newsletter | B2B, a niche of buyers worth interviewing | `references/show-and-newsletter.md` |
 | Guest on podcasts | an owner with a story and an opinion | `references/podcast-guesting.md` |
 | YouTube creators | a niche with creators who already teach it | `references/youtube-creators.md` |
 | Short-form creator team | a consumer product people film themselves using | `references/creator-team.md` |
 | Search pages that convert | people search for the problem or the category | `references/search-pages.md` |
-| Signup emails | a free trial, signup, quote or booking to follow up | `references/signup-emails.md` |
-| Weekly update email | a list of customers or signups | `references/weekly-update.md` |
+| Posting every week | everyone; where the buyers already scroll | the `social-post` skill |
+| Follow-ups and a newsletter | a signup, quote or booking to follow up, or a list of customers | the `email` skill |
 
 They compound: a business selling to businesses might run cold email, show
 the same list ads, invite its buyers onto a show, send a newsletter from
