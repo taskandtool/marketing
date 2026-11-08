@@ -5,10 +5,20 @@ description: "Writes organic social posts in the owner's voice for Instagram, Fa
 
 # Social post
 
-An ad buys attention from people who did not ask; a post earns it from
-the people shown it, through sends, saves, comments and watch time. It opens with a moment, a number or a
-question the reader recognises, gives something worth keeping, and asks for
-the one small thing the platform rewards.
+A post earns its reach: the platform shows it to more people when the first
+ones send, save, comment or keep watching. So it opens with a moment, a
+number or a question the reader recognises, gives something worth keeping,
+and asks for one small thing the platform rewards.
+
+Example, for Instagram:
+
+```
+Three of the five boilers we saw this week had the same problem: pressure under 1 bar.
+
+Check yours now. The gauge is on the front, usually bottom left. Between 1 and 1.5 is right when the heating's off. Under 1, top it up with the filling loop (a video on how is in our highlights).
+
+Save this for the first cold morning.
+```
 
 ## Steps
 

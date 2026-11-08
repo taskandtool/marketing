@@ -5,52 +5,67 @@ description: "Writes cold emails and newsletters in the owner's voice: a short o
 
 # Email
 
-Email goes out from the owner's own account, never ours.
+Email goes out from the owner's own account, never ours. Every email has one
+reason to open it and one thing to do.
 
 ## Cold email
 
-- **The list:** one the owner gives, or one built through a contact
-  service (the `playbooks` skill, cold email), in `lists/`: name, company,
-  email, and why this person. Never guess an address; a list from a
-  contact service is verified before anything is sent. A row with no
-  reason is a question for the owner.
-- **One reader, one reason, one ask.** Plain text, under 120 words. The
-  first line is about them (the reason), never about the business. No
+- **The list** is the owner's, or one from a contact service (the
+  `playbooks` skill), in `lists/`: name, company, email, and why this
+  person. Never guess an address, and verify a bought list before sending.
+  A row with no reason is a question for the owner.
+- **Plain text, under 120 words.** The first line is about the reader. No
   images, and no link in the first email beyond the signature.
 - **A sequence is two or three emails over about ten days:** the first, a
-  short follow-up that adds something new, and at most a last note that
-  closes the loop.
+  follow-up that adds something new, and at most one last note.
 - **Every email carries the business's postal address and a way out**
   ("Reply no and I won't write again"). Where the reader lives decides the
-  rest: in the EU and UK, writing to a person at a company needs a real
+  rest. In the EU and UK, writing to a person at a company needs a real
   business reason, and writing to a consumer needs their consent. When
   unsure, ask the owner.
 
+Example:
+
+```
+Subject: Your Larkfield office plants
+
+Hi Dana,
+
+I walked past Hartley & Co on Tuesday and saw the big fig in your window is losing leaves. That's usually a draught or too much water in winter.
+
+I look after plants for six offices in Larkfield. A visit is every two weeks, £40 a month for up to ten plants, and I replace anything that dies.
+
+Would a free check of the fig be useful? I can come by any morning next week.
+
+Sam Okafor, Greenroom Plants, 14 Mill Lane, Larkfield
+Reply no and I won't write again.
+```
+
 ## Newsletter
 
-Only to people who signed up. One idea per issue from this month's work (a
-result, a lesson, a question customers keep asking), a subject line under
-50 characters, and one link.
+Only to people who signed up. One idea from this month's work (a result, a
+lesson, a question customers keep asking), a subject under 50 characters,
+and one link.
 
 ## Files
 
-`emails/YYYY-MM-DD-<slug>/email.md`, frontmatter `kind: cold | newsletter`,
-`audience` and `status`, then each email with its subject, preview line and
-body. The words go through `writing` and `copywriting`, facts only from
-`claims.md`, then `python3 scripts/check.py` (it scans `emails/`). Show `email.md` as a deliverable (`create-deliverables`,
+`emails/YYYY-MM-DD-<slug>/email.md`: frontmatter `kind: cold | newsletter`,
+`audience` and `status`, then each email's subject, preview line and body.
+Facts only from `claims.md`. Run `python3 scripts/check.py` (it scans
+`emails/`), then show `email.md` as a deliverable (`create-deliverables`, in
 the `work` skill).
 
 ## Drafts and sending
 
-- **Gmail:** when the owner's `google` connection has Gmail compose
-  access, one draft per recipient on its `google-gmail` endpoint
-  (`POST /gmail/v1/users/me/drafts`); `POST /gmail/v1/users/me/drafts/send`
+- **Gmail:** when the owner's `google` connection has Gmail compose access,
+  make one draft per recipient on its `google-gmail` endpoint
+  (`POST /gmail/v1/users/me/drafts`). `POST /gmail/v1/users/me/drafts/send`
   sends one, once the owner says so. A handful of cold emails go this way.
 - **Klaviyo:** a newsletter goes in as a campaign through the `klaviyo`
-  connection; the owner sends it.
+  connection, and the owner sends it.
 - **Cold email at volume:** the leads go into a campaign in a sending tool
-  the owner connected (`instantly`), sending from mailboxes on separate
-  domains, never the main one. The owner starts the campaign. Postmark and
-  Resend are for transactional mail, and their terms forbid cold email.
-- **Neither connected:** the files are the drafts; say so, and the owner
+  the owner connected (`instantly`). It sends from mailboxes on separate
+  domains, never the main one, and the owner starts the campaign. Postmark
+  and Resend are for transactional mail, and their terms forbid cold email.
+- **Neither connected:** the files are the drafts. Say so, and the owner
   pastes them.

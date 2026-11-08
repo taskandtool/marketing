@@ -5,43 +5,47 @@ description: "Makes a paid ad from an idea: the format, the hook, copy and pictu
 
 # Ad
 
-An ad is one idea in one format with one hook, made to one platform's
-specs. A test set for a new business or campaign is three angles in three
-formats each: nine ads that differ in argument, not colour. The default
-for a service business: outcome, social proof and problem, each as a photo
-with one line on it (lifestyle / product in use), a testimonial, and one
-lo-fi or native format; with an offer, the offer-first banner is in the
-first nine.
+One idea in one format with one hook, made to one platform's specs. A test
+set is three angles in three formats: nine ads that make different
+arguments. For a service business, start with the outcome, social proof
+and the problem, each as a photo with one line on it, a testimonial, and a
+lo-fi or native format. With an offer, the offer-first banner is one of the
+nine.
 
 ## Steps
 
 Copy and tick:
 
-- [ ] 1. Start from a `creatives/<folder>/creative.md` the `ideas` skill
-      wrote, or write one with it first.
-- [ ] 2. **Format.** Pick from `references/formats.md` (read the entry, not
-      the file). Lo-fi formats (a sticky note, a phone photo, a screenshot)
-      win more often than they are used; they are a first choice.
-- [ ] 3. **Hook and copy** (the `copywriting` skill) into `copy:`
+- [ ] 1. Start from a `creatives/<folder>/creative.md` from the `ideas`
+      skill, or write one with it first.
+- [ ] 2. **Format** from `references/formats.md` (read only its entry).
+      Lo-fi formats (a sticky note, a phone photo, a screenshot) win more
+      often than they're used, so try one first.
+- [ ] 3. **Hook and copy** with the `copywriting` skill, into `copy:`
       (`headline`, `primary_text`, `description` or `caption`, `cta`).
 - [ ] 4. **Picture or video** (the Pictures section of `AGENTS.md`, or the
-      `video` skill), at the platform's sizes in `specs/<platform>.md`;
-      vertical placements keep words inside the safe zone. Generate each
-      ratio separately.
-- [ ] 5. **Audit.** `python3 scripts/check.py <folder>`, then the `tropes`
+      `video` skill) at the sizes in `specs/<platform>.md`, words inside
+      the safe zone, each ratio generated separately.
+- [ ] 5. **Audit:** `python3 scripts/check.py <folder>`, then the `tropes`
       skill. Fix everything.
-- [ ] 6. **Show.** `python3 scripts/preview.py <folders> --send "<line>"`,
-      a set to test in one call; in the chat, one line each: the idea, the
-      format, and what you changed in the audit.
+- [ ] 6. **Show:** `python3 scripts/preview.py <folders> --send "<line>"`
+      once for the set, and one line per ad in the chat: the idea, the
+      format, what the audit changed.
+
+```yaml
+copy:
+  headline: "The engineer who fitted it services it"
+  primary_text: "Same two engineers on every visit since 2004. Book your service before the first cold week."
+  cta: "Book a service"
+```
 
 ## Rules
 
-- **One name for an ad everywhere.** Name it in Ads Manager as its folder here, and set its URL
-  parameters to `utm_source=facebook&utm_medium=paid&utm_campaign={{campaign.name}}&utm_content={{ad.name}}`.
-  Meta fills those in, so its spend and the CRM's leads match on that name.
-
-- The words on the picture are readable at phone size, the headline larger
-  than the logo, and the call to action worded as in the copy.
-- Health, finance and before-and-after claims follow the platform's sheet
-  in `specs/`. `scripts/check.py` fails on hashtags and personal attributes
-  ("Are you in debt?") in an ad.
+- **One name for an ad everywhere:** its folder name in Ads Manager, with
+  `utm_source=facebook&utm_medium=paid&utm_campaign={{campaign.name}}&utm_content={{ad.name}}`,
+  so Meta's spend and the CRM's leads match on it.
+- Words on the picture read at phone size, the headline is larger than the
+  logo, and the call to action matches the copy.
+- Health, finance and before-and-after claims follow `specs/`.
+  `scripts/check.py` fails on hashtags and personal attributes ("Are you
+  in debt?").

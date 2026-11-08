@@ -32,6 +32,14 @@ Copy and tick:
 - [ ] 6. Show the owner the kept ideas as a short list, one line each, and ask
       which to make first.
 
+An idea as a line:
+
+Weak: "Show people we're reliable and experienced." <!-- tropes-allow -->
+
+Kept: "Owners of a boiler over ten years old, unsure whether to fix it | problem-aware | the engineer who fitted it tells you straight whether it's worth repairing | 'same two engineers since 2004' (claims.md)"
+
+The weak one has no reader, no stage and nothing to prove it.
+
 ## Where ideas come from
 
 - **Customers' words**: their wants, dislikes and worries (`research/audience.md`).

@@ -5,33 +5,32 @@ description: "Writes the hook of an ad, post or email and fits its words to the 
 
 # Copywriting
 
-Read the `writing` skill first: the standard every word is held to, the
-editing order and the cold read. This skill adds what an ad, a post or an
-email needs on top of it.
-
-The words come from `brand/voice.md` (the card, the owner's sentences, the
-signatures, the never-list, the lexicon), `claims.md` for what may be said,
-and the idea in `creative.md`.
+What an ad, a post or an email needs on top of the `writing` skill: a hook
+that stops the right person, and words that fit the platform. The voice is
+in `brand/voice.md`, what may be said in `claims.md`, and the idea in
+`creative.md`.
 
 ## Hooks
 
-The hook (the opening line, the first second of a video, or the first
-frame) does two jobs: it interrupts, and it says who it is for. Pick the
-hook type for the reader's awareness stage (`references/hooks.md`), write
-five to eight openings in the customers' words (`research/audience.md`),
-keep the best two and record the rest in `research/hooks.md`. The offer is
-in the first line or the first three seconds and works muted; the body pays
-it off.
+The hook (the first line, second or frame) stops the reader and tells them
+it's for them. Pick its type for what the reader already knows
+(`references/hooks.md`). Write five to eight in the customers' words from
+`research/audience.md`, keep the best two, and record the rest in
+`research/hooks.md`. The offer is in the first line or three seconds and
+works with the sound off; the body pays off the hook.
+
+Draft: "Looking for reliable heating engineers in Leeds? Look no further!" <!-- tropes-allow -->
+
+Rewrite: "Radiators cold at the top? Bleed them before you call anyone.
+Here's how, in two minutes."
 
 ## Lengths
 
-The platform's sheet in `specs/` has the hard limits and visible cutoffs;
-`scripts/check.py` enforces them. As a default: a headline under eight
-words; primary text that makes its point before the visible cutoff; on a
-picture, twelve words or fewer.
+`specs/<platform>.md` has the limits and the visible cutoff. Where it's
+silent: a headline under eight words, the point before the cutoff, twelve
+words or fewer on a picture.
 
 ## Checking
 
-`python3 scripts/check.py <folder>` holds the piece to the platform's
-limits and runs the `tropes` check. Then the `writing` skill's cold read on
-the piece this turn changed.
+`python3 scripts/check.py <folder>` enforces the limits and runs the tropes
+check. Then the `writing` skill's cold read.
