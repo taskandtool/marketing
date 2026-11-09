@@ -7,9 +7,9 @@ description: "Makes a paid ad from an idea: the format, the hook, copy and pictu
 
 One idea in one format with one hook, made to one platform's specs. A test
 set is three ideas from the `ad-ideas` skill, each in three formats: nine
-ads. For a service business, the formats that usually win first are a
-photo with one line on it, a testimonial, and a lo-fi or native one; with
-an offer, an offer-first banner.
+ads. For a service business, start with three formats: a photo with one
+line on it, a testimonial, and a lo-fi one (a sticky note, a phone photo). With an
+offer, one of the three is an offer-first banner.
 
 ## Steps
 
@@ -18,8 +18,6 @@ Copy and tick:
 - [ ] 1. Start from a `creatives/<folder>/creative.md` from the `ad-ideas`
       skill, or write one with it first.
 - [ ] 2. **Format** from `references/formats.md` (read only its entry).
-      Lo-fi formats (a sticky note, a phone photo, a screenshot) win more
-      often than they're used, so try one first.
 - [ ] 3. **Hook and copy** with the `copywriting` skill, into `copy:`
       (`headline`, `primary_text`, `description` or `caption`, `cta`).
 - [ ] 4. **Picture or video** (the Pictures section of `AGENTS.md`, or the

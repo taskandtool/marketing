@@ -1,14 +1,14 @@
 ---
 name: cold-email
-description: "Runs cold email for a business that sells to other businesses: finding and verifying the list, short sequences in the owner's voice, sending without burning the domain, the law and the replies. Use for cold email, outreach to prospects or finding leads to email. Not for newsletters or customers (email)."
+description: "Runs cold email for a business that sells to other businesses: finding and verifying the list, short sequences in the owner's voice, keeping it out of spam, the law and the replies. Use for cold email, outreach to prospects or finding leads to email. Not for newsletters or customers (email)."
 ---
 
 # Cold email
 
-Cold email gets meetings for a business that sells to other businesses: the
-right people, a short note about them, sent from mailboxes set up for it.
-For a business selling to households it rarely fits, because the law and
-the buyer are against it; say so and suggest the `growth-plan` skill.
+Cold email books meetings for a business that sells to other businesses. It
+rarely fits a business selling to households: in the UK and EU it needs each
+person's consent. Few households answer. Say so and suggest the
+`growth-plan` skill.
 
 Done when the list is verified in `lists/`, the emails pass
 `python3 scripts/check.py`, and the owner has approved the first batch.
@@ -56,11 +56,10 @@ Copy and tick:
 - **Plain text, under 120 words.** The first line is about the reader. No
   images, and no link in the first email beyond the signature. Facts only
   from `claims.md`.
-- **Every email carries the business's postal address and a way out**
+- **Every email carries the business's postal address and a way to opt out**
   ("Reply no and I won't write again"). Where the reader lives decides the
   rest. In the EU and UK, writing to a person at a company needs a real
-  business reason, and writing to a consumer needs their consent. When
-  unsure, ask the owner.
+  business reason. When unsure, ask the owner.
 
 Example:
 

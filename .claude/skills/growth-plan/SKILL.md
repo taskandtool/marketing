@@ -7,10 +7,9 @@ description: "Plans how the business grows: which two or three strategies to run
 
 A strategy is a way of winning customers that runs for months: a channel,
 the services it runs on, and the number that says it works. Where this app
-runs a strategy itself, its own skill has the how; the files here cover
-the rest, drawn from Cody Schneider's public posts (@codyschneider, 2025 to
-2026). The tools a file names are examples: whatever the owner has
-connected that does the job works the same way.
+runs a strategy itself, the table names the skill that runs it. The files
+here cover the others. The tools a file names are examples: whatever the
+owner has connected that does the job works the same way.
 
 ## Choosing
 
@@ -19,9 +18,10 @@ Propose two or three, never the whole list. Start from who buys
 exists already (a list, traffic, proof in `claims.md`, an ad budget, the
 owner's time on camera) and how soon it has to pay. Read a strategy's
 skill or file before proposing it.
-Lay each one out with what it needs and its risks, the automated and paid
-versions included, and let the owner decide how far to go; never leave a
-fitting one out because it is automated or costs money.
+
+Lay each one out with what it needs and its risks, including the automated
+and paid versions, and let the owner decide how far to go. Never leave out
+one that fits because it is automated or costs money.
 
 | Strategy | Fits | How |
 |---|---|---|
@@ -29,18 +29,18 @@ fitting one out because it is automated or costs money.
 | Ad creative at scale | ads already running, a budget for testing | `references/ad-testing.md` |
 | Cold email | sells to businesses; a reachable buyer | the `cold-email` skill |
 | Cold DMs | buyers active on LinkedIn or X | `references/cold-dms.md` |
-| A show and newsletter | B2B, a niche of buyers worth interviewing | `references/show-and-newsletter.md` |
+| A show and newsletter | sells to businesses; buyers worth interviewing | `references/show-and-newsletter.md` |
 | Guest on podcasts | an owner with a story and an opinion | `references/podcast-guesting.md` |
 | YouTube creators | a niche with creators who already teach it | `references/youtube-creators.md` |
 | Short-form creator team | a consumer product people film themselves using | `references/creator-team.md` |
 | Search pages that convert | people search for the problem or the category | `references/search-pages.md` |
-| Posting every week | everyone; where the buyers already scroll | the `social-post` skill |
+| Posting every week | every business | the `social-post` skill |
 | Follow-ups and a newsletter | a signup, quote or booking to follow up, or a list of customers | the `email` skill |
 
-They compound: a business selling to businesses might run cold email, show
-the same list ads, invite its buyers onto a show, send a newsletter from
-each episode, clip it for social, and grow the newsletter from the cold
-email.
+Several can share one list. A business selling to businesses might run cold
+email, show the same list ads, invite its buyers onto a show, send a
+newsletter from each episode, clip it for social, and grow the newsletter
+from the cold email.
 
 Write what the owner picks to `plan.md`: each strategy, why it fits, what
 it needs, the number to watch and when to look again.

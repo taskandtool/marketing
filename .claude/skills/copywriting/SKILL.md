@@ -16,8 +16,9 @@ The hook (the first line, second or frame) stops the reader and tells them
 it's for them. Pick its type for what the reader already knows
 (`references/hooks.md`). Write five to eight in the customers' words from
 `research/audience.md`, keep the best two, and record the rest in
-`research/hooks.md`. The offer is in the first line or three seconds and
-works with the sound off; the body pays off the hook.
+`research/hooks.md`. The offer is in the first line, or the first three
+seconds of a video. A video works with the sound off. The body gives what
+the hook promised.
 
 Draft: "Looking for reliable heating engineers in Leeds? Look no further!" <!-- tropes-allow -->
 
@@ -27,7 +28,7 @@ Here's how, in two minutes."
 ## Lengths
 
 `specs/<platform>.md` has the limits and the visible cutoff. Where it's
-silent: a headline under eight words, the point before the cutoff, twelve
+silent: an ad headline under eight words, the point before the cutoff, twelve
 words or fewer on a picture.
 
 ## Checking

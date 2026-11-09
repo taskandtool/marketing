@@ -27,7 +27,7 @@ and the order of work are in `marketing`):
 - the words of any piece: `writing`; its hook and platform lengths:
   `copywriting`; its picture: the
   Pictures section below; a clip: `video`
-- before the owner sees anything: `tropes`
+- before the owner sees anything, or "it sounds like AI": `tropes`
 
 Read the one that fits the ask rather than working from memory.
 

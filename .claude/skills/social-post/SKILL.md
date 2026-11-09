@@ -5,10 +5,10 @@ description: "Writes organic social posts in the owner's voice for Instagram, Fa
 
 # Social post
 
-A post earns its reach: the platform shows it to more people when the first
-ones send, save, comment or keep watching. So it opens with a moment, a
-number or a question the reader recognises, gives something worth keeping,
-and asks for one small thing the platform rewards.
+The platform shows a post to more people when the first ones send, save,
+comment or keep watching. So it opens with a moment, a number or a question
+the reader recognises, gives something worth keeping, and asks for one small
+thing the platform rewards.
 
 Example, for Instagram:
 
@@ -71,7 +71,7 @@ repost or cross-post unchanged lose reach on Instagram and Facebook.
 - Replying to comments is part of the post; suggest the owner does it in the
   first hour.
 - No engagement bait ("tag a friend"), no hashtag walls, no watermarked
-  reposts, no one-line-per-paragraph build to a moral.
+  reposts.
 - A review is quoted as written, with permission; customer photos with
   permission and credit.
 

@@ -5,31 +5,28 @@ description: "Writes email to people who already know the business: the newslett
 
 # Email
 
-Email to people who signed up, booked, asked for a quote or bought. It
-goes out from the owner's own account, never ours, and only to people who
-agreed to hear from the business. Every email has one reason to open it and
-one thing to do, and says how to stop getting them.
+These emails go to people who signed up, booked, asked for a quote or
+bought. They go out from the owner's own account, never ours, and only to
+people who agreed to hear from the business. Every email says how to stop
+getting them.
 
 ## Kinds
 
 - **Newsletter:** one idea from recent work (a result, a lesson, a question
   customers keep asking), a subject under 50 characters, one link. Weekly
-  or monthly at the same time; a week with nothing new is skipped, not
-  padded. Material comes from `creatives/`, `results.md` and what the owner
-  says.
+  or monthly at the same time. Skip a week with nothing new. Material
+  comes from `creatives/`, `results.md` and what the owner says.
 - **Follow-ups** after a signup, booking or quote, starting the moment it
   happens:
   - straight away: thanks, and what happens next;
   - a day later: how to get the most from it, or what to have ready;
-  - then a few days apart: why the business does it this way, one
-    customer's story an email, and a check-in from the owner ("any
-    questions?").
+  - then a few days apart: why the business does it this way, one customer's
+    story per email, and a check-in from the owner ("any questions?").
 
   Stop when they buy, book or reply. Replies come to a real inbox, and an
   answer is drafted for the owner.
 - **Past customers:** the reminder they would want (a yearly service, the
-  season's job), or one piece of news worth their time. Never a
-  discount blast to everyone.
+  season's job), or one piece of news worth their time.
 
 Example, a newsletter:
 
@@ -38,14 +35,14 @@ Subject: Why your radiators are cold at the top
 
 Hi Ruth,
 
-Three of the jobs we did this month were radiators cold at the top. All three needed bleeding, not a new boiler.
+Three of the jobs we did this month were radiators cold at the top. All three just needed bleeding.
 
 It takes two minutes with a radiator key. Turn the heating off, open the valve at the top corner a quarter turn until water comes out, then close it. Check the pressure gauge is back between 1 and 1.5.
 
 If it's still cold after that, reply and I'll tell you what to check next.
 
 Mark, Hollis Heating
-Not useful? Unsubscribe here.
+Unsubscribe: <link>
 ```
 
 ## Files

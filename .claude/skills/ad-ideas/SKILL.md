@@ -6,10 +6,9 @@ description: "Turns brand and research into ideas for ads and campaigns: angles 
 # Ad ideas
 
 An idea is one argument for one reader at one stage of awareness. The best
-come from evidence: customers' words, what competitors already claim, the
-circumstance the customer is in, and proof the business can show. For a
-service business, the three that usually win first are the outcome, social
-proof and the problem; with an offer, the offer itself is a fourth.
+come from evidence (the sources below). For a service business, start with
+three ideas: the outcome, social proof and the problem. With an offer, one of the three
+is the offer.
 
 ## Steps
 
@@ -25,9 +24,9 @@ Copy and tick:
 - [ ] 3. Write ten to fifteen candidate ideas. Draw them from the sources
       below, each as one line: reader, stage, argument, the proof in
       `claims.md`.
-- [ ] 4. Score each (below) and keep the top scorers, as many as the owner
-      asked for or else three (a test set: the `ad` skill makes each in
-      three formats), that differ in argument, not in colour or wording.
+- [ ] 4. Score each (below). Keep the top scorers that make different
+      arguments: as many as the owner asked for, or else three for a test
+      set (the `ad` skill).
 - [ ] 5. For each kept idea, create `creatives/YYYY-MM-DD-<slug>/creative.md`
       with `status: draft`, `angle`, `awareness`, `framework`, `claims`,
       and the idea in two sentences under `## Idea`. The hook comes next (the `copywriting` skill).
@@ -49,8 +48,7 @@ The weak one has no reader, no stage and nothing to prove it.
   they turn up". Each is an idea: the confession, the question answered,
   the comparison, the guarantee.
 - **The circumstance**: what the customer is trying to get done and what
-  else they might use instead (a fan heater and a video, not just another
-  firm).
+  else they might use instead (a fan heater, a how-to video or another firm).
 - **Competitor gaps**: the objection nobody answers, the angle nobody runs.
 - **Proof the business has**: a real job, a number, a review.
 - **The calendar**: the first cold week, a local event, a season.
@@ -62,7 +60,7 @@ Score each idea 0 to 2 on each of these:
 - Specific to this business: a competitor could not run it unchanged.
 - The proof is in `claims.md`.
 - It fits the reader's stage.
-- It isn't a smaller echo of what competitors say.
+- It isn't a weaker version of a competitor's claim.
 - A person could have posted it.
 - It differs from the others in the set.
 - It can be made with what the business has.
