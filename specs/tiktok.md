@@ -25,7 +25,7 @@ sources:
 | Ad caption max | 100 chars | secondary source, unverified |
 | Visible before truncation | about 45 (40 to 50 by other accounts) | secondary source, unverified |
 | Rendering | white, uniform font, cannot be styled; no clickable links, no @ symbols, no hashtags | TikTok ad specs (verified) |
-| Organic caption max | 2,200 chars | common figure, unverified; organic allows far more than the ad field |
+| Organic caption max | 4,000 chars in the app; 2,200 through the Content Posting API and most schedulers | secondary sources; organic allows far more than the ad field |
 | Spark Ads caption | up to 4 lines display, including emoji; no duration restriction | TikTok ad specs (verified) |
 
 ## Safe zones

@@ -87,7 +87,7 @@ Pitfalls: a shared link to the Reel instead of the file, TikTok's logo in the co
 ### Link post
 When: only when the link is the point (a news article about you, a booking page for a full event).
 Structure: a photo post with the link in the first comment, not a link card.
-Copy: "Bristol Post wrote about the four-day week at the workshop. Sam explains why we tried it. Link in the first comment."
+Copy: "The Avonmere Echo wrote about the four-day week at the workshop. Sam explains why we tried it. Link in the first comment."
 Visual: a photo, not the link's preview card.
 Pitfalls: the link in the body, a preview card with a stock image.
 

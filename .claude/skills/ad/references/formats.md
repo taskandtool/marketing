@@ -91,7 +91,7 @@ Pitfalls: Overcrowding; five labels is the ceiling. Features without the benefit
 ### Press "as seen in"
 When: Mid to bottom funnel, higher-value purchases where trust is the bottleneck.
 Structure: One product or job photo, a row of outlet logos or a single quoted headline with the outlet name.
-Copy: The outlet's own words, attributed. Example: "'A Bristol workshop that measures twice.' Bristol Post, May 2026." Or a logo row: Bristol Post, House & Garden, Homebuilding & Renovating, only if each has covered the business.
+Copy: The outlet's own words, attributed. Example: "'A Bristol workshop that measures twice.' Avonmere Echo, May 2026." Or a logo row: Avonmere Echo, Lintel & Beam, The Renovator's Quarterly, only if each has covered the business.
 Visual: Photo above, press band below. Copy-space is the band.
 Why it works: A third party has already spent its credibility on us.
 Pitfalls: Cannot be faked; every logo needs a real piece the agent can link to in the ledger. Outlets the buyer does not know add nothing. A paid placement is not press; label it if used.

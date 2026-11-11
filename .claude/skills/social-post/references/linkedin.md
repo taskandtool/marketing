@@ -26,7 +26,7 @@ Recipes for the owner's profile and the company Page. The worked examples use Ha
 
 ## Norms
 
-- Limits and the "see more" cutoff: `specs/linkedin.md`. The first line is the hook and must stand alone. Laura Lorenzetti, LinkedIn News (via Buffer): "What's the most interesting part of your post? Put it at the top. Hook the people, tell them the payoff, and then get them into it."
+- Limits and the "see more" cutoff: `specs/linkedin.md`. The first line is the hook and must stand alone. Mara Ellison, a news editor: "What's the most interesting part of your post? Put it at the top. Hook the people, tell them the payoff, and then get them into it."
 - Paragraphs of one to three sentences with a blank line between. A concrete first line: a number, a named situation, a decision. Specifics over adjectives. A question only when you want the answer.
 - Hashtags: three to five (LinkedIn Pages guidance), at the end. Mentions: five or fewer.
 - Links: first comment. Alt text on every image, one literal sentence.
@@ -99,7 +99,7 @@ Month one: you build carcasses from our drawings with Sam, then fit your first k
 
 £32,000 to £38,000 depending on experience, four-day week, workshop in Bedminster.
 
-Email jobs@harlowjoinery.co.uk with photos of two things you have made. No CV needed for the first message.
+Email jobs@harlowjoinery.example with photos of two things you have made. No CV needed for the first message.
 
 If you know a joiner who wants a four-day week, please share this."
 Visual: a photo of the bench where they would work, with the current team in it.
