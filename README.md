@@ -1,5 +1,7 @@
 # Marketing
 
+[![Deploy on Task & Tool](https://taskandtool.com/images/deploy-button.svg)](https://taskandtool.com/accounts/register?starter_app=marketing)
+
 A Task & Tool **Starter App**: ads, social posts and emails for one
 business, made on its own machine from its brand and its market, and filed
 for the owner to review.
