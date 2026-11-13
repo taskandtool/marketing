@@ -66,7 +66,7 @@ export function cardNodes(frontmatter) {
   if (copy.cta) children.push(box("margin:.25rem 0 0;opacity:.8", [text(copy.cta)]))
   children.splice(words ? 1 : 0, 0, ...files)
   const style = "max-width:500px;padding:1rem;border:1px solid var(--lightgray);border-radius:10px;background:var(--light)"
-  return [heading(`On ${where}${kind === "ad" ? ", as an ad" : ""}`), box(style, children)]
+  return [heading(`${where} ${kind}`), box(style, children)]
 }
 
 export function pieceNodes(frontmatter) {

@@ -322,7 +322,7 @@ def plugin_count():
 # makes the folders, and the ledgers ship with the app), so the dev
 # server never shows a stale page; a section fills in as the work arrives.
 HOME_ROWS = [
-    ("creatives/", "Creatives", "every ad and post, newest first, with its pictures and clips"),
+    ("creatives/", "Creatives", "ads and posts with their pictures and clips, newest first"),
     ("emails/", "Emails", "cold emails, sequences and newsletters"),
     ("results.md", "Results", "what ran and what it did, newest first"),
     ("reports/", "Monthly reports", "each month's numbers and what to make next"),
@@ -331,7 +331,7 @@ HOME_ROWS = [
     ("claims.md", "Claims", "every fact a piece may state, with its source"),
     ("brand/", "Brand", "positioning, voice and visual identity"),
     ("public/", "The business", "the facts about it"),
-    ("media/", "Photos and clips", "the business's own, and what each may be used for"),
+    ("media/", "Photos and clips", "your own, and where each may be used"),
     ("specs/", "Platform specs", "sizes, limits and policy per platform"),
     ("raw/", "Raw material", "sites, reviews and transcripts as they arrived"),
 ]
@@ -342,7 +342,7 @@ def home_page():
     title = (business_name() + " marketing") if business_name() else DEFAULT_TITLE
     lines = ["---", f"title: {json.dumps(title)}", "---", ""]
     lines += [f"- [{label}]({target}): {desc}" for target, label, desc in HOME_ROWS]
-    lines += ["", "What is waiting for your approval is on the app's Deliverables tab."]
+    lines += ["", "Anything waiting for your approval is on the app's Deliverables tab."]
     return "\n".join(lines) + "\n"
 
 

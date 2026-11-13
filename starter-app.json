@@ -7,7 +7,7 @@
       {
         "provider": "openai-api",
         "strength": "suggested",
-        "why": "Run this app's AI on your own OpenAI account, pictures included"
+        "why": "Run this app's AI and pictures on your own OpenAI account"
       },
       {
         "provider": "openrouter-api",
