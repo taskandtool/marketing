@@ -6,6 +6,8 @@ piece for you to approve.
 
 [![Deploy on Task & Tool](https://taskandtool.com/images/deploy-button.svg)](https://taskandtool.com/accounts/register?starter_app=marketing)
 
+![Bellwork Boxing's Instagram slideshow, its TikTok and its First class $0 ad](https://taskandtool.com/images/starter-apps/marketing.webp)
+
 It's made to run on Task & Tool. There, each app has its own computer for
 your AI agent. The agent uses the skills and scripts in this repo to
 research competitors, write ads, posts and emails, make their pictures and
@@ -18,6 +20,8 @@ Click the button above, or pick Marketing when you create an app on [Task &
 Tool](https://taskandtool.com/starter-apps/marketing). Then ask the agent to
 learn your brand from your website. If you have no site, tell it about the
 business in the chat.
+
+See it in use on the [Marketing page](https://taskandtool.com/starter-apps/marketing).
 
 ## Features
 
@@ -52,6 +56,11 @@ from 45 static ad formats and 15 kinds of hook. It sizes the pictures to the
 specs for Meta, TikTok, LinkedIn, Google, Pinterest and YouTube. For a video
 ad, the agent writes a script and shot briefs for the clips it generates.
 
+<p>
+  <img src="https://taskandtool.com/images/marketing/bellwork-boxing-ad-free.webp" width="240" alt="Bellwork Boxing's Facebook ad: First class $0">
+  <img src="https://taskandtool.com/images/marketing/bellwork-boxing-ad-review.webp" width="240" alt="Bellwork Boxing's review ad: 4.9 from 380 Google reviews">
+</p>
+
 ### A week of posts from one idea
 
 The agent writes posts for Instagram, Facebook, LinkedIn, TikTok, Google
@@ -60,6 +69,11 @@ It makes TikTok slideshows and Instagram and LinkedIn carousels. It starts
 from your photos when they fit. Once you approve a post, the agent schedules
 it through Zernio or Hootsuite if you've connected one. Otherwise you post
 it.
+
+<p>
+  <img src="https://taskandtool.com/images/marketing/bellwork-boxing-instagram-renata.webp" width="240" alt="An Instagram post quoting Renata Alvarez's Google review">
+  <img src="https://taskandtool.com/images/marketing/bellwork-boxing-tiktok-first-class.webp" width="240" alt="A TikTok on what to wear to your first boxing class">
+</p>
 
 ### Email drafts in Gmail or Klaviyo
 
