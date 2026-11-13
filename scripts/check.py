@@ -73,7 +73,7 @@ SHOWN = 20
 
 def trope_findings(fields, kind):
     """[(field, finding)] for the copy fields {name: text}, each one section
-    of the creative; a phrase repeated across fields names the second."""
+    of the creative."""
     names = list(fields)
     try:
         r = subprocess.run(["node", "--input-type=module", "-e", TROPES_RUN, pathlib.Path(TROPES).resolve().as_uri()],
@@ -87,7 +87,7 @@ def trope_findings(fields, kind):
             "  Try: node .claude/skills/tropes/tropes.mjs --help")
     out = []
     for f in json.loads(r.stdout):
-        i = f["section"] if "section" in f else (f["sections"][-1] if "sections" in f else None)
+        i = f.get("section")
         out.append((names[i] if i is not None else "all", f))
     return out
 

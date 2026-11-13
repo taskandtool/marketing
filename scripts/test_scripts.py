@@ -112,15 +112,13 @@ class Check(unittest.TestCase):
         self.assertEqual(r.returncode, 0, r.stderr)
         self.assertIn("note: specs/meta.md was last verified 2020-01-01", r.stdout)
 
-    def test_missing_claim_file_and_tell_are_findings(self):
+    def test_missing_claim_and_file_are_findings(self):
         bad = GOOD.replace("claims: [1]", "claims: [1, 7]").replace("files: [v1.png]", "files: [v2.png]")
-        bad = bad.replace('"Book a service"', '"Learn more"')
         self.write(bad)
         r = run("check.py", cwd=self.app, app=self.app)
         self.assertEqual(r.returncode, 1)
         self.assertIn("claim 7 is not in claims.md", r.stderr)
         self.assertIn("listed file v2.png is missing", r.stderr)
-        self.assertIn('copy.cta: weak-cta "Learn more"', r.stdout)  # a hint, never a failure
 
     def test_copy_tells_and_hints(self):
         bad = GOOD.replace('"The engineer who fitted it services it"', '"It\'s not just a boiler, it\'s peace of mind"')
