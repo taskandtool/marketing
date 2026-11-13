@@ -21,7 +21,8 @@ Tool](https://taskandtool.com/starter-apps/marketing). Then ask the agent to
 learn your brand from your website. If you have no site, tell it about the
 business in the chat.
 
-See it in use on the [Marketing page](https://taskandtool.com/starter-apps/marketing).
+See it in use on the [Marketing
+page](https://taskandtool.com/starter-apps/marketing).
 
 ## Features
 
@@ -90,14 +91,14 @@ edits it. Otherwise it makes a picture from scratch in your brand's style.
 Clips are 4 to 8 seconds long. The agent makes them from a shot brief
 through OpenRouter (Veo by default) or a Higgsfield connection.
 
-### You see each ad and post as it will look in the feed
+### Previews as they will look in the feed
 
 The agent draws each piece as it will look on Facebook, Instagram, X,
 LinkedIn or TikTok. It adds your name and logo and cuts the caption where
 the platform does. The agent sends it to the chat for your approval. You
 approve it or send it back with a note.
 
-### The agent checks every piece before you see it
+### Checks on every piece
 
 Before you see any work, the agent runs `scripts/check.py` and fixes
 anything that fails.
@@ -119,14 +120,14 @@ For other platforms, send the agent your export. Ask for a monthly report,
 or have the agent schedule one. The report is one page. In it the agent
 names the best and worst piece and three things to make next.
 
-### You can browse all of it as a website
+### Browse the work as a website
 
 The viewer is a Quartz site of the app's notes. It has search, a folder
 explorer, backlinks and a graph. Open an ad or post and you see the piece:
 its copy, pictures and clips beside its platform, angle and hook. A brand
 color written as a hex code gets a swatch next to it.
 
-### The agent follows a skill for each kind of work
+### Skills in this repo
 
 The agent loads a skill, a file of instructions, when a task needs one.
 There are 14 here:
@@ -173,7 +174,7 @@ gets:
   sees production until you make it public. If you make it public, anyone
   can see all of it. That includes research and raw material.
 - Connections to Meta, Google, Klaviyo, ScrapeCreators, Apify and any
-  service with an API. Their keys stay out of this repo.
+  service with an API. Task & Tool holds their keys.
 - Scheduled jobs for the reports and posts above
 - Sign-in for your team on the viewer
 
