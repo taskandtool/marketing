@@ -1,149 +1,229 @@
 # Marketing
 
+**Ads, social posts and emails for one business, written by your AI agent in
+chat.** The agent learns your brand, studies your market and files each
+piece for you to approve.
+
 [![Deploy on Task & Tool](https://taskandtool.com/images/deploy-button.svg)](https://taskandtool.com/accounts/register?starter_app=marketing)
 
-A Task & Tool **Starter App**: ads, social posts and emails for one
-business, made on its own machine from its brand and its market, and filed
-for the owner to review.
+It's made to run on Task & Tool. There, each app has its own computer for
+your AI agent. The agent uses the skills and scripts in this repo to
+research competitors, write ads, posts and emails, make their pictures and
+check every fact before you see it. The work is plain text files. You can
+browse all of it as a website built with Quartz.
 
-The repository *is* the app: what you clone is what runs. Install it with one
-click on Task & Tool, or clone it into a project of your own (below). MIT
-licensed.
+## Get started
 
-## What is in the box
+Click the button above, or pick Marketing when you create an app on [Task &
+Tool](https://taskandtool.com/starter-apps/marketing). Then ask the agent to
+learn your brand from your website. If you have no site, tell it about the
+business in the chat.
 
-The app is mostly skills: written instructions the AI loads when the work
-calls for them.
+## Features
+
+### Start from your site, your photos or a chat
+
+The agent reads your website and your Google listing. It writes notes on
+your voice, colors, audience, services, prices and reviews. The agent files
+the photos you send in the chat. Every fact a piece may state is a numbered
+line in `claims.md` with its source. When a fact is missing, the agent asks
+you for it.
+
+### Research on your competitors' ads and reviews
+
+You and the agent agree on three to five competitors. With a ScrapeCreators
+connection, it reads their posts and the ads they run in the Meta, Google
+and LinkedIn ad libraries. With Apify it also reads Google Maps reviews,
+Reddit and forum threads, and the TikTok Creative Center's top ads for your
+industry. With DataForSEO it finds what people search for and how many
+search each month.
+
+Meta lists the start date of each active ad. The agent notes which ones a
+competitor has kept running past 30 or 90 days. It writes a one-page brief:
+the angles competitors repeat, your customers' own phrases and objections,
+and five to eight ideas. The agent ranks the ideas by their evidence and how
+easy they are to make. It also finds ten threads where people ask about what
+you sell. It drafts replies in your voice. You post the replies.
+
+### Ads sized to each platform's specs
+
+A test set is three ideas in three formats each: nine ads. The agent picks
+from 45 static ad formats and 15 kinds of hook. It sizes the pictures to the
+specs for Meta, TikTok, LinkedIn, Google, Pinterest and YouTube. For a video
+ad, the agent writes a script and shot briefs for the clips it generates.
+
+### A week of posts from one idea
+
+The agent writes posts for Instagram, Facebook, LinkedIn, TikTok, Google
+Business Profile, Pinterest and X. It rewrites the post for each platform.
+It makes TikTok slideshows and Instagram and LinkedIn carousels. It starts
+from your photos when they fit. Once you approve a post, the agent schedules
+it through Zernio or Hootsuite if you've connected one. Otherwise you post
+it.
+
+### Email drafts in Gmail or Klaviyo
+
+The agent puts newsletters and follow-ups after a signup, booking or quote
+into Klaviyo as a campaign or a flow. It puts a note to a few customers in
+your Gmail as one draft each. You send them. For a business that sells to
+other businesses, the agent can also build a verified list and write a cold
+email sequence of two or three emails. They're all under 120 words.
+
+### Pictures and short clips
+
+The agent starts from your own photo when one fits. It uses it as it is or
+edits it. Otherwise it makes a picture from scratch in your brand's style.
+Clips are 4 to 8 seconds long. The agent makes them from a shot brief
+through OpenRouter (Veo by default) or a Higgsfield connection.
+
+### You see each ad and post as it will look in the feed
+
+The agent draws each piece as it will look on Facebook, Instagram, X,
+LinkedIn or TikTok. It adds your name and logo and cuts the caption where
+the platform does. The agent sends it to the chat for your approval. You
+approve it or send it back with a note.
+
+### The agent checks every piece before you see it
+
+Before you see any work, the agent runs `scripts/check.py` and fixes
+anything that fails.
+
+| Check | Fails when |
+|---|---|
+| Facts | A piece cites a claim that isn't a numbered line in `claims.md`, or a claim's source file is missing |
+| Copy | Wording that sounds like AI, and copy over the platform's text limits |
+| Pieces | A missing field, platform or file in a creative |
+| Specs | Platform sheets last checked over 90 days ago |
+| Brand | One of the four brand notes the work needs doesn't exist yet |
+
+### Monthly reports on what worked
+
+With a Meta connection, the agent reads your ads' spend, clicks and leads.
+It also reads your posts' reach, saves and shares. With Search Console and
+Google Analytics, it adds the searches and pages people found you through.
+For other platforms, send the agent your export. Ask for a monthly report,
+or have the agent schedule one. The report is one page. In it the agent
+names the best and worst piece and three things to make next.
+
+### You can browse all of it as a website
+
+The viewer is a Quartz site of the app's notes. It has search, a folder
+explorer, backlinks and a graph. Open an ad or post and you see the piece:
+its copy, pictures and clips beside its platform, angle and hook. A brand
+color written as a hex code gets a swatch next to it.
+
+### The agent follows a skill for each kind of work
+
+The agent loads a skill, a file of instructions, when a task needs one.
+There are 14 here:
+
+| Skill | What it does |
+|---|---|
+| `marketing` | The folders, the shape of a piece and the order of work |
+| `brand` | Gathers facts, photos and the brand's look |
+| `research` | Competitors' ads and posts, customers' words, threads worth a reply |
+| `ad-ideas` | Turns the research into ranked ideas |
+| `copywriting` | Hooks and lengths for each platform |
+| `writing` | Writes in the owner's voice and edits the draft |
+| `ad` | Paid ads to each platform's specs |
+| `social-post` | Organic posts, slideshows and a week from one idea |
+| `video` | Beats, sound and shot briefs for clips |
+| `email` | Newsletters and follow-ups as drafts |
+| `cold-email` | Lists, verification, sequences and replies |
+| `growth-plan` | Which two or three strategies to run for months |
+| `results` | Your numbers and the monthly report |
+| `tropes` | Spots copy, pictures and video that look machine-made |
+
+### Prompts and scripts on a schedule
+
+Ask the agent to schedule a job. A job can be a prompt the agent answers in
+a fresh chat. It can also be a command the agent runs. For example:
+
+| Job | What it does |
+|---|---|
+| Monthly report | Prompt: "Record how my ads did and tell me what to make next" |
+| This week's posts | Prompt: "Write this week's social posts and show them to me" |
+
+The agent leaves a scheduled job's work as a draft or a paused ad unless
+you've told it to post, send or spend.
+
+## Why run it on Task & Tool
+
+Task & Tool is the easiest place to run it. The agent asks you for a
+connection when a task needs it. You approve the work in the chat. Each app
+gets:
+
+- Its own computer for the agent
+- A dev address where your team browses the work
+- Publishing on your own domain with a free SSL certificate. Only your team
+  sees production until you make it public. If you make it public, anyone
+  can see all of it. That includes research and raw material.
+- Connections to Meta, Google, Klaviyo, ScrapeCreators, Apify and any
+  service with an API. Their keys stay out of this repo.
+- Scheduled jobs for the reports and posts above
+- Sign-in for your team on the viewer
+
+## Make it your own
+
+Ask the agent for any change in the chat. To start from your own copy, fork
+this repo, change what you like, and start a new app from your fork on Task
+& Tool. You can also copy its skills from `.claude/skills/` into another
+repo.
+
+## What's in the repo
 
 ```
-.claude/skills/
-  marketing/     the folders, the shape of a creative.md, the order of work
-  brand/         the brand record in brand/ and public/, from any source (shared with the
-                 other Starter Apps that carry it)
-  research/      competitors' ads and posts, customers' words, search questions,
-                 conversations worth joining → a brief
-  ad-ideas/      angles and frameworks → ranked ideas worth making
-  copywriting/   the words and the hook, in the owner's voice; fifteen hook types
-  video/         beats, show don't tell, sound and music, shot briefs for a video model
-  ad/            a paid ad to a platform's specs; 45 static formats as recipes
-  social-post/   organic posts per platform, one idea across a week
-  cold-email/    cold email to businesses: the list, verifying it, sending, replies
-  email/         newsletters, follow-ups and notes to customers, as drafts the owner sends
-  growth-plan/   which strategies to run for months and what each needs; a file each
-                 for the ones this app advises on (podcasts, creators, search pages)
-  results/       ad, post and search numbers from the owner's accounts; the monthly report
-  tropes/        the audit for the tells of AI-made copy, pictures and video, and its
-                 copy script (shared, like brand)
-.taskandtool/setup.sh  requests and the viewer's web service
-.taskandtool/after-setup.sh  tt-crawl and its browsers, once the app is up
-AGENTS.md        what the AI reads first; CLAUDE.md imports it
-starter-app.json the manifest: the connections it can use and the suggestions an empty chat offers
+brand/  public/   notes on the brand and the business's published facts
+claims.md         every fact a piece may state, numbered, with its source
+media/            your photos and clips, and which ones may be used
+research/         competitors, customers' words, threads and the brief
+creatives/        one ad or post per folder: creative.md, pictures, clips
+emails/           one email or sequence per folder
+results.md        what ran and what it did, newest first
+plan.md           the strategies chosen, and why
+lists/            the people a strategy reaches
+reports/          the monthly reports
+specs/            sizes, limits and policy for each platform
+raw/              material as it arrived: crawls, downloads, notes
+scripts/          the checks, previews, clips, the viewer and their tests
+viewer/           the viewer's settings and its three plugins
+.claude/skills/   the 14 skills
+AGENTS.md         what the agent reads first
+.taskandtool/     setup for an install on Task & Tool
+starter-app.json  what the app needs and its chat suggestions
 ```
 
-## The app itself
+## Commands
 
-```
-brand/  public/          the brand record: look, voice, published facts
-claims.md                every fact a creative may state, numbered, each with its source
-media/                   the owner's photos and clips sent here; _index.md says what may be used
-                         (the brand's curated photos are brand/images.md)
-raw/                     material as it arrived (crawls, downloads, what the owner said)
-research/                competitors, hooks seen, customers' words, conversations, the brief
-creatives/YYYY-MM-DD-<slug>/   one idea per folder: creative.md and its pictures and clips
-emails/YYYY-MM-DD-<slug>/      one email or sequence per folder: email.md
-results.md               what ran and what it did, newest first
-plan.md                  the strategies chosen, and why
-lists/                   the people a strategy reaches: prospects, engagers, who said no
-reports/YYYY-MM.md       the monthly report
-specs/<platform>.md      sizes, limits and policy per platform, dated
-scripts/                 check · preview · make_video · viewer, and their tests
-viewer/                  the viewer's Quartz config, pinned plugins, and its three local plugins
-                         (creative-files, safe-text, swatches)
-```
+The agent runs these on the app's computer.
 
-`python3 scripts/check.py` checks every creative, the claims and the specs,
-and runs the copy through the `tropes` skill's script (Node).
-`python3 scripts/preview.py <folder>` draws a post or ad as Facebook,
-Instagram, X, LinkedIn or TikTok shows it, in one standalone
-`preview.html`; `--send` puts it in front of the owner. Pictures come
-from the machine's `make-image` (Task & Tool's `images` skill), on Codex
-and Claude Code alike. `make_video.py` calls OpenRouter's video models;
-a Higgsfield connection (Seedance, Kling) brings its own instructions.
+- `npm run dev` serves the viewer on port 3000 and shows each edit on
+  refresh. It installs Quartz on its first start. To run it on your own
+  computer, you need Node 22 or later, Python 3 and
+git.
+- `npm run build` builds the viewer as a static site in `dist/`.
+- `npm run deploy` builds the viewer and publishes it to production. It
+  works only on Task & Tool.
+- `python3 scripts/check.py` runs the checks above. `python3
+  scripts/check.py --status sent` lists what is waiting for your approval.
+- `python3 scripts/preview.py <folder>` draws a piece as it will look in the
+  feed. `--send` puts it in the chat for approval. That works only on Task &
+  Tool.
+- `python3 scripts/make_video.py` makes a clip through OpenRouter.
+- `python3 scripts/test_scripts.py` runs the 44 tests on the scripts.
 
-## The viewer
+## Third-party tools
 
-[Quartz](https://quartz.jzhao.xyz) shows all of it as one website: search
-across the research, claims, copy and results, a folder explorer,
-backlinks and a graph. Each creative opens as the piece: its title, its
-copy, its pictures and its clips, with its kind, platform, angle and hook
-beside them. What waits for approval stays on the app's Deliverables tab,
-which is live; the viewer shows the files.
+- [Quartz](https://quartz.jzhao.xyz) v5.0.0 (MIT), the viewer, with its
+  plugins pinned in `viewer/quartz.lock.json`.
+- [`tt-crawl`](https://github.com/taskandtool/crawler), our crawler, for
+  reading sites and Google listings.
+- `requests` (Apache-2.0), for the Python scripts.
 
-- **Dev:** the `web` service runs `npm run dev` at the app's team address;
-  a refresh shows every edit.
-- **Production:** `npm run deploy` builds a static site into `dist/` and
-  deploys it to Cloudflare through the platform; search works there too,
-  in the browser. The first deploy opens it to the team; only a person
-  makes it public, and that publishes all of it, `raw/` included: who can
-  see it is the publishing setting, never the app.
-- **Safe with crawled text:** crawled HTML, scripts, XML and SVGs (in any
-  letter case) are never built into the site; the `safe-text` plugin shows any HTML in markdown as
-  text and strips it from titles and tags; `creative-files` shows only files
-  named beside the creative.
-- **Colours shown:** a hex colour written as code, `` `#4e3223` ``, shows
-  its colour beside it (the `swatches` plugin), so the brand's colours can
-  be checked by eye.
+## Contributing
 
-The web service installs Quartz on its first start, outside the app
-(`~/.local/share/marketing-viewer/`), so setup does not wait for it. Quartz
-is pinned to a tag, with its plugins pinned in `viewer/quartz.lock.json`.
-It needs Node 22.
-
-## Install
-
-**On Task & Tool.** Pick Marketing when you create an app. The machine
-clones this repository into the app and runs `.taskandtool/setup.sh`, then
-`after-setup.sh`.
-
-**Anywhere else.**
-
-```
-git clone https://github.com/taskandtool/marketing my-marketing
-cd my-marketing
-bash .taskandtool/setup.sh
-bash .taskandtool/after-setup.sh
-```
-
-Off the platform, `create-deliverables` (the bridge that puts a file in
-front of the owner in the Task & Tool chat) is not there; the files are on
-disk.
-
-## What it connects to
-
-Everything is optional and asked for when it is needed: the owner's own
-OpenAI key, to run the app's AI and its pictures on their account rather
-than Task & Tool credit, a video model (OpenRouter or Higgsfield),
-ScrapeCreators for
-competitors' ads and posts, Apify for reviews on sites with no API and
-for posts in the niche, DataForSEO for search questions, Google Places for
-the business's listing, Search Console, Google Analytics and Meta's
-insights for results, and Klaviyo for newsletter drafts. The growth plan
-suggests more, any of which can be swapped for a tool that does the same
-job: a posting tool (Zernio, Hootsuite), ads management and conversion
-tracking (Meta, Google Tag Manager and Ads), a contact database, verifier
-and sending tool for cold email (Apollo, MillionVerifier, Instantly), DM
-automation (PhantomBuster, InboxApp), podcast databases (Rephonic, Listen
-Notes), avatar video (HeyGen) and video tracking (Shortimize). Keys
-arrive through the platform's Connections, never through this repository.
-
-## Developing this Starter App
-
-- **Tests, no machine:** `python3 scripts/test_scripts.py`
-- **On the platform:** Task & Tool's own repo keeps a working clone under
-  `starter_apps/` and runs it through the real install path on a real
-  machine before a release is pinned.
-
-A pre-push secret scan guards this repository.
+Pull requests are welcome. The repo holds no credentials. We scan for
+secrets before each push.
 
 ## License
 
