@@ -5,7 +5,8 @@ description: "Plans and makes short video ads and posts: the beat structure, sho
 
 # Video
 
-The picture carries the idea, captions carry the words, sound adds energy.
+Show the idea in the picture, put the words in captions, and use sound
+for energy.
 A generated clip is one beat of four to eight seconds (a product close-up,
 a setting, a reveal), never the whole ad.
 

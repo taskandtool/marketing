@@ -8,9 +8,9 @@ sources:
 # A show and a newsletter
 
 Run a video podcast that interviews the industry's experts and the
-business's own buyers, and send a weekly newsletter from it. Asking a
-buyer onto a show is the easiest yes in sales, and in a year the business
-owns an audience and a name in its niche.
+business's own buyers, and send a weekly newsletter from it. Buyers
+rarely say no to being a guest. After a year the business has an
+audience and a name in its niche.
 
 ## Fits
 

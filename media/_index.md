@@ -3,8 +3,7 @@ title: Photos and clips
 ---
 
 The business's own photographs and clips: the work, the place, the
-product, the people. Real material beats anything a model can generate,
-and it is the one thing only the owner has.
+product, the people. A picture is generated only when none of these fits.
 
 ```
 media/photos/   stills

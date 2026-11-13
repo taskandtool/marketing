@@ -10,9 +10,8 @@ sources:
 # Paid ads and remarketing
 
 Buy attention from people who have never heard of the business, then
-follow everyone who visits with ads on every platform they use. Cold ads
-fill the top; remarketing turns visits into signups, because most people
-need several sightings before they act.
+follow everyone who visits with ads on every platform they use. Most people
+need to see an ad several times before they act.
 
 ## Fits
 

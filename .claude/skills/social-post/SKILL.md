@@ -6,8 +6,8 @@ description: "Writes organic social posts in the owner's voice for Instagram, Fa
 # Social post
 
 The platform shows a post to more people when the first ones send, save,
-comment or keep watching. So it opens with a moment, a number or a question
-the reader recognises, gives something worth keeping, and asks for one small
+comment or keep watching. So open with a moment, a number or a question the
+reader recognises, give something worth keeping, and ask for one small
 thing the platform rewards.
 
 Example, for Instagram:

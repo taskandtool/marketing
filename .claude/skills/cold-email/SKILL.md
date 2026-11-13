@@ -5,8 +5,8 @@ description: "Runs cold email for a business that sells to other businesses: fin
 
 # Cold email
 
-Cold email books meetings for a business that sells to other businesses. It
-rarely fits a business selling to households: in the UK and EU it needs each
+Use cold email to book meetings for a business that sells to other
+businesses. It rarely fits a business selling to households: in the UK and EU it needs each
 person's consent. Few households answer. Say so and suggest the
 `growth-plan` skill.
 
@@ -57,8 +57,8 @@ Copy and tick:
   images, and no link in the first email beyond the signature. Facts only
   from `claims.md`.
 - **Every email carries the business's postal address and a way to opt out**
-  ("Reply no and I won't write again"). Where the reader lives decides the
-  rest. In the EU and UK, writing to a person at a company needs a real
+  ("Reply no and I won't write again"). The rest depends on where the reader
+  lives. In the EU and UK, writing to a person at a company needs a real
   business reason. When unsure, ask the owner.
 
 Example:

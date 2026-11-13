@@ -19,7 +19,7 @@ ads. They are for messaging research, not benchmarking.
 
 - **Meta.** Search by page, not keyword, and filter to active: outside the
   EU an inactive ad is gone, so days running can only be read off active
-  ads. Read the landing page each ad points to; the offer lives there.
+  ads. Read the landing page each ad points to; the offer is there.
 - **Google.** Search the domain, open the verified advertiser's page,
   filter there and keep that URL; a domain search alone returns part of the
   set. A first-shown date (and so a run length) appears only with an EU

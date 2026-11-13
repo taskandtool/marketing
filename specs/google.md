@@ -69,7 +69,7 @@ Logos: 1:1 1200×1200 and 4:1 1200×300, cropped clean, no logo overlaid on the 
 ## Copy rules for Google
 
 - Headlines are assembled by Google in any combination. Every headline must stand alone and must not depend on another one.
-- Do not reuse Google search headlines on Meta and vice versa. Search answers intent; social must earn attention (secondary source, unverified).
+- Do not reuse Google search headlines on Meta and vice versa. Search ads answer what someone typed; social ads must stop someone scrolling (secondary source, unverified).
 - Keep text off the image. Google assembles text next to the image and may overlay its own.
 
 ## Synthetic content attestation (secondary source, unverified)

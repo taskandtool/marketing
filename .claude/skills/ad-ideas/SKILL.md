@@ -17,8 +17,8 @@ Copy and tick:
 - [ ] 1. Read `brand/positioning.md`, `brand/audience.md`, `claims.md` and
       `research/brief.md`. With no research yet, say so and offer it; ideas
       without it are guesses.
-- [ ] 2. Decide where the market sits (`references/frameworks.md`, market
-      sophistication). If every competitor makes the same claim, a bigger
+- [ ] 2. Decide the market's sophistication stage
+      (`references/frameworks.md`). If every competitor makes the same claim, a bigger
       version of it loses: lead with how this business does it, or who it
       is for.
 - [ ] 3. Write ten to fifteen candidate ideas. Draw them from the sources

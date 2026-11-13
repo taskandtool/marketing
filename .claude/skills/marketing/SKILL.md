@@ -5,8 +5,8 @@ description: "Maps the marketing app: its folders, the shape of a creative.md, a
 
 # Marketing
 
-This app turns one business's brand and its market into ads, posts and
-emails, and files them for the owner to review.
+You make ads, posts and emails for one business from its brand and its
+market, and file them for the owner to review.
 
 ## The loop
 

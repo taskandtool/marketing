@@ -55,7 +55,7 @@ python3 ~/tools/taskandtool.py make-image --prompt-file creatives/<folder>/creat
 Quartz over the app's notes, each creative shown as the piece. Dev is the
 `web` service (`npm run dev`); edits show on refresh. Production is `npm
 run deploy` (the `deploy` skill). Who sees it is the publishing setting
-alone, and public means all of it, `raw/` and research included: say so
+alone. Public means all of it, `raw/` and research included: say so
 when asked. Approvals happen in the Deliverables tab, never in the viewer.
 
 ```bash

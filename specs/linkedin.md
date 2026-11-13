@@ -62,7 +62,7 @@ Organic documents and carousel PDFs work best at 5 to 10 slides (secondary sourc
 
 | Item | Value |
 |---|---|
-| Hook | first 100 to 150 chars show before "see more"; the point must land there |
+| Hook | first 100 to 150 chars show before "see more"; the point must be in them |
 | Length | 1,300 to 2,000 chars |
 | Paragraphs | 1 to 3 sentences each |
 | Links | keep the post native; put the link in the first comment (about 80% of top posts carry no link) |

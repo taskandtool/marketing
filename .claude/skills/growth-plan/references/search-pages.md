@@ -10,8 +10,8 @@ sources:
 
 Write pages for the searches people make when they are about to buy: how
 to do the job, the business against an alternative, alternatives to a
-competitor, the service in a place. These searchers are close to deciding,
-so a page that answers them well converts.
+competitor, the service in a place. People making these searches are close
+to deciding.
 
 ## Fits
 
@@ -30,8 +30,8 @@ business has its own version: the service plus the town.
 
 - Research: a keyword source (DataForSEO, Semrush, Ahrefs) and Search
   Console for what already ranks.
-- The pages: the Website app's blog or pages. This app writes the brief and
-  the draft; the Website app publishes.
+- The pages: the Website app's blog or pages. Write the brief and the draft
+  here; they are published through the Website app.
 
 ## Watch
 
@@ -40,8 +40,8 @@ over three to six months.
 
 ## Repeats
 
-A weekly job picks the next searches, drafts the pages and hands them to
-the owner, and a monthly one reads which pages bring signups.
+A weekly job picks the next searches, drafts the pages for the owner,
+and a monthly one reads which pages bring signups.
 
 ## Gotchas
 

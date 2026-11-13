@@ -8,9 +8,9 @@ sources:
 
 # Ad creative at scale
 
-Treat creative as the main lever: launch new ads every day, switch off the
-losers, and make more of what wins. Ad platforms now pick the audience
-themselves, so the ad's idea does the targeting.
+Change the ads more than anything else: launch new ads every day, switch
+off the losers, and make more of what wins. Ad platforms now choose the
+audience from the ad itself.
 
 ## Fits
 
@@ -49,8 +49,8 @@ cheaper lead that never buys is not a win.
 
 The cohort is the job: make the batch, put it up paused, send the owner one
 message to approve, and on a schedule apply the agreed rule and report.
-The rule, the target and every change go in `results.md` so the next run
-knows what was done.
+The rule, the target and every change go in `results.md` for the next run
+to read.
 
 ## Gotchas
 

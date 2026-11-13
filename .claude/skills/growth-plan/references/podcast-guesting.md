@@ -9,8 +9,8 @@ sources:
 
 # Guest on podcasts
 
-Put the owner on other people's shows. Each appearance borrows an audience
-that already trusts the host, and leaves a recording to cut into posts.
+Put the owner on other people's shows. The owner speaks to an audience that
+already trusts the host. The recording can be cut into posts.
 
 ## Fits
 

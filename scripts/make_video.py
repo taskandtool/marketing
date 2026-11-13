@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate a short clip (four to eight seconds) with an OpenRouter video
 model. Video is expensive and slow next to a picture; the
-video skill says when a clip earns it and writes the shot brief.
+video skill says when a clip is worth it and how to write the shot brief.
 
     python3 scripts/make_video.py --prompt-file creatives/<folder>/creative.md --section "Shot 1" --ratio 9:16 --seconds 6 --out creatives/<folder>/shot-1.mp4
                                 [--ref frame.png] [--model …] [--no-text] [--force]

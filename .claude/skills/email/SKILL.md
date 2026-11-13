@@ -23,8 +23,8 @@ getting them.
   - then a few days apart: why the business does it this way, one customer's
     story per email, and a check-in from the owner ("any questions?").
 
-  Stop when they buy, book or reply. Replies come to a real inbox, and an
-  answer is drafted for the owner.
+  Stop when they buy, book or reply. Replies go to the owner's inbox; draft
+  an answer to each.
 - **Past customers:** the reminder they would want (a yearly service, the
   season's job), or one piece of news worth their time.
 

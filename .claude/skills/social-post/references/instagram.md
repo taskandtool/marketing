@@ -49,7 +49,7 @@ Recipes for the feed, Reels and Stories. The worked examples use Harlow Joinery,
 ### Educational carousel
 When: the education pillar, up to twice a week. The default format for saves.
 Structure: 6 to 10 slides, 4:5. Slide 1 a headline hook of eight words or fewer in large type, a promise or a number, a swipe cue bottom right. Slides 2 to N one idea each, numbered, 25 words or fewer. Last slide a summary, "Save this", and a soft call to action.
-Copy: the caption restates the hook before the cutoff, expands one point, then asks. "3 things to check before you sign a kitchen quote. Number 2 is the one people miss: who measures the room. At Harlow the joiner who measures is the joiner who fits, so the drawing is the kitchen. Save this for when the quotes come in. Send it to someone planning a kitchen this year. #fittedkitchens #bristolkitchens #kitchenrenovation"
+Copy: the caption restates the hook before the cutoff, expands one point, then asks. "3 things to check before you sign a kitchen quote. Number 2 is the one people miss: who measures the room. At Harlow the joiner who measures the room also fits the kitchen. Save this for when the quotes come in. Send it to someone planning a kitchen this year. #fittedkitchens #bristolkitchens #kitchenrenovation"
 Visual: one layout, brand colours, the same type on every slide, a photo of real work behind or beside the text where one exists.
 Pitfalls: text walls, a slide 1 that looks like a quote card, a hook that gives the whole answer away, generic advice not anchored in what you see with customers.
 
@@ -63,7 +63,7 @@ Pitfalls: misleading angles, any health or beauty claim, a client's home without
 ### Behind the scenes / day in the life
 When: weekly. The behind-the-scenes pillar.
 Structure: a Reel or 3 to 5 slides of the unglamorous middle of the work. Starts on a specific moment, ends with what the customer gets.
-Copy: "6:40am and the second delivery of ply did not come. Sam cut the carcasses from what we had and I rang the merchant. By four the base units were up. The customer gets a kitchen on the date on the drawing. She does not see this bit, which is the point."
+Copy: "6:40am and the second delivery of ply did not come. Sam cut the carcasses from what we had and I rang the merchant. By four the base units were up. The customer gets a kitchen on the date on the drawing. She does not see this bit."
 Visual: phone-shot, natural light, hands and tools, no set dressing.
 Pitfalls: over-polishing, "busy day!" captions with nothing in them.
 

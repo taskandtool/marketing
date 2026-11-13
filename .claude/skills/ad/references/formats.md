@@ -46,7 +46,7 @@ When: Top to mid funnel. One short message that should not look like an ad.
 Structure: A single handwritten note on a plain or photographed ground, one to twelve words, the logo small or absent.
 Copy: One thought, written the way a person writes a reminder. Example: "Measure the room before you order the kitchen. Or we will." Or: "Drawers that still close in 2036."
 Visual: A yellow or brand-tinted note, handwritten type or a real photographed note on a worktop, a fridge, a site wall. Copy-space is the note.
-Why it works: It breaks the pattern of polished feed content and reads as a person's thought, so it earns the second it needs.
+Why it works: It breaks the pattern of polished feed content and reads as a person's thought.
 Pitfalls: Two notes, or a note plus a headline, kills it. A polished "handwritten" font on a perfect gradient reads as an ad again. The message must stand alone; no explanation on the image.
 
 ### Native-UI mimic
@@ -93,7 +93,7 @@ When: Mid to bottom funnel, higher-value purchases where trust is the bottleneck
 Structure: One product or job photo, a row of outlet logos or a single quoted headline with the outlet name.
 Copy: The outlet's own words, attributed. Example: "'A Bristol workshop that measures twice.' Avonmere Echo, May 2026." Or a logo row: Avonmere Echo, Lintel & Beam, The Renovator's Quarterly, only if each has covered the business.
 Visual: Photo above, press band below. Copy-space is the band.
-Why it works: A third party has already spent its credibility on us.
+Why it works: A third party has already vouched for the business.
 Pitfalls: Cannot be faked; every logo needs a real piece the agent can link to in the ledger. Outlets the buyer does not know add nothing. A paid placement is not press; label it if used.
 
 ### Offer stack / price anchor

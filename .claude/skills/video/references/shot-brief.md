@@ -2,7 +2,7 @@
 
 Checked October 2026 against BytePlus's Seedance guides, Google's Veo 3.1
 guide and fal's Kling 3.0 guide. When a connected model brings its own
-instructions, those win.
+instructions, follow those.
 
 ## What each family changes
 

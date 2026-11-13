@@ -55,7 +55,7 @@ Copy: "Common advice: get three kitchen quotes.
 
 Three quotes from three showrooms are three prices for three different kitchens. Nobody has measured your room. The number that matters comes after the survey, and it changes every time.
 
-What we do: the survey is the first visit and the quote comes from the drawing. One number, and it holds.
+What we do: the survey is the first visit and the quote comes from the drawing. We quote one number and keep to it.
 
 If you fit kitchens and think three quotes protect the customer, tell me why. I might be wrong."
 Visual: optional. A photo of a drawing or a survey in progress.

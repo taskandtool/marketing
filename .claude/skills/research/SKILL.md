@@ -85,7 +85,7 @@ eight hypotheses, ranked by signal strength and ease of production, each
 as "We believe [hook, format or angle] will work because [observation over
 time] suggests [what the audience does]."
 
-Also note where the market sits: whether every competitor already makes
+Also note the market's sophistication: whether every competitor already makes
 the same claim (the `ad-ideas` skill decides what that means).
 
 ## Lines not to cross

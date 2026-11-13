@@ -29,7 +29,7 @@ How many claims the market has already heard. Read it off competitors' ads.
 5. Nothing believed: **identification**, who the customer is or wants to be,
    local belonging.
 
-Local trades usually sit at 3 or 4: every van says "fast, friendly,
+Local trades are usually at 3 or 4: every van says "fast, friendly,
 reliable". A bigger "same-day" loses; "the engineer who fitted it services
 it" (mechanism) or "family firm, Leeds since 2004, we answer our own phone"
 (identification) wins.
