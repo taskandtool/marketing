@@ -210,7 +210,7 @@ git.
   feed. `--send` puts it in the chat for approval. That works only on Task &
   Tool.
 - `python3 scripts/make_video.py` makes a clip through OpenRouter.
-- `python3 scripts/test_scripts.py` runs the 44 tests on the scripts.
+- `python3 scripts/test_scripts.py` runs the tests on the scripts.
 
 ## Third-party tools
 
