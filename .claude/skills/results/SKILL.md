@@ -5,9 +5,9 @@ description: "Measures what ran: the owner's search, ad and post numbers from Go
 
 # Results
 
-Only the owner's own accounts say what works; a competitor's ad library
-never does. Never estimate a number: leave out any the account does not
-give.
+Only the owner's own accounts show what works. A competitor's ad
+library does not. Never estimate a number;
+leave out any the account does not give.
 
 ## Where the numbers come from
 
@@ -17,15 +17,16 @@ give.
 - **Meta ads and Facebook and Instagram posts:** the `meta` connection
   (endpoint `meta-graph`), when the owner ticked its insights and
   `ads_read` access on connecting. Ads: spend, impressions, clicks, leads. Posts: reach, saves,
-  shares, comments. A call refused for a missing permission means it was
-  not ticked: say which to add, and use their export meanwhile.
+  shares, comments. If a call is refused for a missing permission, the
+  owner didn't tick it. Tell them which to add and use their export until
+  then.
 - **Every other platform:** the owner's export from the ads manager or the
   platform's insights (a CSV or a screenshot).
 - **Public counts** for any post, through `scrapecreators`: views, likes,
   comments; never reach or saves.
 
 A connection's own instructions say how to call it. Ask once for a
-connection that is not granted, saying what it unlocks:
+connection that is not granted, saying what it gives you:
 
 ```bash
 python3 ~/tools/taskandtool.py request-connection google-search-console --why "your search traffic for the monthly report"
@@ -34,25 +35,26 @@ python3 ~/tools/taskandtool.py request-connection google-analytics --why "your v
 
 ## Tracking
 
-Every number here depends on the site recording what matters; ads optimise
-for whatever it records. Before ads run, or when numbers look wrong, check
-with the owner that each action that matters (signup, booking, enquiry,
-checkout) reaches every ad platform in use and the analytics, with the
-value and a hashed email where the platform takes them. The usual way: an
-event in the site's code (the Website app's), tags in Google Tag Manager,
-and Meta's Conversions API from the server, each through its connection
-when there is one. Test it before it goes live; publishing the tags is the
-owner's yes.
+You get only the numbers the site records, and ad platforms optimise for
+those same events. Before ads run, or when numbers look wrong, check with
+the owner that every action that matters (signup, booking, enquiry,
+checkout) is sent to the analytics and to each ad platform in use. Send
+the value and a hashed email where the platform accepts them. The usual
+setup is an event in the site's code (the Website app's), tags in Google
+Tag Manager, and Meta's Conversions API from the server, each through its
+connection when there is one. Test it before it goes live, and publish the
+tags only when the owner says yes.
 
 ## results.md
 
-Newest first, one block per creative per period: the folder as a link to
-it (`[2026-10-01-roof-leak](creatives/2026-10-01-roof-leak/)`, never to its
-`creative.md`: the viewer shows the piece at its folder), the platform, the
-dates, then what the account gave. A report links the same way. Ads:
-spend, hook rate, hold rate, click-through, cost per lead. Posts: reach, saves, shares,
-comments. Each number with its unit and its source. Search goes in its own
-block per period: the queries and pages that brought visits.
+Newest first, one block per creative per period: a link to the creative's
+folder (`[2026-10-01-roof-leak](creatives/2026-10-01-roof-leak/)`), the
+platform, the dates, then the numbers the account gave. Link the folder,
+not its `creative.md`: the viewer shows the piece at its folder. Link a
+report the same way. Ads: spend, hook rate, hold rate, click-through, cost
+per lead. Posts: reach, saves, shares, comments. Give each number its unit
+and source. Put search in its own block per period: the queries and pages
+that brought visits.
 
 ## The monthly report
 

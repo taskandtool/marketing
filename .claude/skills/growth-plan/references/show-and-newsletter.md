@@ -37,8 +37,8 @@ willing to host every week for a year. Slow: judged at twelve months.
   reference; clips from the transcript's timestamps, cut by the owner's
   editor or a clipping tool.
 - The newsletter: the `email` skill, sent from the owner's email tool.
-- Guests: research and the outreach email, as `podcast-guesting.md` does
-  in reverse.
+- Guests: invite them with the research and outreach email from
+  `podcast-guesting.md`. Here the business is the host.
 
 ## Watch
 
@@ -52,6 +52,6 @@ a list of clip timestamps, ready for the owner.
 
 ## Gotchas
 
-- A guest's words in an ad need their consent; on the show and in clips
-  they agreed to.
+- Ask a guest before using their words in an ad. They agreed only to the
+  show and the clips.
 - The newsletter goes only to people who signed up (the `email` skill).

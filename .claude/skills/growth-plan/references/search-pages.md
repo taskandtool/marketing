@@ -40,8 +40,8 @@ over three to six months.
 
 ## Repeats
 
-A weekly job picks the next searches, drafts the pages for the owner,
-and a monthly one reads which pages bring signups.
+A weekly job picks the next searches and drafts the pages for the owner.
+A monthly one counts the signups from each page.
 
 ## Gotchas
 

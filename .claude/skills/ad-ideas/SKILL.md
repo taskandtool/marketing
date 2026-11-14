@@ -7,8 +7,8 @@ description: "Turns brand and research into ideas for ads and campaigns: angles 
 
 An idea is one argument for one reader at one stage of awareness. The best
 come from evidence (the sources below). For a service business, start with
-three ideas: the outcome, social proof and the problem. With an offer, one of the three
-is the offer.
+three ideas: the outcome, social proof and the problem. With an offer, make
+one of the three the offer.
 
 ## Steps
 
@@ -18,11 +18,11 @@ Copy and tick:
       `research/brief.md`. With no research yet, say so and offer it; ideas
       without it are guesses.
 - [ ] 2. Decide the market's sophistication stage
-      (`references/frameworks.md`). If every competitor makes the same claim, a bigger
-      version of it loses: lead with how this business does it, or who it
-      is for.
-- [ ] 3. Write ten to fifteen candidate ideas. Draw them from the sources
-      below, each as one line: reader, stage, argument, the proof in
+      (`references/frameworks.md`). If every competitor makes the same claim,
+      a bigger version of it will not stand out. Lead with how this
+      business does the work, or who it is for.
+- [ ] 3. Write ten to fifteen candidate ideas from the sources below.
+      Each is one line: reader, stage, argument and its proof in
       `claims.md`.
 - [ ] 4. Score each (below). Keep the top scorers that make different
       arguments: as many as the owner asked for, or else three for a test

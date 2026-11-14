@@ -11,23 +11,23 @@ sources:
 
 # Google Business Profile posts
 
-Recipes for the three post types on a Business Profile: Updates, Offers and Events. GBP posts show on the business's Google listing and in Maps, to people already searching for the service in the area. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real post takes its figures from `claims.md`.
+Recipes for the three post types on a Business Profile: Updates, Offers and Events. GBP posts appear on the business's Google listing and in Maps. The people who see them are already searching for the service in the area. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; use figures from `claims.md` in a real post.
 
 ## What performs
 
 - Sterling Sky (over 1,000 posts): Offers beat Events for clicks. Custom images get "5.6x more clicks" than stock. Posts with a title get about twice the clicks. Posts with emoji got about twice the clicks in their data. "Specials or discounts" averaged 6.04 clicks against 2.71 for plain calls to action.
 - Hootsuite: "Google loves fresh activity"; a contractor in their example saw 10% more inquiries after posting job photos regularly.
 - Google: "Posts older than 6 months are archived unless a date range is set". An Offer or Event with dates stays visible for its range.
-- No share or save signal exists here. The measures are views, button clicks, calls and direction requests, read in the Profile's performance tab.
+- There is no share or save signal. The measures are views, button clicks, calls and direction requests, in the Profile's performance tab.
 
 ## Norms
 
 - Post types (Google): an Update has a description, a photo or video, and an optional button. An Offer requires "a title, dates, and time" plus an optional description, photo, coupon code and terms. An Event needs "a title, start and end dates, and times".
-- Length: the 1,500-character description and 58-character title limits are widely reported: unverified. Write a title-style first line under 58 characters, then two or three sentences.
+- Length: the 1,500-character description and 58-character title limits are widely reported but unverified. Write a title-style first line under 58 characters, then two or three sentences.
 - Google's content rules: no misspellings, no auto-generated text, no phone numbers in the copy. Use the button for calls.
 - Photos: JPG or PNG, 10 KB to 5 MB, 720 x 720 recommended, 250 x 250 minimum, "in focus and well lit" with "no significant alterations". Video: 30 seconds or under, 75 MB or under, 720p or better.
 - Hooks: the service and the area in the first line. People reading this are already searching for it.
-- Hashtags: none. Links: the button only. Alt text: no field; the description carries the words.
+- Hashtags: none. Links: the button only. Alt text: there is no field. Put the words in the description.
 - Cadence for one person: one Update a week. An Offer or Event whenever there is a real one. Photos added to the Profile as jobs finish, separately from posts.
 - Keep hours, address, services and the Q&A section current. Reply to every review.
 
@@ -36,7 +36,7 @@ Recipes for the three post types on a Business Profile: Updates, Offers and Even
 ### Update
 When: weekly. A finished job, a service explained, a piece of news.
 Structure: one custom photo, a title-style first line, two or three sentences naming the service and the area, a "Learn more" or "Call now" button to the matching page.
-Copy: "Alcove kitchen fitted in Redland. A workshop-made oak kitchen built into a chimney alcove, measured and fitted by the same joiner. We make fitted kitchens for homes across Bristol and North Somerset. Button: Learn more (the project page)."
+Copy: "Alcove kitchen fitted in Redland. We made this oak kitchen in our workshop to fit a chimney alcove. The joiner who measured the room fitted it. We make fitted kitchens for homes across Bristol and North Somerset. Button: Learn more (the project page)."
 Visual: one phone photo of the finished job, 720 x 720 or larger, no text overlay, no logo.
 Pitfalls: a stock photo, a keyword-stuffed first line ("Fitted kitchens Bristol kitchen fitters Bristol"), a phone number in the text, a link pasted into the description.
 

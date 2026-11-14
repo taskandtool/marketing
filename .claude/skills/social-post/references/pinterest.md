@@ -9,20 +9,20 @@ sources:
 
 # Pinterest organic pins
 
-Recipes for a business account. Pinterest is a search engine with a long tail: a pin from last year still brings visits. It suits any business whose work can be photographed and planned for (kitchens, gardens, weddings, food, interiors, clothes). The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real pin takes its figures from `claims.md`.
+Recipes for a business account. Pinterest is a search engine. People still find a pin a year after it goes up. It suits any business whose work can be photographed and planned for (kitchens, gardens, weddings, food, interiors, clothes). The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; use figures from `claims.md` on a real pin.
 
 ## What performs
 
 - Pinterest's own creative guidance: "We recommend using a 2:3 aspect ratio, or 1000 x 1500 pixels". Pins taller than 2:3 "might get cut off".
 - Layout, from Pinterest: "Stack your story by putting visuals in the middle, then stacking text overlay with key messaging at the top and extra details at the bottom". Show products "in realistic settings".
 - Hootsuite: keywords in the title, the description, the board name and on the destination page. Fresh pins (a new image, even to the same URL) beat re-pins of an existing image.
-- Pins are found by search months later, so evergreen subjects beat news. None of these sources measures shares as a signal on Pinterest; saves to boards are the measure that matters.
+- People find pins by search months later. Evergreen subjects do better than news. None of these sources measures shares as a signal on Pinterest; saves to boards are the measure that matters.
 
 ## Norms
 
 - Every pin is 2:3, 1000 x 1500 or larger. Vertical only.
 - Title: keyword first, inside the part that shows (limits: `specs/pinterest.md`).
-- Description: one or two sentences with the natural search phrase ("fitted kitchen with an alcove, Bristol"), no hashtags needed, no calls to action shouted.
+- Description: one or two sentences with the natural search phrase ("fitted kitchen with an alcove, Bristol"), no hashtags needed, no shouted calls to action.
 - Hashtags: none, or one or two at the end.
 - Links: native. Every pin links to the matching page on your site: the project page, the service page, the guide. Never the homepage for everything.
 - Alt text: Pinterest has a field for it. One literal sentence with the keyword.
@@ -50,7 +50,7 @@ When: the offer pillar, at most one pin in five. A pin that leads to the service
 Structure: the outcome as the overlay, the work as the image, the service and area in the description, a link to the service page.
 Copy: title "Fitted kitchens made in Bristol". Description: "Workshop-made kitchens measured and fitted by the same joiner. Eight weeks from signed drawing to fit day. Book a design visit on the page." Overlay: "Measured by the joiner who fits it".
 Visual: the workshop bench with a kitchen carcass on it, or a fitted kitchen with the maker in it.
-Pitfalls: a price on the pin that will go stale, a discount with a deadline (pins live for years), a graphic with no photo.
+Pitfalls: a price on the pin that will go stale, a discount with a deadline (people find pins for years), a graphic with no photo.
 
 ## Never
 

@@ -13,14 +13,14 @@ sources:
 
 # LinkedIn organic posts
 
-Recipes for the owner's profile and the company Page. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens. Jo writes the profile posts; the Page carries milestones, hiring and customer wins. Numbers in examples are illustrative; a real post takes its figures from `claims.md`.
+Recipes for the owner's profile and the company Page. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens. Jo writes the profile posts; milestones, hiring and customer wins go on the Page. Numbers in examples are illustrative; use figures from `claims.md` in a real post.
 
 ## What performs
 
 - Engagement rate by impressions (Socialinsider, 2025 to 2026): native document 7.0%, multi-image 6.45%, video 6.0%, image 5.3%, text 4.5%, poll 4.2%, link 3.25%.
-- Documents give small accounts (1k to 5k followers) the most impressions: 525 against 300 for text (Socialinsider). Buffer: PDF carousels get "3x more engagement than videos, 6x vs text". Sprout (Apr 2025): carousel reach is declining and short video under 60 seconds is growing, so treat the document figures as strong now, not permanent.
+- Documents give small accounts (1k to 5k followers) the most impressions: 525 against 300 for text (Socialinsider). Buffer: PDF carousels get "3x more engagement than videos, 6x vs text". Sprout (Apr 2025) reports carousel reach declining and short video under 60 seconds growing. Documents lead for now; that may change.
 - LinkedIn Pages guidance: "Companies that post weekly see a 2x lift in engagement"; "Images typically result in a 2x higher comment rate"; "custom image collages (3-4 images in one post) perform especially well".
-- Dwell time is a signal. A post that holds a reader for 30 to 60 seconds beats a one-liner. The 1,300 to 2,000 character sweet spot comes from a paid report: unverified.
+- Dwell time is a signal. A post people read for 30 to 60 seconds gets more reach than a one-liner. The often-quoted 1,300 to 2,000 character sweet spot is from a paid report and unverified.
 - Replying in your own comments: up to 2.4x reach (Sprout). First-comment links have "no negative impact" (Buffer, Dec 2025). Link posts rank last.
 - Hootsuite: "LinkedIn is not designed for virality". Name the audience, state the problem, take a position.
 
@@ -37,14 +37,12 @@ Recipes for the owner's profile and the company Page. The worked examples use Ha
 
 ### Personal story with a lesson
 When: the profile, once a week. The strongest dwell-time format for an owner.
-Structure: line 1 is the moment. Three to five short paragraphs. The one thing you changed. A one-line takeaway. A real photo.
+Structure: line 1 is the moment. Three to five short paragraphs. The one thing you changed. A real photo.
 Copy: "We lost our biggest job on a Tuesday.
 
 A developer wanted six kitchens in eight weeks. We said yes, then looked at the workshop calendar and rang back to say no. That call cost about £40,000 of turnover.
 
-What we changed: the calendar is on the office wall now, and Sam checks it before either of us quotes.
-
-Say no before the drawing, not after it."
+What we changed: the calendar is on the office wall now, and Sam checks it before either of us quotes."
 Visual: a photo from the workshop that day, not a stock image of a handshake.
 Pitfalls: a moral with no story under it, a story with no decision in it, a photo of a laptop.
 
@@ -66,9 +64,9 @@ When: the profile or the Page, when you have real numbers. Best as a document.
 Structure: the numbers up front, from and to in N weeks. Numbered steps. What did not work. The template in the first comment.
 Copy: "From 11 weeks to 8 weeks per kitchen, across 14 jobs since January.
 
-1. The joiner who measures is the joiner who fits. No handover, no re-measure.
-2. Carcasses are cut the week the drawing is signed, not the week before fit.
-3. One ply supplier, two deliveries a week instead of ad hoc.
+1. The joiner who measures the room fits it. Nobody re-measures.
+2. We cut the carcasses the week the drawing is signed. We used to cut them the week before fit.
+3. We buy ply from one supplier, and it comes twice a week.
 
 What did not work: batching two kitchens at once. Both slipped.
 
@@ -79,7 +77,7 @@ Pitfalls: numbers you cannot back, steps with no failure listed, the link in the
 ### Document / PDF carousel
 When: the Page, twice a month. The highest-engagement format for small accounts.
 Structure: 5 to 15 pages, landscape or square, PDF under 100 MB (Hootsuite). Page 1 the title and the promise. One idea per page. Last page a recap and a follow call to action.
-Copy: the post itself is two lines. "How to read a kitchen quote. Seven pages, the things we would ask if it were our house. #fittedkitchens #bristol #kitchendesign"
+Copy: the post itself is two lines. "How to read a kitchen quote. Seven pages of what we would ask if it were our house. #fittedkitchens #bristol #kitchendesign"
 Visual: one layout, large type, a photo on every other page, page numbers.
 Pitfalls: text walls, a cover that looks like an ad, a PDF exported from slides with the notes still on.
 

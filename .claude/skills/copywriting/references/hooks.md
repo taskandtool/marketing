@@ -6,14 +6,14 @@ Examples use a made-up two-van heating firm in Leeds.
 |---|---|---|---|---|
 | Callout | Names who it is for or their situation | Cold, narrow local audience | "If your boiler's older than your kids, watch this." | Name the situation, never age, health or money |
 | Problem | A felt pain in the customer's words | Problem-aware | "Radiators cold at the top? That's not the boiler." | Vague pain ("heating issues?") reads as an ad |
-| Question | One the viewer answers yes to, or can't answer | Problem- or solution-aware | "Do you know what your boiler pressure should be?" | A question answered "no, scroll" ("Need a plumber?") |
-| Number | A count that sets length and promise | Teaching, mechanism | "Three things to check before you call anyone out." | The list must arrive; a padded item loses the viewer |
-| Us vs them | Our way against the category's way | Solution-aware, crowded market | "Big firms send whoever's free. We send the engineer who fitted it." | Never name a competitor; the claim is in claims.md |
-| This vs that | Two options, the viewer judges | A real choice: repair or replace | "£180 repair or £2,400 boiler? Here's how I decide." | A rigged comparison destroys trust; give the honest verdict |
-| Myth | A common belief, then broken | Folk wisdom in the category | "Leaving the heating on low all day doesn't save money." | Must be true and sourced; opinion dressed as myth invites a pile-on |
-| Bold claim | A statement the viewer does not expect | Crowded market, organic reach | "Most January breakdowns start in September." | Needs proof at once; outrage alone gets reported |
-| Confession | An admission, then answered | Price or trust objections | "I'll be honest, we're not the cheapest call-out in Leeds." | Sounds staged when scripted; the owner says it their way |
-| Result first | The payoff in frame one, then rewind | Visible results | Black water from a bleed valve: "This came out of a four-year-old system." | Restricted for health and appearance; the real job only |
+| Question | One the viewer answers yes to, or can't answer | Problem- or solution-aware | "Do you know what your boiler pressure should be?" | A question the reader answers "no" to and scrolls past ("Need a plumber?") |
+| Number | A count that sets length and promise | Teaching, mechanism | "Three things to check before you call anyone out." | Give every item promised; viewers leave at a padded one |
+| Us vs them | Our way against the category's way | Solution-aware, crowded market | "Big firms send whoever's free. We send the engineer who fitted it." | Never name a competitor; the claim must be in claims.md |
+| This vs that | Two options, the viewer judges | A real choice: repair or replace | "£180 repair or £2,400 boiler? Here's how I decide." | Give the honest verdict; viewers spot a rigged one |
+| Myth | A common belief, then broken | Folk wisdom in the category | "Leaving the heating on low all day doesn't save money." | Must be true and sourced; an opinion called a myth draws angry comments |
+| Bold claim | A statement the viewer does not expect | Crowded market, organic reach | "Most January breakdowns start in September." | Give the proof at once; people report outrage with no proof |
+| Confession | An admission, then answered | Price or trust objections | "I'll be honest, we're not the cheapest call-out in Leeds." | A script sounds staged; let the owner say it their way |
+| Result first | The payoff in frame one, then rewind | Visible results | Black water from a bleed valve: "This came out of a four-year-old system." | The real job only; restricted for health and appearance |
 | Demo | The thing shown working | Anything visual or satisfying | A thermal camera on a cold radiator, then after a flush | Slow setup; start mid-action |
 | Proof opener | A customer's words or a count as line one | Warm; trust is the obstacle | "'Came out on Christmas Eve and didn't charge extra.' Priya, Headingley." | Invented or paraphrased reviews; a quote needs consent |
 | POV | The viewer's situation from inside it | Organic first, then paid | "POV: the engineer says 'that'll be a part on order'." | Trend formats date fast; keep it specific |
@@ -38,10 +38,10 @@ From the owner's own ad account, once it has run:
   under 25% is weak. A weak hook rate means change the hook.
 - **Hold rate** (fifteen-second plays ÷ three-second plays): 40 to 50% is
   healthy, over 60% strong, under 30% weak. A good hook rate with a weak hold
-  rate means the body does not pay off the hook.
+  rate means the body does not give what the hook promised.
 - **Click-through**, then what happens on the landing page.
 
-These bands are practitioners' figures, not the platforms'; the owner's own
-history is the better baseline once there is one. Change one thing at a
+These bands are practitioners' figures, not the platforms'. Once the owner
+has a history of their own, compare against that. Change one thing at a
 time, hooks first. Record results in `results.md` and the hook in
 `research/hooks.md`.

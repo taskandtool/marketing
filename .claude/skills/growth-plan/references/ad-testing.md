@@ -15,8 +15,8 @@ audience from the ad itself.
 ## Fits
 
 Ads already running with tracking in place, and enough budget that a new
-ad gets a fair test. Without that, a test set of nine (the `ad` skill) is
-the place to start.
+ad gets a fair test. Without that, start with a test set of nine (the
+`ad` skill).
 
 ## What it looks like
 

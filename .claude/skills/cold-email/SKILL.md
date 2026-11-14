@@ -6,9 +6,9 @@ description: "Runs cold email for a business that sells to other businesses: fin
 # Cold email
 
 Use cold email to book meetings for a business that sells to other
-businesses. It rarely fits a business selling to households: in the UK and EU it needs each
-person's consent. Few households answer. Say so and suggest the
-`growth-plan` skill.
+businesses. It rarely fits a business selling to households: in the UK and
+EU it needs each person's consent. Few households answer. Say so and suggest
+the `growth-plan` skill.
 
 Done when the list is verified in `lists/`, the emails pass
 `python3 scripts/check.py`, and the owner has approved the first batch.
@@ -20,11 +20,12 @@ Copy and tick:
 - [ ] 1. **The buyer**, agreed with the owner in one line: role, kind of
       business, size, place, and why they might want this now.
 - [ ] 2. **The list**, in `lists/YYYY-MM-DD-<source>-<who>.csv`: name,
-      company, email, and why this person. From a contact database (Apollo,
-      Hunter), or warmer: the people who liked or commented on a LinkedIn
-      post (the owner's own first), collected by a scraper that needs no
-      LinkedIn sign-in (Apify, PhantomBuster) and given emails by the
-      database. Leave out anyone in an earlier list or in `suppressed.csv`.
+      company, email, and why this person. Take them from a contact
+      database (Apollo, Hunter). Warmer: the people who liked or commented
+      on a LinkedIn post (the owner's own posts first). Collect those with a
+      scraper that needs no LinkedIn sign-in (Apify, PhantomBuster), then
+      get their emails from the database. Leave out anyone in an earlier
+      list or in `suppressed.csv`.
       Never guess an address. A row with no reason is a question for the
       owner.
 - [ ] 3. **Verify every address** (MillionVerifier, ZeroBounce) and drop
@@ -56,7 +57,7 @@ Copy and tick:
 - **Plain text, under 120 words.** The first line is about the reader. No
   images, and no link in the first email beyond the signature. Facts only
   from `claims.md`.
-- **Every email carries the business's postal address and a way to opt out**
+- **Put the business's postal address and a way to opt out in every email**
   ("Reply no and I won't write again"). The rest depends on where the reader
   lives. In the EU and UK, writing to a person at a company needs a real
   business reason. When unsure, ask the owner.
@@ -82,10 +83,10 @@ Reply no and I won't write again.
 
 Replies and meetings booked per hundred sent, and visits from the
 campaign. Bounces under about 2% and spam complaints near zero; above
-that, stop and fix the list. Each run adds its counts (found, sent,
-replied, booked) to `results.md`.
+that, stop and fix the list. Add each run's counts (found, sent, replied,
+booked) to `results.md`.
 
-Once a list works, it can repeat ("Making it repeat" in the `marketing`
-skill): a job per source that finds, verifies and adds new people, skips
-anyone already contacted, and has the owner approve the first batch of
-each new list.
+Once a list works, repeat it ("Making it repeat" in the `marketing`
+skill). A job per source finds, verifies and adds new people and skips
+anyone already contacted. The owner approves the first batch of each new
+list.

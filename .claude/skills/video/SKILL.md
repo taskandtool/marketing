@@ -6,9 +6,8 @@ description: "Plans and makes short video ads and posts: the beat structure, sho
 # Video
 
 Show the idea in the picture, put the words in captions, and use sound
-for energy.
-A generated clip is one beat of four to eight seconds (a product close-up,
-a setting, a reveal), never the whole ad.
+for energy. A generated clip is one beat of four to eight seconds (a
+product close-up, a setting, a reveal), never the whole ad.
 
 ## Steps
 
@@ -50,13 +49,13 @@ Copy and tick:
 - Lo-fi and person-led for cold audiences; polish for people who already
   know the business.
 - Captions burned in at five to ten words a second, inside the safe zone
-  in `specs/`. Generated shots carry no words; they go on in the edit.
+  in `specs/`. Generated shots have no words; add them in the edit.
 - Music is chosen where the ad runs (Ads Manager's library on Meta, the
   Commercial Music Library on TikTok) or licensed for paid social; never a
   trending song. No generated music; generated ambience and effects are
   fine.
-- The owner's own voice first. A synthetic voice or a realistic generated
-  person must be disclosed where the platform requires it.
+- The owner's own voice first. Disclose a synthetic voice or a realistic
+  generated person where the platform requires it.
 
 ## The shot brief
 
@@ -70,6 +69,6 @@ CONSTANTS    what stays the same throughout (the product label, the light, the g
 CONSTRAINTS  no subtitles, no text, no logo, no watermark, no music
 ```
 
-`references/shot-brief.md` has what each model family changes (some take
-timestamps, some only "Shot 1, Shot 2"), the common failures and their
-fixes, and a worked brief.
+Before writing a brief, read `references/shot-brief.md`: what each model
+family changes (some take timestamps, some only "Shot 1, Shot 2"), the
+common failures and their fixes, and a worked brief.

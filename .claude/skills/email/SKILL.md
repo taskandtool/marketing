@@ -7,15 +7,15 @@ description: "Writes email to people who already know the business: the newslett
 
 These emails go to people who signed up, booked, asked for a quote or
 bought. They go out from the owner's own account, never ours, and only to
-people who agreed to hear from the business. Every email says how to stop
-getting them.
+people who agreed to hear from the business. Put a way to stop getting
+them in every email.
 
 ## Kinds
 
 - **Newsletter:** one idea from recent work (a result, a lesson, a question
   customers keep asking), a subject under 50 characters, one link. Weekly
-  or monthly at the same time. Skip a week with nothing new. Material
-  comes from `creatives/`, `results.md` and what the owner says.
+  or monthly at the same time. Skip a week with nothing new. Take the
+  material from `creatives/`, `results.md` and what the owner says.
 - **Follow-ups** after a signup, booking or quote, starting the moment it
   happens:
   - straight away: thanks, and what happens next;

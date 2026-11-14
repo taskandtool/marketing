@@ -1,12 +1,12 @@
 ---
 name: social-post
-description: "Writes organic social posts in the owner's voice for Instagram, Facebook, LinkedIn, TikTok, Google Business, Pinterest and X, slideshows and carousels included, or one idea as a week of posts. Use for a post, a caption, this week's posts, or repurpose this. Not for paid ads (ad)."
+description: "Writes organic social posts, slideshows and carousels in the owner's voice for Instagram, Facebook, LinkedIn, TikTok, Google Business, Pinterest and X. Turns one idea into a week of posts. Use when asked for a post, a caption, this week's posts, or \"repurpose this\". Not for paid ads (the ad skill)."
 ---
 
 # Social post
 
-The platform shows a post to more people when the first ones send, save,
-comment or keep watching. So open with a moment, a number or a question the
+More people see a post when the first viewers send it, save it, comment
+or keep watching. So open with a moment, a number or a question the
 reader recognises, give something worth keeping, and ask for one small
 thing the platform rewards.
 
@@ -24,16 +24,15 @@ Save this for the first cold morning.
 
 Copy and tick:
 
-- [ ] 1. **Pillar and platform.** Education, proof, behind the scenes,
-      offer (at most one post in five) or community
-      (`references/repurpose.md`). First read `references/<platform>.md`
-      for the idea's platform.
+- [ ] 1. **Platform and pillar.** Read `references/<platform>.md` for the
+      platform. Pick the pillar: education, proof, behind the scenes, offer
+      (at most one post in five) or community (`references/repurpose.md`).
 - [ ] 2. **The idea**, from the sources below.
 - [ ] 3. **The hook and the words** (the `copywriting` skill). The first
       line stands alone: the hook and its payoff before the platform's
       visible cutoff (in `specs/<platform>.md`; for X and Google Business, in
       their `references/` file).
-- [ ] 4. **The ask**, one, matched to what the platform rewards: "Save
+- [ ] 4. **One ask**, matched to what the platform rewards: "Save
       this", "Send this to someone planning a kitchen", "Reply with yours".
       Links stay out of the body on Facebook, LinkedIn and X.
 - [ ] 5. **The picture**: the owner's photo as it is or edited, a
@@ -46,10 +45,10 @@ Copy and tick:
       #downtownsarasota"`). Run `python3 scripts/check.py`, then
       `python3 scripts/preview.py <folder> --send "<line>"`: the owner sees
       it as the feed will show it. A week of posts is one call.
-- [ ] 7. **Posting**, once approved: through a posting connection the
-      owner has (Zernio, Hootsuite), scheduled for the time they chose,
-      then `status: posted` and the live `url`. With none, the owner posts
-      it.
+- [ ] 7. **Posting**, once the owner approves. Schedule it through a
+      posting connection the owner has (Zernio, Hootsuite) for the time
+      they chose, then set `status: posted` and the live `url`. With no
+      connection, the owner posts it.
 
 ## Where post ideas come from
 
@@ -62,17 +61,17 @@ feed.
 
 ## One idea, a week of posts
 
-Write the set as `references/repurpose.md` says: each platform's version
-rewritten for that platform, never pasted across. Accounts that mostly
+Follow `references/repurpose.md`: write each platform's version fresh for
+that platform. Accounts that mostly
 repost or cross-post unchanged lose reach on Instagram and Facebook.
 
 ## Rules
 
-- Replying to comments is part of the post; suggest the owner does it in the
-  first hour.
+- Replies to comments count as part of the post. Suggest the owner replies
+  in the first hour.
 - No engagement bait ("tag a friend"), no hashtag walls, no watermarked
   reposts.
-- A review is quoted as written, with permission; customer photos with
+- Quote a review as written, with permission. Use customer photos with
   permission and credit.
 
 ## References

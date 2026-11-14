@@ -12,7 +12,7 @@ sources:
 
 # Facebook Page organic posts
 
-Recipes for a business Page. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real post takes its figures from `claims.md`.
+Recipes for a business Page. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; use figures from `claims.md` in a real post.
 
 ## What performs
 
@@ -45,7 +45,7 @@ Pitfalls: stock imagery, text on the image that makes it look like an ad, a ques
 ### Album / job recap
 When: the end of every project. The highest-reach format.
 Structure: 5 to 10 photos of one job, the caption narrating start to finish.
-Copy: "Bedminster, March to May. Photo 1 is the room on survey day. 2 and 3 are the carcasses in the workshop. 4 to 7 are fit week. 8 is Sunday lunch, sent by the owners. Eight weeks from drawing to fit, ash fronts, oak worktop."
+Copy: "Bedminster, March to May. Photo 1 is the room on survey day. 2 and 3 are the carcasses in the workshop. 4 to 7 are fit week. 8 is the owners' Sunday lunch in the new kitchen. They sent us the photo. Eight weeks from drawing to fit, ash fronts, oak worktop."
 Visual: photos in the order the job happened, the finished kitchen as the cover.
 Pitfalls: ten near-identical shots, no people, the client not asked.
 

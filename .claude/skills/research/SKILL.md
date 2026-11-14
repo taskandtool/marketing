@@ -1,13 +1,13 @@
 ---
 name: research
-description: "Researches the market: competitors' sites, ads and posts, customers' reviews and comments, search questions and conversations worth replying to, into research/ and a brief. Use when the owner asks what competitors are doing, what customers say or where to reply, before the first ideas, or monthly. Not for the business's own facts (brand)."
+description: "Researches the market into research/ and a brief: competitors' sites, ads and posts, customers' reviews and comments, search questions and threads worth replying to. Use when the owner asks what competitors are doing, what customers say or where to reply, before the first ideas, or monthly. Not for the business's own facts (brand)."
 ---
 
 # Research
 
-Ads show what competitors keep paying for. Posts, comments, reviews and
-searches show what customers say. Do both, customers first, and end with a
-brief the `ad-ideas` skill can act on.
+Read competitors' ads for what they keep paying for, and posts, comments,
+reviews and searches for what customers say. Do customers first, and end
+with a brief for the `ad-ideas` skill.
 
 Fetching:
 
@@ -20,7 +20,7 @@ Fetching:
 - People Also Ask, autocomplete and monthly search volume: `dataforseo`
 - a business's Google listing: the brand skill's `tt-crawl places` line
 
-Ask for a connection that is not granted, as this does for scrapecreators.
+Ask for any connection that is not granted, for example:
 
 ```bash
 python3 ~/tools/taskandtool.py request-connection scrapecreators --why "competitors' ads and posts"
@@ -37,20 +37,21 @@ Copy and tick:
       owner's own posts, People Also Ask and autocomplete for the owner's
       terms. Save what you read to `raw/`, then write verbatim phrases into
       `research/audience.md` under wants, dislikes, worries, objections.
-- [ ] 3. **Competitors' ads.** For each, the ad libraries that apply
-      (`references/libraries.md` says what each shows and how to read it).
+- [ ] 3. **Competitors' ads.** Read each competitor's ads in the libraries
+      that apply (`references/libraries.md` says what each shows and how to
+      read it).
       Save the raw pages or exports to `raw/<library>/<competitor>/`, then
       write `research/competitors/<name>.md`.
-- [ ] 4. **Organic.** The top posts of each competitor and of the category,
-      ranked by shares, saves and comments (not likes) relative to the
+- [ ] 4. **Organic.** Find the top posts of each competitor and of the
+      category, ranked by shares, saves and comments (not likes) relative to the
       account's size.
       Add the topic and hook of each to the competitor's file.
 - [ ] 5. **Conversations.** Recent threads in the niche (Reddit, LinkedIn,
       Facebook groups, forums) where people ask a question the owner
       can answer or complain about a problem the owner fixes. Write the ten
       worth a reply to `research/conversations.md`: the link, the date, the
-      question in a few words, and a draft reply in the owner's voice through
-      `copywriting`. Show it as a deliverable; the owner replies.
+      question in a few words, and a draft reply in the owner's voice (the
+      `copywriting` skill). Show it as a deliverable; the owner replies.
 - [ ] 6. **The brief.** Write `research/brief.md` (shape below) and tell the
       owner the three things that change what you would make.
 
@@ -59,31 +60,41 @@ Copy and tick:
 - who they are, the offer and price, what the landing page promises
 - active ads by library and the format mix
 - their three to five longest-running active ads: hook, angle, format,
-  start date, days running, variants, platforms, one line on why it is kept
+  start date, days running, variants, platforms, one line on why they keep
+  running it
 - the angles they repeat and the claim they lean on (price, speed, proof,
   identity)
 - top organic posts: topic and hook
 - what their customers praise and complain about, three to five phrases each
-- their gap: a question or objection their ads and comments leave unanswered
+- their gap: a question or objection they never answer in their ads or
+  comments
 
 ## Reading the signals
 
-Strongest first: the same angle across three or more competitors (the
-market has validated it); several variants of one concept (someone paid to
-iterate); days running while still active (the bands, and the ads to
-discount, are in `references/libraries.md`); reach where a library shows
-it; the same ad across platforms. A library never shows how well an ad
-works; only the owner's own account does, and that outranks everything
-here.
+Strongest first:
+
+1. the same angle from three or more competitors (proven by the market)
+2. several variants of one concept (someone paid to test it)
+3. days running on an active ad (`references/libraries.md` has the bands
+   and the ads to discount)
+4. reach, where a library shows it
+5. the same ad on several platforms
+
+No library shows how well an ad works. Only the owner's own account shows
+that, and it outranks everything here.
 
 ## The brief
 
-`research/brief.md`, one page: the three recurring angles with who runs
-them and for how long; the two longest-lived formats; the top five customer
-phrases; the top three objections; the angle nobody claims; the searches worth a post; and five to
-eight hypotheses, ranked by signal strength and ease of production, each
-as "We believe [hook, format or angle] will work because [observation over
-time] suggests [what the audience does]."
+`research/brief.md`, one page:
+
+- the three recurring angles, with who runs them and for how long
+- the two longest-lived formats
+- the top five customer phrases and the top three objections
+- the angle nobody claims
+- the searches worth a post
+- five to eight hypotheses, ranked by signal strength and ease of
+  production, each as "We believe [hook, format or angle] will work because
+  [observation over time] suggests [what the audience does]."
 
 Also note the market's sophistication: whether every competitor already makes
 the same claim (the `ad-ideas` skill decides what that means).
@@ -94,17 +105,16 @@ the same claim (the `ad-ideas` skill decides what that means).
   and date; keep no names, handles, photos or profile links here. A public
   post is still personal data. Lists of people to contact
   come from a connected service and are kept apart from `research/`.
-- **Patterns, never copies.** Write down the idea one level above the
-  execution ("before and after of a real job, split frame"), never a
-  competitor's words or images, and never paste either into a prompt.
-- **A customer's words in an ad need their consent**, whoever they were
-  written about. Mined language shapes the wording; it is not quoted.
-- **Read, don't harvest.** Fetch the reviews and threads the brief needs,
-  with a results limit on every run, and keep short quotes; no automated
-  likes or comments.
-- **Stop at a login, an age gate or a CAPTCHA** and say so. A connection the
-  owner grants is the sanctioned way past it, used the way its instructions
-  say.
+- **Record the pattern, not the ad.** Write down the idea one level above
+  the execution ("before and after of a real job, split frame"). Never copy
+  a competitor's words or images, or paste either into a prompt.
+- **Quote a customer in an ad only with their consent**, even when they
+  wrote about a competitor. Use mined phrases to shape your wording; don't
+  quote them.
+- **Fetch only what the brief needs.** Set a results limit on every run and
+  keep short quotes. Never like or comment automatically.
+- **Stop at a login, an age gate or a CAPTCHA** and say so. The only way
+  past one is a connection the owner grants, used as its instructions say.
 
 ## Cadence
 

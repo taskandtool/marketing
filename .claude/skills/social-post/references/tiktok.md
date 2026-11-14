@@ -10,7 +10,7 @@ sources:
 
 # TikTok organic posts
 
-Recipes for a small business account. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; a real post takes its figures from `claims.md`.
+Recipes for a small business account. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Numbers in examples are illustrative; use figures from `claims.md` in a real post.
 
 ## What performs
 
@@ -26,7 +26,7 @@ Recipes for a small business account. The worked examples use Harlow Joinery, a 
 - Hashtags: three to five, "at least one containing your keyword verbatim" (Sprout). Hashtag-only captions are a tell.
 - The keyword in the on-screen title in the first second, and said aloud in the first sentence. Auto-captions on.
 - Links: only the profile link. Never in the caption.
-- Alt text: TikTok's photo posts take it; write one literal sentence. For video, the on-screen title and the caption do the job.
+- Alt text: TikTok's photo posts take it; write one literal sentence. For video, the on-screen title and the caption are enough.
 - Cadence for one person: three videos a week if video is cheap for you, otherwise skip TikTok and post the same Reels on Instagram. Reply to comments with a video when a comment asks a real question.
 
 ## Recipes

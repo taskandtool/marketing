@@ -22,7 +22,7 @@ sources:
 
 # Instagram organic posts
 
-Recipes for the feed, Reels and Stories. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Every number in an example is illustrative; a real post takes its figures from `claims.md` or drops them.
+Recipes for the feed, Reels and Stories. The worked examples use Harlow Joinery, a made-up workshop in Bristol that makes fitted kitchens, run by Jo and Sam. Every number in an example is illustrative; in a real post, use figures from `claims.md` or leave them out.
 
 ## What performs
 
@@ -38,7 +38,7 @@ Recipes for the feed, Reels and Stories. The worked examples use Harlow Joinery,
 
 - Caption limits and the "more" cutoff: `specs/meta.md`. The hook and the promise of the payoff before the cutoff, ending on a full thought, no hashtags or emoji before it.
 - A line break between thoughts. The call to action on its own line. Hashtags last.
-- Hashtags: three to five, relevant, at the end of the caption (Instagram's @creators guidance, via Buffer). Hashtag following was removed in December 2024, so tags are a keyword aid, not a reach lever. Small accounts use niche tags.
+- Hashtags: three to five, relevant, at the end of the caption (Instagram's @creators guidance, via Buffer). Instagram removed hashtag following in December 2024. Tags now help search and do little for reach. Small accounts use niche tags.
 - Keywords: captions are searchable. Put the plain service and place phrase in the caption ("fitted kitchens in Bristol") and in the profile. Sprout: "Include natural keywords and terms that will support searchers in finding your post."
 - Alt text: Instagram generates it; custom text "will only be read if someone is using a screen reader" (Instagram help). Write one literal sentence that includes the keyword. Whether it is indexed for search is unverified.
 - Links: none in the caption. "Link in bio" only when the caption says what the link is.
@@ -49,14 +49,14 @@ Recipes for the feed, Reels and Stories. The worked examples use Harlow Joinery,
 ### Educational carousel
 When: the education pillar, up to twice a week. The default format for saves.
 Structure: 6 to 10 slides, 4:5. Slide 1 a headline hook of eight words or fewer in large type, a promise or a number, a swipe cue bottom right. Slides 2 to N one idea each, numbered, 25 words or fewer. Last slide a summary, "Save this", and a soft call to action.
-Copy: the caption restates the hook before the cutoff, expands one point, then asks. "3 things to check before you sign a kitchen quote. Number 2 is the one people miss: who measures the room. At Harlow the joiner who measures the room also fits the kitchen. Save this for when the quotes come in. Send it to someone planning a kitchen this year. #fittedkitchens #bristolkitchens #kitchenrenovation"
+Copy: the caption restates the hook before the cutoff, expands one point, then asks. "3 things to check before you sign a kitchen quote. Number 2 is the one people miss: who measures the room. At Harlow the joiner who measures the room also fits the kitchen. Save this for when the quotes come in. #fittedkitchens #bristolkitchens #kitchenrenovation"
 Visual: one layout, brand colours, the same type on every slide, a photo of real work behind or beside the text where one exists.
 Pitfalls: text walls, a slide 1 that looks like a quote card, a hook that gives the whole answer away, generic advice not anchored in what you see with customers.
 
 ### Before and after
 When: the proof pillar, after any job with a visible change. Trades, cleaning, beauty, fitness, design.
 Structure: end result first, then the before (Buffer), or a two-slide after then before.
-Copy: what the client wanted, what was done, one number. "The after, then the before. Ruth in Redland wanted a kitchen that used the alcove instead of hiding it. We built the run into the wall, oak fronts, on a wall 12 mm out of true. Eight weeks from drawing to fit. Swipe for March."
+Copy: what the client wanted, what was done, one number. "The after, then the before. Ruth in Redland wanted her kitchen built into the alcove. The wall is 12 mm out of true. We cut the oak run to fit it. Eight weeks from drawing to fit. Swipe for March."
 Visual: same angle, same light, no filters. Client permission before posting.
 Pitfalls: misleading angles, any health or beauty claim, a client's home without their say-so.
 
@@ -71,7 +71,7 @@ Pitfalls: over-polishing, "busy day!" captions with nothing in them.
 When: every review that comes in. The proof pillar.
 Structure: a screenshot of the review, or the quote typed on a card.
 Copy: the quote first, one line of story, thanks by first name. "'The drawing was the kitchen. Nothing changed on fit day.' Ruth's kitchen went in on 14 August, the date we wrote on the drawing in June. Thanks, Ruth."
-Visual: the real screenshot reads as more credible than a designed card. Crop to the review, keep the platform's name visible.
+Visual: use the real screenshot; people trust it more than a designed card. Crop to the review, keep the platform's name visible.
 Pitfalls: editing the review, reposting a customer's photo without asking, ten testimonials in a row.
 
 ### Offer post
@@ -84,15 +84,15 @@ Pitfalls: "link in bio" without saying what it is, stacking urgency words, disco
 ### FAQ, three mistakes, myth vs fact, checklist
 When: variants of the educational carousel for the education pillar.
 Structure: FAQ, one question per slide. Three mistakes, one per slide with the fix on the same slide. Myth vs fact, slide 1 the myth in quotes, slide 2 "Actually...". Checklist, one slide, seven items or fewer, box glyphs, caption says save it.
-Copy: "'Solid wood kitchens warp.' Actually, a solid door warps when it is fitted straight into a damp room. A frame-and-panel door moves inside its frame and stays flat. Every Harlow door is frame and panel. Save this for the next showroom visit."
+Copy: "'Solid wood kitchens warp.' Actually, a solid door warps when it is fitted straight into a damp room. A frame-and-panel door moves inside its frame and stays flat. We make every door frame and panel. Save this for the next showroom visit."
 Visual: the same layout as the educational carousel so the account looks like one account.
-Pitfalls: generic advice. Anchor every item in something a customer asked or got wrong.
+Pitfalls: generic advice. Base every item on something a customer asked or got wrong.
 
 ### Quote card
 When: sparingly. The lowest-share format unless the quote is your own and specific.
 Structure: one static image, 20 words or fewer, the speaker's name.
 Copy: "The joiner who measures is the joiner who fits. Jo, Harlow Joinery."
-Visual: brand type on a plain ground or over a real photo. Static images are declining, so pair it with a Story.
+Visual: brand type on a plain ground or over a real photo. Static images are getting less reach. Pair it with a Story.
 Pitfalls: other people's quotes, a quote with no claim in it.
 
 ### Product in use
@@ -105,7 +105,7 @@ Pitfalls: stock imagery, the product without the person.
 ### Community / UGC repost
 When: whenever a customer posts about you. The community pillar.
 Structure: reshare to Stories first, then to the feed with permission.
-Copy: credit in the caption and on the image, plus one line of your own. "Ruth's Sunday roast in the kitchen we fitted in August. Photo hers, shared with permission. The worktop is oiled oak, so the tray goes straight on it."
+Copy: credit in the caption and on the image, plus one line of your own. "Ruth's Sunday roast in the kitchen we fitted in August. Ruth took the photo and said we could share it. The worktop is oiled oak. The roasting tray goes straight on it."
 Visual: the customer's photo as they posted it, their handle in a corner.
 Pitfalls: reposting without asking, cropping out the customer's handle.
 

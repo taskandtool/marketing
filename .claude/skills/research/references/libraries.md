@@ -1,8 +1,8 @@
 # The ad libraries
 
 Checked October 2026 against practitioner guides and the scrapers' own
-documentation; Meta's, Google's and LinkedIn's help pages did not load at
-the time, so re-check a fact here before relying on it for a decision.
+documentation. Meta's, Google's and LinkedIn's help pages did not load
+then. Re-check a fact here before a decision rests on it.
 
 | Library | Shows everywhere | Only for ads shown in the EU/EEA | Kept |
 |---|---|---|---|
@@ -17,9 +17,8 @@ ads. They are for messaging research, not benchmarking.
 
 ## Reading each
 
-- **Meta.** Search by page, not keyword, and filter to active: outside the
-  EU an inactive ad is gone, so days running can only be read off active
-  ads. Read the landing page each ad points to; the offer is there.
+- **Meta.** Search by page, not keyword, and filter to active. Outside the
+  EU an inactive ad disappears. Read days running from active ads only. Read the landing page each ad points to; the offer is there.
 - **Google.** Search the domain, open the verified advertiser's page,
   filter there and keep that URL; a domain search alone returns part of the
   set. A first-shown date (and so a run length) appears only with an EU
@@ -28,17 +27,17 @@ ads. They are for messaging research, not benchmarking.
   shown in the EU; outside it every ad looks the same age.
 - **TikTok, by competitor.** The Ad Library has their ads only if they
   run in Europe; otherwise the Creative Center's top ads are the read.
-- **TikTok.** The 30-day default view is mostly new, small tests; switch to
+- **TikTok Creative Center.** The 30-day default view is mostly new, small tests; switch to
   180 days for the proven set. The pool is opt-in, so absence means nothing.
-- **A business that also sells in Europe**: one extra EU-region pass is the
-  only route to first-shown dates and reach.
+- **A business that also sells in Europe:** run one extra pass with an EU
+  region. It is the only way to see first-shown dates and reach.
 
 ## Run length
 
 Under 14 days is a test; 21 to 45 is acceptable; 45 to 90 is strong;
 90 and more is a staple. A long-running ad has probably not been
-losing money, which means adequate, not best. Variants and recurrence across
-competitors say more than age alone.
+losing money. That makes it adequate, not the best. Variants, and the same
+angle across competitors, mean more than age alone.
 
 ## Discount
 

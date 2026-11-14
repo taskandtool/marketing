@@ -11,30 +11,30 @@ market, and file them for the owner to review.
 ## The loop
 
 Brand (`brand`) → research → ideas (hooks by `copywriting`) → make (`ad`,
-`social-post`, `email`, `cold-email`; clips by `video`) → `python3 scripts/check.py` and
-the `tropes` audit → review → `results`. Start wherever the folders say the
-work is; nothing is made from notes that still say "to fill".
+`social-post`, `email`, `cold-email`; clips by `video`) →
+`python3 scripts/check.py` and the `tropes` audit → review → `results`.
+Check the folders to see how far the work has got, and start there. Make nothing from
+notes that still say "to fill".
 
 Review: `python3 scripts/preview.py <folders> --send "<line>"` shows each
-piece as its feed shows it, one deliverable each, and writes `status:
-sent` and its `deliverable`; never set those by hand. The owner's answer
-arrives as a message in this chat; then set `status: approved` or
-`rejected`.
+piece as it looks in its feed, one deliverable each, and writes `status:
+sent` and its `deliverable`. Never set those by hand. The owner answers
+with a message in this chat. Then set `status: approved` or `rejected`.
 
 ## Making it repeat
 
 Something the owner wants every week: do it by hand in chat until they
 like it, then put the mechanical part in `scripts/`, the judgement in
-`jobs/<name>.md`, and schedule it (`schedule-job`). A job keeps a record so
-a rerun never sends, posts or spends twice, and stops at a draft or a
-paused ad unless the owner said otherwise.
+`jobs/<name>.md`, and schedule it (`schedule-job`). A job keeps a record
+of what it did. A rerun checks it and never sends, posts or spends twice. A job
+stops at a draft or a paused ad unless the owner said otherwise.
 
 ## Where things are
 
 ```
 brand/  public/         the brand record (the brand skill)
 claims.md               every fact a creative may state, numbered, each with its source
-media/                  the owner's photos and clips sent here; _index.md says what may be used
+media/                  the owner's photos and clips sent here; _index.md: what may be used
                         (the brand's curated photos are brand/images.md)
 raw/                    material as it arrived: raw/site/<host>/, raw/<source>/<who>/
 research/               competitors/<name>.md, hooks.md, audience.md, conversations.md, brief.md
@@ -49,9 +49,8 @@ specs/<platform>.md     sizes, limits and policy, each with last_verified
 ```
 
 Names: dates first (`YYYY-MM-DD-<slug>`), lowercase, hyphens. A clone or a
-restore resets file times, so the date in the name is the only reliable
-order. A campaign is a frontmatter field, never a folder, so one grep finds
-it.
+restore resets file times. The date in the name is the only reliable
+order. A campaign is a frontmatter field, not a folder: one grep finds it.
 
 ## creative.md
 
